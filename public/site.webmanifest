@@ -1,0 +1,13 @@
+{
+  "name": "Tobla Kitchen · তবলা কিচেন",
+  "short_name": "Tobla Kitchen",
+  "lang": "bn",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FBF6F0",
+  "theme_color": "#FFFDFB",
+  "icons": [
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
