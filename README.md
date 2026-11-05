@@ -30,10 +30,11 @@ Pricing (Tk 275 average) lives in `site.pricing` and `src/components/sections/Pr
 `<Pricing />` from `src/App.tsx` and the hero price chip in `Hero.tsx`.
 
 ## Brochure
-- Download: `public/brochure/tobla-kitchen-brochure.pdf` — a web copy of the trifold (photos recompressed
-  to high-quality JPEG at the same resolution: 2.5 MB instead of 23.7 MB, visually identical).
-- Preview: `src/assets/brochure/page-*.webp` are 2400px renders of the two spreads; the viewer shows a spread
-  with click-to-zoom on desktop and each panel full-width on phones.
+- Download: `public/brochure/tobla-kitchen-brochure.pdf` — the full-quality original (23.7 MB), used by
+  every download button.
+- Preview: lightweight `src/assets/brochure/page-*.webp` renders (2400px) of the two spreads, so the
+  23.7 MB file only loads when someone downloads it. Desktop shows a spread with click-to-zoom; phones show
+  each panel full-width.
 - To update it: replace the PDF, re-render both pages to WebP (2400px wide) and the three `thumb-*` panels.
 
 ## Language

@@ -141,7 +141,7 @@ const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1
 
 /** Full-screen preview: spreads with zoom on desktop, readable panels one after another on phones. */
 function BrochureViewer({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { t } = useLang();
+  const { t, num } = useLang();
   const [side, setSide] = useState<Side>("outside");
   const [zoom, setZoom] = useState(false);
   const dialog = useRef<HTMLDivElement>(null);
@@ -300,7 +300,7 @@ function BrochureViewer({ open, onClose }: { open: boolean; onClose: () => void 
               {PANELS.map((p, i) => (
                 <li key={p.id}>
                   <p className="mb-2 text-xs font-semibold text-paper/80">
-                    {i + 1}/{PANELS.length} · {t(p.label)}
+                    {num(i + 1)}/{num(PANELS.length)} · {t(p.label)}
                   </p>
                   <div className="relative overflow-hidden rounded-xl bg-paper shadow-lg" style={{ aspectRatio: `${w / 3} / ${h}` }}>
                     <img

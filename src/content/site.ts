@@ -21,7 +21,7 @@ export const site = {
       en: "Tobla Kitchen — Office food, as safe as home",
     },
     description: {
-      bn: "কর্পোরেট টিমের জন্য প্রতিদিনের দুপুর ও রাতের খাবার। ফ্রি-রেঞ্জ মুরগি, ঘরে ভাঙা মসলা, ফিল্টার করা পানি — প্রতিটি উপকরণের উৎস আমরা জানি।",
+      bn: "ঢাকার অফিসগুলোর জন্য প্রতিদিনের দুপুর ও রাতের খাবার। ফ্রি-রেঞ্জ মুরগি, ঘরে ভাঙা মসলা আর ফিল্টার করা পানি — প্রতিটি উপকরণের উৎস আমাদের জানা।",
       en: "Daily lunch and dinner for corporate teams in Dhaka. Free-range chicken, spices ground in-house, filtered water — we know where every ingredient comes from.",
     },
   },
@@ -32,7 +32,7 @@ export const site = {
     items: [
       { id: "why", label: { bn: "কেন আমরা", en: "Why us" } },
       { id: "menu", label: { bn: "মেনু ও দাম", en: "Menu & price" } },
-      { id: "process", label: { bn: "কীভাবে", en: "How we work" } },
+      { id: "process", label: { bn: "কাজের ধাপ", en: "How we work" } },
       { id: "about", label: { bn: "আমাদের কথা", en: "About" } },
       { id: "brochure", label: { bn: "ব্রোশিওর", en: "Brochure" } },
       { id: "contact", label: { bn: "যোগাযোগ", en: "Contact" } },
@@ -50,8 +50,8 @@ export const site = {
     titleLead: { bn: "অফিসের খাবার,", en: "Office food," },
     titleAccent: { bn: "ঘরের মতো নিরাপদ।", en: "as safe as home." },
     lead: {
-      bn: "কর্পোরেট টিমের জন্য প্রতিদিন দুপুর ও রাতের খাবার রান্না করি। মুরগির খামার থেকে খাবারের বাক্স পর্যন্ত — ==সবকিছুর খোঁজ আমরা রাখি।==",
-      en: "We cook lunch and dinner for corporate teams, every day. From the farm our chicken comes from to the box it arrives in — ==we know where everything comes from.==",
+      bn: "অফিসের টিমের জন্য প্রতিদিন দুপুর আর রাতের খাবার রাঁধি। খামারের মুরগি থেকে খাবারের বাক্স পর্যন্ত — ==প্রতিটি ধাপ আমরা নিজেরাই দেখি।==",
+      en: "We cook lunch and dinner for corporate teams, every day. From the farm our chicken comes from to the box it arrives in — ==we look after every step ourselves.==",
     },
     primary: { bn: "মেনু দেখুন", en: "See the menu" },
     points: [
@@ -62,11 +62,6 @@ export const site = {
     badgeFresh: {
       title: { bn: "প্রতিদিন টাটকা রান্না", en: "Cooked fresh daily" },
       sub: { bn: "বাসি খাবার কখনো নয়", en: "Never yesterday's food" },
-    },
-    price: {
-      value: { bn: "৳২৭৫", en: "Tk 275" },
-      title: { bn: "গড়ে জনপ্রতি, প্রতিদিন", en: "average per person, per day" },
-      sub: { bn: "পুরো দুপুরের খাবার · ভ্যাট ও এআইটি ছাড়া", en: "A full lunch · excl. VAT & AIT" },
     },
     stamp: {
       bn: "আমরা যা রাঁধি • নিজেরাও তা-ই খাই • ",
@@ -96,9 +91,9 @@ export const site = {
   stat: {
     eyebrow: { bn: "কেন এটা জরুরি", en: "Why it matters" },
     value: 41.47,
-    label: { bn: "পরীক্ষিত খাবারের নমুনা অনিরাপদ, ২০২৫", en: "of tested food samples were unsafe in 2025" },
+    label: { bn: "২০২৫ সালে পরীক্ষা করা খাবারের নমুনা অনিরাপদ পাওয়া গেছে", en: "of tested food samples were unsafe in 2025" },
     delta: {
-      bn: "২০২২–২৩ সালে ছিল ৮.৫% — প্রায় ৫ গুণ বেড়েছে",
+      bn: "২০২২–২৩ সালে এই হার ছিল ৮.৫% — বেড়েছে প্রায় ৫ গুণ",
       en: "Up from 8.5% in 2022–23 — almost five times higher",
     },
     meterLabel: {
@@ -116,7 +111,7 @@ export const site = {
       en: "In 2025 the Bangladesh Food Safety Authority tested 11,220 food samples and found ==4,653 of them unsafe.==",
     },
     punch: {
-      bn: "বেশিরভাগ ঝুঁকি ঢোকে রান্নার আগেই — উপকরণ, তেল আর পানি দিয়ে। তাই আমরা **প্রতিটি জিনিস উৎস থেকেই নিয়ন্ত্রণ করি।**",
+      bn: "বেশিরভাগ ঝুঁকি খাবারে ঢোকে রান্নার আগেই — উপকরণ, তেল আর পানির মাধ্যমে। তাই আমরা **প্রতিটি উপকরণের উৎস নিজেরাই বেছে নিই।**",
       en: "Most risks enter a meal before cooking starts — through ingredients, oil and water. So **we control each one at its source.**",
     },
     source: { bn: "সূত্র: বাংলাদেশ নিরাপদ খাদ্য কর্তৃপক্ষ (বিএফএসএ)", en: "Source: Bangladesh Food Safety Authority (BFSA)" },
@@ -134,7 +129,7 @@ export const site = {
         key: "chicken",
         title: { bn: "ফ্রি-রেঞ্জ মুরগি", en: "Free-range chicken" },
         text: {
-          bn: "একটি নির্দিষ্ট খামার থেকে আসে। অ্যান্টিবায়োটিক ও হরমোন ছাড়া পালিত, হালাল উপায়ে জবাই করা।",
+          bn: "আসে একটি নির্দিষ্ট খামার থেকে। অ্যান্টিবায়োটিক বা হরমোন ছাড়াই খোলামেলা পরিবেশে বড় হয়, জবাই হয় হালাল উপায়ে।",
           en: "From one named farm. Raised without antibiotics or hormones, and halal-slaughtered.",
         },
         tag: { bn: "অর্গানিক চিকেন · কালিয়াকৈর, গাজীপুর", en: "Organik Chicken · Kaliakoir, Gazipur" },
@@ -143,7 +138,7 @@ export const site = {
         key: "eggs",
         title: { bn: "ওমেগা-৩ ডিম", en: "Omega-3 eggs" },
         text: {
-          bn: "একই খামারের খোলা জায়গায় চরে বেড়ানো মুরগির ডিম। আসে সিল করা ডজনে।",
+          bn: "একই খামারের মুক্তভাবে চরে বেড়ানো মুরগির ডিম, আসে সিল করা ডজন প্যাকে।",
           en: "From free-range hens at the same farm, delivered in sealed dozens.",
         },
       },
@@ -151,7 +146,7 @@ export const site = {
         key: "beef",
         title: { bn: "বিশ্বস্ত উৎসের গরুর মাংস", en: "Beef from trusted partners" },
         text: {
-          bn: "পরিচিত এগ্রো পার্টনারদের কাছ থেকে কেনা। খোলা কাঁচাবাজার থেকে কখনো নয়।",
+          bn: "চেনা-জানা এগ্রো পার্টনারদের কাছ থেকে কেনা — খোলা কাঁচাবাজার থেকে কখনোই নয়।",
           en: "Bought from known agro partners — never from open wet markets.",
         },
       },
@@ -159,7 +154,7 @@ export const site = {
         key: "fish-veg",
         title: { bn: "প্রতিদিনের মাছ ও সবজি", en: "Fish & vegetables, daily" },
         text: {
-          bn: "যতজন খাবেন, প্রতিদিন ঠিক ততটুকুই কেনা হয়। তাই কিছুই জমিয়ে রাখা হয় না।",
+          bn: "যতজন খাবেন, প্রতিদিন ঠিক ততটুকুই কিনি — তাই কিছুই ফ্রিজে জমে থাকে না।",
           en: "Bought each day for that day's headcount, so nothing sits in storage.",
         },
       },
@@ -167,15 +162,15 @@ export const site = {
         key: "spices",
         title: { bn: "ঘরে ভাঙা মসলা", en: "Spices ground in-house" },
         text: {
-          bn: "আস্ত মসলা কিনে নিজেদের রান্নাঘরে পরিষ্কার করে গুঁড়া করি। কোনো রেডিমেড গুঁড়া মসলা নয়।",
+          bn: "আস্ত মসলা কিনে নিজেদের রান্নাঘরেই বেছে, পরিষ্কার করে গুঁড়া করি — রেডিমেড গুঁড়া মসলা নয়।",
           en: "We buy whole spices, then clean and grind them in our own kitchen. No ready-made powders.",
         },
       },
       {
         key: "oil-water",
-        title: { bn: "প্যাকেটের তেল, ফিল্টারের পানি", en: "Packaged oil, filtered water" },
+        title: { bn: "প্যাকেটজাত তেল, ফিল্টার করা পানি", en: "Packaged oil, filtered water" },
         text: {
-          bn: "শুধু ভালো মানের প্যাকেটজাত সয়াবিন তেল, খোলা ড্রামের তেল নয়। সব রান্নায় ফিল্টার করা পানি।",
+          bn: "শুধু ভালো মানের প্যাকেটজাত সয়াবিন তেল — খোলা ড্রামের তেল নয়। রান্নার সব পানি ফিল্টার করা।",
           en: "Only best-quality packaged soybean oil, never loose drum oil. Filtered water for all cooking.",
         },
       },
@@ -186,7 +181,7 @@ export const site = {
     eyebrow: { bn: "ঝুঁকি বনাম আমাদের নিয়ম", en: "Risks vs. our rules" },
     title: { bn: "বাইরে যা হয়, **আমরা তা হতে দিই না**", en: "What happens elsewhere, **we don't allow**" },
     lead: {
-      bn: "সাধারণ ক্যাটারার ও রেস্টুরেন্টে খাদ্য নিরাপত্তার যে ঝুঁকিগুলো দেখা যায় — আর আমরা কীভাবে প্রতিটি এড়িয়ে চলি।",
+      bn: "সাধারণ ক্যাটারার আর রেস্টুরেন্টে খাবারের যেসব ঝুঁকি প্রায়ই দেখা যায় — আর আমরা কীভাবে প্রতিটি এড়িয়ে চলি।",
       en: "The food-safety risks common at caterers and restaurants — and how we avoid each one.",
     },
     colRisk: { bn: "সাধারণত যা হয়", en: "What usually happens" },
@@ -197,10 +192,10 @@ export const site = {
     severity: {
       critical: {
         label: { bn: "গুরুতর", en: "Critical" },
-        hint: { bn: "কয়েক ঘণ্টার মধ্যে অসুস্থ করতে পারে", en: "Can make people sick within hours" },
+        hint: { bn: "কয়েক ঘণ্টার মধ্যেই অসুস্থ করে দিতে পারে", en: "Can make people sick within hours" },
       },
       high: {
-        label: { bn: "বেশি", en: "High" },
+        label: { bn: "উচ্চ", en: "High" },
         hint: { bn: "ধীরে ধীরে শরীরের ক্ষতি করে", en: "Harm that builds up over time" },
       },
       medium: {
@@ -215,7 +210,7 @@ export const site = {
     summary: {
       title: { bn: "সারকথা", en: "In short" },
       text: {
-        bn: "সাধারণ ক্যাটারারে আপনার টিম প্রতিদিন এই সব ঝুঁকি নেয় — যাচাই করার কোনো উপায় ছাড়াই। তবলা কিচেনে প্রতিটি উপকরণের উৎস জানা, প্রতিটি মিল আসে ফুড-সেফ বাক্সে, আর **আমাদের টিমও প্রতিদিন একই খাবার খায়।**",
+        bn: "সাধারণ ক্যাটারারের খাবারে আপনার টিম প্রতিদিন এই ঝুঁকিগুলো নেয় — যাচাই করার কোনো উপায় ছাড়াই। তবলা কিচেনে প্রতিটি উপকরণের উৎস জানা, প্রতিটি খাবার আসে ফুড-গ্রেড বাক্সে, আর **আমাদের নিজেদের টিমও প্রতিদিন একই খাবার খায়।**",
         en: "At a typical caterer, your team takes on every one of these risks, every day, with no way to check. At Tobla Kitchen every ingredient has a known source, every meal arrives in a food-safe box, and **our own team eats the same food, every day.**",
       },
     },
@@ -225,7 +220,7 @@ export const site = {
     eyebrow: { bn: "সাপ্তাহিক মেনু", en: "Weekly menu" },
     title: { bn: "৪ সপ্তাহের মেনু, **প্রতিদিন নতুন স্বাদ**", en: "A 4-week menu, **something new every day**" },
     lead: {
-      bn: "ঘরোয়া স্বাদের মেনু ৪ সপ্তাহ পরপর ঘুরে আসে — সপ্তাহের সাত দিনই।",
+      bn: "ঘরোয়া স্বাদের ৪ সপ্তাহের মেনু, ঘুরেফিরে চলে সপ্তাহের সাত দিনই।",
       en: "Home-style dishes on a 4-week rotation — seven days a week.",
     },
     week: { bn: "সপ্তাহ", en: "Week" },
@@ -234,14 +229,14 @@ export const site = {
     today: { bn: "আজ", en: "Today" },
     rotateNote: { bn: "“/” মানে আমরা পালা করে দিই", en: "“/” means we rotate between them" },
     legendTitle: { bn: "চিহ্নের মানে", en: "What the tags mean" },
-    priceTeaser: { bn: "গড়ে জনপ্রতি / দিন — দাম ও যা থাকছে দেখুন", en: "avg. per person / day — see what's included" },
+    priceTeaser: { bn: "গড়ে জনপ্রতি, প্রতিদিন — কী কী থাকছে দেখুন", en: "avg. per person / day — see what's included" },
     everyDish: {
       title: { bn: "প্রতিটি পদে", en: "In every dish" },
       items: [
         { bn: "ঘরে ভাঙা মসলা", en: "Spices ground in-house" },
         { bn: "প্যাকেটজাত সয়াবিন তেল", en: "Packaged soybean oil" },
         { bn: "ফিল্টার করা পানি", en: "Filtered water" },
-        { bn: "ফুড-সেফ বাক্স", en: "Food-safe box" },
+        { bn: "ফুড-গ্রেড বাক্স", en: "Food-safe box" },
       ],
     },
   },
@@ -250,7 +245,7 @@ export const site = {
     eyebrow: { bn: "দাম", en: "Pricing" },
     title: { bn: "দুপুরের খাবারের **দাম কত?**", en: "What does **lunch cost?**" },
     lead: {
-      bn: "জনপ্রতি, প্রতিদিন — ৪ সপ্তাহের পুরো মেনু ধরে গড়। এই দামেও খাদ্য নিরাপত্তার একটি নিয়মও বাদ যায় না।",
+      bn: "জনপ্রতি, প্রতিদিন — ৪ সপ্তাহের পুরো মেনুর গড় হিসাবে। এই দামেও খাদ্য নিরাপত্তার কোনো নিয়মে ছাড় নেই।",
       en: "Per person, per day — averaged across the full 4-week menu. Not one food-safety rule is skipped at this price.",
     },
     card: {
@@ -259,19 +254,19 @@ export const site = {
       unit: { bn: "জনপ্রতি / দিন", en: "per person / day" },
       notes: [
         { bn: "ভ্যাট ও এআইটি ছাড়া", en: "Excluding VAT & AIT" },
-        { bn: "দিনে গড়ে ৫০০ লাঞ্চ, সপ্তাহে ৭ দিন ধরে হিসাব", en: "Based on ~500 lunches a day, 7 days a week" },
-        { bn: "আপনার টিমের মাপে আলাদা প্রস্তাব দিই", en: "We quote to your team's size" },
+        { bn: "হিসাব: দিনে গড়ে ৫০০টি লাঞ্চ, সপ্তাহে ৭ দিন", en: "Based on ~500 lunches a day, 7 days a week" },
+        { bn: "আপনার টিমের আকার বুঝে আলাদা প্রস্তাব দিই", en: "We quote to your team's size" },
       ],
       cta: { bn: "প্রস্তাব চাই", en: "Get a quote" },
     },
     includedTitle: { bn: "এই দামে যা যা থাকছে", en: "What the price includes" },
     included: [
-      { key: "menu", text: { bn: "৪ সপ্তাহের ঘুরে-ফিরে আসা মেনু, সপ্তাহের ৭ দিন", en: "A 4-week rotating menu, 7 days a week" } },
+      { key: "menu", text: { bn: "সপ্তাহের ৭ দিন, ৪ সপ্তাহের ঘুরেফিরে আসা মেনু", en: "A 4-week rotating menu, 7 days a week" } },
       { key: "farm", text: { bn: "এক নির্দিষ্ট খামারের ফ্রি-রেঞ্জ মুরগি ও ওমেগা-৩ ডিম", en: "Free-range chicken and omega-3 eggs from one named farm" } },
       { key: "beef", text: { bn: "হাড় ছাড়া গরুর মাংস — ==১ কেজিতে ৯ জন, জনপ্রতি প্রায় ১১০ গ্রাম==", en: "Boneless beef — ==1 kg serves 9, about 110 g each==" } },
       { key: "fresh", text: { bn: "প্রতিদিন কেনা টাটকা মাছ ও সবজি", en: "Fish and vegetables bought fresh every day" } },
-      { key: "spice", text: { bn: "ঘরে ভাঙা মসলা, প্যাকেটজাত সয়াবিন তেল, ফিল্টার পানি", en: "Spices ground in-house, packaged soybean oil, filtered water" } },
-      { key: "box", text: { bn: "ফুড-সেফ বাক্সে প্রতিদিন সময়মতো ডেলিভারি", en: "On-time daily delivery in food-safe boxes" } },
+      { key: "spice", text: { bn: "ঘরে ভাঙা মসলা, প্যাকেটজাত সয়াবিন তেল আর ফিল্টার করা পানি", en: "Spices ground in-house, packaged soybean oil, filtered water" } },
+      { key: "box", text: { bn: "ফুড-গ্রেড বাক্সে প্রতিদিন সময়মতো ডেলিভারি", en: "On-time daily delivery in food-safe boxes" } },
     ],
   },
 
@@ -295,7 +290,7 @@ export const site = {
         key: "cook",
         title: { bn: "পরিষ্কার রান্নাঘরে রান্না", en: "Cooked in a clean kitchen" },
         text: {
-          bn: "প্রতিদিন জীবাণুমুক্ত রান্নাঘর। কর্মীরা গ্লাভস, মাস্ক ও হেয়ারনেট পরেন।",
+          bn: "রান্নাঘর প্রতিদিন জীবাণুমুক্ত করা হয়; কর্মীরা পরেন গ্লাভস, মাস্ক আর হেয়ারনেট।",
           en: "Sanitized every day. Staff wear gloves, masks and hairnets.",
         },
       },
@@ -303,7 +298,7 @@ export const site = {
         key: "pack",
         title: { bn: "নিরাপদ প্যাকিং", en: "Safe packing" },
         text: {
-          bn: "বারবার ব্যবহারযোগ্য, বিপিএ-মুক্ত ফুড-সেফ বাক্সে। পলিথিন বা ফোম নয়।",
+          bn: "বারবার ব্যবহারযোগ্য, বিপিএ-মুক্ত ফুড-গ্রেড বাক্সে — পলিথিন বা ফোমে নয়।",
           en: "Reusable, BPA-free, food-safe boxes. No polythene or foam.",
         },
       },
@@ -316,7 +311,7 @@ export const site = {
         },
       },
     ],
-    promisesTitle: { bn: "এর সাথে প্রতিদিন", en: "Plus, every day" },
+    promisesTitle: { bn: "আরও যা নিশ্চিত করি", en: "Plus, every day" },
     promises: [
       {
         key: "hands",
@@ -330,8 +325,8 @@ export const site = {
       },
       {
         key: "fresh",
-        title: { bn: "কখনো ফ্রোজেন বা বাসি নয়", en: "Never frozen or reused" },
-        text: { bn: "সেদিনের লোকসংখ্যা অনুযায়ী সেদিনই রান্না, পরের দিনে কিছুই যায় না।", en: "Cooked fresh for that day's headcount; nothing carries over." },
+        title: { bn: "কখনো ফ্রিজের বা বাসি নয়", en: "Never frozen or reused" },
+        text: { bn: "যতজন খাবেন, সেদিন ততজনের জন্যই রান্না — কিছুই পরের দিনের জন্য রাখা হয় না।", en: "Cooked fresh for that day's headcount; nothing carries over." },
       },
     ],
   },
@@ -349,14 +344,14 @@ export const site = {
     mission: {
       title: { bn: "আমাদের লক্ষ্য", en: "Our mission" },
       text: {
-        bn: "বাংলাদেশের কর্পোরেট টিমকে নিরাপদ, পরিচ্ছন্ন, ঘরোয়া খাবার দেওয়া — এমন উপকরণে, যার উৎস আমরা জানি। প্রতিটি ভাগে পরিমাণের চেয়ে মান আগে।",
+        bn: "বাংলাদেশের অফিসগুলোতে নিরাপদ, পরিচ্ছন্ন, ঘরোয়া খাবার পৌঁছে দেওয়া — যার প্রতিটি উপকরণের উৎস আমাদের জানা, আর প্রতিটি পরিবেশনে মান আগে, পরিমাণ পরে।",
         en: "To serve corporate teams in Bangladesh safe, hygienic, home-style meals made from ingredients we can trace — quality over quantity in every portion.",
       },
     },
     vision: {
       title: { bn: "আমাদের স্বপ্ন", en: "Our vision" },
       text: {
-        bn: "এমন অফিস লাঞ্চ, যাকে কর্মীরা ঘরের রান্নার মতোই বিশ্বাস করেন — আর কর্পোরেট ক্যাটারিংয়ে খাদ্য নিরাপত্তার মান ঠিক করবে তবলা কিচেন।",
+        bn: "এমন অফিস লাঞ্চ, যার ওপর কর্মীরা ঘরের রান্নার মতোই ভরসা করেন — আর কর্পোরেট ক্যাটারিংয়ে খাদ্য নিরাপত্তার মাপকাঠি হবে তবলা কিচেন।",
         en: "An office lunch employees trust as much as food cooked at home — with Tobla Kitchen setting the standard for food safety in corporate catering.",
       },
     },
@@ -372,7 +367,7 @@ export const site = {
       {
         title: { bn: "পরিচ্ছন্নতায় ছাড় নেই", en: "Hygiene without shortcuts" },
         text: {
-          bn: "প্রতিদিন রান্নাঘর জীবাণুমুক্ত করা হয়। গ্লাভস, মাস্ক, হেয়ারনেট সবসময়।",
+          bn: "রান্নাঘর প্রতিদিন জীবাণুমুক্ত করি; গ্লাভস, মাস্ক আর হেয়ারনেট ছাড়া কোনো কাজ নয়।",
           en: "The kitchen is sanitized daily. Gloves, masks and hairnets, always.",
         },
       },
@@ -393,8 +388,8 @@ export const site = {
     ],
     facts: [
       { value: { bn: "২০২৫", en: "2025" }, label: { bn: "যাত্রা শুরু", en: "Founded" } },
-      { value: { bn: "১,০০০+", en: "1,000+" }, label: { bn: "মিল প্রতিদিন", en: "Meals a day" } },
-      { value: { bn: "৭ দিন", en: "7 days" }, label: { bn: "সপ্তাহে সেবা", en: "A week" } },
+      { value: { bn: "১,০০০+", en: "1,000+" }, label: { bn: "মিলের দৈনিক সক্ষমতা", en: "Meals a day" } },
+      { value: { bn: "৭ দিন", en: "7 days" }, label: { bn: "সপ্তাহজুড়ে সেবা", en: "A week" } },
       { value: { bn: "তেজগাঁও", en: "Tejgaon" }, label: { bn: "নিজস্ব রান্নাঘর", en: "Our own kitchen" } },
     ],
   },
@@ -408,14 +403,14 @@ export const site = {
     },
     preview: { bn: "ব্রোশিওর দেখুন", en: "Preview brochure" },
     download: { bn: "ডাউনলোড (PDF)", en: "Download PDF" },
-    meta: { bn: "২ পাতা · ২.৫ এমবি · ইংরেজিতে লেখা", en: "2 pages · 2.5 MB · in English" },
+    meta: { bn: "২ পাতা · পূর্ণ মানের PDF, ২৩.৭ এমবি · ইংরেজিতে লেখা", en: "2 pages · full-quality PDF, 23.7 MB · in English" },
     modalTitle: { bn: "তবলা কিচেন ব্রোশিওর", en: "Tobla Kitchen brochure" },
     outside: { bn: "বাইরের দিক", en: "Outside" },
     inside: { bn: "ভেতরের দিক", en: "Inside" },
     zoomIn: { bn: "বড় করে দেখুন", en: "Zoom in" },
     zoomOut: { bn: "ছোট করুন", en: "Zoom out" },
     close: { bn: "বন্ধ করুন", en: "Close" },
-    swipeHint: { bn: "নিচে স্ক্রল করে সব পাতা দেখুন", en: "Scroll down to read every panel" },
+    swipeHint: { bn: "নিচে স্ক্রল করে পুরো ব্রোশিওর দেখুন", en: "Scroll down to read every panel" },
     pageAlt: {
       outside: {
         bn: "ব্রোশিওরের বাইরের দিক: আমাদের নিয়ম ও লক্ষ্য, সেবা ও যোগাযোগ, আর প্রচ্ছদ",
@@ -447,10 +442,10 @@ export const site = {
     callNow: { bn: "কল করুন", en: "Call now" },
     copy: { bn: "নম্বর কপি", en: "Copy" },
     copied: { bn: "কপি হয়েছে!", en: "Copied!" },
-    personLabel: { bn: "যোগাযোগ", en: "Contact person" },
+    personLabel: { bn: "যার সাথে কথা বলবেন", en: "Contact person" },
     person: { bn: "রায়হান মাহমুদ", en: "Raihan Mahmud" },
     role: { bn: "জিএম, বিজনেস ডেভেলপমেন্ট", en: "GM, Business Development" },
-    kitchenLabel: { bn: "রান্নাঘর", en: "Kitchen" },
+    kitchenLabel: { bn: "আমাদের রান্নাঘর", en: "Kitchen" },
     address: { bn: "১৭/৫ কুনিপাড়া, তেজগাঁও, ঢাকা", en: "17/5 Kunipara, Tejgaon, Dhaka" },
     openMap: { bn: "ম্যাপে দেখুন", en: "Open in Maps" },
     webLabel: { bn: "ওয়েবসাইট", en: "Website" },
