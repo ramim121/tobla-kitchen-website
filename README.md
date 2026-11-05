@@ -1,7 +1,7 @@
 # Tobla Kitchen · তবলা কিচেন
 
 Bangla-first marketing site for Tobla Kitchen, a corporate catering kitchen in Tejgaon, Dhaka.
-Live: https://tobla-kitchen.vercel.app
+Live: https://www.toblakitchen.com (also https://tobla-kitchen.vercel.app)
 
 ## Stack
 React 19 · Vite 8 · Tailwind CSS 4 · motion (animations) · Lenis (smooth wheel scrolling) ·
