@@ -26,7 +26,15 @@ All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 | `images.ts` | which photo/icon each item uses |
 
 Inline markup in copy: `**text**` = orange accent, `==text==` = marker highlight that draws in.
-To hide the price card, remove the `D — every dish + price` block in `src/components/sections/MenuExplorer.tsx`.
+Pricing (Tk 275 average) lives in `site.pricing` and `src/components/sections/Pricing.tsx`; to hide it, remove
+`<Pricing />` from `src/App.tsx` and the hero price chip in `Hero.tsx`.
+
+## Brochure
+- Download: `public/brochure/tobla-kitchen-brochure.pdf` — a web copy of the trifold (photos recompressed
+  to high-quality JPEG at the same resolution: 2.5 MB instead of 23.7 MB, visually identical).
+- Preview: `src/assets/brochure/page-*.webp` are 2400px renders of the two spreads; the viewer shows a spread
+  with click-to-zoom on desktop and each panel full-width on phones.
+- To update it: replace the PDF, re-render both pages to WebP (2400px wide) and the three `thumb-*` panels.
 
 ## Language
 Bangla is the default. The toggle at the top switches to English; the choice is remembered, and

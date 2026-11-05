@@ -57,3 +57,12 @@ Visitors are HR/admin decision-makers. Success = they trust the food-safety stor
 
 ## Deploy
 - Vite static build → Vercel project in team “ramim121's projects”, production deployment.
+
+## Update — round 2 (owner feedback)
+- Removed the "1,000+ meals a day" badge from the hero plate.
+- Tk 275 highlighted: hero price chip + a dedicated orange Pricing section (what the price includes, incl. the
+  proposal's portion standard: 1 kg boneless beef serves 9) right after the menu.
+- More reasoning from the proposal: "in short" summary under the risk table, mission & vision in About,
+  extra delivery promises (experienced hands, modern equipment, never frozen/reused) under Process.
+- Brochure section: fanned panel preview, in-site viewer (spreads + zoom on desktop, panels on phones), PDF download.
+- Nav: "Menu & price" and "Brochure" added; production domain www.toblakitchen.com (apex redirects to www).

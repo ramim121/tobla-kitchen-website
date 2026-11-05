@@ -10,6 +10,8 @@ export const CONTACT = {
   phoneRaw: "01711400151",
   mapsHref: "https://www.google.com/maps/search/?api=1&query=17%2F5%20Kunipara%2C%20Tejgaon%2C%20Dhaka",
   website: "toblakitchen.com",
+  brochurePdf: "/brochure/tobla-kitchen-brochure.pdf",
+  brochureFileName: "Tobla-Kitchen-Brochure.pdf",
 };
 
 export const site = {
@@ -29,9 +31,10 @@ export const site = {
   nav: {
     items: [
       { id: "why", label: { bn: "কেন আমরা", en: "Why us" } },
-      { id: "menu", label: { bn: "মেনু", en: "Menu" } },
+      { id: "menu", label: { bn: "মেনু ও দাম", en: "Menu & price" } },
       { id: "process", label: { bn: "কীভাবে", en: "How we work" } },
       { id: "about", label: { bn: "আমাদের কথা", en: "About" } },
+      { id: "brochure", label: { bn: "ব্রোশিওর", en: "Brochure" } },
       { id: "contact", label: { bn: "যোগাযোগ", en: "Contact" } },
     ],
     call: { bn: "কল করুন", en: "Call us" },
@@ -60,9 +63,10 @@ export const site = {
       title: { bn: "প্রতিদিন টাটকা রান্না", en: "Cooked fresh daily" },
       sub: { bn: "বাসি খাবার কখনো নয়", en: "Never yesterday's food" },
     },
-    badgeCapacity: {
-      value: { bn: "১,০০০+", en: "1,000+" },
-      sub: { bn: "মিল প্রতিদিন", en: "meals a day" },
+    price: {
+      value: { bn: "৳২৭৫", en: "Tk 275" },
+      title: { bn: "গড়ে জনপ্রতি, প্রতিদিন", en: "average per person, per day" },
+      sub: { bn: "পুরো দুপুরের খাবার · ভ্যাট ও এআইটি ছাড়া", en: "A full lunch · excl. VAT & AIT" },
     },
     stamp: {
       bn: "আমরা যা রাঁধি • নিজেরাও তা-ই খাই • ",
@@ -208,6 +212,13 @@ export const site = {
       bn: "তথ্যসূত্র: বিএফএসএ, জাতীয় সংবাদমাধ্যম ও গবেষণাপত্র। পূর্ণ তালিকা চাইলে আমরা দিতে পারি।",
       en: "Sources: BFSA data, national news reports and peer-reviewed studies. Full list available on request.",
     },
+    summary: {
+      title: { bn: "সারকথা", en: "In short" },
+      text: {
+        bn: "সাধারণ ক্যাটারারে আপনার টিম প্রতিদিন এই সব ঝুঁকি নেয় — যাচাই করার কোনো উপায় ছাড়াই। তবলা কিচেনে প্রতিটি উপকরণের উৎস জানা, প্রতিটি মিল আসে ফুড-সেফ বাক্সে, আর **আমাদের টিমও প্রতিদিন একই খাবার খায়।**",
+        en: "At a typical caterer, your team takes on every one of these risks, every day, with no way to check. At Tobla Kitchen every ingredient has a known source, every meal arrives in a food-safe box, and **our own team eats the same food, every day.**",
+      },
+    },
   },
 
   menu: {
@@ -223,6 +234,7 @@ export const site = {
     today: { bn: "আজ", en: "Today" },
     rotateNote: { bn: "“/” মানে আমরা পালা করে দিই", en: "“/” means we rotate between them" },
     legendTitle: { bn: "চিহ্নের মানে", en: "What the tags mean" },
+    priceTeaser: { bn: "গড়ে জনপ্রতি / দিন — দাম ও যা থাকছে দেখুন", en: "avg. per person / day — see what's included" },
     everyDish: {
       title: { bn: "প্রতিটি পদে", en: "In every dish" },
       items: [
@@ -232,16 +244,35 @@ export const site = {
         { bn: "ফুড-সেফ বাক্স", en: "Food-safe box" },
       ],
     },
-    price: {
+  },
+
+  pricing: {
+    eyebrow: { bn: "দাম", en: "Pricing" },
+    title: { bn: "দুপুরের খাবারের **দাম কত?**", en: "What does **lunch cost?**" },
+    lead: {
+      bn: "জনপ্রতি, প্রতিদিন — ৪ সপ্তাহের পুরো মেনু ধরে গড়। এই দামেও খাদ্য নিরাপত্তার একটি নিয়মও বাদ যায় না।",
+      en: "Per person, per day — averaged across the full 4-week menu. Not one food-safety rule is skipped at this price.",
+    },
+    card: {
       label: { bn: "গড় খরচ", en: "Average cost" },
       value: { bn: "৳২৭৫", en: "Tk 275" },
       unit: { bn: "জনপ্রতি / দিন", en: "per person / day" },
-      note: {
-        bn: "দিনে গড়ে ৫০০ জনের অর্ডারে, ভ্যাট ও এআইটি ছাড়া। আপনার টিমের জন্য আলাদা প্রস্তাব নিন।",
-        en: "Based on about 500 lunches a day, excluding VAT & AIT. Ask for a quote for your team.",
-      },
+      notes: [
+        { bn: "ভ্যাট ও এআইটি ছাড়া", en: "Excluding VAT & AIT" },
+        { bn: "দিনে গড়ে ৫০০ লাঞ্চ, সপ্তাহে ৭ দিন ধরে হিসাব", en: "Based on ~500 lunches a day, 7 days a week" },
+        { bn: "আপনার টিমের মাপে আলাদা প্রস্তাব দিই", en: "We quote to your team's size" },
+      ],
       cta: { bn: "প্রস্তাব চাই", en: "Get a quote" },
     },
+    includedTitle: { bn: "এই দামে যা যা থাকছে", en: "What the price includes" },
+    included: [
+      { key: "menu", text: { bn: "৪ সপ্তাহের ঘুরে-ফিরে আসা মেনু, সপ্তাহের ৭ দিন", en: "A 4-week rotating menu, 7 days a week" } },
+      { key: "farm", text: { bn: "এক নির্দিষ্ট খামারের ফ্রি-রেঞ্জ মুরগি ও ওমেগা-৩ ডিম", en: "Free-range chicken and omega-3 eggs from one named farm" } },
+      { key: "beef", text: { bn: "হাড় ছাড়া গরুর মাংস — ==১ কেজিতে ৯ জন, জনপ্রতি প্রায় ১১০ গ্রাম==", en: "Boneless beef — ==1 kg serves 9, about 110 g each==" } },
+      { key: "fresh", text: { bn: "প্রতিদিন কেনা টাটকা মাছ ও সবজি", en: "Fish and vegetables bought fresh every day" } },
+      { key: "spice", text: { bn: "ঘরে ভাঙা মসলা, প্যাকেটজাত সয়াবিন তেল, ফিল্টার পানি", en: "Spices ground in-house, packaged soybean oil, filtered water" } },
+      { key: "box", text: { bn: "ফুড-সেফ বাক্সে প্রতিদিন সময়মতো ডেলিভারি", en: "On-time daily delivery in food-safe boxes" } },
+    ],
   },
 
   process: {
@@ -285,6 +316,24 @@ export const site = {
         },
       },
     ],
+    promisesTitle: { bn: "এর সাথে প্রতিদিন", en: "Plus, every day" },
+    promises: [
+      {
+        key: "hands",
+        title: { bn: "অভিজ্ঞ হাত", en: "Experienced hands" },
+        text: { bn: "রান্না ও সার্ভিস টিমের কয়েক দশকের ক্যাটারিং অভিজ্ঞতা।", en: "Kitchen and service staff with decades of catering experience." },
+      },
+      {
+        key: "equipment",
+        title: { bn: "আধুনিক সরঞ্জাম", en: "Modern equipment" },
+        text: { bn: "খাদ্য নিরাপত্তা আর সহজে পরিষ্কারের কথা ভেবে বাছাই করা।", en: "Chosen for food safety and easy cleaning." },
+      },
+      {
+        key: "fresh",
+        title: { bn: "কখনো ফ্রোজেন বা বাসি নয়", en: "Never frozen or reused" },
+        text: { bn: "সেদিনের লোকসংখ্যা অনুযায়ী সেদিনই রান্না, পরের দিনে কিছুই যায় না।", en: "Cooked fresh for that day's headcount; nothing carries over." },
+      },
+    ],
   },
 
   about: {
@@ -296,6 +345,20 @@ export const site = {
     body: {
       bn: "তবলা কিচেন একটি বাংলাদেশি ক্যাটারিং প্রতিষ্ঠান। আমাদের বিশ্বাস একটাই — অফিসের খাবারও হতে হবে ঘরের রান্নার মতো নিরাপদ। তাই খামার থেকে খাবারের বাক্স পর্যন্ত সবকিছু আমরা নিজেরাই দেখি।",
       en: "Tobla Kitchen is a Bangladeshi catering company built on one idea: office food should be as safe as food cooked at home. So we look after everything ourselves — from the farm to the box.",
+    },
+    mission: {
+      title: { bn: "আমাদের লক্ষ্য", en: "Our mission" },
+      text: {
+        bn: "বাংলাদেশের কর্পোরেট টিমকে নিরাপদ, পরিচ্ছন্ন, ঘরোয়া খাবার দেওয়া — এমন উপকরণে, যার উৎস আমরা জানি। প্রতিটি ভাগে পরিমাণের চেয়ে মান আগে।",
+        en: "To serve corporate teams in Bangladesh safe, hygienic, home-style meals made from ingredients we can trace — quality over quantity in every portion.",
+      },
+    },
+    vision: {
+      title: { bn: "আমাদের স্বপ্ন", en: "Our vision" },
+      text: {
+        bn: "এমন অফিস লাঞ্চ, যাকে কর্মীরা ঘরের রান্নার মতোই বিশ্বাস করেন — আর কর্পোরেট ক্যাটারিংয়ে খাদ্য নিরাপত্তার মান ঠিক করবে তবলা কিচেন।",
+        en: "An office lunch employees trust as much as food cooked at home — with Tobla Kitchen setting the standard for food safety in corporate catering.",
+      },
     },
     valuesTitle: { bn: "আমাদের নিয়ম", en: "What we stand for" },
     values: [
@@ -336,6 +399,35 @@ export const site = {
     ],
   },
 
+  brochure: {
+    eyebrow: { bn: "ব্রোশিওর", en: "Brochure" },
+    title: { bn: "এক নজরে **তবলা কিচেন**", en: "Tobla Kitchen **at a glance**" },
+    lead: {
+      bn: "আমাদের নিয়ম, সেবা আর প্রতিটি উপকরণের উৎস — সব এক ব্রোশিওরে। এখানেই দেখে নিন, অথবা ডাউনলোড করে টিমের সাথে শেয়ার করুন।",
+      en: "Our rules, services and where every ingredient comes from — all in one brochure. View it here, or download it to share with your team.",
+    },
+    preview: { bn: "ব্রোশিওর দেখুন", en: "Preview brochure" },
+    download: { bn: "ডাউনলোড (PDF)", en: "Download PDF" },
+    meta: { bn: "২ পাতা · ২.৫ এমবি · ইংরেজিতে লেখা", en: "2 pages · 2.5 MB · in English" },
+    modalTitle: { bn: "তবলা কিচেন ব্রোশিওর", en: "Tobla Kitchen brochure" },
+    outside: { bn: "বাইরের দিক", en: "Outside" },
+    inside: { bn: "ভেতরের দিক", en: "Inside" },
+    zoomIn: { bn: "বড় করে দেখুন", en: "Zoom in" },
+    zoomOut: { bn: "ছোট করুন", en: "Zoom out" },
+    close: { bn: "বন্ধ করুন", en: "Close" },
+    swipeHint: { bn: "নিচে স্ক্রল করে সব পাতা দেখুন", en: "Scroll down to read every panel" },
+    pageAlt: {
+      outside: {
+        bn: "ব্রোশিওরের বাইরের দিক: আমাদের নিয়ম ও লক্ষ্য, সেবা ও যোগাযোগ, আর প্রচ্ছদ",
+        en: "Brochure outside: our values and mission, services and contact, and the cover",
+      },
+      inside: {
+        bn: "ব্রোশিওরের ভেতরের দিক: আমাদের কথা, প্রস্তুতি ও ডেলিভারি, আর উপকরণের উৎস",
+        en: "Brochure inside: about us, how we prepare and deliver, and where ingredients come from",
+      },
+    },
+  },
+
   contact: {
     eyebrow: { bn: "যোগাযোগ", en: "Contact" },
     title: { bn: "আপনার অফিসের খাবার নিয়ে **কথা বলি?**", en: "Let's talk about **your office meals**" },
@@ -362,6 +454,7 @@ export const site = {
     address: { bn: "১৭/৫ কুনিপাড়া, তেজগাঁও, ঢাকা", en: "17/5 Kunipara, Tejgaon, Dhaka" },
     openMap: { bn: "ম্যাপে দেখুন", en: "Open in Maps" },
     webLabel: { bn: "ওয়েবসাইট", en: "Website" },
+    brochureLink: { bn: "ব্রোশিওর ডাউনলোড (PDF)", en: "Download brochure (PDF)" },
   },
 
   footer: {

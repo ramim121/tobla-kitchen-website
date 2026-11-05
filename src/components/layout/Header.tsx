@@ -18,8 +18,10 @@ const SECTION_TO_NAV: Record<string, string | null> = {
   sourcing: "why",
   risks: "why",
   menu: "menu",
+  pricing: "menu",
   process: "process",
   about: "about",
+  brochure: "brochure",
   contact: "contact",
 };
 
@@ -98,7 +100,7 @@ export function Header() {
                         to={item.id}
                         aria-current={on ? "true" : undefined}
                         className={cx(
-                          "relative block rounded-full px-4 py-2 text-[15px] font-medium transition-colors duration-300",
+                          "relative block whitespace-nowrap rounded-full px-3 py-2 text-[15px] font-medium transition-colors duration-300 xl:px-4",
                           on ? "text-ink" : "text-ink/75 hover:text-ink",
                         )}
                       >
@@ -121,10 +123,11 @@ export function Header() {
               <LangToggle />
               <a
                 href={CONTACT.phoneHref}
-                className="hidden items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-paper transition-colors duration-300 hover:bg-orange hover:text-ink sm:inline-flex"
+                aria-label={t(site.nav.call)}
+                className="hidden items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-paper transition-colors duration-300 hover:bg-orange hover:text-ink sm:inline-flex lg:px-3 xl:px-4"
               >
                 <Phone className="size-4" aria-hidden="true" />
-                {t(site.nav.call)}
+                <span className="lg:hidden xl:inline">{t(site.nav.call)}</span>
               </a>
               <button
                 ref={menuButton}

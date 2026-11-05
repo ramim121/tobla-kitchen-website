@@ -1,6 +1,6 @@
 import { useEffect, useId, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, Check, Egg, Feather, Leaf, ShieldCheck, type LucideIcon } from "lucide-react";
+import { ArrowDown, Check, Egg, Feather, Leaf, ShieldCheck, type LucideIcon } from "lucide-react";
 
 import { AnchorLink } from "../ui/AnchorLink";
 import { AutoHeight } from "../ui/AutoHeight";
@@ -221,7 +221,7 @@ export function MenuExplorer() {
             </div>
           </Reveal>
 
-          {/* D — every dish + price */}
+          {/* D — every dish + price teaser (full pricing lives in its own section) */}
           <Reveal className="lg:col-start-1 lg:row-start-3" delay={0.1}>
             <div className="mx-auto max-w-[460px] lg:max-w-none">
               <p className="text-center text-sm font-semibold text-ink/70 lg:text-left">{t(site.menu.everyDish.title)}</p>
@@ -234,22 +234,16 @@ export function MenuExplorer() {
                 ))}
               </ul>
 
-              <div className="relative mt-6 overflow-hidden rounded-[28px] bg-ink p-6 text-paper sm:p-8">
-                <TablaRings dark className="pointer-events-none absolute -right-24 -top-24 size-64 opacity-70" />
-                <p className="relative text-sm text-paper/70">{t(site.menu.price.label)}</p>
-                <p className="relative mt-1 flex flex-wrap items-baseline gap-x-3">
-                  <span className="font-display text-5xl font-semibold text-orange sm:text-6xl">{t(site.menu.price.value)}</span>
-                  <span className="text-paper/80">{t(site.menu.price.unit)}</span>
-                </p>
-                <p className="relative mt-3 max-w-sm text-sm text-paper/60">{t(site.menu.price.note)}</p>
-                <AnchorLink
-                  to="contact"
-                  className="group relative mt-6 inline-flex items-center gap-2 rounded-full bg-orange px-5 py-2.5 text-sm font-semibold text-ink transition-colors duration-300 hover:bg-paper"
-                >
-                  {t(site.menu.price.cta)}
-                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
-                </AnchorLink>
-              </div>
+              <AnchorLink
+                to="pricing"
+                className="group mt-6 flex items-center justify-between gap-4 rounded-2xl bg-ink px-5 py-4 text-paper transition-colors duration-300 hover:bg-ink-2"
+              >
+                <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="font-display text-3xl font-semibold text-orange">{t(site.pricing.card.value)}</span>
+                  <span className="text-sm text-paper/80">{t(site.menu.priceTeaser)}</span>
+                </span>
+                <ArrowDown className="size-5 shrink-0 text-orange transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
+              </AnchorLink>
             </div>
           </Reveal>
         </div>

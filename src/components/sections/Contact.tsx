@@ -146,6 +146,13 @@ export function Contact() {
               </InfoRow>
               <InfoRow icon={Globe} label={t(site.contact.webLabel)}>
                 <span className="block font-semibold">{CONTACT.website}</span>
+                <a
+                  href={CONTACT.brochurePdf}
+                  download={CONTACT.brochureFileName}
+                  className="mt-0.5 inline-flex items-center gap-1 text-sm font-medium text-orange-700 underline-offset-4 hover:underline"
+                >
+                  {t(site.contact.brochureLink)} ↓
+                </a>
               </InfoRow>
             </ul>
           </div>

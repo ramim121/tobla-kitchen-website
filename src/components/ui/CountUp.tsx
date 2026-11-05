@@ -3,18 +3,18 @@ import { animate, useInView, useReducedMotion } from "motion/react";
 import { useLang } from "../../lib/i18n";
 import { cx } from "../../lib/cx";
 
-type Props = { value: number; decimals?: number; suffix?: string; className?: string; duration?: number };
+type Props = { value: number; decimals?: number; prefix?: string; suffix?: string; className?: string; duration?: number; from?: number };
 
 /**
  * Counts up once when visible. The final value is laid out invisibly to reserve
  * the width (proportional figures at display size), so nothing around it shifts.
  */
-export function CountUp({ value, decimals = 0, suffix = "", className, duration = 1.9 }: Props) {
+export function CountUp({ value, decimals = 0, prefix = "", suffix = "", className, duration = 1.9, from = 0 }: Props) {
   const { num } = useLang();
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -18% 0px" });
   const reduce = useReducedMotion();
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(from);
 
   useEffect(() => {
     if (!inView) return;
@@ -22,11 +22,11 @@ export function CountUp({ value, decimals = 0, suffix = "", className, duration 
       setCurrent(value);
       return;
     }
-    const controls = animate(0, value, { duration, ease: [0.16, 1, 0.3, 1], onUpdate: setCurrent });
+    const controls = animate(from, value, { duration, ease: [0.16, 1, 0.3, 1], onUpdate: setCurrent });
     return () => controls.stop();
-  }, [inView, reduce, value, duration]);
+  }, [inView, reduce, value, duration, from]);
 
-  const format = (n: number) => num(n.toFixed(decimals)) + suffix;
+  const format = (n: number) => prefix + num(n.toFixed(decimals)) + suffix;
 
   return (
     <span ref={ref} className={cx("relative inline-block whitespace-nowrap", className)}>

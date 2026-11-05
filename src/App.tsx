@@ -4,10 +4,12 @@ import { Footer } from "./components/layout/Footer";
 import { Header } from "./components/layout/Header";
 import { ScrollProgress } from "./components/layout/ScrollProgress";
 import { About } from "./components/sections/About";
+import { Brochure } from "./components/sections/Brochure";
 import { Contact } from "./components/sections/Contact";
 import { DishMarquee } from "./components/sections/DishMarquee";
 import { Hero } from "./components/sections/Hero";
 import { MenuExplorer } from "./components/sections/MenuExplorer";
+import { Pricing } from "./components/sections/Pricing";
 import { Process } from "./components/sections/Process";
 import { RiskCompare } from "./components/sections/RiskCompare";
 import { Sourcing } from "./components/sections/Sourcing";
@@ -43,8 +45,10 @@ export default function App() {
           <Sourcing />
           <RiskCompare />
           <MenuExplorer />
+          <Pricing />
           <Process />
           <About />
+          <Brochure />
           <Contact />
         </main>
         <Footer />

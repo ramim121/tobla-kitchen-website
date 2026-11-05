@@ -5,6 +5,7 @@ import { ChevronDown, CircleCheck, CircleX } from "lucide-react";
 import { AutoHeight } from "../ui/AutoHeight";
 import { Container } from "../ui/Container";
 import { Reveal, item, stagger } from "../ui/Reveal";
+import { Rich } from "../ui/Rich";
 import { SectionHeading } from "../ui/SectionHeading";
 import { RISKS, SEVERITIES, type Risk, type Severity } from "../../content/risks";
 import { site } from "../../content/site";
@@ -131,6 +132,16 @@ export function RiskCompare() {
                 </motion.ul>
               </AnimatePresence>
             </AutoHeight>
+          </div>
+          {/* the proposal's bottom line */}
+          <div className="mt-6 rounded-[24px] bg-ink p-6 text-paper sm:p-7">
+            <p className="eyebrow inline-flex items-center gap-2.5 text-orange">
+              <span aria-hidden="true" className="h-[2px] w-6 rounded-full bg-current" />
+              {t(site.risks.summary.title)}
+            </p>
+            <p className="mt-3 text-[16.5px] leading-relaxed text-paper/85 sm:text-lg">
+              <Rich text={t(site.risks.summary.text)} accent="font-semibold text-orange" />
+            </p>
           </div>
           <p className="mt-5 text-xs text-muted">{t(site.risks.footnote)}</p>
         </Reveal>

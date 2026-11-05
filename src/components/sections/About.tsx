@@ -23,6 +23,14 @@ export function About() {
               <Rich text={t(site.about.quote)} />
             </h2>
             <p className="mt-6 max-w-xl text-lg text-muted">{t(site.about.body)}</p>
+            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {[site.about.mission, site.about.vision].map((m) => (
+                <div key={m.title.en} className="rounded-[22px] border border-line bg-cream/70 p-5">
+                  <h3 className="font-sans text-sm font-semibold text-orange-700">{t(m.title)}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-ink/85">{t(m.text)}</p>
+                </div>
+              ))}
+            </div>
           </Reveal>
 
           <motion.dl

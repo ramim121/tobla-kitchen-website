@@ -28,6 +28,12 @@ import iconCook from "../assets/images/icon-cook.webp";
 import iconPack from "../assets/images/icon-pack.webp";
 import iconDeliver from "../assets/images/icon-deliver.webp";
 
+import brochureOutside from "../assets/brochure/page-1.webp";
+import brochureInside from "../assets/brochure/page-2.webp";
+import brochureCover from "../assets/brochure/thumb-p1-3.webp";
+import brochureAbout from "../assets/brochure/thumb-p2-1.webp";
+import brochureSource from "../assets/brochure/thumb-p2-2.webp";
+
 import type { L } from "../lib/i18n";
 
 export type PlateKey = "thali" | "polaoRoast" | "tehari" | "beefCurry" | "jhalFry" | "friedRice" | "fish" | "khichuri";
@@ -91,3 +97,10 @@ export const ICONS = {
 export type IconKey = keyof typeof ICONS;
 
 export const plateSrcSet = (key: PlateKey) => `${PLATES[key].small} 560w, ${PLATES[key].large} 960w`;
+
+/** Brochure renders: two A4-landscape spreads (2400×1697) and three panel thumbnails. */
+export const BROCHURE = {
+  pages: { outside: brochureOutside, inside: brochureInside },
+  pageSize: { w: 2400, h: 1697 },
+  thumbs: { cover: brochureCover, about: brochureAbout, source: brochureSource },
+} as const;

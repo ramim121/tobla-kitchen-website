@@ -55,7 +55,24 @@ export function Hero() {
             <Rich text={t(site.hero.lead)} />
           </motion.p>
 
-          <motion.div variants={item} className="mt-9 flex flex-wrap items-center gap-3">
+          {/* price highlight → pricing section */}
+          <motion.div variants={item} className="mt-7">
+            <AnchorLink
+              to="pricing"
+              className="group inline-flex items-center gap-3 rounded-2xl border border-orange/30 bg-orange-50/90 py-2 pl-2 pr-4 transition-colors duration-300 hover:border-orange/60 hover:bg-orange-50"
+            >
+              <span className="rounded-xl bg-orange px-3 py-1 font-display text-2xl font-semibold leading-snug text-ink">
+                {t(site.hero.price.value)}
+              </span>
+              <span className="leading-tight">
+                <span className="block text-sm font-semibold text-ink">{t(site.hero.price.title)}</span>
+                <span className="mt-0.5 block text-xs text-muted">{t(site.hero.price.sub)}</span>
+              </span>
+              <ArrowRight className="size-4 shrink-0 text-orange-700 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+            </AnchorLink>
+          </motion.div>
+
+          <motion.div variants={item} className="mt-7 flex flex-wrap items-center gap-3">
             <AnchorLink
               to="menu"
               className="group inline-flex items-center gap-3 rounded-full bg-ink py-2 pl-6 pr-2 text-base font-semibold text-paper shadow-[0_16px_32px_-14px_rgba(35,31,32,0.7)] transition-colors duration-300 hover:bg-ink-2"
@@ -74,7 +91,7 @@ export function Hero() {
             </a>
           </motion.div>
 
-          <motion.ul variants={item} className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-[15px] font-medium text-ink/80">
+          <motion.ul variants={item} className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-[15px] font-medium text-ink/80">
             {site.hero.points.map((p) => (
               <li key={p.en} className="inline-flex items-center gap-2">
                 <span className="grid size-5 place-items-center rounded-full bg-safe/12 text-safe" aria-hidden="true">
@@ -170,21 +187,6 @@ function HeroVisual({ plateRotate, ringsRotate, y }: VisualProps) {
               <span className="block text-[13px] font-semibold text-ink sm:text-sm">{t(site.hero.badgeFresh.title)}</span>
               <span className="mt-0.5 block text-[11px] text-muted sm:text-xs">{t(site.hero.badgeFresh.sub)}</span>
             </span>
-          </div>
-        </motion.div>
-
-        {/* capacity badge */}
-        <motion.div
-          className="absolute -right-[2%] bottom-[7%] sm:-right-[6%]"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.15, duration: 0.8, ease: EASE_OUT }}
-        >
-          <div className="animate-float rounded-2xl bg-ink px-4 py-3 text-paper shadow-[0_22px_46px_-20px_rgba(35,31,32,0.75)] [animation-delay:-3s] sm:px-5 sm:py-3.5">
-            <span className="block font-display text-2xl font-semibold leading-none sm:text-[1.7rem]">
-              {t(site.hero.badgeCapacity.value)}
-            </span>
-            <span className="mt-1.5 block text-[11px] text-paper/70 sm:text-xs">{t(site.hero.badgeCapacity.sub)}</span>
           </div>
         </motion.div>
 

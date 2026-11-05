@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
+import { ChefHat, Flame, Sparkles, type LucideIcon } from "lucide-react";
 
 import { Container } from "../ui/Container";
 import { SectionHeading } from "../ui/SectionHeading";
@@ -7,6 +8,8 @@ import { item, stagger } from "../ui/Reveal";
 import { site } from "../../content/site";
 import { ICONS, type IconKey } from "../../content/images";
 import { useLang } from "../../lib/i18n";
+
+const PROMISE_ICON: Record<string, LucideIcon> = { hands: ChefHat, equipment: Sparkles, fresh: Flame };
 
 export function Process() {
   const { t, num } = useLang();
@@ -59,6 +62,33 @@ export function Process() {
             </motion.li>
           ))}
         </motion.ol>
+
+        {/* more from "How we prepare and deliver" */}
+        <div className="mx-auto mt-16 max-w-xl lg:mt-20 lg:max-w-none">
+          <p className="text-center font-sans text-sm font-semibold text-muted">{t(site.process.promisesTitle)}</p>
+          <motion.ul
+            variants={stagger(0.08)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+            className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4"
+          >
+            {site.process.promises.map((pr) => {
+              const Icon = PROMISE_ICON[pr.key] ?? Flame;
+              return (
+                <motion.li key={pr.key} variants={item} className="flex items-start gap-4 rounded-[22px] bg-white p-5 ring-1 ring-line">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-full bg-orange-50 text-orange-700" aria-hidden="true">
+                    <Icon className="size-[18px]" />
+                  </span>
+                  <div>
+                    <h3 className="font-sans text-base font-semibold text-ink">{t(pr.title)}</h3>
+                    <p className="mt-1 text-sm text-muted">{t(pr.text)}</p>
+                  </div>
+                </motion.li>
+              );
+            })}
+          </motion.ul>
+        </div>
       </Container>
     </section>
   );
