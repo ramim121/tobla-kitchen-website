@@ -12,11 +12,11 @@ export const RISKS: Risk[] = [
     severity: "critical",
     risk: { bn: "বাসি খাবার আবার পরিবেশন", en: "Stale leftovers served again" },
     typical: {
-      bn: "বাসি খাবার রেখে আবার বিক্রির জন্য ভ্রাম্যমাণ আদালত প্রায়ই জরিমানা করে।",
+      bn: "বাসি খাবার জমিয়ে রেখে আবার বিক্রি করায় ভ্রাম্যমাণ আদালত প্রায়ই জরিমানা করেন।",
       en: "Mobile courts regularly fine eateries for keeping stale food and serving it again.",
     },
     fix: {
-      bn: "প্রতিদিন সেদিনের লোকসংখ্যা অনুযায়ী টাটকা রান্না। রান্না করা খাবার পরের দিনে যায় না।",
+      bn: "প্রতিদিন যতজন খাবেন, ঠিক ততজনের জন্য টাটকা রান্না। আগের দিনের খাবার পরের দিন কখনো নয়।",
       en: "Cooked fresh each day for that day's headcount. Cooked food never carries over.",
     },
   },
@@ -25,11 +25,11 @@ export const RISKS: Risk[] = [
     severity: "critical",
     risk: { bn: "মরা মুরগি ও অজানা উৎসের মাংস", en: "Dead chicken and meat of unknown origin" },
     typical: {
-      bn: "পরিবহনের সময় মারা যাওয়া হাজারো মুরগি প্রতিদিন ঢাকায় ঢোকে, যার কিছু খাবারের দোকানে পৌঁছায়।",
+      bn: "ঢাকায় আনার পথে প্রতিদিন হাজারো মুরগি মারা যায় — তার কিছু পৌঁছে যায় খাবারের দোকানে।",
       en: "Thousands of chickens die in transit to Dhaka every day, and some end up in eateries.",
     },
     fix: {
-      bn: "সব মুরগি এক নির্দিষ্ট খামারের, হালাল জবাই। গরুর মাংস বিশ্বস্ত পার্টনারের, খোলা বাজারের নয়।",
+      bn: "সব মুরগি আসে এক নির্দিষ্ট খামার থেকে, হালাল উপায়ে জবাই করা। গরুর মাংস আসে বিশ্বস্ত পার্টনারের কাছ থেকে — খোলা বাজার থেকে নয়।",
       en: "All chicken from one named farm, halal-slaughtered. Beef from trusted partners, never open markets.",
     },
   },
@@ -38,11 +38,11 @@ export const RISKS: Risk[] = [
     severity: "critical",
     risk: { bn: "কাঁচা ও রান্না করা খাবার একসাথে রাখা", en: "Raw and cooked food stored together" },
     typical: {
-      bn: "অভিযানে একই জায়গায় কাঁচা মাছ-মাংস আর রান্না করা খাবার পাওয়া গেছে।",
+      bn: "অভিযানে প্রায়ই একই ফ্রিজে কাঁচা মাছ-মাংস আর রান্না করা খাবার পাওয়া যায়।",
       en: "Inspections keep finding raw meat, fish and cooked food in the same storage.",
     },
     fix: {
-      bn: "কাঁচা ও রান্না করা খাবার সবসময় আলাদা রাখা হয়।",
+      bn: "কাঁচা আর রান্না করা খাবার সবসময় আলাদা জায়গায় রাখি।",
       en: "Raw and cooked food are always stored separately.",
     },
   },
@@ -54,7 +54,7 @@ export const RISKS: Risk[] = [
       bn: "২০২৫ সালের এক গবেষণায় সাভারের রেস্টুরেন্টের খাবার পানিতে ই-কোলাই পাওয়া গেছে।",
       en: "A 2025 study found E. coli in the drinking water at restaurants in Savar.",
     },
-    fix: { bn: "সব রান্নায় ফিল্টার করা পানি ব্যবহার করা হয়।", en: "Filtered water is used for all cooking." },
+    fix: { bn: "রান্নার প্রতিটি কাজে শুধু ফিল্টার করা পানি।", en: "Filtered water is used for all cooking." },
   },
   {
     id: "hands",
@@ -65,7 +65,7 @@ export const RISKS: Risk[] = [
       en: "46.7% of swabs from cooks' hands and utensils at 15 Dhaka restaurants grew harmful germs.",
     },
     fix: {
-      bn: "অভিজ্ঞ কর্মীরা গ্লাভস, মাস্ক ও হেয়ারনেট পরে খাবার ধরেন।",
+      bn: "অভিজ্ঞ কর্মীরা গ্লাভস, মাস্ক আর হেয়ারনেট পরে খাবার নাড়াচাড়া করেন।",
       en: "Experienced staff handle food wearing gloves, masks and hairnets.",
     },
   },
@@ -78,7 +78,7 @@ export const RISKS: Risk[] = [
       en: "Large stocks of rotten eggs have been found in restaurant kitchens.",
     },
     fix: {
-      bn: "শুধু নির্দিষ্ট খামারের ওমেগা-৩ ডিম, সিল করা ডজনে।",
+      bn: "শুধু নির্দিষ্ট খামারের ওমেগা-৩ ডিম, সিল করা ডজন প্যাকে।",
       en: "Only omega-3 free-range eggs from one named farm, in sealed dozens.",
     },
   },
@@ -90,7 +90,7 @@ export const RISKS: Risk[] = [
       bn: "পোলাও ও জর্দায় কাপড়ের রং দেওয়ায় এক রেস্টুরেন্টকে ৪ লাখ টাকা জরিমানা করা হয়েছে।",
       en: "A restaurant was fined Tk 400,000 for using textile colour in polao and jorda.",
     },
-    fix: { bn: "কোনো কৃত্রিম রং নয়। রং আসে মসলা থেকেই।", en: "No artificial colour. The colour comes from the spices." },
+    fix: { bn: "কোনো কৃত্রিম রং নয় — রং আসে মসলা থেকেই।", en: "No artificial colour. The colour comes from the spices." },
   },
   {
     id: "spices",
@@ -101,7 +101,7 @@ export const RISKS: Risk[] = [
       en: "Lead-based colour in turmeric and insects in spice powders have been found.",
     },
     fix: {
-      bn: "আস্ত মসলা কিনে নিজেরাই পরিষ্কার করে গুঁড়া করি।",
+      bn: "আস্ত মসলা কিনে নিজেরাই বেছে, পরিষ্কার করে গুঁড়া করি।",
       en: "Whole spices from trusted vendors, cleaned and ground in our kitchen.",
     },
   },
@@ -147,7 +147,7 @@ export const RISKS: Risk[] = [
       en: "A BFSA survey found only 4 in 10 restaurants met quality standards.",
     },
     fix: {
-      bn: "প্রতিদিন রান্নাঘর জীবাণুমুক্ত করা হয়, সরঞ্জাম সহজে পরিষ্কারযোগ্য।",
+      bn: "রান্নাঘর প্রতিদিন জীবাণুমুক্ত করি; সরঞ্জামও সহজে পরিষ্কার করা যায় এমন।",
       en: "The kitchen is sanitized every day, with equipment that's easy to clean.",
     },
   },
@@ -186,7 +186,7 @@ export const RISKS: Risk[] = [
       en: "Printing ink can pass heavy metals into hot, oily food.",
     },
     fix: {
-      bn: "বারবার ব্যবহারযোগ্য, বিপিএ-মুক্ত, ফুড-সেফ বাক্স।",
+      bn: "বারবার ব্যবহারযোগ্য, বিপিএ-মুক্ত ফুড-গ্রেড বাক্স।",
       en: "Reusable, BPA-free, food-safe containers.",
     },
   },

@@ -27,7 +27,7 @@
   --color-medium: #a8660f;
   --color-safe: #2e7d32;
 
-  --font-sans: "Jost Variable", "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Jost Variable", "Noto Sans Bengali Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Jost Variable", "Anek Bangla Variable", ui-sans-serif, system-ui, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
