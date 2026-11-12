@@ -1,5 +1,9 @@
 # Tobla Kitchen · তবলা কিচেন
 
+> **Design v1 (archived reference).** This branch keeps the first version of the site — AI-generated
+> plate photos and the 4-week rotating menu — exactly as it was live before the real-photo redesign.
+> It is served at https://old.toblakitchen.com. The current site lives on `main`.
+
 Bangla-first marketing site for Tobla Kitchen, a corporate catering kitchen in Tejgaon, Dhaka.
 Live: https://www.toblakitchen.com (also https://tobla-kitchen.vercel.app)
 
