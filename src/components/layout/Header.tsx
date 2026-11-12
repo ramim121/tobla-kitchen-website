@@ -18,6 +18,7 @@ const SECTION_TO_NAV: Record<string, string | null> = {
   sourcing: "why",
   risks: "why",
   menu: "menu",
+  premium: "menu",
   pricing: "menu",
   process: "process",
   about: "about",

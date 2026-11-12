@@ -21,9 +21,9 @@ All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 | File | What's inside |
 |---|---|
 | `site.ts` | every section's text, contact details, price card |
-| `menu.ts` | the 4-week menu, day names, ingredient tags |
+| `menu.ts` | the weekly office menu (Saturday–Thursday), day names, ingredient tags |
 | `risks.ts` | the food-safety risks vs. our rules |
-| `images.ts` | which photo/icon each item uses |
+| `images.ts` | which photo/icon each item uses (day plates, premium dish photos, icons) |
 
 Inline markup in copy: `**text**` = orange accent, `==text==` = marker highlight that draws in.
 Pricing (Tk 275 average) lives in `site.pricing` and `src/components/sections/Pricing.tsx`; to hide it, remove
@@ -42,7 +42,15 @@ Bangla is the default. The toggle at the top switches to English; the choice is 
 `?lang=en` opens the English version directly.
 
 ## Imagery
-Plate photos and icon sets were generated with OpenAI image models, then sliced, background-removed
-and converted to WebP (`src/assets/images`). The logo is used from the original vector file.
+- `src/assets/food/dish-*.webp` — real photos of our dishes (best shot of each dish, re-centred and
+  optimised): prawn bhuna, rui kalia, chicken roast, mutton bhuna, beef bhuna.
+- `src/assets/food/plate-*.webp` — one top-down "day plate" per weekday plus the hero. Each is composed
+  from the real dish photo (bowl/plate cut out of the original shot) with rice, dal and vegetable bowls on
+  slate; the side bowls reuse a real white bowl filled with generated close-up textures.
+- `src/assets/images/icon-*.webp` — illustrated icons (generated). The logo is the original vector file.
+
+## Older design
+The first design (AI plate photos, 4-week menu) is kept on the `design-v1` branch and is served at
+https://old.toblakitchen.com once its DNS record is set.
 
 Design notes: `docs/superpowers/specs/2026-11-05-tobla-kitchen-website-design.md`.

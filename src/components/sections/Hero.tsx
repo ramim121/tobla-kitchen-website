@@ -139,10 +139,10 @@ function HeroVisual({ plateRotate, ringsRotate, y }: VisualProps) {
         {/* offset orange disc, like the screen-print offset in the logo */}
         <div aria-hidden="true" className="absolute inset-[6%] translate-x-[3.2%] translate-y-[3.6%] rounded-full bg-orange" />
 
-        <div className="absolute inset-[6%] overflow-hidden rounded-full bg-cream shadow-[0_44px_90px_-34px_rgba(35,31,32,0.6)] ring-1 ring-ink/10">
+        <div className="absolute inset-[6%] overflow-hidden rounded-full bg-[#5b5d63] shadow-[0_44px_90px_-34px_rgba(35,31,32,0.6)] ring-1 ring-ink/10">
           <motion.img
-            src={PLATES.thali.large}
-            srcSet={plateSrcSet("thali")}
+            src={PLATES.hero.large}
+            srcSet={plateSrcSet("hero")}
             sizes="(min-width: 1024px) 480px, 80vw"
             width={960}
             height={960}
