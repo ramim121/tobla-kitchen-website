@@ -10,7 +10,7 @@ import { DishMarquee } from "./components/sections/DishMarquee";
 import { Hero } from "./components/sections/Hero";
 import { MenuExplorer } from "./components/sections/MenuExplorer";
 import { PremiumDishes } from "./components/sections/PremiumDishes";
-import { Pricing } from "./components/sections/Pricing";
+import { Quote } from "./components/sections/Quote";
 import { Process } from "./components/sections/Process";
 import { RiskCompare } from "./components/sections/RiskCompare";
 import { Sourcing } from "./components/sections/Sourcing";
@@ -47,7 +47,7 @@ export default function App() {
           <RiskCompare />
           <MenuExplorer />
           <PremiumDishes />
-          <Pricing />
+          <Quote />
           <Process />
           <About />
           <Brochure />

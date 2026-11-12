@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { AnimatePresence, motion, useInView } from "motion/react";
-import { ArrowDown, Check } from "lucide-react";
+import { ArrowDown, Check, MessageCircle } from "lucide-react";
 
 import { AnchorLink } from "../ui/AnchorLink";
 import { AutoHeight } from "../ui/AutoHeight";
@@ -205,7 +205,7 @@ export function MenuExplorer() {
             </div>
           </Reveal>
 
-          {/* D — every dish + price teaser (full pricing lives in its own section) */}
+          {/* D — every dish + a link to the quote band */}
           <Reveal className="lg:col-start-1 lg:row-start-3" delay={0.1}>
             <div className="mx-auto max-w-[460px] lg:max-w-none">
               <p className="text-center text-sm font-semibold text-ink/70 lg:text-left">{t(site.menu.everyDish.title)}</p>
@@ -219,12 +219,14 @@ export function MenuExplorer() {
               </ul>
 
               <AnchorLink
-                to="pricing"
+                to="quote"
                 className="group mt-6 flex items-center justify-between gap-4 rounded-2xl bg-ink px-5 py-4 text-paper transition-colors duration-300 hover:bg-ink-2"
               >
-                <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span className="font-display text-3xl font-semibold text-orange">{t(site.pricing.card.value)}</span>
-                  <span className="text-sm text-paper/80">{t(site.menu.priceTeaser)}</span>
+                <span className="flex items-center gap-3">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-full bg-orange text-ink" aria-hidden="true">
+                    <MessageCircle className="size-5" />
+                  </span>
+                  <span className="text-[15px] font-medium text-paper">{t(site.menu.quoteTeaser)}</span>
                 </span>
                 <ArrowDown className="size-5 shrink-0 text-orange transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
               </AnchorLink>
