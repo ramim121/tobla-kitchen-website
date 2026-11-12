@@ -68,24 +68,24 @@ export const site = {
       en: "WE EAT WHAT WE COOK • EVERY DAY • ",
     },
     plateAlt: {
-      bn: "ভাত, মুরগির মাংস, ডাল, সবজি আর সালাদ দিয়ে সাজানো দুপুরের খাবার",
-      en: "A lunch plate with rice, chicken curry, dal, vegetables and salad",
+      bn: "দুপুরের খাবারের টেবিল: সাদা ভাত, মুরগির তরকারি, রুই মাছ, ডাল আর সবজি",
+      en: "A lunch table with rice, chicken curry, rui fish, dal and vegetables",
     },
   },
 
   marquee: [
-    { bn: "পোলাও", en: "Polao" },
-    { bn: "গরুর রেজালা", en: "Beef Rezala" },
+    { bn: "গলদা চিংড়ি ভুনা", en: "Galda Prawn Bhuna" },
+    { bn: "রুই মাছের কালিয়া", en: "Rui Fish Kalia" },
     { bn: "মুরগির রোস্ট", en: "Chicken Roast" },
-    { bn: "ভুনা খিচুড়ি", en: "Bhuna Khichuri" },
-    { bn: "রুই মাছ ভুনা", en: "Rui Fish Bhuna" },
-    { bn: "গরুর তেহারি", en: "Beef Tehari" },
-    { bn: "খাসির কাচ্চি", en: "Mutton Kacchi" },
-    { bn: "মুরগির ঝাল ফ্রাই", en: "Chicken Jhal Fry" },
-    { bn: "মুড়িঘণ্ট", en: "Muri Ghonto" },
-    { bn: "ফিরনি", en: "Firni" },
-    { bn: "জর্দা", en: "Jorda" },
-    { bn: "বোরহানি", en: "Borhani" },
+    { bn: "খাসির মাংস ভুনা", en: "Mutton Bhuna" },
+    { bn: "গরুর ভুনা", en: "Beef Bhuna" },
+    { bn: "পোলাও", en: "Polao" },
+    { bn: "মুরগির ঝোল", en: "Chicken Jhol" },
+    { bn: "খিচুড়ি", en: "Khichuri" },
+    { bn: "তেলাপিয়া মাছ", en: "Tilapia Fish" },
+    { bn: "মুরগির তরকারি", en: "Chicken Curry" },
+    { bn: "মিশ্র সবজি", en: "Mixed Vegetables" },
+    { bn: "ডাল", en: "Dal" },
   ],
 
   stat: {
@@ -218,16 +218,18 @@ export const site = {
 
   menu: {
     eyebrow: { bn: "সাপ্তাহিক মেনু", en: "Weekly menu" },
-    title: { bn: "৪ সপ্তাহের মেনু, **প্রতিদিন নতুন স্বাদ**", en: "A 4-week menu, **something new every day**" },
+    title: { bn: "সাপ্তাহিক **অফিস মেনু**", en: "Our weekly **office menu**" },
     lead: {
-      bn: "ঘরোয়া স্বাদের ৪ সপ্তাহের মেনু, ঘুরেফিরে চলে সপ্তাহের সাত দিনই।",
-      en: "Home-style dishes on a 4-week rotation — seven days a week.",
+      bn: "শনিবার থেকে বৃহস্পতিবার — প্রতিদিন আলাদা মেনু, ঘরোয়া স্বাদে। দিন বাছুন, প্লেট বদলে যাবে।",
+      en: "Saturday to Thursday — a different home-style menu every day. Pick a day to see the plate.",
     },
-    week: { bn: "সপ্তাহ", en: "Week" },
-    weekTabs: { bn: "সপ্তাহ বাছুন", en: "Choose a week" },
+    daysLabel: { bn: "শনিবার — বৃহস্পতিবার", en: "Saturday — Thursday" },
     dayTabs: { bn: "দিন বাছুন", en: "Choose a day" },
     today: { bn: "আজ", en: "Today" },
-    rotateNote: { bn: "“/” মানে আমরা পালা করে দিই", en: "“/” means we rotate between them" },
+    note: {
+      bn: "মেনু প্রতি সপ্তাহে বদলায় — আপনার টিমের স্বাদ, বাজেট আর ডায়েট মিলিয়ে সাজিয়ে নেওয়া যায়।",
+      en: "The menu changes every week and can be set to your team's taste, budget and diet.",
+    },
     legendTitle: { bn: "চিহ্নের মানে", en: "What the tags mean" },
     priceTeaser: { bn: "গড়ে জনপ্রতি, প্রতিদিন — কী কী থাকছে দেখুন", en: "avg. per person / day — see what's included" },
     everyDish: {
@@ -241,12 +243,94 @@ export const site = {
     },
   },
 
+  premium: {
+    eyebrow: { bn: "প্রিমিয়াম পদ", en: "Premium dishes" },
+    title: { bn: "বিশেষ দিনের জন্য **বিশেষ পদ**", en: "Special dishes for **special days**" },
+    lead: {
+      bn: "মিটিং, অতিথি আপ্যায়ন বা টিমের ছোট উৎসবে — আমাদের সমৃদ্ধ স্বাদের কিছু পদ।",
+      en: "For meetings, guests or a small team celebration — a few of our richest dishes.",
+    },
+    badge: { bn: "প্রিমিয়াম", en: "Premium" },
+    swipeLabel: { bn: "প্রিমিয়াম পদ — পাশে সোয়াইপ করে দেখুন", en: "Premium dishes — swipe sideways to see more" },
+    dishes: [
+      {
+        key: "prawn",
+        name: { bn: "গলদা চিংড়ি ভুনা", en: "Galda prawn bhuna" },
+        text: {
+          bn: "বড় গলদা চিংড়ি, পেঁয়াজ আর ঘরে ভাঙা মসলায় ধীরে ভুনা।",
+          en: "Big river prawns, slow-cooked with onion and our own ground spices.",
+        },
+        alt: { bn: "সাদা প্লেটে তিনটি বড় গলদা চিংড়ি ভুনা", en: "Three large galda prawns in bhuna masala on a white plate" },
+        tags: ["DS"],
+      },
+      {
+        key: "fish",
+        name: { bn: "রুই মাছের কালিয়া", en: "Rui fish kalia" },
+        text: {
+          bn: "ভাজা রুই মাছের বড় পিস, ঘন মসলাদার ঝোলে।",
+          en: "A thick, fried rui steak in a rich, spiced gravy.",
+        },
+        alt: { bn: "ঘন লাল ঝোলে ভাজা রুই মাছের বড় পিস", en: "A large fried rui fish steak in thick red gravy" },
+        tags: ["DS"],
+      },
+      {
+        key: "roast",
+        name: { bn: "মুরগির রোস্ট", en: "Chicken roast" },
+        text: {
+          bn: "ফ্রি-রেঞ্জ মুরগির বিয়েবাড়ির স্বাদের রোস্ট, বেরেস্তা দিয়ে।",
+          en: "Wedding-style roast with free-range chicken and crispy fried onions.",
+        },
+        alt: { bn: "সাদা প্লেটে বেরেস্তা ছড়ানো মুরগির রোস্ট", en: "Chicken roast topped with fried onions on a white plate" },
+        tags: ["FR"],
+      },
+      {
+        key: "mutton",
+        name: { bn: "খাসির মাংস ভুনা", en: "Mutton bhuna" },
+        text: {
+          bn: "নরম খাসির মাংস, অনেকক্ষণ ধরে কষানো ঘন মসলায়।",
+          en: "Tender mutton, slow-cooked in a thick spice masala.",
+        },
+        alt: { bn: "বাটিতে হাড়সহ খাসির মাংস ভুনা, ধনেপাতা দিয়ে", en: "A bowl of mutton bhuna on the bone, garnished with coriander" },
+        tags: [],
+      },
+      {
+        key: "beef",
+        name: { bn: "গরুর মাংস ভুনা", en: "Beef bhuna" },
+        text: {
+          bn: "বিশ্বস্ত উৎসের গরুর মাংস, ঘরোয়া কায়দায় ভুনা।",
+          en: "Beef from trusted partners, cooked the home-style bhuna way.",
+        },
+        alt: { bn: "বাটিতে গরুর মাংস ভুনা, ধনেপাতা দিয়ে", en: "A bowl of beef bhuna garnished with coriander" },
+        tags: ["AP"],
+      },
+    ],
+    plans: {
+      eyebrow: { bn: "মিল প্যাকেজ", en: "Meal plans" },
+      title: { bn: "আপনার টিমের জন্য **বেছে নিন**", en: "Pick a plan **for your team**" },
+      items: [
+        {
+          name: { bn: "বেসিক মিল", en: "Basic meal" },
+          text: { bn: "প্রতিদিনের ভারসাম্যপূর্ণ খাবার — সৎ, পেটভরা, নির্ভরযোগ্য।", en: "Balanced everyday food — honest, filling, reliable." },
+        },
+        {
+          name: { bn: "প্রিমিয়াম মিল", en: "Premium meal" },
+          text: { bn: "বেশি বৈচিত্র্য, সমৃদ্ধ স্বাদ আর আরও ভালো উপকরণ।", en: "More variety, richer flavours and better ingredients." },
+        },
+        {
+          name: { bn: "এক্সিকিউটিভ মিল", en: "Executive meal" },
+          text: { bn: "নেতৃত্ব ও ক্লায়েন্ট মিটিংয়ের জন্য বিশেষ পদ।", en: "Special dishes for leadership and client meetings." },
+        },
+      ],
+      cta: { bn: "প্যাকেজ নিয়ে কথা বলি", en: "Talk to us about a plan" },
+    },
+  },
+
   pricing: {
     eyebrow: { bn: "দাম", en: "Pricing" },
     title: { bn: "দুপুরের খাবারের **দাম কত?**", en: "What does **lunch cost?**" },
     lead: {
-      bn: "জনপ্রতি, প্রতিদিন — ৪ সপ্তাহের পুরো মেনুর গড় হিসাবে। এই দামেও খাদ্য নিরাপত্তার কোনো নিয়মে ছাড় নেই।",
-      en: "Per person, per day — averaged across the full 4-week menu. Not one food-safety rule is skipped at this price.",
+      bn: "জনপ্রতি, প্রতিদিন — গড় হিসাবে। এই দামেও খাদ্য নিরাপত্তার কোনো নিয়মে ছাড় নেই।",
+      en: "Per person, per day, on average. Not one food-safety rule is skipped at this price.",
     },
     card: {
       label: { bn: "গড় খরচ", en: "Average cost" },
@@ -254,14 +338,14 @@ export const site = {
       unit: { bn: "জনপ্রতি / দিন", en: "per person / day" },
       notes: [
         { bn: "ভ্যাট ও এআইটি ছাড়া", en: "Excluding VAT & AIT" },
-        { bn: "হিসাব: দিনে গড়ে ৫০০টি লাঞ্চ, সপ্তাহে ৭ দিন", en: "Based on ~500 lunches a day, 7 days a week" },
+        { bn: "হিসাব: দিনে গড়ে ৫০০টি লাঞ্চ", en: "Based on ~500 lunches a day" },
         { bn: "আপনার টিমের আকার বুঝে আলাদা প্রস্তাব দিই", en: "We quote to your team's size" },
       ],
       cta: { bn: "প্রস্তাব চাই", en: "Get a quote" },
     },
     includedTitle: { bn: "এই দামে যা যা থাকছে", en: "What the price includes" },
     included: [
-      { key: "menu", text: { bn: "সপ্তাহের ৭ দিন, ৪ সপ্তাহের ঘুরেফিরে আসা মেনু", en: "A 4-week rotating menu, 7 days a week" } },
+      { key: "menu", text: { bn: "শনি থেকে বৃহস্পতি — প্রতিদিন আলাদা মেনু", en: "A different menu every day, Saturday to Thursday" } },
       { key: "farm", text: { bn: "এক নির্দিষ্ট খামারের ফ্রি-রেঞ্জ মুরগি ও ওমেগা-৩ ডিম", en: "Free-range chicken and omega-3 eggs from one named farm" } },
       { key: "beef", text: { bn: "হাড় ছাড়া গরুর মাংস — ==১ কেজিতে ৯ জন, জনপ্রতি প্রায় ১১০ গ্রাম==", en: "Boneless beef — ==1 kg serves 9, about 110 g each==" } },
       { key: "fresh", text: { bn: "প্রতিদিন কেনা টাটকা মাছ ও সবজি", en: "Fish and vegetables bought fresh every day" } },
@@ -389,7 +473,7 @@ export const site = {
     facts: [
       { value: { bn: "২০২৫", en: "2025" }, label: { bn: "যাত্রা শুরু", en: "Founded" } },
       { value: { bn: "১,০০০+", en: "1,000+" }, label: { bn: "মিলের দৈনিক সক্ষমতা", en: "Meals a day" } },
-      { value: { bn: "৭ দিন", en: "7 days" }, label: { bn: "সপ্তাহজুড়ে সেবা", en: "A week" } },
+      { value: { bn: "৩টি", en: "3" }, label: { bn: "মিল প্যাকেজ", en: "Meal plans" } },
       { value: { bn: "তেজগাঁও", en: "Tejgaon" }, label: { bn: "নিজস্ব রান্নাঘর", en: "Our own kitchen" } },
     ],
   },

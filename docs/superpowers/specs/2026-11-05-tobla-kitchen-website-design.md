@@ -66,3 +66,16 @@ Visitors are HR/admin decision-makers. Success = they trust the food-safety stor
   extra delivery promises (experienced hands, modern equipment, never frozen/reused) under Process.
 - Brochure section: fanned panel preview, in-site viewer (spreads + zoom on desktop, panels on phones), PDF download.
 - Nav: "Menu & price" and "Brochure" added; production domain www.toblakitchen.com (apex redirects to www).
+
+## Update — round 3 (real photos, brochure menu)
+- Owner supplied 50 food photos (6 dishes). Best shot per dish chosen by framing and a focus score;
+  re-centred 4:3 crops for cards (WebP 800/520).
+- Menu replaced with the brochure's weekly office menu, Saturday → Thursday (Friday off; on Fridays the
+  menu opens on Saturday). Week tabs removed; the plate spin on day change is kept.
+- Day plates: top-down flat-lays on slate — the real main-dish bowl/plate cut out of its photo, plus rice,
+  dal and vegetable bowls (a real white bowl reused as a template, filled with generated close-ups).
+  Thursday's "special" is illustrated with mutton bhuna and says so on the menu.
+- New "Premium dishes" section (prawn bhuna, rui kalia, chicken roast, mutton bhuna, beef bhuna) with the
+  brochure's three meal plans (Basic, Premium, Executive). Phones swipe the dishes sideways.
+- Hero plate and share image use the real-photo spread. Copy no longer mentions a 4-week / 7-day menu.
+- The first design is preserved on the `design-v1` branch for old.toblakitchen.com.

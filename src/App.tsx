@@ -9,6 +9,7 @@ import { Contact } from "./components/sections/Contact";
 import { DishMarquee } from "./components/sections/DishMarquee";
 import { Hero } from "./components/sections/Hero";
 import { MenuExplorer } from "./components/sections/MenuExplorer";
+import { PremiumDishes } from "./components/sections/PremiumDishes";
 import { Pricing } from "./components/sections/Pricing";
 import { Process } from "./components/sections/Process";
 import { RiskCompare } from "./components/sections/RiskCompare";
@@ -45,6 +46,7 @@ export default function App() {
           <Sourcing />
           <RiskCompare />
           <MenuExplorer />
+          <PremiumDishes />
           <Pricing />
           <Process />
           <About />

@@ -1,6 +1,6 @@
-import { useEffect, useId, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { ArrowDown, Check, Egg, Feather, Leaf, ShieldCheck, type LucideIcon } from "lucide-react";
+import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
+import { AnimatePresence, motion, useInView } from "motion/react";
+import { ArrowDown, Check } from "lucide-react";
 
 import { AnchorLink } from "../ui/AnchorLink";
 import { AutoHeight } from "../ui/AutoHeight";
@@ -8,6 +8,7 @@ import { Container } from "../ui/Container";
 import { Reveal, item, stagger } from "../ui/Reveal";
 import { SectionHeading } from "../ui/SectionHeading";
 import { TablaRings } from "../ui/TablaRings";
+import { TagChip } from "../ui/TagChip";
 import { DAYS, DAY_KEYS, MENU, TAGS, todayKey, type DayKey, type TagKey } from "../../content/menu";
 import { PLATES, plateSrcSet, type PlateKey } from "../../content/images";
 import { site } from "../../content/site";
@@ -16,12 +17,13 @@ import { cx, EASE_OUT } from "../../lib/cx";
 
 const PLATE_SIZES = "(min-width: 1024px) 460px, (min-width: 640px) 400px, 300px";
 
-const TAG_STYLE: Record<TagKey, { icon: LucideIcon; cls: string }> = {
-  FR: { icon: Feather, cls: "bg-orange-50 text-[#9a3f0b] ring-orange-200/80" },
-  O3: { icon: Egg, cls: "bg-amber-50 text-amber-900 ring-amber-200/80" },
-  AP: { icon: ShieldCheck, cls: "bg-rose-50 text-rose-900 ring-rose-200/80" },
-  DS: { icon: Leaf, cls: "bg-emerald-50 text-emerald-900 ring-emerald-200/80" },
-};
+function loadPlate(key: PlateKey) {
+  const img = new Image();
+  img.sizes = PLATE_SIZES;
+  img.srcset = plateSrcSet(key);
+  img.src = PLATES[key].large;
+  return img;
+}
 
 /** Keep showing the current plate until the next photo is decoded, so swaps never flash empty. */
 function useDecodedPlate(target: PlateKey) {
@@ -29,11 +31,7 @@ function useDecodedPlate(target: PlateKey) {
   useEffect(() => {
     if (target === shown) return;
     let cancelled = false;
-    const img = new Image();
-    img.sizes = PLATE_SIZES;
-    img.srcset = plateSrcSet(target);
-    img.src = PLATES[target].large;
-    img
+    loadPlate(target)
       .decode()
       .catch(() => undefined)
       .finally(() => {
@@ -46,60 +44,41 @@ function useDecodedPlate(target: PlateKey) {
   return shown;
 }
 
-export function MenuExplorer() {
-  const { t, num } = useLang();
-  const today = useMemo(() => todayKey(), []);
-  const [week, setWeek] = useState(0);
-  const [day, setDay] = useState<DayKey>(today);
-  const id = useId();
+/** Once the menu is close to the viewport, quietly fetch every day's plate so switching days is instant. */
+function usePrefetchPlates(ref: RefObject<HTMLElement | null>) {
+  const near = useInView(ref, { once: true, margin: "600px 0px 600px 0px" });
+  useEffect(() => {
+    if (!near) return;
+    const run = () => DAY_KEYS.forEach((k) => loadPlate(MENU[k].photo));
+    const w = window as Window & { requestIdleCallback?: (cb: () => void) => number };
+    if (w.requestIdleCallback) w.requestIdleCallback(run);
+    else setTimeout(run, 600);
+  }, [near]);
+}
 
-  const entry = MENU[week][day];
+export function MenuExplorer() {
+  const { t } = useLang();
+  const today = useMemo(() => todayKey(), []);
+  const [day, setDay] = useState<DayKey>(today.key);
+  const sectionRef = useRef<HTMLElement>(null);
+  usePrefetchPlates(sectionRef);
+
+  const entry = MENU[day];
   const plate = useDecodedPlate(entry.photo);
 
   return (
-    <section id="menu" tabIndex={-1} className="relative overflow-hidden py-20 outline-none sm:py-28">
+    <section ref={sectionRef} id="menu" tabIndex={-1} className="relative overflow-hidden py-20 outline-none sm:py-28">
       <Container>
         <SectionHeading eyebrow={site.menu.eyebrow} title={site.menu.title} lead={site.menu.lead} />
 
         <div className="mt-12 grid grid-cols-1 gap-8 lg:mt-16 lg:grid-cols-2 lg:grid-rows-[auto_auto_1fr] lg:gap-x-16 lg:gap-y-7">
-          {/* A — controls */}
+          {/* A — day picker */}
           <Reveal className="lg:col-start-2 lg:row-start-1">
-            <div role="group" aria-label={t(site.menu.weekTabs)} className="grid w-full grid-cols-4 rounded-full bg-cream p-1 ring-1 ring-line sm:inline-flex sm:w-auto">
-              {MENU.map((_, i) => {
-                const on = week === i;
-                return (
-                  <button
-                    key={i}
-                    type="button"
-                    aria-pressed={on}
-                    onClick={() => setWeek(i)}
-                    className={cx(
-                      "relative rounded-full px-2 py-2 text-[13px] font-semibold transition-colors duration-300 sm:px-5 sm:text-sm",
-                      on ? "text-paper" : "text-ink/75 hover:text-ink",
-                    )}
-                  >
-                    {on && (
-                      <motion.span
-                        layoutId={`${id}-week`}
-                        className="absolute inset-0 rounded-full bg-ink"
-                        transition={{ type: "spring", stiffness: 460, damping: 36 }}
-                      />
-                    )}
-                    <span className="relative whitespace-nowrap">
-                      {t(site.menu.week)} {num(i + 1)}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            <div
-              role="group"
-              aria-label={t(site.menu.dayTabs)}
-              className="mt-4 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap"
-            >
+            <p className="text-sm font-semibold text-ink/70">{t(site.menu.daysLabel)}</p>
+            <div role="group" aria-label={t(site.menu.dayTabs)} className="mt-3 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap">
               {DAY_KEYS.map((k) => {
                 const on = day === k;
+                const isToday = today.isToday && k === today.key;
                 return (
                   <button
                     key={k}
@@ -112,7 +91,7 @@ export function MenuExplorer() {
                     )}
                   >
                     {t(DAYS[k].short)}
-                    {k === today && (
+                    {isToday && (
                       <>
                         {/* phones: a dot; wider screens: a small "today" badge */}
                         <span aria-hidden="true" className={cx("absolute right-2 top-1.5 size-1.5 rounded-full sm:hidden", on ? "bg-ink" : "bg-orange")} />
@@ -128,12 +107,12 @@ export function MenuExplorer() {
             </div>
           </Reveal>
 
-          {/* B — plate */}
+          {/* B — the plate (spins in when the day changes) */}
           <Reveal className="lg:col-start-1 lg:row-span-2 lg:row-start-1" delay={0.05}>
             <div className="relative mx-auto aspect-square w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[460px]">
               <TablaRings className="absolute -inset-[7%] size-[114%]" />
               <div aria-hidden="true" className="absolute inset-[3%] translate-x-[2.6%] translate-y-[3%] rounded-full bg-orange" />
-              <div className="absolute inset-[3%] overflow-hidden rounded-full bg-cream shadow-[0_40px_80px_-34px_rgba(35,31,32,0.55)] ring-1 ring-ink/10">
+              <div className="absolute inset-[3%] overflow-hidden rounded-full bg-[#5b5d63] shadow-[0_40px_80px_-34px_rgba(35,31,32,0.55)] ring-1 ring-ink/10">
                 <AnimatePresence initial={false}>
                   <motion.img
                     key={plate}
@@ -157,14 +136,14 @@ export function MenuExplorer() {
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.p
-                    key={`${week}-${day}`}
+                    key={day}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.3 }}
                     className="whitespace-nowrap rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper shadow-lg"
                   >
-                    {t(site.menu.week)} {num(week + 1)} · {t(DAYS[day].long)}
+                    {t(DAYS[day].long)}
                   </motion.p>
                 </AnimatePresence>
               </div>
@@ -174,16 +153,11 @@ export function MenuExplorer() {
           {/* C — dishes + legend */}
           <Reveal className="lg:col-start-2 lg:row-span-2 lg:row-start-2" delay={0.1}>
             <div className="rounded-[28px] bg-white p-6 shadow-[0_30px_70px_-52px_rgba(35,31,32,0.6)] ring-1 ring-line sm:p-8" aria-live="polite">
-              <div className="flex items-baseline justify-between gap-4">
-                <h3 className="text-2xl font-semibold text-ink">{t(DAYS[day].long)}</h3>
-                <span className="text-sm text-muted">
-                  {t(site.menu.week)} {num(week + 1)}
-                </span>
-              </div>
+              <h3 className="text-2xl font-semibold text-ink">{t(DAYS[day].long)}</h3>
               <AutoHeight>
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.ul
-                    key={`${week}-${day}`}
+                    key={day}
                     variants={stagger(0.05)}
                     initial="hidden"
                     animate="show"
@@ -191,8 +165,18 @@ export function MenuExplorer() {
                     className="mt-3 divide-y divide-line"
                   >
                     {entry.dishes.map((dish) => (
-                      <motion.li key={dish.name.en} variants={item} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3.5">
-                        <span className="text-[17px] font-medium text-ink">{t(dish.name)}</span>
+                      <motion.li
+                        key={dish.name.en}
+                        variants={item}
+                        className={cx("flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3.5", dish.main && "relative")}
+                      >
+                        <span className="flex min-w-0 items-center gap-2.5">
+                          {dish.main && <span aria-hidden="true" className="h-6 w-1 shrink-0 rounded-full bg-orange" />}
+                          <span className="min-w-0">
+                            <span className={cx("block text-[17px] text-ink", dish.main ? "font-semibold" : "font-medium")}>{t(dish.name)}</span>
+                            {dish.note && <span className="mt-0.5 block text-xs text-muted">{t(dish.note)}</span>}
+                          </span>
+                        </span>
                         {dish.tags && dish.tags.length > 0 && (
                           <span className="flex flex-wrap gap-1.5">
                             {dish.tags.map((tag) => (
@@ -205,7 +189,7 @@ export function MenuExplorer() {
                   </motion.ul>
                 </AnimatePresence>
               </AutoHeight>
-              <p className="mt-3 text-xs text-muted">{t(site.menu.rotateNote)}</p>
+              <p className="mt-3 text-xs leading-relaxed text-muted">{t(site.menu.note)}</p>
             </div>
 
             <div className="mt-6">
@@ -249,23 +233,5 @@ export function MenuExplorer() {
         </div>
       </Container>
     </section>
-  );
-}
-
-function TagChip({ tag, iconOnly = false }: { tag: TagKey; iconOnly?: boolean }) {
-  const { t } = useLang();
-  const { icon: Icon, cls } = TAG_STYLE[tag];
-  return (
-    <span
-      title={t(TAGS[tag].long)}
-      className={cx(
-        "inline-flex shrink-0 items-center gap-1 rounded-full font-medium ring-1",
-        iconOnly ? "size-7 justify-center" : "px-2.5 py-1 text-xs",
-        cls,
-      )}
-    >
-      <Icon className="size-3.5" aria-hidden="true" />
-      {!iconOnly && t(TAGS[tag].short)}
-    </span>
   );
 }
