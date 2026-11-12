@@ -31,7 +31,7 @@ export const site = {
   nav: {
     items: [
       { id: "why", label: { bn: "কেন আমরা", en: "Why us" } },
-      { id: "menu", label: { bn: "মেনু ও দাম", en: "Menu & price" } },
+      { id: "menu", label: { bn: "মেনু", en: "Menu" } },
       { id: "process", label: { bn: "কাজের ধাপ", en: "How we work" } },
       { id: "about", label: { bn: "আমাদের কথা", en: "About" } },
       { id: "brochure", label: { bn: "ব্রোশিওর", en: "Brochure" } },
@@ -231,7 +231,7 @@ export const site = {
       en: "The menu changes every week and can be set to your team's taste, budget and diet.",
     },
     legendTitle: { bn: "চিহ্নের মানে", en: "What the tags mean" },
-    priceTeaser: { bn: "গড়ে জনপ্রতি, প্রতিদিন — কী কী থাকছে দেখুন", en: "avg. per person / day — see what's included" },
+    quoteTeaser: { bn: "আপনার টিমের মেনু ও বাজেট সাজাতে প্রস্তাব নিন", en: "Get a proposal for your team's menu and budget" },
     everyDish: {
       title: { bn: "প্রতিটি পদে", en: "In every dish" },
       items: [
@@ -325,29 +325,23 @@ export const site = {
     },
   },
 
-  pricing: {
-    eyebrow: { bn: "দাম", en: "Pricing" },
-    title: { bn: "দুপুরের খাবারের **দাম কত?**", en: "What does **lunch cost?**" },
+  quote: {
+    eyebrow: { bn: "প্রস্তাব", en: "Get a quote" },
+    title: { bn: "আপনার অফিসের মেনু ও বাজেট **আমাদের সঙ্গে সাজিয়ে নিন**", en: "Plan your office menu and budget **with us**" },
     lead: {
-      bn: "জনপ্রতি, প্রতিদিন — গড় হিসাবে। এই দামেও খাদ্য নিরাপত্তার কোনো নিয়মে ছাড় নেই।",
-      en: "Per person, per day, on average. Not one food-safety rule is skipped at this price.",
+      bn: "কতজন খাবেন, কোন মেনু আর কোন প্যাকেজ — সব মিলিয়ে আপনার টিমের জন্য আলাদা প্রস্তাব পাঠাই।",
+      en: "Tell us your headcount, menu and plan — we'll send a proposal made for your team.",
     },
-    card: {
-      label: { bn: "গড় খরচ", en: "Average cost" },
-      value: { bn: "৳২৭৫", en: "Tk 275" },
-      unit: { bn: "জনপ্রতি / দিন", en: "per person / day" },
-      notes: [
-        { bn: "ভ্যাট ও এআইটি ছাড়া", en: "Excluding VAT & AIT" },
-        { bn: "হিসাব: দিনে গড়ে ৫০০টি লাঞ্চ", en: "Based on ~500 lunches a day" },
-        { bn: "আপনার টিমের আকার বুঝে আলাদা প্রস্তাব দিই", en: "We quote to your team's size" },
-      ],
-      cta: { bn: "প্রস্তাব চাই", en: "Get a quote" },
+    promise: {
+      bn: "যে প্যাকেজই নিন, খাদ্য নিরাপত্তার কোনো নিয়মে ছাড় নেই।",
+      en: "Whatever the plan, not one food-safety rule is skipped.",
     },
-    includedTitle: { bn: "এই দামে যা যা থাকছে", en: "What the price includes" },
+    cta: { bn: "প্রস্তাব চাই", en: "Get a quote" },
+    includedTitle: { bn: "প্রতিটি মিলে যা থাকছে", en: "In every meal" },
     included: [
       { key: "menu", text: { bn: "শনি থেকে বৃহস্পতি — প্রতিদিন আলাদা মেনু", en: "A different menu every day, Saturday to Thursday" } },
       { key: "farm", text: { bn: "এক নির্দিষ্ট খামারের ফ্রি-রেঞ্জ মুরগি ও ওমেগা-৩ ডিম", en: "Free-range chicken and omega-3 eggs from one named farm" } },
-      { key: "beef", text: { bn: "হাড় ছাড়া গরুর মাংস — ==১ কেজিতে ৯ জন, জনপ্রতি প্রায় ১১০ গ্রাম==", en: "Boneless beef — ==1 kg serves 9, about 110 g each==" } },
+      { key: "beef", text: { bn: "বিশ্বস্ত উৎসের হাড় ছাড়া গরুর মাংস", en: "Boneless beef from trusted partners" } },
       { key: "fresh", text: { bn: "প্রতিদিন কেনা টাটকা মাছ ও সবজি", en: "Fish and vegetables bought fresh every day" } },
       { key: "spice", text: { bn: "ঘরে ভাঙা মসলা, প্যাকেটজাত সয়াবিন তেল আর ফিল্টার করা পানি", en: "Spices ground in-house, packaged soybean oil, filtered water" } },
       { key: "box", text: { bn: "ফুড-গ্রেড বাক্সে প্রতিদিন সময়মতো ডেলিভারি", en: "On-time daily delivery in food-safe boxes" } },
@@ -473,7 +467,7 @@ export const site = {
     facts: [
       { value: { bn: "২০২৫", en: "2025" }, label: { bn: "যাত্রা শুরু", en: "Founded" } },
       { value: { bn: "১,০০০+", en: "1,000+" }, label: { bn: "মিলের দৈনিক সক্ষমতা", en: "Meals a day" } },
-      { value: { bn: "৩টি", en: "3" }, label: { bn: "মিল প্যাকেজ", en: "Meal plans" } },
+      { value: { bn: "হালাল", en: "Halal" }, label: { bn: "সতেজ ও হালাল উপকরণ", en: "Fresh, halal ingredients" } },
       { value: { bn: "তেজগাঁও", en: "Tejgaon" }, label: { bn: "নিজস্ব রান্নাঘর", en: "Our own kitchen" } },
     ],
   },

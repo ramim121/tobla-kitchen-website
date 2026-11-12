@@ -26,8 +26,8 @@ All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 | `images.ts` | which photo/icon each item uses (day plates, premium dish photos, icons) |
 
 Inline markup in copy: `**text**` = orange accent, `==text==` = marker highlight that draws in.
-Pricing (Tk 275 average) lives in `site.pricing` and `src/components/sections/Pricing.tsx`; to hide it, remove
-`<Pricing />` from `src/App.tsx` and the hero price chip in `Hero.tsx`.
+Prices are not shown on the site: the orange "quote" band (`site.quote`, `src/components/sections/Quote.tsx`)
+asks visitors to call for a proposal and lists what every meal includes.
 
 ## Brochure
 - Download: `public/brochure/tobla-kitchen-brochure.pdf` — the full-quality original (23.7 MB), used by

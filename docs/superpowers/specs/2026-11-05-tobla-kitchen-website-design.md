@@ -79,3 +79,10 @@ Visitors are HR/admin decision-makers. Success = they trust the food-safety stor
   brochure's three meal plans (Basic, Premium, Executive). Phones swipe the dishes sideways.
 - Hero plate and share image use the real-photo spread. Copy no longer mentions a 4-week / 7-day menu.
 - The first design is preserved on the `design-v1` branch for old.toblakitchen.com.
+
+## Update — round 4 (no prices)
+- Owner asked to remove package prices and related numbers from this version. Removed: the Tk 275 figure,
+  the ~500 lunches/day basis, the VAT/AIT note, the beef portion figures and the "3 meal plans" fact.
+- The pricing band became a no-numbers quote band ("plan your office menu and budget with us", using the
+  brochure's line) with a call-to-action and what every meal includes. Nav label "Menu & price" → "Menu".
+- design-v1 (old.toblakitchen.com) keeps its original content unchanged.
