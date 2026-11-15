@@ -24,12 +24,11 @@ const logoUrl = "/favicon.svg";
    ──────────────────────────────────────────────────────────────────────── */
 
 /**
- * The secret unlock phrases. Typing any of these in the email box (and
- * submitting) reveals the real site. Compared case-insensitively, so
- * "Bestkitchen", "BESTKITCHEN" etc. all work. Edit this list to rotate them —
- * keep one if you only want a single password.
+ * The secret unlock phrase. Typing this in the email box (and submitting)
+ * reveals the real site. Compared case-insensitively, so "Bestwebsite",
+ * "BESTWEBSITE" etc. all work. Change it to rotate the password.
  */
-const UNLOCK_PHRASES = ["bestkitchen", "bestwebsite"];
+const UNLOCK_PHRASES = ["bestwebsite"];
 
 /**
  * When the countdown ends. Set to ~5 days from the launch of the gate.
