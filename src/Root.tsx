@@ -8,27 +8,13 @@ import { ConstructionGate } from "./gate/ConstructionGate";
  */
 const App = lazy(() => import("./App"));
 
-const UNLOCK_KEY = "tobla-unlocked";
-
-function readUnlocked(): boolean {
-  try {
-    return window.localStorage.getItem(UNLOCK_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
-
 export default function Root() {
-  const [unlocked, setUnlocked] = useState<boolean>(readUnlocked);
+  // The construction gate is shown on EVERY fresh page load. Unlocking only
+  // lasts for the current page view (kept in memory, not persisted), so a
+  // reload or a new visit always shows the gate and asks for the phrase again.
+  const [unlocked, setUnlocked] = useState(false);
 
-  const unlock = useCallback(() => {
-    try {
-      window.localStorage.setItem(UNLOCK_KEY, "1");
-    } catch {
-      /* storage can be blocked — unlock for this session anyway */
-    }
-    setUnlocked(true);
-  }, []);
+  const unlock = useCallback(() => setUnlocked(true), []);
 
   if (!unlocked) return <ConstructionGate onUnlock={unlock} />;
 

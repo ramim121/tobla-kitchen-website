@@ -23,8 +23,13 @@ const logoUrl = "/favicon.svg";
    after unlock (see Root.tsx).
    ──────────────────────────────────────────────────────────────────────── */
 
-/** The secret unlock phrase. Change this to rotate it. Compared case-insensitively. */
-const UNLOCK_PHRASE = "bestwebsite";
+/**
+ * The secret unlock phrases. Typing any of these in the email box (and
+ * submitting) reveals the real site. Compared case-insensitively, so
+ * "Bestkitchen", "BESTKITCHEN" etc. all work. Edit this list to rotate them —
+ * keep one if you only want a single password.
+ */
+const UNLOCK_PHRASES = ["bestkitchen", "bestwebsite"];
 
 /**
  * When the countdown ends. Set to ~5 days from the launch of the gate.
@@ -105,7 +110,7 @@ export function ConstructionGate({ onUnlock }: { onUnlock: () => void }) {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const v = value.trim();
-    if (v.toLowerCase() === UNLOCK_PHRASE) {
+    if (UNLOCK_PHRASES.includes(v.toLowerCase())) {
       onUnlock();
       return;
     }
