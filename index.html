@@ -1,5 +1,8 @@
 <!doctype html>
-<html lang="bn">
+<!-- While the construction gate is up (src/gate), the first paint is dark like the gate, so there is
+     no white flash before it appears. The gate hands the light colours back when it unlocks.
+     Removing the gate? Also remove the two inline backgrounds and set theme-color back to #FFFDFB. -->
+<html lang="bn" style="background: #231f20">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -8,7 +11,7 @@
       name="description"
       content="ঢাকার অফিসগুলোর জন্য প্রতিদিনের দুপুর ও রাতের খাবার। ফ্রি-রেঞ্জ মুরগি, ঘরে ভাঙা মসলা আর ফিল্টার করা পানি — প্রতিটি উপকরণের উৎস আমাদের জানা।"
     />
-    <meta name="theme-color" content="#FFFDFB" />
+    <meta name="theme-color" content="#231f20" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -53,10 +56,10 @@
       }
     </script>
   </head>
-  <body>
+  <body style="background: #231f20">
     <div id="root"></div>
     <noscript>
-      <p style="font-family: sans-serif; padding: 24px">
+      <p style="font-family: sans-serif; padding: 24px; color: #fffdfb">
         তবলা কিচেন — অফিসের খাবার, ঘরের মতো নিরাপদ। কল করুন: 01711 400 151 · ১৭/৫ কুনিপাড়া, তেজগাঁও, ঢাকা
       </p>
     </noscript>
