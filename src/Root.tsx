@@ -6,7 +6,8 @@ import { ConstructionGate } from "./gate/ConstructionGate";
  * The real marketing site is code-split, so its JS is only downloaded once the
  * gate is unlocked — casual visitors just get the "coming soon" page.
  */
-const App = lazy(() => import("./App"));
+const loadApp = () => import("./App");
+const App = lazy(loadApp);
 
 export default function Root() {
   // The construction gate is shown on EVERY fresh page load. Unlocking only
@@ -16,7 +17,9 @@ export default function Root() {
 
   const unlock = useCallback(() => setUnlocked(true), []);
 
-  if (!unlocked) return <ConstructionGate onUnlock={unlock} />;
+  // The download starts the moment the phrase is accepted, so the site is
+  // already there when the gate's reveal finishes.
+  if (!unlocked) return <ConstructionGate onUnlock={unlock} onUnlockStart={loadApp} />;
 
   return (
     <Suspense fallback={<SiteLoader />}>

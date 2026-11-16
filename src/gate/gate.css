@@ -1,0 +1,215 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Construction gate — scoped styles.
+   Layout and colour use Tailwind classes in ConstructionGate.tsx; this file
+   holds the pieces that need real CSS: the one-glyph pun, the rolling
+   countdown, the no-WebGL steam, and the unlock flood.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.gate {
+  --gate-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── The pun ────────────────────────────────────────────────────────────
+   লঞ্চ ⇄ লাঞ্চ is one stroke apart (the "া"); Launch ⇄ Lunch is one letter.
+   The slot is an inline box that opens to exactly the glyph's width. Inside
+   it sits the two-character combo ("লা" / "La"), shifted left so that only
+   the second glyph shows — that keeps Bangla shaping intact, because the
+   vowel sign is never rendered on its own.                                */
+.pun-slot {
+  position: relative;
+  display: inline-block;
+  width: 0;
+  /* clip left/right at the slot, but let the stroke rise above and below */
+  clip-path: inset(-70% 0 -70% 0);
+  transition: width 0.44s cubic-bezier(0.5, 0, 0.2, 1) 0.12s;
+}
+.pun-slot.is-on {
+  width: var(--pun-w, 0.3em);
+  transition: width 0.52s cubic-bezier(0.34, 1.45, 0.64, 1);
+}
+.pun-glyph {
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--pun-pre, 0.6em));
+  white-space: nowrap;
+  color: var(--color-orange);
+  /* gone = risen and thinned out, like steam */
+  opacity: 0;
+  transform: translateY(-0.62em) scaleY(1.55);
+  transform-origin: 50% 100%;
+  filter: blur(0.16em);
+  transition:
+    opacity 0.34s ease-in,
+    transform 0.46s cubic-bezier(0.4, 0, 1, 1),
+    filter 0.4s ease-in;
+}
+.pun-slot.is-on .pun-glyph {
+  /* here = condensed into a letter, with a small settle */
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+  transition:
+    opacity 0.3s ease-out 0.1s,
+    transform 0.62s cubic-bezier(0.2, 1.5, 0.35, 1) 0.1s,
+    filter 0.45s ease-out 0.1s;
+}
+.pun-measure {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ── Rolling countdown numbers ──────────────────────────────────────────
+   Both countdowns stay mounted; the one that is not showing waits just
+   outside its tile. Switching modes rolls one out and the other in.       */
+.roll {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.roll-v {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition:
+    transform 0.64s cubic-bezier(0.2, 0.9, 0.25, 1),
+    opacity 0.4s ease,
+    filter 0.4s ease;
+  transition-delay: calc(var(--i, 0) * 70ms);
+  will-change: transform;
+}
+.roll-v[data-state="above"] {
+  transform: translateY(-105%);
+  opacity: 0;
+  filter: blur(4px);
+}
+.roll-v[data-state="below"] {
+  transform: translateY(105%);
+  opacity: 0;
+  filter: blur(4px);
+}
+
+/* auto-switch timer inside the active mode pill */
+.gate-mode-timer {
+  transform-origin: left center;
+  animation: gateModeTimer var(--flip-ms, 5200ms) linear both;
+}
+@keyframes gateModeTimer {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.gate-flame {
+  animation: gateFlame 1.8s ease-in-out infinite;
+}
+@keyframes gateFlame {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.88);
+  }
+}
+
+/* ── Steam without WebGL ──────────────────────────────────────────────── */
+.gate-vapour-fallback {
+  overflow: hidden;
+}
+.gate-vapour-fallback span {
+  position: absolute;
+  bottom: -30%;
+  width: 46vmax;
+  height: 70vmax;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 246, 236, 0.34), rgba(255, 246, 236, 0));
+  filter: blur(30px);
+  animation: gateCloud 22s linear infinite;
+}
+.gate-vapour-fallback span:nth-child(1) {
+  left: -12%;
+}
+.gate-vapour-fallback span:nth-child(2) {
+  left: 28%;
+  animation-duration: 28s;
+  animation-delay: -9s;
+}
+.gate-vapour-fallback span:nth-child(3) {
+  left: 62%;
+  animation-duration: 25s;
+  animation-delay: -16s;
+}
+.gate-vapour-fallback.is-paused span {
+  animation-play-state: paused;
+}
+@keyframes gateCloud {
+  from {
+    transform: translate3d(0, 20%, 0) scale(0.8);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(-8%, -150%, 0) scale(1.35);
+    opacity: 0;
+  }
+}
+
+/* ── Unlock: the steam fills the screen, then the real site is there ──── */
+.gate-flood {
+  opacity: 0;
+  transition: opacity 0.5s ease-in 0.22s;
+}
+.gate-flood.is-on {
+  opacity: 1;
+}
+.gate-content {
+  transition:
+    opacity 0.35s ease,
+    transform 0.6s var(--gate-ease);
+}
+.gate.is-leaving .gate-content {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* the visitor paused the motion */
+.gate.is-paused *,
+.gate.is-paused *::before,
+.gate.is-paused *::after {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pun-slot,
+  .pun-slot.is-on,
+  .pun-glyph,
+  .pun-slot.is-on .pun-glyph,
+  .roll-v,
+  .gate-flood,
+  .gate-content {
+    transition: none;
+  }
+  .gate-flame,
+  .gate-mode-timer,
+  .gate-vapour-fallback span {
+    animation: none;
+  }
+  .gate-vapour-fallback span {
+    opacity: 0.6;
+    transform: translate3d(0, -60%, 0);
+  }
+}

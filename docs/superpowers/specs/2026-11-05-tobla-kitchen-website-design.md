@@ -86,3 +86,17 @@ Visitors are HR/admin decision-makers. Success = they trust the food-safety stor
 - The pricing band became a no-numbers quote band ("plan your office menu and budget with us", using the
   brochure's line) with a call-to-action and what every meal includes. Nav label "Menu & price" → "Menu".
 - design-v1 (old.toblakitchen.com) keeps its original content unchanged.
+
+## Update — round 5 (the gate: "Launch or lunch?")
+- Owner asked for a marketing stunt on the under-construction page: mix up "লঞ্চ হতে বাকি" (launch) with
+  "লাঞ্চ হতে বাকি" (lunch), "lunch responsibly until we serve you", and a full-page aroma/steam animation.
+- Headline is a one-glyph pun: Bangla gains the "া", English loses the "a". The glyph condenses in like
+  steam and evaporates out; the countdown tiles roll between the launch countdown and a live countdown to
+  the visitor's next 1 PM lunch. Auto-flips every ~5 s until a side is picked.
+- Copy: "যতদিন না আমরা পরিবেশন করছি, ততদিন বুঝেশুনে লাঞ্চ করুন।" / "Until we serve you, lunch responsibly."
+  A rotating seal repeats it; the footer carries a mock statutory warning about waiting on an empty stomach.
+- The gate went dark (ink) so white steam reads: one WebGL fragment shader draws curls off the plate plus
+  page-wide veils, in front of the plate and behind the words. Low-resolution canvas, adaptive step-down,
+  CSS fallback, reduced-motion still frame, pause control, pointer stir.
+- Unlock keeps the same phrase logic; on success the steam floods the screen and the light site is revealed.
+  index.html paints dark first so there is no white flash before the gate.

@@ -15,6 +15,32 @@ npm run build    # type-check + production build into dist/
 npm run preview  # serve the production build
 ```
 
+## Construction gate ("Launch or lunch?")
+Until launch, every visit lands on the gate in `src/gate/` — the real site is only downloaded after unlock.
+
+- **The pun.** লঞ্চ and লাঞ্চ are one stroke apart (the "া"); "Launch" and "Lunch" are one letter apart. The
+  headline flips between the two every few seconds: one side counts down to the launch, the other to the
+  visitor's next 1 PM lunch. Visitors can pick a side with the two pills (that also stops the flipping).
+- **Steam.** `Vapour.tsx` draws full-page steam with one WebGL shader: curls rising off the plate, faint
+  veils across the page, and a swirl where the pointer moves. It renders at reduced resolution and steps
+  down further on slow devices; without WebGL it falls back to CSS clouds; with reduced motion it is a
+  still frame. The small button in the footer pauses all motion.
+- **Unlock.** Typing the phrase in the email box and submitting opens the real site (anything else gets a
+  fake "you're on the list" message). It is a soft gate — the phrase ships in the JS — not real security.
+
+Settings, all at the top of `src/gate/ConstructionGate.tsx`:
+
+| Constant | What it does |
+|---|---|
+| `LAUNCH_AT` | when the launch countdown ends (Dhaka time) |
+| `UNLOCK_PHRASES` | the phrase(s) that open the site |
+| `LUNCH_HOUR` | the hour the lunch countdown aims at (13 = 1 PM, visitor's clock) |
+| `FLIP_MS` | how long each side of the pun stays up |
+
+**Going live:** in `src/Root.tsx` render `<App />` directly instead of the gate, and in `index.html` remove
+the two inline dark backgrounds and set `theme-color` back to `#FFFDFB` (the comment at the top of that file
+points to them).
+
 ## Edit the content
 All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 
