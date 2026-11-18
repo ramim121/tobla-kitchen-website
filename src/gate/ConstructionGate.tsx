@@ -57,7 +57,7 @@ const LUNCH_HOUR = 13;
 
 /** Page colour behind the gate, and the browser theme colour the real site uses. */
 const GATE_BG = "#231f20";
-const SITE_THEME = "#FFFDFB";
+const SITE_THEME = "#FFFFFF";
 
 /** How long each side of the pun stays up before it flips by itself. */
 const FLIP_MS = 5200;
@@ -217,8 +217,8 @@ export function ConstructionGate({ onUnlock, onUnlockStart }: GateProps) {
     };
   }, [lang]);
 
-  // The site behind the gate is light, the gate is dark. index.html already
-  // paints the page dark (so there is no white flash before the gate shows);
+  // The site behind the gate is light, the gate is dark. A VITE_GATE=on build already
+  // paints the page dark (vite.config.ts, so there is no white flash before the gate shows);
   // this keeps it that way and hands the light colours back on unlock.
   useEffect(() => {
     const root = document.documentElement;

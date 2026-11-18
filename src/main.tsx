@@ -1,15 +1,5 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import App from "./App";
+import { mount } from "./boot";
 
-import "@fontsource-variable/jost/wght.css";
-import "@fontsource-variable/anek-bangla/wght.css";
-import "@fontsource-variable/noto-sans-bengali/wght.css";
-import "./index.css";
-
-import Root from "./Root";
-
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <Root />
-  </StrictMode>,
-);
+// The site. A build with VITE_GATE=on starts from src/gate/main.tsx instead (see vite.config.ts).
+mount(<App />);

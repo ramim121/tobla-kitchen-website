@@ -1,8 +1,7 @@
 <!doctype html>
-<!-- While the construction gate is up (src/gate), the first paint is dark like the gate, so there is
-     no white flash before it appears. The gate hands the light colours back when it unlocks.
-     Removing the gate? Also remove the two inline backgrounds and set theme-color back to #FFFDFB. -->
-<html lang="bn" style="background: #231f20">
+<!-- First paint is white like the site. A build with VITE_GATE=on (the "launch or lunch" gate in
+     src/gate) gets a dark first paint instead — injected by the gateFirstPaint plugin in vite.config.ts. -->
+<html lang="bn">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -11,7 +10,7 @@
       name="description"
       content="ঢাকার অফিসগুলোর জন্য প্রতিদিনের দুপুর ও রাতের খাবার। ফ্রি-রেঞ্জ মুরগি, ঘরে ভাঙা মসলা আর ফিল্টার করা পানি — প্রতিটি উপকরণের উৎস আমাদের জানা।"
     />
-    <meta name="theme-color" content="#231f20" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -56,10 +55,10 @@
       }
     </script>
   </head>
-  <body style="background: #231f20">
+  <body>
     <div id="root"></div>
     <noscript>
-      <p style="font-family: sans-serif; padding: 24px; color: #fffdfb">
+      <p style="font-family: sans-serif; padding: 24px; color: #231f20">
         তবলা কিচেন — অফিসের খাবার, ঘরের মতো নিরাপদ। কল করুন: 01711 400 151 · ১৭/৫ কুনিপাড়া, তেজগাঁও, ঢাকা
       </p>
     </noscript>

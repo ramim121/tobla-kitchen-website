@@ -15,8 +15,17 @@ npm run build    # type-check + production build into dist/
 npm run preview  # serve the production build
 ```
 
-## Construction gate ("Launch or lunch?")
-Until launch, every visit lands on the gate in `src/gate/` — the real site is only downloaded after unlock.
+## Construction gate ("Launch or lunch?") — switched off
+The site now opens straight away. The gate in `src/gate/` is kept for a future launch or a maintenance
+window and comes back with one setting, `VITE_GATE=on`:
+
+- **On Vercel:** Project → Settings → Environment Variables → add `VITE_GATE` with the value `on`
+  (Production), then redeploy. Delete the variable and redeploy to switch it off again.
+- **Locally:** `VITE_GATE=on npm run dev` (or `npm run build`), or put `VITE_GATE=on` in `.env.local`.
+
+With the gate on, `vite.config.ts` (the `gateMode` plugin) makes `index.html` start from
+`src/gate/main.tsx` and paint dark before any JS runs; every visit lands on the gate and the real site is
+only downloaded after unlock. A normal build ships no gate code at all.
 
 - **The pun.** লঞ্চ and লাঞ্চ are one stroke apart (the "া"); "Launch" and "Lunch" are one letter apart. The
   headline flips between the two every few seconds: one side counts down to the launch, the other to the
@@ -37,9 +46,8 @@ Settings, all at the top of `src/gate/ConstructionGate.tsx`:
 | `LUNCH_HOUR` | the hour the lunch countdown aims at (13 = 1 PM, visitor's clock) |
 | `FLIP_MS` | how long each side of the pun stays up |
 
-**Going live:** in `src/Root.tsx` render `<App />` directly instead of the gate, and in `index.html` remove
-the two inline dark backgrounds and set `theme-color` back to `#FFFDFB` (the comment at the top of that file
-points to them).
+The launch countdown still points at `LAUNCH_AT`; move it (or reword the copy) before reusing the gate as a
+maintenance page.
 
 ## Edit the content
 All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
