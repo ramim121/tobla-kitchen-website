@@ -100,3 +100,13 @@ Visitors are HR/admin decision-makers. Success = they trust the food-safety stor
   CSS fallback, reduced-motion still frame, pause control, pointer stir.
 - Unlock keeps the same phrase logic; on success the steam floods the screen and the light site is revealed.
   index.html paints dark first so there is no white flash before the gate.
+
+## Update — round 6 (gate off, white redesign, kitchen gallery)
+Full design: `docs/superpowers/specs/2026-11-18-white-redesign-gallery-design.md`.
+- The site opens straight away again. The "launch or lunch" gate stays in `src/gate/` behind a build-time
+  switch (`VITE_GATE=on`) for a future launch or maintenance window.
+- Pure white page; no black or solid-orange sections. Neutral light-grey bands (`mist`) replace cream; the
+  41.47% band, quote panel, meal-plans card and contact use soft orange-to-white washes; the footer is white.
+- New kitchen gallery under the premium dishes: 22 unique dishes and platters from the photographer's
+  colour-corrected finals, category filters, and a modal lightbox (photo + description, arrows, keys, swipe).
+  The premium cards use the colour-corrected shots too.

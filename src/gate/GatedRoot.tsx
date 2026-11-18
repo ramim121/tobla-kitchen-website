@@ -3,7 +3,8 @@ import { lazy, Suspense, useCallback, useState } from "react";
 import { ConstructionGate } from "./ConstructionGate";
 
 /**
- * The site behind the gate (only used when the build runs with VITE_GATE=on, see src/Root.tsx).
+ * The site behind the gate (only used when the build runs with VITE_GATE=on — see the gateMode plugin
+ * in vite.config.ts, which makes index.html start from src/gate/main.tsx).
  * The real marketing site is code-split, so its JS is only downloaded once the gate is unlocked —
  * casual visitors just get the "coming soon" page.
  */

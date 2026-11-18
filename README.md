@@ -58,10 +58,25 @@ All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 | `menu.ts` | the weekly office menu (Saturday–Thursday), day names, ingredient tags |
 | `risks.ts` | the food-safety risks vs. our rules |
 | `images.ts` | which photo/icon each item uses (day plates, premium dish photos, icons) |
+| `gallery.ts` | the kitchen gallery: each dish's photo, category, name, description and alt text |
 
 Inline markup in copy: `**text**` = orange accent, `==text==` = marker highlight that draws in.
-Prices are not shown on the site: the orange "quote" band (`site.quote`, `src/components/sections/Quote.tsx`)
+Prices are not shown on the site: the warm "quote" panel (`site.quote`, `src/components/sections/Quote.tsx`)
 asks visitors to call for a proposal and lists what every meal includes.
+
+## Look
+A pure white page. Orange is an accent (headings, rules, icons, small buttons), never a section fill, and
+there are no dark sections. Tokens live in `src/index.css`:
+
+- `paper` `#FFFFFF` page · `mist` `#F6F6F7` light grey band between white sections · `line` `#E8E8EB`
+- `surface-glow` — soft orange-to-white wash for highlight sections (41.47% band, contact)
+- `surface-warm` — the same, slightly warmer, for feature panels (quote band, meal-plans card)
+- small orange text uses `orange-700`; large orange text `orange-600` (both pass WCAG AA on white)
+
+## Kitchen gallery
+Under the premium dishes: 22 photos, one best shot of each unique dish or platter the photographer shot,
+with category filters. Tapping a photo opens it in a modal (photo, description underneath, ‹ › arrows;
+arrow keys, Esc and swipe work). Add, remove or reword dishes in `src/content/gallery.ts`.
 
 ## Brochure
 - Download: `public/brochure/tobla-kitchen-brochure.pdf` — the full-quality original (23.7 MB), used by
@@ -76,8 +91,13 @@ Bangla is the default. The toggle at the top switches to English; the choice is 
 `?lang=en` opens the English version directly.
 
 ## Imagery
-- `src/assets/food/dish-*.webp` — real photos of our dishes (best shot of each dish, re-centred and
-  optimised): prawn bhuna, rui kalia, chicken roast, mutton bhuna, beef bhuna.
+- Source: the photographer's colour-corrected finals (152 JPEGs) in the shared Drive folder
+  "Food Photography - Final Shots after color correction". They are not kept in the repo; download the
+  ones listed in `scripts/export-photos.py` and run `python3 scripts/export-photos.py --src <folder>`
+  (needs Pillow) to re-create the WebP files below.
+- `src/assets/gallery/<dish>-{720,1200,1600}.webp` — the gallery photos (full 3:2 frame; tiles crop to 4:3).
+- `src/assets/food/dish-*.webp` — the premium dish cards (4:3 crops of the colour-corrected finals, a
+  different frame than the gallery shows): prawn bhuna, rui kalia, chicken roast, mutton bhuna, beef bhuna.
 - `src/assets/food/plate-*.webp` — one top-down "day plate" per weekday plus the hero. Each is composed
   from the real dish photo (bowl/plate cut out of the original shot) with rice, dal and vegetable bowls on
   slate; the side bowls reuse a real white bowl filled with generated close-up textures.

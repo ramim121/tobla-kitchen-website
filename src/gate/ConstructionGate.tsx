@@ -36,7 +36,8 @@ import "./gate.css";
    This is a soft gate: because the site is static, the phrase lives in the
    shipped JS. It keeps casual visitors out and teases the launch; it is NOT
    real security. The real home page is still code-split and only downloaded
-   after unlock (see Root.tsx).
+   after unlock (see GatedRoot.tsx). The gate only appears in builds with
+   VITE_GATE=on (see vite.config.ts and README).
    ──────────────────────────────────────────────────────────────────────── */
 
 /**
