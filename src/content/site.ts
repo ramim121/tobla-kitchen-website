@@ -325,6 +325,25 @@ export const site = {
     },
   },
 
+  gallery: {
+    eyebrow: { bn: "গ্যালারি", en: "Gallery" },
+    title: { bn: "আমাদের **রান্নাঘর থেকে**", en: "From **our kitchen**" },
+    lead: {
+      bn: "প্রতিটি ছবি আমাদের নিজেদের রান্নার — যেমন রাঁধি, তেমনই পৌঁছে দিই।",
+      en: "Every photo is our own cooking — it reaches you just the way you see it.",
+    },
+    /** `{n}` is replaced with the number of photos shown */
+    count: { bn: "{n}টি ছবি", en: "{n} photos" },
+    filterLabel: { bn: "ধরন অনুযায়ী দেখুন", en: "Show by type" },
+    open: { bn: "বড় করে দেখুন", en: "view larger" },
+    // lightbox
+    dialog: { bn: "ছবি", en: "Photo" },
+    prev: { bn: "আগের ছবি", en: "Previous photo" },
+    next: { bn: "পরের ছবি", en: "Next photo" },
+    close: { bn: "বন্ধ করুন", en: "Close" },
+    of: { bn: "এর মধ্যে", en: "of" },
+  },
+
   quote: {
     eyebrow: { bn: "প্রস্তাব", en: "Get a quote" },
     title: { bn: "আপনার অফিসের মেনু ও বাজেট **আমাদের সঙ্গে সাজিয়ে নিন**", en: "Plan your office menu and budget **with us**" },
