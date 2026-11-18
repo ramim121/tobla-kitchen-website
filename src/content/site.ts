@@ -337,11 +337,9 @@ export const site = {
     filterLabel: { bn: "ধরন অনুযায়ী দেখুন", en: "Show by type" },
     open: { bn: "বড় করে দেখুন", en: "view larger" },
     // lightbox
-    dialog: { bn: "ছবি", en: "Photo" },
     prev: { bn: "আগের ছবি", en: "Previous photo" },
     next: { bn: "পরের ছবি", en: "Next photo" },
     close: { bn: "বন্ধ করুন", en: "Close" },
-    of: { bn: "এর মধ্যে", en: "of" },
   },
 
   quote: {
