@@ -141,7 +141,7 @@ export function MenuExplorer() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.3 }}
-                    className="whitespace-nowrap rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper shadow-lg"
+                    className="whitespace-nowrap rounded-full bg-paper px-4 py-2 text-sm font-semibold text-ink shadow-[0_12px_28px_-12px_rgba(35,31,32,0.4)] ring-1 ring-line"
                   >
                     {t(DAYS[day].long)}
                   </motion.p>
@@ -211,7 +211,7 @@ export function MenuExplorer() {
               <p className="text-center text-sm font-semibold text-ink/70 lg:text-left">{t(site.menu.everyDish.title)}</p>
               <ul className="mt-3 flex flex-wrap justify-center gap-2 lg:justify-start">
                 {site.menu.everyDish.items.map((x) => (
-                  <li key={x.en} className="inline-flex items-center gap-1.5 rounded-full bg-cream px-3 py-1.5 text-[13px] font-medium text-ink/80">
+                  <li key={x.en} className="inline-flex items-center gap-1.5 rounded-full bg-mist px-3 py-1.5 text-[13px] font-medium text-ink/80">
                     <Check className="size-3.5 text-safe" strokeWidth={3} aria-hidden="true" />
                     {t(x)}
                   </li>
@@ -220,15 +220,15 @@ export function MenuExplorer() {
 
               <AnchorLink
                 to="quote"
-                className="group mt-6 flex items-center justify-between gap-4 rounded-2xl bg-ink px-5 py-4 text-paper transition-colors duration-300 hover:bg-ink-2"
+                className="group mt-6 flex items-center justify-between gap-4 rounded-2xl bg-orange-50 px-5 py-4 text-ink ring-1 ring-orange-100 transition-colors duration-300 hover:bg-orange-100/70"
               >
                 <span className="flex items-center gap-3">
                   <span className="grid size-10 shrink-0 place-items-center rounded-full bg-orange text-ink" aria-hidden="true">
                     <MessageCircle className="size-5" />
                   </span>
-                  <span className="text-[15px] font-medium text-paper">{t(site.menu.quoteTeaser)}</span>
+                  <span className="text-[15px] font-medium text-ink">{t(site.menu.quoteTeaser)}</span>
                 </span>
-                <ArrowDown className="size-5 shrink-0 text-orange transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
+                <ArrowDown className="size-5 shrink-0 text-orange-700 transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
               </AnchorLink>
             </div>
           </Reveal>

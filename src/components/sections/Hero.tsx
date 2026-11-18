@@ -22,14 +22,7 @@ export function Hero() {
   const visualY = useTransform(scrollYProgress, [0, 1], [0, 90]);
 
   return (
-    <section id="top" ref={ref} tabIndex={-1} className="relative overflow-hidden outline-none">
-      {/* atmosphere */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -right-[18%] -top-[28%] size-[min(900px,140vw)] rounded-full bg-[radial-gradient(closest-side,rgba(243,111,33,0.17),transparent)]" />
-        <div className="absolute -bottom-[38%] -left-[18%] size-[min(760px,130vw)] rounded-full bg-[radial-gradient(closest-side,rgba(253,230,213,0.95),transparent)]" />
-        <div className="grain absolute inset-0 opacity-[0.045]" />
-      </div>
-
+    <section id="top" ref={ref} tabIndex={-1} className="relative overflow-hidden bg-paper outline-none">
       <Container className="relative grid grid-cols-1 items-center gap-14 pb-16 pt-28 sm:pt-32 lg:min-h-[min(100svh,980px)] lg:grid-cols-[1.08fr_0.92fr] lg:gap-10 lg:pb-20 lg:pt-28">
         <motion.div variants={stagger(0.09, 0.2)} initial="hidden" animate="show">
           <motion.p
@@ -67,7 +60,7 @@ export function Hero() {
             </AnchorLink>
             <a
               href={CONTACT.phoneHref}
-              className="inline-flex items-center gap-2.5 rounded-full border border-ink/15 bg-white/60 px-5 py-3 text-base font-semibold text-ink backdrop-blur-sm transition-colors duration-300 hover:border-ink/35 hover:bg-white"
+              className="inline-flex items-center gap-2.5 rounded-full border border-ink/15 bg-white px-5 py-3 text-base font-semibold text-ink transition-colors duration-300 hover:border-ink/35 hover:bg-mist"
             >
               <Phone className="size-4 text-orange-600" aria-hidden="true" />
               {t(CONTACT.phoneDisplay)}

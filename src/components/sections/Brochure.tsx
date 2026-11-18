@@ -40,7 +40,7 @@ export function Brochure() {
   }, []);
 
   return (
-    <section id="brochure" tabIndex={-1} className="relative overflow-hidden bg-cream py-20 outline-none sm:py-28">
+    <section id="brochure" tabIndex={-1} className="relative overflow-hidden bg-mist py-20 outline-none sm:py-28">
       <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
         <div>
           <SectionHeading eyebrow={b.eyebrow} title={b.title} lead={b.lead} />

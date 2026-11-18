@@ -18,35 +18,34 @@ const THEN = 8.5;
 export function StatBand() {
   const { t } = useLang();
   return (
-    <section id="why" tabIndex={-1} aria-labelledby="why-title" className="relative overflow-hidden bg-ink py-20 text-paper outline-none sm:py-28">
-      <div aria-hidden="true" className="grain pointer-events-none absolute inset-0 opacity-[0.08]" />
-      <TablaRings dark className="pointer-events-none absolute -right-44 -top-44 size-[540px] opacity-60" />
+    <section id="why" tabIndex={-1} aria-labelledby="why-title" className="surface-glow relative overflow-hidden py-20 text-ink outline-none sm:py-28">
+      <TablaRings className="pointer-events-none absolute -right-44 -top-44 size-[540px] opacity-70" />
 
       <Container className="relative grid grid-cols-1 gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
         <Reveal>
-          <h2 id="why-title" className="eyebrow inline-flex items-center gap-2.5 font-sans text-orange">
+          <h2 id="why-title" className="eyebrow inline-flex items-center gap-2.5 font-sans text-orange-700">
             <span aria-hidden="true" className="h-[2px] w-6 rounded-full bg-current" />
             {t(site.stat.eyebrow)}
           </h2>
-          <p className="mt-6 font-display text-[4.6rem] font-semibold leading-none text-paper sm:text-[7rem] lg:text-[8.25rem]">
+          <p className="mt-6 font-display text-[4.6rem] font-semibold leading-none text-ink sm:text-[7rem] lg:text-[8.25rem]">
             <CountUp value={NOW} decimals={2} suffix="%" />
           </p>
-          <p className="mt-4 text-lg text-paper/80 sm:text-xl">{t(site.stat.label)}</p>
+          <p className="mt-4 text-lg text-ink/80 sm:text-xl">{t(site.stat.label)}</p>
           <Meter />
-          <p className="mt-5 inline-flex items-start gap-2 text-sm text-paper/70">
-            <TrendingUp className="mt-0.5 size-4 shrink-0 text-orange" aria-hidden="true" />
+          <p className="mt-5 inline-flex items-start gap-2 text-sm text-muted">
+            <TrendingUp className="mt-0.5 size-4 shrink-0 text-orange-600" aria-hidden="true" />
             {t(site.stat.delta)}
           </p>
         </Reveal>
 
         <Reveal delay={0.12}>
-          <p className="text-xl leading-relaxed text-paper/85 sm:text-[1.6rem] sm:leading-relaxed">
-            <Rich text={t(site.stat.body)} dark />
+          <p className="text-xl leading-relaxed text-ink/85 sm:text-[1.6rem] sm:leading-relaxed">
+            <Rich text={t(site.stat.body)} />
           </p>
-          <p className="mt-9 border-l-[3px] border-orange pl-5 font-display text-2xl font-semibold text-paper sm:text-[1.85rem]">
-            <Rich text={t(site.stat.punch)} accent="text-orange" />
+          <p className="mt-9 border-l-[3px] border-orange pl-5 font-display text-2xl font-semibold text-ink sm:text-[1.85rem]">
+            <Rich text={t(site.stat.punch)} accent="text-orange-600" />
           </p>
-          <p className="mt-9 text-xs text-paper/50">{t(site.stat.source)}</p>
+          <p className="mt-9 text-xs text-muted">{t(site.stat.source)}</p>
         </Reveal>
       </Container>
     </section>
@@ -71,7 +70,7 @@ function Meter() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 4 }}
               transition={{ duration: 0.2 }}
-              className="absolute bottom-0 -translate-x-1/2 whitespace-nowrap rounded-lg bg-paper px-3 py-1.5 text-xs font-medium text-ink shadow-lg"
+              className="absolute bottom-0 -translate-x-1/2 whitespace-nowrap rounded-lg bg-ink px-3 py-1.5 text-xs font-medium text-paper shadow-lg"
               style={{ left: `${tip === "now" ? Math.min(NOW, 80) : Math.max(THEN, 22)}%` }}
             >
               {t(tip === "now" ? site.stat.tipNow : site.stat.tipThen)}
@@ -80,7 +79,7 @@ function Meter() {
         </AnimatePresence>
       </div>
 
-      <div aria-hidden="true" className="relative h-3 rounded-full bg-orange/20">
+      <div aria-hidden="true" className="relative h-3 rounded-full bg-orange-100">
         <motion.div
           className="absolute inset-y-0 left-0 rounded-full bg-orange"
           initial={{ width: 0 }}
@@ -101,17 +100,17 @@ function Meter() {
           onPointerLeave={() => setTip(null)}
         />
         {/* 2022–23 reference mark */}
-        <span className="pointer-events-none absolute -bottom-1.5 -top-1.5 w-[3px] -translate-x-1/2 rounded-full bg-paper ring-2 ring-ink" style={{ left: `${THEN}%` }} />
+        <span className="pointer-events-none absolute -bottom-1.5 -top-1.5 w-[3px] -translate-x-1/2 rounded-full bg-ink ring-2 ring-paper" style={{ left: `${THEN}%` }} />
       </div>
 
       <div aria-hidden="true" className="relative mt-2.5 h-5 text-xs">
-        <span className="absolute -translate-x-1/2 text-paper/60" style={{ left: `${THEN}%` }}>
+        <span className="absolute -translate-x-1/2 text-muted" style={{ left: `${THEN}%` }}>
           {t(site.stat.thenTick)}
         </span>
-        <span className="absolute -translate-x-1/2 font-semibold text-paper" style={{ left: `${NOW}%` }}>
+        <span className="absolute -translate-x-1/2 font-semibold text-ink" style={{ left: `${NOW}%` }}>
           {t({ bn: "২০২৫", en: "2025" })}
         </span>
-        <span className="absolute right-0 text-paper/40">{t({ bn: "১০০%", en: "100%" })}</span>
+        <span className="absolute right-0 text-muted">{t({ bn: "১০০%", en: "100%" })}</span>
       </div>
     </div>
   );

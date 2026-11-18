@@ -36,7 +36,7 @@ export function PremiumDishes() {
   const isPhone = useIsPhone();
 
   return (
-    <section id="premium" tabIndex={-1} className="relative overflow-hidden bg-cream py-20 outline-none sm:py-28">
+    <section id="premium" tabIndex={-1} className="relative overflow-hidden bg-mist py-20 outline-none sm:py-28">
       <Container>
         <SectionHeading eyebrow={p.eyebrow} title={p.title} lead={p.lead} />
 
@@ -104,27 +104,27 @@ function PlansCard() {
   const { t } = useLang();
   const plans = site.premium.plans;
   return (
-    <article className="relative flex h-full flex-col overflow-hidden rounded-[28px] bg-ink p-6 text-paper sm:p-7">
-      <TablaRings dark className="pointer-events-none absolute -right-24 -top-24 size-64 opacity-60" />
-      <p className="relative eyebrow inline-flex items-center gap-2 text-orange">
+    <article className="surface-warm relative flex h-full flex-col overflow-hidden rounded-[28px] p-6 text-ink ring-1 ring-orange-100 sm:p-7">
+      <TablaRings className="pointer-events-none absolute -right-24 -top-24 size-64 opacity-70" />
+      <p className="relative eyebrow inline-flex items-center gap-2 text-orange-700">
         <Sparkles className="size-4" aria-hidden="true" />
         {t(plans.eyebrow)}
       </p>
       <h3 className="relative mt-3 text-2xl font-semibold">
-        <Rich text={t(plans.title)} accent="text-orange" />
+        <Rich text={t(plans.title)} accent="text-orange-600" />
       </h3>
       <ul className="relative mt-5 space-y-4">
         {plans.items.map((plan) => (
-          <li key={plan.name.en} className="border-l-2 border-orange/70 pl-3">
-            <p className="font-semibold text-paper">{t(plan.name)}</p>
-            <p className="mt-0.5 text-sm text-paper/70">{t(plan.text)}</p>
+          <li key={plan.name.en} className="border-l-2 border-orange pl-3">
+            <p className="font-semibold text-ink">{t(plan.name)}</p>
+            <p className="mt-0.5 text-sm text-muted">{t(plan.text)}</p>
           </li>
         ))}
       </ul>
       <div className="relative mt-auto pt-6">
         <AnchorLink
           to="contact"
-          className="group inline-flex items-center gap-2 rounded-full bg-orange px-5 py-2.5 text-sm font-semibold text-ink transition-colors duration-300 hover:bg-paper"
+          className="group inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper transition-colors duration-300 hover:bg-ink-2"
         >
           {t(plans.cta)}
           <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />

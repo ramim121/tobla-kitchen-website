@@ -41,7 +41,7 @@ export function RiskCompare() {
   };
 
   return (
-    <section id="risks" tabIndex={-1} className="relative bg-cream py-20 outline-none sm:py-28">
+    <section id="risks" tabIndex={-1} className="relative bg-mist py-20 outline-none sm:py-28">
       <Container className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
           <SectionHeading eyebrow={site.risks.eyebrow} title={site.risks.title} lead={site.risks.lead} />
@@ -134,13 +134,13 @@ export function RiskCompare() {
             </AutoHeight>
           </div>
           {/* the proposal's bottom line */}
-          <div className="mt-6 rounded-[24px] bg-ink p-6 text-paper sm:p-7">
-            <p className="eyebrow inline-flex items-center gap-2.5 text-orange">
+          <div className="mt-6 rounded-[24px] border-l-4 border-orange bg-orange-50 p-6 ring-1 ring-orange-100 sm:p-7">
+            <p className="eyebrow inline-flex items-center gap-2.5 text-orange-700">
               <span aria-hidden="true" className="h-[2px] w-6 rounded-full bg-current" />
               {t(site.risks.summary.title)}
             </p>
-            <p className="mt-3 text-[16.5px] leading-relaxed text-paper/85 sm:text-lg">
-              <Rich text={t(site.risks.summary.text)} accent="font-semibold text-orange" />
+            <p className="mt-3 text-[16.5px] leading-relaxed text-ink/85 sm:text-lg">
+              <Rich text={t(site.risks.summary.text)} accent="font-semibold text-orange-700" />
             </p>
           </div>
           <p className="mt-5 text-xs text-muted">{t(site.risks.footnote)}</p>

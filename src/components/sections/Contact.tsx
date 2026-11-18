@@ -52,16 +52,15 @@ export function Contact() {
     <section
       id="contact"
       tabIndex={-1}
-      className="relative overflow-hidden rounded-t-[36px] bg-ink pb-20 pt-20 text-paper outline-none sm:rounded-t-[56px] sm:pt-28"
+      className="surface-glow relative overflow-hidden border-t border-line pb-20 pt-20 text-ink outline-none sm:pt-28"
     >
-      <div aria-hidden="true" className="grain pointer-events-none absolute inset-0 opacity-[0.08]" />
-      <TablaRings dark className="pointer-events-none absolute -bottom-80 -left-80 size-[640px] opacity-40" />
+      <TablaRings className="pointer-events-none absolute -bottom-80 -left-80 size-[640px] opacity-60" />
 
       <Container className="relative grid grid-cols-1 gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
         <div>
-          <SectionHeading dark eyebrow={site.contact.eyebrow} title={site.contact.title} lead={site.contact.lead} />
+          <SectionHeading eyebrow={site.contact.eyebrow} title={site.contact.title} lead={site.contact.lead} />
           <Reveal delay={0.1} className="mt-12">
-            <h3 className="eyebrow font-sans text-paper/55">{t(site.contact.servicesTitle)}</h3>
+            <h3 className="eyebrow font-sans text-muted">{t(site.contact.servicesTitle)}</h3>
             <motion.ul
               variants={stagger(0.06)}
               initial="hidden"
@@ -75,9 +74,9 @@ export function Contact() {
                   <motion.li
                     key={s.key}
                     variants={item}
-                    className="inline-flex items-center gap-2.5 rounded-full border border-paper/15 bg-paper/[0.04] px-4 py-2.5 text-[15px] text-paper/90 transition-colors duration-300 hover:border-orange/60 hover:bg-paper/[0.07]"
+                    className="inline-flex items-center gap-2.5 rounded-full border border-line bg-paper px-4 py-2.5 text-[15px] text-ink/90 transition-colors duration-300 hover:border-orange/50"
                   >
-                    <Icon className="size-4 text-orange" aria-hidden="true" />
+                    <Icon className="size-4 text-orange-600" aria-hidden="true" />
                     {t(s.label)}
                   </motion.li>
                 );
@@ -87,7 +86,7 @@ export function Contact() {
         </div>
 
         <Reveal delay={0.15}>
-          <div className="rounded-[32px] bg-paper p-6 text-ink shadow-[0_40px_90px_-40px_rgba(0,0,0,0.7)] sm:p-9">
+          <div className="rounded-[32px] bg-paper p-6 text-ink shadow-[0_34px_80px_-44px_rgba(35,31,32,0.4)] ring-1 ring-line sm:p-9">
             <p className="text-sm font-medium text-muted">{t(site.contact.callDirect)}</p>
             <a
               href={CONTACT.phoneHref}

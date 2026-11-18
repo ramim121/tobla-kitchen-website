@@ -18,7 +18,7 @@ export function Process() {
   const progress = useSpring(scrollYProgress, { stiffness: 110, damping: 28, mass: 0.4 });
 
   return (
-    <section id="process" tabIndex={-1} className="relative bg-cream py-20 outline-none sm:py-28">
+    <section id="process" tabIndex={-1} className="relative bg-mist py-20 outline-none sm:py-28">
       <Container>
         <SectionHeading align="center" eyebrow={site.process.eyebrow} title={site.process.title} lead={site.process.lead} />
 
@@ -51,7 +51,7 @@ export function Process() {
                   draggable={false}
                   className="size-14 lg:size-20"
                 />
-                <span className="absolute -right-1 -top-1 grid size-8 place-items-center rounded-full bg-orange font-display text-sm font-semibold text-ink ring-4 ring-cream lg:size-9">
+                <span className="absolute -right-1 -top-1 grid size-8 place-items-center rounded-full bg-orange font-display text-sm font-semibold text-ink ring-4 ring-mist lg:size-9">
                   {num(i + 1)}
                 </span>
               </div>

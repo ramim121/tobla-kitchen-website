@@ -10,16 +10,16 @@
   /* supporting steps (same hue family) */
   --color-ink-2: #3b3536;
   --color-orange-600: #e25e12; /* large orange text on light surfaces (3.6:1) */
-  --color-orange-700: #b5480c; /* small orange text on light surfaces (≥4.9:1 on cream) */
+  --color-orange-700: #b5480c; /* small orange text on light surfaces (≥4.6:1 on mist) */
   --color-orange-50: #fff4ec;
   --color-orange-100: #fde6d5;
   --color-orange-200: #fbd0b0;
 
-  /* surfaces + text */
-  --color-paper: #fffdfb;
-  --color-cream: #fbf6f0;
-  --color-line: #ece2d7;
-  --color-muted: #6b6360; /* 5.4:1 on cream */
+  /* surfaces + text — a white page; orange is an accent, never a section fill */
+  --color-paper: #ffffff;
+  --color-mist: #f6f6f7; /* light grey band between white sections (no orange cast) */
+  --color-line: #e8e8eb;
+  --color-muted: #6b6360; /* 5.3:1 on mist */
 
   /* status (risk severity) — always shipped with an icon + label */
   --color-critical: #c62828;
@@ -148,11 +148,29 @@
   }
 }
 
+/* used by the dark construction gate (src/gate) */
 @utility mark-hl-dark {
   --mark-color: color-mix(in oklab, var(--color-orange) 55%, transparent);
 }
 
-/* Subtle film grain for ink + hero surfaces (static, no blend modes). */
+/* Highlight sections: a soft orange wash fading to white (light enough for ink and muted text). */
+@utility surface-glow {
+  background-color: var(--color-paper);
+  background-image:
+    radial-gradient(55% 75% at 100% 0%, color-mix(in oklab, var(--color-orange) 13%, transparent), transparent 72%),
+    radial-gradient(45% 60% at 0% 100%, color-mix(in oklab, var(--color-orange) 7%, transparent), transparent 70%),
+    linear-gradient(180deg, #fff8f3 0%, var(--color-paper) 100%);
+}
+
+/* Feature panels (quote band, meal plans): the same idea, a little warmer. */
+@utility surface-warm {
+  background-color: var(--color-paper);
+  background-image:
+    radial-gradient(65% 90% at 100% 0%, color-mix(in oklab, var(--color-orange) 16%, transparent), transparent 70%),
+    linear-gradient(135deg, #ffeee2 0%, #fff7f1 48%, var(--color-paper) 100%);
+}
+
+/* Subtle film grain for the dark gate (static, no blend modes). */
 @utility grain {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   background-size: 180px 180px;

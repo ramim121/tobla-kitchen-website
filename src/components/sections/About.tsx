@@ -25,7 +25,7 @@ export function About() {
             <p className="mt-6 max-w-xl text-lg text-muted">{t(site.about.body)}</p>
             <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {[site.about.mission, site.about.vision].map((m) => (
-                <div key={m.title.en} className="rounded-[22px] border border-line bg-cream/70 p-5">
+                <div key={m.title.en} className="rounded-[22px] border border-line bg-mist p-5">
                   <h3 className="font-sans text-sm font-semibold text-orange-700">{t(m.title)}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-ink/85">{t(m.text)}</p>
                 </div>
@@ -68,15 +68,15 @@ export function About() {
                   variants={item}
                   className={cx(
                     "flex items-start gap-4 rounded-3xl p-5 ring-1 transition-[box-shadow,transform] duration-500 ease-out hover:-translate-y-0.5 sm:p-6",
-                    signature ? "bg-orange text-ink ring-orange shadow-[0_24px_50px_-28px_rgba(243,111,33,0.9)]" : "bg-white ring-line hover:shadow-[0_24px_50px_-36px_rgba(35,31,32,0.5)]",
+                    signature
+                      ? "surface-warm text-ink ring-orange/40 shadow-[0_24px_50px_-34px_rgba(243,111,33,0.55)]"
+                      : "bg-white ring-line hover:shadow-[0_24px_50px_-36px_rgba(35,31,32,0.5)]",
                   )}
                 >
-                  <span className={cx("pt-1 font-display text-sm font-semibold", signature ? "text-ink" : "text-orange-700")}>
-                    {num(String(i + 1).padStart(2, "0"))}
-                  </span>
+                  <span className="pt-1 font-display text-sm font-semibold text-orange-700">{num(String(i + 1).padStart(2, "0"))}</span>
                   <div>
                     <h4 className="text-lg font-semibold sm:text-xl">{t(v.title)}</h4>
-                    <p className={cx("mt-1 text-[15.5px]", signature ? "text-ink" : "text-muted")}>{t(v.text)}</p>
+                    <p className={cx("mt-1 text-[15.5px]", signature ? "text-ink/85" : "text-muted")}>{t(v.text)}</p>
                   </div>
                 </motion.li>
               );

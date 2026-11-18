@@ -49,7 +49,7 @@ export function Sourcing() {
                   <p className="mt-1.5 text-[15px] text-muted sm:mt-2.5 sm:text-[15.5px]">{t(it.text)}</p>
                   {it.tag && (
                     <p className="mt-3 sm:mt-auto sm:pt-5">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-cream px-3 py-1.5 text-xs font-medium text-ink/75">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-mist px-3 py-1.5 text-xs font-medium text-ink/75">
                         <MapPin className="size-3.5 shrink-0 text-orange-600" aria-hidden="true" />
                         {t(it.tag)}
                       </span>
