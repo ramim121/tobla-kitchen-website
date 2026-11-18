@@ -15,6 +15,14 @@ npm run build    # type-check + production build into dist/
 npm run preview  # serve the production build
 ```
 
+## Checks
+`npm run check` builds the site (normal and gated) and runs the checks in `scripts/checks/`: the gate
+switch, no dark or orange sections and AA text contrast (desktop + phone), the gallery photo files, the
+gallery filters, the photo modal (keys, arrows, swipe, focus, phones, English) and the phone Back button.
+It needs Playwright with Chromium and Python 3 with Pillow — both are preinstalled in Claude Code cloud
+sessions; elsewhere: `npm i -g playwright && npx playwright install chromium`, `pip install pillow`, and run
+with `NODE_PATH=$(npm root -g) npm run check`.
+
 ## Construction gate ("Launch or lunch?") — switched off
 The site now opens straight away. The gate in `src/gate/` is kept for a future launch or a maintenance
 window and comes back with one setting, `VITE_GATE=on`:
