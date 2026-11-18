@@ -7,6 +7,7 @@ import { site } from "../../content/site";
 import { useLang } from "../../lib/i18n";
 import { EASE_OUT } from "../../lib/cx";
 import { lockScroll } from "../../lib/smooth-scroll";
+import { useBackToClose } from "../../lib/use-back-to-close";
 
 type Props = {
   items: GalleryItem[];
@@ -21,12 +22,14 @@ const PHOTO_SIZES = "(min-width: 1200px) 1120px, 94vw";
 /**
  * Photo modal: a white card over a dimmed page — the photo (full 3:2 frame) with round ‹ › arrows,
  * and the dish name + description underneath (beside it on short landscape screens).
- * ←/→/Esc, swipe, focus kept inside, page scroll locked, neighbours preloaded. Wraps around.
+ * ←/→/Esc, swipe, phone Back, focus kept inside, page scroll locked, neighbours preloaded. Wraps around.
  */
 export function Lightbox({ items, index, onIndex, onClose }: Props) {
+  // phone Back closes the photo rather than leaving the site; ×, Esc and the scrim go through requestClose
+  const requestClose = useBackToClose(index !== null, onClose);
   return (
     <AnimatePresence>
-      {index !== null && items[index] && <Dialog key="lightbox" items={items} index={index} onIndex={onIndex} onClose={onClose} />}
+      {index !== null && items[index] && <Dialog key="lightbox" items={items} index={index} onIndex={onIndex} onClose={requestClose} />}
     </AnimatePresence>
   );
 }

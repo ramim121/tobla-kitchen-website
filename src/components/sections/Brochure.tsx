@@ -10,6 +10,7 @@ import { BROCHURE } from "../../content/images";
 import { useLang, type L } from "../../lib/i18n";
 import { cx, EASE_OUT } from "../../lib/cx";
 import { lockScroll } from "../../lib/smooth-scroll";
+import { useBackToClose } from "../../lib/use-back-to-close";
 
 type Side = "outside" | "inside";
 
@@ -147,6 +148,8 @@ function BrochureViewer({ open, onClose }: { open: boolean; onClose: () => void 
   const dialog = useRef<HTMLDivElement>(null);
   const closeBtn = useRef<HTMLButtonElement>(null);
   const tabId = useId();
+  // phone Back closes the viewer rather than leaving the site; Esc and × go through requestClose
+  const requestClose = useBackToClose(open, onClose);
 
   useEffect(() => {
     if (!open) return;
@@ -156,7 +159,7 @@ function BrochureViewer({ open, onClose }: { open: boolean; onClose: () => void 
     const other = new Image();
     other.src = BROCHURE.pages.inside;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") requestClose();
       if (e.key === "ArrowRight") setSide("inside");
       if (e.key === "ArrowLeft") setSide("outside");
     };
@@ -166,7 +169,7 @@ function BrochureViewer({ open, onClose }: { open: boolean; onClose: () => void 
       lockScroll(false);
       setZoom(false);
     };
-  }, [open, onClose]);
+  }, [open, requestClose]);
 
   // keep keyboard focus inside the dialog
   const trapFocus = (e: ReactKeyboardEvent<HTMLDivElement>) => {
@@ -255,7 +258,7 @@ function BrochureViewer({ open, onClose }: { open: boolean; onClose: () => void 
               <button
                 ref={closeBtn}
                 type="button"
-                onClick={onClose}
+                onClick={requestClose}
                 aria-label={t(b.close)}
                 className="grid size-10 place-items-center rounded-full bg-paper text-ink transition-transform hover:rotate-90"
               >
