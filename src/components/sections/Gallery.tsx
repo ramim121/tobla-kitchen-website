@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Expand } from "lucide-react";
 
+import { Lightbox } from "../ui/Lightbox";
 import { Reveal } from "../ui/Reveal";
 import { Rich } from "../ui/Rich";
 import { GALLERY, GALLERY_CATEGORIES, type GalleryCategory } from "../../content/gallery";
@@ -21,7 +22,15 @@ export function Gallery() {
   const { t, num } = useLang();
   const g = site.gallery;
   const [filter, setFilter] = useState<Filter>("all");
+  const [open, setOpen] = useState<number | null>(null);
+  const opener = useRef<HTMLButtonElement | null>(null);
   const items = useMemo(() => (filter === "all" ? GALLERY : GALLERY.filter((i) => i.category === filter)), [filter]);
+
+  // back to the tile that opened the photo (Safari doesn't focus buttons on click, so remember it)
+  const close = useCallback(() => {
+    setOpen(null);
+    opener.current?.focus({ preventScroll: true });
+  }, []);
 
   return (
     <div id="gallery" tabIndex={-1} className="mt-20 scroll-mt-[84px] outline-none sm:mt-28">
@@ -70,7 +79,7 @@ export function Gallery() {
 
       <motion.ul data-gallery-grid layout className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
         <AnimatePresence mode="popLayout" initial={false}>
-          {items.map((item) => (
+          {items.map((item, i) => (
             <motion.li
               key={item.key}
               layout
@@ -81,6 +90,11 @@ export function Gallery() {
             >
               <button
                 type="button"
+                onClick={(e) => {
+                  opener.current = e.currentTarget;
+                  setOpen(i);
+                }}
+                aria-haspopup="dialog"
                 aria-label={`${t(item.name)} — ${t(g.open)}`}
                 className="group relative block aspect-[4/3] w-full overflow-hidden rounded-[22px] bg-[#5b5d63] text-left ring-1 ring-line transition-shadow duration-500 hover:shadow-[0_26px_50px_-30px_rgba(35,31,32,0.55)]"
               >
@@ -114,6 +128,8 @@ export function Gallery() {
           ))}
         </AnimatePresence>
       </motion.ul>
+
+      <Lightbox items={items} index={open} onIndex={setOpen} onClose={close} />
     </div>
   );
 }

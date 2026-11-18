@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
+/* phones held sideways (and other short, wide screens): the lightbox puts its caption beside the photo */
+@custom-variant short (@media (max-height: 520px) and (orientation: landscape));
+
 /* ───────────────────────── Brand tokens ───────────────────────── */
 @theme {
   /* logo colours */
