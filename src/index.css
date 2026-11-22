@@ -21,6 +21,7 @@
   /* surfaces + text — a white page; orange is an accent, never a section fill */
   --color-paper: #ffffff;
   --color-mist: #f6f6f7; /* light grey band between white sections (no orange cast) */
+  --color-linen: #faf9f6; /* warm off-white — the "from kitchen to office" section */
   --color-line: #e8e8eb;
   --color-muted: #6b6360; /* 5.3:1 on mist */
 
@@ -95,9 +96,14 @@
     text-wrap: balance;
   }
 
-  /* Tight tracking only for Latin; letter-spacing can break Bangla conjuncts */
-  :root[lang="en"] :is(h1, h2) {
+  /* Tight tracking only for Latin; letter-spacing can break Bangla conjuncts. `:lang(en)` also covers
+     English headings on the Bangla page (they carry lang="en", see langFor in src/lib/i18n.tsx). */
+  :is(h1, h2):lang(en) {
     letter-spacing: -0.025em;
+  }
+  /* …and Latin headings don't need the extra line height Bangla vowel signs do */
+  [lang="en"] {
+    --lh-display: 1.06;
   }
 
   p {
@@ -186,11 +192,11 @@
   }
 }
 
-/* Eyebrow labels: uppercase + tracking only for English */
+/* Eyebrow labels: uppercase + tracking only for English (the English page, or an English label on the Bangla page) */
 @utility eyebrow {
   font-size: 0.875rem;
   font-weight: 600;
-  :root[lang="en"] & {
+  &:lang(en) {
     font-size: 0.75rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;

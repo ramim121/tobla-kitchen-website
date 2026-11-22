@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, Crown, Sparkles } from "lucide-react";
 
-import { Gallery } from "./Gallery";
 import { AnchorLink } from "../ui/AnchorLink";
 import { Container } from "../ui/Container";
 import { Reveal, item, stagger } from "../ui/Reveal";
@@ -30,7 +29,7 @@ function useIsPhone() {
   return phone;
 }
 
-/** Real photos of our richest dishes and the three meal plans (phones scroll the dishes sideways), then the kitchen gallery. */
+/** Real photos of our richest dishes and the three meal plans (phones scroll the dishes sideways). */
 export function PremiumDishes() {
   const { t } = useLang();
   const p = site.premium;
@@ -97,7 +96,6 @@ export function PremiumDishes() {
           <PlansCard />
         </Reveal>
 
-        <Gallery />
       </Container>
     </section>
   );

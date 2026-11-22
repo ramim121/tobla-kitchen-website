@@ -30,9 +30,9 @@ export const site = {
 
   nav: {
     items: [
-      { id: "why", label: { bn: "কেন আমরা", en: "Why us" } },
+      { id: "trust", label: { bn: "কেন আমরা", en: "Why us" } },
       { id: "menu", label: { bn: "মেনু", en: "Menu" } },
-      { id: "process", label: { bn: "কাজের ধাপ", en: "How we work" } },
+      { id: "kitchen-to-office", label: { bn: "কাজের ধাপ", en: "How we work" } },
       { id: "about", label: { bn: "আমাদের কথা", en: "About" } },
       { id: "brochure", label: { bn: "ব্রোশিওর", en: "Brochure" } },
       { id: "contact", label: { bn: "যোগাযোগ", en: "Contact" } },
@@ -45,32 +45,230 @@ export const site = {
     home: { bn: "তবলা কিচেন — শুরুতে যান", en: "Tobla Kitchen — back to top" },
   },
 
+  /*
+   * Sections 1–6 (hero → kitchen to office) use the owner's copy exactly as written for the Bangla page —
+   * English headings and buttons, Bangla sentences with English words — and a full translation for the
+   * English page. English-only strings get lang="en" when shown (langFor in src/lib/i18n.tsx).
+   */
   hero: {
     eyebrow: { bn: "কর্পোরেট ক্যাটারিং · ঢাকা", en: "Corporate catering · Dhaka" },
-    titleLead: { bn: "অফিসের খাবার,", en: "Office food," },
-    titleAccent: { bn: "ঘরের মতো নিরাপদ।", en: "as safe as home." },
-    lead: {
-      bn: "অফিসের টিমের জন্য প্রতিদিন দুপুর আর রাতের খাবার রাঁধি। খামারের মুরগি থেকে খাবারের বাক্স পর্যন্ত — ==প্রতিটি ধাপ আমরা নিজেরাই দেখি।==",
-      en: "We cook lunch and dinner for corporate teams, every day. From the farm our chicken comes from to the box it arrives in — ==we look after every step ourselves.==",
-    },
-    primary: { bn: "মেনু দেখুন", en: "See the menu" },
+    titleLead: { bn: "Office Lunch-এ একদিন ভালো খাবার যথেষ্ট না।", en: "For office lunch, one good day isn't enough." },
+    titleAccent: { bn: "Consistency matters.", en: "Consistency matters." },
+    /** → the contact section */
+    primary: { bn: "Request Free Sample", en: "Request Free Sample" },
+    /** → the "get a quote" panel */
+    secondary: { bn: "Get Corporate Quote", en: "Get Corporate Quote" },
+    /** two columns: the first two on the left, the last two on the right */
     points: [
-      { bn: "ফ্রি-রেঞ্জ মুরগি", en: "Free-range chicken" },
-      { bn: "ঘরে ভাঙা মসলা", en: "Spices ground in-house" },
-      { bn: "ফিল্টার করা পানি", en: "Filtered water" },
+      { bn: "Daily Quality Check", en: "Daily Quality Check" },
+      { bn: "Fresh Ingredients, Daily Sourcing", en: "Fresh Ingredients, Daily Sourcing" },
+      { bn: "Kitchen Visit Available", en: "Kitchen Visit Available" },
+      { bn: "Up to 5,000 Meals/Day Capacity", en: "Up to 5,000 Meals/Day Capacity" },
     ],
-    badgeFresh: {
-      title: { bn: "প্রতিদিন টাটকা রান্না", en: "Cooked fresh daily" },
-      sub: { bn: "বাসি খাবার কখনো নয়", en: "Never yesterday's food" },
-    },
-    stamp: {
-      bn: "আমরা যা রাঁধি • নিজেরাও তা-ই খাই • ",
-      en: "WE EAT WHAT WE COOK • EVERY DAY • ",
-    },
     plateAlt: {
       bn: "দুপুরের খাবারের টেবিল: সাদা ভাত, মুরগির তরকারি, রুই মাছ, ডাল আর সবজি",
       en: "A lunch table with rice, chicken curry, rui fish, dal and vegetables",
     },
+  },
+
+  /** Section 2 — "Don't just take our word for it" */
+  trust: {
+    eyebrow: { bn: "Before You Choose Tobla Kitchen", en: "Before You Choose Tobla Kitchen" },
+    title: { bn: "Don't Just Take Our Word for It.", en: "Don't Just Take Our Word for It." },
+    items: [
+      {
+        key: "visit",
+        title: { bn: "Visit the Kitchen", en: "Visit the Kitchen" },
+        text: {
+          bn: "আমাদের kitchen visit করুন। কোথায়, কী environment-এ আপনার অফিসের lunch তৈরি হবে, নিজেই দেখুন।",
+          en: "Visit our kitchen and see for yourself where — and in what environment — your office lunch is prepared.",
+        },
+      },
+      {
+        key: "standards",
+        title: { bn: "Understand the Standards", en: "Understand the Standards" },
+        text: {
+          bn: "Ingredients কোথা থেকে আসে, hygiene কীভাবে maintain করি আর daily quality check কীভাবে হয়, জেনে নিন।",
+          en: "Find out where our ingredients come from, how we maintain hygiene and how our daily quality check works.",
+        },
+      },
+      {
+        key: "taste",
+        title: { bn: "Taste Before You Decide", en: "Taste Before You Decide" },
+        text: {
+          bn: "Service শুরু করার আগে free tasting-এর সুযোগ আছে। খাবারের taste, portion আর quality নিজেই যাচাই করতে পারবেন।",
+          en: "Before service begins, you can have a free tasting and judge the taste, portion size and quality yourself.",
+        },
+      },
+    ],
+  },
+
+  /** Section 3 — ingredient cards that slide to the left (photos: src/content/images.ts › INGREDIENT_PHOTOS) */
+  ingredients: {
+    eyebrow: { bn: "Ingredients & Sourcing", en: "Ingredients & Sourcing" },
+    title: { bn: "What Goes Into Your Office Lunch?", en: "What Goes Into Your Office Lunch?" },
+    docs: { bn: "View Supplier Documents", en: "View Supplier Documents" },
+    docsNote: {
+      bn: "Chicken & Egg supplier details and related documents.",
+      en: "Chicken & egg supplier details and related documents.",
+    },
+    items: [
+      {
+        key: "chicken",
+        title: { bn: "Antibiotic-Free Chicken", en: "Antibiotic-Free Chicken" },
+        text: {
+          bn: "Antibiotic-free chicken from selected suppliers, including Organik Chicken.",
+          en: "Antibiotic-free chicken from selected suppliers, including Organik Chicken.",
+        },
+        alt: { bn: "কাঠের বোর্ডে কাঁচা মুরগির বুকের মাংস ও রান", en: "Raw chicken breasts and drumsticks on a wooden board" },
+      },
+      {
+        key: "eggs",
+        title: { bn: "Omega-3 Eggs", en: "Omega-3 Eggs" },
+        text: { bn: "Omega-3 eggs from our designated supplier.", en: "Omega-3 eggs from our designated supplier." },
+        alt: {
+          bn: "ঝুড়িভর্তি বাদামি ডিম, সামনের বাটিতে ভাঙা ডিমের গাঢ় কমলা কুসুম",
+          en: "A basket of brown eggs, with one cracked into a bowl showing a deep orange yolk",
+        },
+      },
+      {
+        key: "fish",
+        title: { bn: "Daily Fresh Fish", en: "Daily Fresh Fish" },
+        text: {
+          bn: "Fish daily market থেকে কেনা হয়। Frozen stock ব্যবহার করি না।",
+          en: "Fish is bought fresh from the market every day. We never use frozen stock.",
+        },
+        alt: { bn: "বরফের ওপর দুটি টাটকা রুই মাছ", en: "Two fresh rui fish on crushed ice" },
+      },
+      {
+        key: "meat",
+        title: { bn: "Beef & Mutton from Authentic Vendors", en: "Beef & Mutton from Authentic Vendors" },
+        text: {
+          bn: "Beef ও mutton selected vendors থেকে নেওয়া হয়।",
+          en: "Our beef and mutton come only from selected, trusted vendors.",
+        },
+        alt: {
+          bn: "কাঠের বোর্ডে গরুর মাংসের টুকরা আর হাড়সহ খাসির মাংস",
+          en: "Cubes of beef and bone-in mutton on a wooden board",
+        },
+      },
+      {
+        key: "vegetables",
+        title: { bn: "Daily Fresh Vegetables", en: "Daily Fresh Vegetables" },
+        text: {
+          bn: "Vegetables daily market থেকে কেনা হয়। Frozen stock ব্যবহার করি না।",
+          en: "Vegetables are bought fresh from the market every day — never from frozen stock.",
+        },
+        alt: {
+          bn: "বাঁশের ঝুড়িতে বেগুন, টমেটো, ঢেঁড়স, লাউ, লাল শাক আর কাঁচা মরিচ",
+          en: "Aubergines, tomatoes, okra, gourd, red amaranth and green chillies in a bamboo basket",
+        },
+      },
+      {
+        key: "spices",
+        title: { bn: "In-house Ground Spices", en: "In-house Ground Spices" },
+        text: {
+          bn: "Ready-made spice mix নয়। Whole spices কিনে mill-এ grind করাই।",
+          en: "No ready-made spice mixes. We buy whole spices and have them ground at the mill.",
+        },
+        alt: {
+          bn: "বাটিতে জিরা, ধনে, শুকনা মরিচ, এলাচ, লবঙ্গ আর হলুদ-মরিচ-ধনের গুঁড়া",
+          en: "Bowls of cumin, coriander, dried chillies, cardamom and cloves beside fresh turmeric, chilli and coriander powder",
+        },
+      },
+      {
+        key: "oil",
+        title: { bn: "Branded Cooking Oil", en: "Branded Cooking Oil" },
+        text: {
+          bn: "Branded cooking oil ব্যবহার করি, reused oil নয়।",
+          en: "We cook with branded cooking oil — never reused oil.",
+        },
+        alt: { bn: "সিল করা বোতলে সয়াবিন তেল, পাশে বাটিতে সোনালি তেল", en: "A sealed bottle of soybean oil beside a bowl of golden oil" },
+      },
+      {
+        key: "rice",
+        title: { bn: "Premium Nazirshail Rice", en: "Premium Nazirshail Rice" },
+        text: {
+          bn: "Quality rice ব্যবহার করি — premium Nazirshail চাল।",
+          en: "We cook with quality rice — premium Nazirshail.",
+        },
+        alt: { bn: "কাঠের বাটি আর পাটের থলেতে লম্বা, সরু নাজিরশাইল চাল", en: "Long, slender Nazirshail rice in a wooden bowl and a jute sack" },
+      },
+    ],
+    // carousel (screen readers + controls)
+    carousel: { bn: "উপকরণ", en: "Ingredients" },
+    carouselKind: { bn: "স্লাইডার", en: "carousel" },
+    slideKind: { bn: "কার্ড", en: "slide" },
+    prev: { bn: "আগের কার্ড", en: "Previous card" },
+    next: { bn: "পরের কার্ড", en: "Next card" },
+    pause: { bn: "স্লাইড থামান", en: "Pause the slides" },
+    play: { bn: "স্লাইড চালু করুন", en: "Play the slides" },
+  },
+
+  /** Section 4 — Menu 01–06 (the combinations themselves: src/content/lunch-menus.ts) */
+  weeklyMenu: {
+    eyebrow: { bn: "Our Weekly Office Lunch Menu", en: "Our Weekly Office Lunch Menu" },
+    title: { bn: "6 Menus. Different Combinations Throughout the Week.", en: "6 Menus. Different Combinations Throughout the Week." },
+    lead: {
+      bn: "৬টি different lunch combination, Saturday to Thursday। কোন menu কোন দিন যাবে সেটা fixed না—তবে প্রতিটি menu-তে কী কী থাকছে, সেটা আগে থেকেই জানা যাবে।",
+      en: "Six different lunch combinations, Saturday to Thursday. Which menu goes out on which day isn't fixed — but you'll always know in advance exactly what each menu includes.",
+    },
+    tabs: { bn: "মেনু বাছুন", en: "Choose a menu" },
+    /** tab label prefix: "Menu 01" … "Menu 06" (combinations, not days — no weekday names) */
+    tab: { bn: "Menu", en: "Menu" },
+    subtitle: { bn: "Complete meal combination", en: "Complete meal combination" },
+    pictured: { bn: "ছবিতে", en: "Pictured" },
+    note: {
+      bn: "কোনো ingredient বদলাতে হলে তা আপনার agreed corporate meal plan অনুযায়ীই বদলায়। প্রতিটি menu-র dietary information চাইলেই পাবেন।",
+      en: "Any ingredient substitution follows your agreed corporate meal plan. Dietary information for every menu is available on request.",
+    },
+    cta: { bn: "Request Free Sample", en: "Request Free Sample" },
+  },
+
+  /** Section 6 — from kitchen to office */
+  kitchenToOffice: {
+    eyebrow: { bn: "From Kitchen to Office", en: "From Kitchen to Office" },
+    title: { bn: "A Good Menu Is Only Half the Job.", en: "A Good Menu Is Only Half the Job." },
+    steps: [
+      {
+        key: "qc",
+        label: { bn: "Quality Check", en: "Quality Check" },
+        title: { bn: "Daily Taste & Quality Check", en: "Daily Taste & Quality Check" },
+        text: {
+          bn: "রান্না শেষে প্রতিদিন taste ও quality check হয়। এরপর packing ও dispatch।",
+          en: "Every day, once cooking is done, the food is tasted and quality-checked. Only then is it packed and dispatched.",
+        },
+      },
+      {
+        key: "packaging",
+        label: { bn: "Packaging", en: "Packaging" },
+        title: { bn: "Packaging Matters Too", en: "Packaging Matters Too" },
+        text: {
+          bn: "Delivery boxes নিয়মিত maintain করা হয় এবং প্রতি ২ মাসে replace করা হয়।",
+          en: "Our delivery boxes are maintained regularly and replaced every two months.",
+        },
+      },
+      {
+        key: "delivery",
+        label: { bn: "Delivery", en: "Delivery" },
+        title: { bn: "Delivered Within 1 Hour of Cooking Completion", en: "Delivered Within 1 Hour of Cooking Completion" },
+        text: {
+          bn: "রান্না শেষ হওয়ার ১ ঘণ্টার মধ্যে office-এ lunch delivery। Service area অনুযায়ী delivery routes আগেই planned থাকে।",
+          en: "Lunch reaches your office within an hour of cooking being completed. Delivery routes are planned in advance for each service area.",
+        },
+      },
+    ],
+    coverageTitle: { bn: "Delivery Coverage", en: "Delivery Coverage" },
+    areas: [
+      { bn: "Gulshan", en: "Gulshan" },
+      { bn: "Banani", en: "Banani" },
+      { bn: "Niketon", en: "Niketon" },
+      { bn: "Baridhara", en: "Baridhara" },
+      { bn: "Baridhara DOHS", en: "Baridhara DOHS" },
+      { bn: "Mohakhali", en: "Mohakhali" },
+      { bn: "Mohakhali DOHS", en: "Mohakhali DOHS" },
+      { bn: "Tejgaon", en: "Tejgaon" },
+    ],
   },
 
   marquee: [

@@ -67,7 +67,7 @@ export function MenuExplorer() {
   const plate = useDecodedPlate(entry.photo);
 
   return (
-    <section ref={sectionRef} id="menu" tabIndex={-1} className="relative overflow-hidden py-20 outline-none sm:py-28">
+    <section ref={sectionRef} id="day-menu" tabIndex={-1} className="relative overflow-hidden py-20 outline-none sm:py-28">
       <Container>
         <SectionHeading eyebrow={site.menu.eyebrow} title={site.menu.title} lead={site.menu.lead} />
 

@@ -9,6 +9,15 @@ const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
 
 export const toBnDigits = (s: string) => s.replace(/[0-9]/g, (d) => BN_DIGITS[Number(d)]);
 
+const BENGALI = /[ঀ-৿]/;
+
+/**
+ * `lang` for a string that is written wholly in English, e.g. the heading "Visit the Kitchen" on the
+ * Bangla page: screen readers then read it as English, and English type rules (capitals and tracking
+ * on eyebrows, tighter headings) apply to it. Mixed Bangla–English text stays Bangla.
+ */
+export const langFor = (s: string): "en" | undefined => (BENGALI.test(s) ? undefined : "en");
+
 function readInitialLang(): Lang {
   if (typeof window === "undefined") return "bn";
   const fromUrl = new URLSearchParams(window.location.search).get("lang");

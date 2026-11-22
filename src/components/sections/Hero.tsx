@@ -1,17 +1,19 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
-import { ArrowRight, Check, Flame, Phone } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 import { AnchorLink } from "../ui/AnchorLink";
 import { Container } from "../ui/Container";
-import { Rich } from "../ui/Rich";
-import { Stamp } from "../ui/Stamp";
 import { TablaRings } from "../ui/TablaRings";
 import { item, stagger } from "../ui/Reveal";
-import { CONTACT, site } from "../../content/site";
+import { site } from "../../content/site";
 import { PLATES, plateSrcSet } from "../../content/images";
-import { useLang } from "../../lib/i18n";
+import { langFor, useLang } from "../../lib/i18n";
 import { EASE_OUT } from "../../lib/cx";
+
+/** Both buttons share one line on every screen, so they shrink together on narrow phones. */
+const BUTTON =
+  "inline-flex h-12 min-w-0 flex-1 items-center justify-center whitespace-nowrap rounded-full text-[13px] font-semibold transition-colors duration-300 min-[380px]:text-sm sm:h-[52px] sm:flex-none sm:text-base";
 
 export function Hero() {
   const { t } = useLang();
@@ -20,6 +22,10 @@ export function Hero() {
   const plateRotate = useTransform(scrollYProgress, [0, 1], [0, 34]);
   const ringsRotate = useTransform(scrollYProgress, [0, 1], [0, -28]);
   const visualY = useTransform(scrollYProgress, [0, 1], [0, 90]);
+
+  const accent = t(site.hero.titleAccent);
+  const primary = t(site.hero.primary);
+  const secondary = t(site.hero.secondary);
 
   return (
     <section id="top" ref={ref} tabIndex={-1} className="relative overflow-hidden bg-paper outline-none">
@@ -36,46 +42,53 @@ export function Hero() {
             {t(site.hero.eyebrow)}
           </motion.p>
 
-          <motion.h1 variants={item} className="mt-6 text-[2.55rem] font-semibold text-ink sm:text-6xl lg:text-[4.35rem]">
+          <motion.h1
+            variants={item}
+            className="mt-6 text-[2.05rem] font-semibold text-ink min-[400px]:text-[2.3rem] sm:text-5xl lg:text-[3.5rem]"
+          >
             <span className="block">{t(site.hero.titleLead)}</span>
-            <span className="relative inline-block pb-[0.08em] text-orange-600">
-              {t(site.hero.titleAccent)}
+            <span lang={langFor(accent)} className="relative mt-[0.1em] inline-block pb-[0.08em] text-orange-600">
+              {accent}
               <BrushUnderline />
             </span>
           </motion.h1>
 
-          <motion.p variants={item} className="mt-6 max-w-xl text-lg text-muted sm:text-xl">
-            <Rich text={t(site.hero.lead)} />
-          </motion.p>
-
-          <motion.div variants={item} className="mt-9 flex flex-wrap items-center gap-3">
+          <motion.div variants={item} className="mt-10 flex max-w-xl flex-nowrap items-center gap-2 sm:gap-3">
             <AnchorLink
-              to="menu"
-              className="group inline-flex items-center gap-3 rounded-full bg-ink py-2 pl-6 pr-2 text-base font-semibold text-paper shadow-[0_16px_32px_-14px_rgba(35,31,32,0.7)] transition-colors duration-300 hover:bg-ink-2"
+              to="contact"
+              lang={langFor(primary)}
+              className={`${BUTTON} group gap-3 bg-ink px-3.5 text-paper shadow-[0_16px_32px_-14px_rgba(35,31,32,0.7)] hover:bg-ink-2 sm:pl-6 sm:pr-2`}
             >
-              {t(site.hero.primary)}
-              <span className="grid size-9 place-items-center rounded-full bg-orange text-ink transition-transform duration-500 ease-out group-hover:-rotate-45">
+              {primary}
+              <span className="hidden size-9 place-items-center rounded-full bg-orange text-ink transition-transform duration-500 ease-out group-hover:-rotate-45 sm:grid">
                 <ArrowRight className="size-4" aria-hidden="true" />
               </span>
             </AnchorLink>
-            <a
-              href={CONTACT.phoneHref}
-              className="inline-flex items-center gap-2.5 rounded-full border border-ink/15 bg-white px-5 py-3 text-base font-semibold text-ink transition-colors duration-300 hover:border-ink/35 hover:bg-mist"
+            <AnchorLink
+              to="quote"
+              lang={langFor(secondary)}
+              className={`${BUTTON} border border-ink/15 bg-white px-3.5 text-ink hover:border-ink/35 hover:bg-mist sm:px-6`}
             >
-              <Phone className="size-4 text-orange-600" aria-hidden="true" />
-              {t(CONTACT.phoneDisplay)}
-            </a>
+              {secondary}
+            </AnchorLink>
           </motion.div>
 
-          <motion.ul variants={item} className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-[15px] font-medium text-ink/80">
-            {site.hero.points.map((p) => (
-              <li key={p.en} className="inline-flex items-center gap-2">
-                <span className="grid size-5 place-items-center rounded-full bg-safe/12 text-safe" aria-hidden="true">
-                  <Check className="size-3.5" strokeWidth={3} />
-                </span>
-                {t(p)}
-              </li>
-            ))}
+          {/* 2 × 2: the first two points on the left, the last two on the right */}
+          <motion.ul
+            variants={item}
+            className="mt-9 grid max-w-xl grid-flow-col grid-cols-2 grid-rows-[auto_auto] gap-x-5 gap-y-3 text-[14px] font-medium text-ink/80 sm:gap-x-8 sm:text-[15px]"
+          >
+            {site.hero.points.map((p) => {
+              const label = t(p);
+              return (
+                <li key={p.en} lang={langFor(label)} className="flex items-start gap-2">
+                  <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-safe/12 text-safe" aria-hidden="true">
+                    <Check className="size-3.5" strokeWidth={3} />
+                  </span>
+                  {label}
+                </li>
+              );
+            })}
           </motion.ul>
         </motion.div>
 
@@ -115,6 +128,7 @@ type VisualProps = {
   y: MotionValue<number>;
 };
 
+/** The plate on tabla rings. (The owner will supply a new photo for this spot.) */
 function HeroVisual({ plateRotate, ringsRotate, y }: VisualProps) {
   const { t } = useLang();
   return (
@@ -147,34 +161,6 @@ function HeroVisual({ plateRotate, ringsRotate, y }: VisualProps) {
             className="size-full scale-[1.07] object-cover"
           />
         </div>
-
-        {/* fresh-daily badge */}
-        <motion.div
-          className="absolute -left-[3%] top-[11%] sm:-left-[8%]"
-          initial={{ opacity: 0, x: -18 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1, duration: 0.8, ease: EASE_OUT }}
-        >
-          <div className="flex animate-float items-center gap-3 rounded-2xl bg-paper/95 py-2.5 pl-2.5 pr-4 shadow-[0_20px_44px_-22px_rgba(35,31,32,0.55)] ring-1 ring-ink/5 sm:py-3 sm:pl-3 sm:pr-5">
-            <span className="grid size-9 place-items-center rounded-xl bg-orange-50 text-orange-600 sm:size-10" aria-hidden="true">
-              <Flame className="size-5" />
-            </span>
-            <span className="leading-tight">
-              <span className="block text-[13px] font-semibold text-ink sm:text-sm">{t(site.hero.badgeFresh.title)}</span>
-              <span className="mt-0.5 block text-[11px] text-muted sm:text-xs">{t(site.hero.badgeFresh.sub)}</span>
-            </span>
-          </div>
-        </motion.div>
-
-        {/* rotating seal */}
-        <motion.div
-          className="absolute -top-[3%] right-[1%] size-[25%] min-w-20 max-w-32"
-          initial={{ opacity: 0, scale: 0.6, rotate: -40 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ delay: 1.3, duration: 1, ease: EASE_OUT }}
-        >
-          <Stamp text={t(site.hero.stamp)} className="size-full" />
-        </motion.div>
       </motion.div>
     </motion.div>
   );
