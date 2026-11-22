@@ -41,7 +41,7 @@ export default function App() {
         <ScrollProgress />
         <Header />
         <main id="main" tabIndex={-1} className="outline-none">
-          {/* 1–10: the new page order */}
+          {/* the new sections, in the owner's order */}
           <Hero />
           <Trust />
           <Ingredients />
@@ -49,13 +49,14 @@ export default function App() {
           <Gallery />
           <KitchenToOffice />
           <Support />
-          <Enquiry />
-          <AboutUs />
-          <ContactUs />
           {/* three earlier sections the owner kept */}
           <RiskCompare />
           <Process />
           <Brochure />
+          {/* about, the enquiry form and contact close the page, just before the footer */}
+          <AboutUs />
+          <Enquiry />
+          <ContactUs />
         </main>
         <Footer />
       </LanguageProvider>

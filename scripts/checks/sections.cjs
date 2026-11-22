@@ -4,8 +4,7 @@
 const { serve, check, done, browser } = require("./lib.cjs");
 
 const dist = process.argv[2];
-const ORDER = ["top", "trust", "ingredients", "menu", "gallery", "kitchen-to-office", "support", "enquiry", "about", "contact"];
-const KEPT = ["risks", "process", "brochure"];
+const ORDER = ["top", "trust", "ingredients", "menu", "gallery", "kitchen-to-office", "support", "risks", "process", "brochure", "about", "enquiry", "contact"];
 const BENGALI = /[ঀ-৿]/;
 const WEEKDAY = /saturday|sunday|monday|tuesday|wednesday|thursday|friday|\b(sat|sun|mon|tue|wed|thu|fri)\b|শনি|রবি|সোম|মঙ্গল|বুধ|বৃহস্পতি|শুক্র/i;
 
@@ -33,11 +32,10 @@ async function toSection(page, id) {
   // ── order + nav ──
   let page = await open(b);
   const ids = await page.$$eval("#main > section", (els) => els.map((e) => e.id));
-  check(JSON.stringify(ids.slice(0, 10)) === JSON.stringify(ORDER), "sections 1–10 open the page in order", ids.slice(0, 11).join(" › "));
-  check(JSON.stringify(ids.slice(10)) === JSON.stringify(KEPT), "below the new ten: only risks, process and brochure", ids.slice(10).join(" › "));
+  check(JSON.stringify(ids) === JSON.stringify(ORDER), "page order: 1–7, risks, process, brochure, then about, enquiry, contact", ids.join(" › "));
   const nav = await page.$$eval("header nav a", (as) => as.map((a) => a.getAttribute("href")));
   check(await page.evaluate((hs) => hs.every((h) => h && document.querySelector(h)), nav), "every nav link points at a section");
-  check(nav.join() === "#trust,#menu,#kitchen-to-office,#enquiry,#about,#contact", "nav follows the new sections (2, 4, 6, 8, 9, 10)", nav.join(" "));
+  check(nav.join() === "#trust,#menu,#kitchen-to-office,#about,#enquiry,#contact", "nav follows the page order", nav.join(" "));
   const foot = await page.$$eval("footer nav a", (as) => as.map((a) => `${a.textContent.trim()} ${a.getAttribute("href")}`));
   check(
     foot.join("|") === "হোম #top|আমাদের স্ট্যান্ডার্ড #ingredients|মেনু #menu|আমাদের কথা #about|যোগাযোগ #contact",

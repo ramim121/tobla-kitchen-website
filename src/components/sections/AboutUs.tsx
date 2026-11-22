@@ -12,7 +12,7 @@ export function AboutUs() {
   const label = t(a.valuesTitle);
 
   return (
-    <section id="about" tabIndex={-1} aria-labelledby="about-title" className="relative bg-mist py-12 outline-none lg:py-20">
+    <section id="about" tabIndex={-1} aria-labelledby="about-title" className="relative bg-paper py-12 outline-none lg:py-20">
       <div className="mx-auto grid w-full max-w-[1264px] grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div>
           <SectionHeading size="md" eyebrow={a.eyebrow} title={a.title} titleId="about-title" />
