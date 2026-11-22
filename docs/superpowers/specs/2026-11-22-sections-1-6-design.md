@@ -66,3 +66,33 @@ Existing sections stay, moved below, until their new places are decided.
 - The kept sections overlap the new ones (the old day-by-day menu names weekdays; old sourcing and process
   repeat sections 3 and 6) — decide with sections 7–10.
 - About says "1,000+ meals a day"; the hero now says "Up to 5,000 meals/day capacity".
+
+## Round 2 — sections 7–10 (same day)
+Owner's brief: 7 client support & feedback (spec: white, ≤ 1200px, 80/48px, intro ≤ 720px, full-width #FFF4EA
+account-manager strip, three columns → stacked, subtle dividers, no animation, no button); 8 corporate lunch
+enquiry (spec: white, 45/55, form on #FAF9F6 with white fields and an orange button, phones heading → text →
+form → points, no photos, no animation; required company / person / phone / location / meals, optional start
+date / email / budget / requirements, eight areas + Other, numeric meal count with no invented minimum,
+validation, save + success message + notify the team, big tap targets and numeric keypads); 9 about and
+10 contact as given; earlier sections kept below for removal; then commit and deploy. "Use your intelligence
+to optimise, override or fix."
+
+Decisions:
+- **Where enquiries go:** no lead-management system was chosen, so each enquiry is saved to a new *private*
+  Vercel Blob store (`tobla-enquiries`, connected to the project) — durable from day one, readable in the
+  Vercel dashboard or as a CSV export (`LEADS_KEY`). Notifications are opt-in channels (Telegram, Resend email,
+  generic webhook) because each needs the owner's own account. With nowhere to send, the API answers 503 and
+  the form offers the phone number, so nothing is lost silently.
+- **One set of rules** (`src/lib/enquiry.ts`) runs in the browser and in the function. Phone: Bangladeshi
+  mobiles (01[3-9] + 8 digits) and landlines, +88 optional, Bangla digits accepted. Meals/budget: whole
+  numbers 1–100,000. Start date: today (Dhaka) to two years ahead. Bots: hidden field + under 2.5s.
+- **CTAs:** both hero buttons and the menu's button now open the form; "Request Free Sample" ticks a new
+  optional "I'd like a free sample first" box (matches section 2's free tasting and the form's own
+  "Free Sampling Available").
+- **Section 10 heading** changed to "Prefer to Talk? Reach Our Team Directly." so it doesn't repeat section 8's
+  "Let's Talk About Your Office Lunch.".
+- Small orange labels use `orange-700` (#B5480C) for AA contrast; #F36F21 stays on the button, icons and rules.
+- Nav: Why us · Menu · How we work · Get a quote · About · Contact (the brochure link left the nav; the brochure
+  is among the sections to remove). Footer as in the screenshot: Home · Our Standards · Menus · About Us · Contact.
+- The earlier About and Contact keep their content under `#about-old` / `#contact-old`.
+- The colour check now treats `<button>`s as controls, not surfaces (the full-width orange submit button).

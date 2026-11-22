@@ -8,6 +8,7 @@ import { TablaRings } from "../ui/TablaRings";
 import { item, stagger } from "../ui/Reveal";
 import { site } from "../../content/site";
 import { PLATES, plateSrcSet } from "../../content/images";
+import { requestSample } from "../../lib/enquiry-intent";
 import { langFor, useLang } from "../../lib/i18n";
 import { EASE_OUT } from "../../lib/cx";
 
@@ -55,7 +56,8 @@ export function Hero() {
 
           <motion.div variants={item} className="mt-10 flex max-w-xl flex-nowrap items-center gap-2 sm:gap-3">
             <AnchorLink
-              to="contact"
+              to="enquiry"
+              onClick={requestSample}
               lang={langFor(primary)}
               className={`${BUTTON} group gap-3 bg-ink px-3.5 text-paper shadow-[0_16px_32px_-14px_rgba(35,31,32,0.7)] hover:bg-ink-2 sm:pl-6 sm:pr-2`}
             >
@@ -65,7 +67,7 @@ export function Hero() {
               </span>
             </AnchorLink>
             <AnchorLink
-              to="quote"
+              to="enquiry"
               lang={langFor(secondary)}
               className={`${BUTTON} border border-ink/15 bg-white px-3.5 text-ink hover:border-ink/35 hover:bg-mist sm:px-6`}
             >

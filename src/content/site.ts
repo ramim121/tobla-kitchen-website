@@ -33,8 +33,8 @@ export const site = {
       { id: "trust", label: { bn: "কেন আমরা", en: "Why us" } },
       { id: "menu", label: { bn: "মেনু", en: "Menu" } },
       { id: "kitchen-to-office", label: { bn: "কাজের ধাপ", en: "How we work" } },
+      { id: "enquiry", label: { bn: "কোটেশন", en: "Get a quote" } },
       { id: "about", label: { bn: "আমাদের কথা", en: "About" } },
-      { id: "brochure", label: { bn: "ব্রোশিওর", en: "Brochure" } },
       { id: "contact", label: { bn: "যোগাযোগ", en: "Contact" } },
     ],
     call: { bn: "কল করুন", en: "Call us" },
@@ -54,9 +54,9 @@ export const site = {
     eyebrow: { bn: "কর্পোরেট ক্যাটারিং · ঢাকা", en: "Corporate catering · Dhaka" },
     titleLead: { bn: "Office Lunch-এ একদিন ভালো খাবার যথেষ্ট না।", en: "For office lunch, one good day isn't enough." },
     titleAccent: { bn: "Consistency matters.", en: "Consistency matters." },
-    /** → the contact section */
+    /** → the enquiry form, with "free sample first" ticked */
     primary: { bn: "Request Free Sample", en: "Request Free Sample" },
-    /** → the "get a quote" panel */
+    /** → the enquiry form */
     secondary: { bn: "Get Corporate Quote", en: "Get Corporate Quote" },
     /** two columns: the first two on the left, the last two on the right */
     points: [
@@ -269,6 +269,195 @@ export const site = {
       { bn: "Mohakhali DOHS", en: "Mohakhali DOHS" },
       { bn: "Tejgaon", en: "Tejgaon" },
     ],
+  },
+
+  /** Section 7 — client support & feedback */
+  support: {
+    eyebrow: { bn: "Client Support & Feedback", en: "Client Support & Feedback" },
+    title: { bn: "What Happens When Something Isn't Right?", en: "What Happens When Something Isn't Right?" },
+    lead: {
+      bn: "Food quality, portion, packaging বা delivery নিয়ে কোনো issue হলে আপনার office-এর জন্য থাকছে একজন Dedicated Account Manager। Feedback থেকে resolution পর্যন্ত যোগাযোগের জন্য নির্দিষ্ট একজন contact person থাকবেন।",
+      en: "If anything isn't right with food quality, portions, packaging or delivery, your office has a Dedicated Account Manager — one named contact person from first feedback all the way to resolution.",
+    },
+    manager: {
+      title: { bn: "Your Dedicated Account Manager", en: "Your Dedicated Account Manager" },
+      sub: { bn: "One Point of Contact for Your Office", en: "One Point of Contact for Your Office" },
+      text: {
+        bn: "Regular coordination, service-related queries এবং complaints—সবকিছুর জন্য নির্দিষ্ট contact person।",
+        en: "Regular coordination, service questions and complaints — one dedicated contact person for all of it.",
+      },
+    },
+    steps: [
+      {
+        key: "report",
+        label: { bn: "Report", en: "Report" },
+        title: { bn: "Report the Issue", en: "Report the Issue" },
+        text: {
+          bn: "কোনো issue হলে সরাসরি আপনার Account Manager-কে জানাতে পারবেন।",
+          en: "If something isn't right, tell your Account Manager directly.",
+        },
+      },
+      {
+        key: "review",
+        label: { bn: "Review", en: "Review" },
+        title: { bn: "Review the Feedback", en: "Review the Feedback" },
+        text: {
+          bn: "Complaint-এর details review করে সমস্যার কারণ identify করা হবে।",
+          en: "We review the details of the complaint and find out what caused the problem.",
+        },
+      },
+      {
+        key: "resolve",
+        label: { bn: "Resolve", en: "Resolve" },
+        title: { bn: "Take Corrective Action", en: "Take Corrective Action" },
+        text: {
+          bn: "যেখানে পরিবর্তন প্রয়োজন, সেখানে appropriate corrective action নেওয়া হবে।",
+          en: "Wherever a change is needed, we take the appropriate corrective action.",
+        },
+      },
+    ],
+  },
+
+  /** Section 8 — corporate lunch enquiry form (rules: src/lib/enquiry.ts · server: api/enquiry.ts) */
+  enquiry: {
+    eyebrow: { bn: "Corporate Lunch Enquiry", en: "Corporate Lunch Enquiry" },
+    title: { bn: "Let's Talk About Your Office Lunch.", en: "Let's Talk About Your Office Lunch." },
+    lead: {
+      bn: "আপনার office-এ daily কতগুলো meal লাগবে, location কোথায় আর কবে থেকে service শুরু করতে চান—এই details share করুন। Menu options, pricing আর delivery arrangement নিয়ে আলোচনা করা যাবে।",
+      en: "Tell us how many meals your office needs a day, where you're located and when you'd like to start. Then we'll talk through menu options, pricing and delivery.",
+    },
+    points: [
+      {
+        key: "share",
+        title: { bn: "Share Your Requirements", en: "Share Your Requirements" },
+        text: { bn: "Daily meal count, location, schedule", en: "Daily meal count, location, schedule" },
+      },
+      {
+        key: "discuss",
+        title: { bn: "Discuss Menu & Pricing", en: "Discuss Menu & Pricing" },
+        text: { bn: "Based on your office requirements", en: "Based on your office requirements" },
+      },
+      {
+        key: "sample",
+        title: { bn: "Free Sampling Available", en: "Free Sampling Available" },
+        text: { bn: "Experience the actual meal options", en: "Experience the actual meal options" },
+      },
+    ],
+    formTitle: { bn: "Request a Corporate Quote", en: "Request a Corporate Quote" },
+    formSub: { bn: "Tell us a little about your office.", en: "Tell us a little about your office." },
+    optional: { bn: "optional", en: "optional" },
+    required: { bn: "আবশ্যক", en: "required" },
+    fields: {
+      company: { label: { bn: "Company / Office Name", en: "Company / Office Name" }, placeholder: { bn: "Enter company name", en: "Enter company name" } },
+      person: { label: { bn: "Contact Person", en: "Contact Person" }, placeholder: { bn: "Full name", en: "Full name" } },
+      phone: { label: { bn: "Phone / WhatsApp", en: "Phone / WhatsApp" }, placeholder: { bn: "01XXXXXXXXX", en: "01XXXXXXXXX" } },
+      email: { label: { bn: "Email", en: "Email" }, placeholder: { bn: "name@company.com", en: "name@company.com" } },
+      location: { label: { bn: "Office Location", en: "Office Location" }, placeholder: { bn: "Select service area", en: "Select service area" } },
+      meals: { label: { bn: "Approx. Daily Meals", en: "Approx. Daily Meals" }, placeholder: { bn: "Estimated meal count", en: "Estimated meal count" } },
+      start: { label: { bn: "Preferred Start Date", en: "Preferred Start Date" }, placeholder: { bn: "Select date", en: "Select date" } },
+      budget: { label: { bn: "Approx. Budget per Meal", en: "Approx. Budget per Meal" }, placeholder: { bn: "e.g. 250", en: "e.g. 250" } },
+      notes: {
+        label: { bn: "Special Requirements", en: "Special Requirements" },
+        placeholder: { bn: "Dietary needs, delivery time বা অন্য কিছু", en: "Dietary needs, delivery time or anything else" },
+      },
+    },
+    /** the eight service areas show as written; "Other" asks us to check coverage */
+    otherArea: { bn: "Other (coverage check করে জানাব)", en: "Other (we'll check coverage)" },
+    sample: { bn: "আগে একটা free sample চাই", en: "I'd like a free sample first" },
+    submit: { bn: "Request Corporate Quote", en: "Request Corporate Quote" },
+    sending: { bn: "পাঠানো হচ্ছে…", en: "Sending…" },
+    privacy: {
+      bn: "এই তথ্য শুধু আপনার enquiry-র উত্তর দিতে ব্যবহার করা হবে।",
+      en: "We'll only use these details to reply to your enquiry.",
+    },
+    errors: {
+      company: { bn: "Company বা office-এর নাম লিখুন।", en: "Please enter your company or office name." },
+      person: { bn: "Contact person-এর নাম লিখুন।", en: "Please enter the contact person's name." },
+      phone: { bn: "সঠিক phone number লিখুন (যেমন 01712345678)।", en: "Please enter a valid phone number (e.g. 01712345678)." },
+      location: { bn: "Office location বেছে নিন।", en: "Please choose your office location." },
+      meals: { bn: "Daily meal সংখ্যা লিখুন (শুধু সংখ্যা)।", en: "Please enter the number of meals per day (numbers only)." },
+      email: { bn: "সঠিক email লিখুন, অথবা ঘরটি খালি রাখুন।", en: "Please enter a valid email, or leave it empty." },
+      budget: { bn: "শুধু সংখ্যা লিখুন, অথবা ঘরটি খালি রাখুন।", en: "Numbers only, or leave it empty." },
+      start: { bn: "আজ বা পরের কোনো তারিখ বেছে নিন।", en: "Please choose today or a later date." },
+      notes: { bn: "লেখাটি একটু ছোট করুন (১,০০০ অক্ষরের মধ্যে)।", en: "Please keep this under 1,000 characters." },
+    },
+    fixFields: { bn: "লাল চিহ্নিত ঘরগুলো ঠিক করে দিন।", en: "Please fix the highlighted fields." },
+    success: {
+      title: { bn: "ধন্যবাদ — আপনার enquiry আমরা পেয়েছি।", en: "Thank you — we've received your enquiry." },
+      /** `{phone}` → the number they gave */
+      text: {
+        bn: "আপনার office lunch নিয়ে কথা বলতে আমাদের team শিগগিরই {phone} নম্বরে যোগাযোগ করবে।",
+        en: "Our team will contact you on {phone} shortly to talk about your office lunch.",
+      },
+      again: { bn: "আরেকটি enquiry পাঠান", en: "Send another enquiry" },
+    },
+    failure: {
+      title: { bn: "দুঃখিত, এই মুহূর্তে enquiry পাঠানো যায়নি।", en: "Sorry — we couldn't send your enquiry just now." },
+      text: { bn: "সরাসরি কল করুন, অথবা একটু পরে আবার চেষ্টা করুন।", en: "Please call us directly, or try again in a moment." },
+      call: { bn: "Call 01711 400 151", en: "Call 01711 400 151" },
+    },
+  },
+
+  /** Section 9 — about us */
+  aboutUs: {
+    eyebrow: { bn: "About Us", en: "About Us" },
+    title: { bn: "We Take Office Lunch **Seriously.**", en: "We Take Office Lunch **Seriously.**" },
+    body: {
+      bn: "Founded in 2025, Tobla Kitchen is a Dhaka-based corporate catering service focused on regular office lunches. From ingredient sourcing and kitchen hygiene to food preparation and delivery, we maintain clear standards across our operations.",
+      en: "Founded in 2025, Tobla Kitchen is a Dhaka-based corporate catering service focused on regular office lunches. From ingredient sourcing and kitchen hygiene to food preparation and delivery, we maintain clear standards across our operations.",
+    },
+    valuesTitle: { bn: "What Matters to Us", en: "What Matters to Us" },
+    values: [
+      {
+        title: { bn: "Food Safety First", en: "Food Safety First" },
+        text: {
+          bn: "We pay attention to where our ingredients come from and how they're handled before cooking.",
+          en: "We pay attention to where our ingredients come from and how they're handled before cooking.",
+        },
+      },
+      {
+        title: { bn: "Hygiene Without Shortcuts", en: "Hygiene Without Shortcuts" },
+        text: {
+          bn: "Kitchen cleanliness, proper food handling and hygiene are part of our daily operations.",
+          en: "Kitchen cleanliness, proper food handling and hygiene are part of our daily operations.",
+        },
+      },
+      {
+        title: { bn: "Quality Over Quantity", en: "Quality Over Quantity" },
+        text: {
+          bn: "We don't compromise on ingredient quality or kitchen standards just to offer a lower price.",
+          en: "We don't compromise on ingredient quality or kitchen standards just to offer a lower price.",
+        },
+      },
+    ],
+  },
+
+  /** Section 10 — contact (its heading differs from section 8's so the page doesn't repeat itself) */
+  contactUs: {
+    eyebrow: { bn: "Contact Us", en: "Contact Us" },
+    title: { bn: "Prefer to Talk? Reach Our Team Directly.", en: "Prefer to Talk? Reach Our Team Directly." },
+    lead: {
+      bn: "Menu, pricing, delivery বা corporate lunch requirements নিয়ে সরাসরি আমাদের team-এর সঙ্গে কথা বলতে পারেন।",
+      en: "Talk to our team directly about menus, pricing, delivery or your office's lunch requirements.",
+    },
+    knowTitle: { bn: "Already know what you need?", en: "Already know what you need?" },
+    knowText: {
+      bn: "Corporate quotation-এর জন্য উপরের enquiry form ব্যবহার করতে পারেন।",
+      en: "Use the enquiry form above to request a corporate quotation.",
+    },
+    toForm: { bn: "Enquiry form-এ যান", en: "Go to the enquiry form" },
+    direct: { bn: "Direct Contact", en: "Direct Contact" },
+    phone: { bn: "01711 400 151", en: "01711 400 151" },
+    call: { bn: "Call Now", en: "Call Now" },
+    copy: { bn: "Copy Number", en: "Copy Number" },
+    copied: { bn: "Copied!", en: "Copied!" },
+    personLabel: { bn: "Contact Person", en: "Contact Person" },
+    person: { bn: "Raihan Mahmud", en: "Raihan Mahmud" },
+    role: { bn: "GM, Business Development", en: "GM, Business Development" },
+    addressLabel: { bn: "Kitchen Address", en: "Kitchen Address" },
+    address: { bn: "17/5 Kunipara, Tejgaon, Dhaka", en: "17/5 Kunipara, Tejgaon, Dhaka" },
+    map: { bn: "View on Google Maps", en: "View on Google Maps" },
+    webLabel: { bn: "Website", en: "Website" },
   },
 
   marquee: [
@@ -746,11 +935,15 @@ export const site = {
   },
 
   footer: {
-    tagline: {
-      bn: "আমরা শুধু খাবার পৌঁছে দিই না — পৌঁছে দিই আস্থা।",
-      en: "We don't just deliver food — we deliver trust.",
-    },
-    rights: { bn: "© ২০২৬ তবলা কিচেন। সর্বস্বত্ব সংরক্ষিত।", en: "© 2026 Tobla Kitchen. All rights reserved." },
+    tagline: { bn: "Corporate Office Lunch • Dhaka", en: "Corporate Office Lunch • Dhaka" },
+    links: [
+      { id: "top", label: { bn: "Home", en: "Home" } },
+      { id: "ingredients", label: { bn: "Our Standards", en: "Our Standards" } },
+      { id: "menu", label: { bn: "Menus", en: "Menus" } },
+      { id: "about", label: { bn: "About Us", en: "About Us" } },
+      { id: "contact", label: { bn: "Contact", en: "Contact" } },
+    ],
+    rights: { bn: "© 2026 Tobla Kitchen. All rights reserved.", en: "© 2026 Tobla Kitchen. All rights reserved." },
     top: { bn: "উপরে যান", en: "Back to top" },
   },
 };

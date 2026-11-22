@@ -14,6 +14,8 @@ type Props = {
   size?: "md" | "lg";
   className?: string;
   titleId?: string;
+  /** no fade-in (sections whose spec asks for no animation) */
+  still?: boolean;
 };
 
 const TITLE_SIZE = {
@@ -25,12 +27,13 @@ const LEAD_SIZE = {
   lg: "mt-5 text-lg sm:text-xl",
 };
 
-export function SectionHeading({ eyebrow, title, lead, align = "left", dark = false, size = "lg", className, titleId }: Props) {
+export function SectionHeading({ eyebrow, title, lead, align = "left", dark = false, size = "lg", className, titleId, still = false }: Props) {
   const { t } = useLang();
   const center = align === "center";
   const [e, h, l] = [t(eyebrow), t(title), lead ? t(lead) : ""];
+  const Wrap = still ? "div" : Reveal;
   return (
-    <Reveal className={cx("max-w-3xl", center && "mx-auto text-center", className)}>
+    <Wrap className={cx("max-w-3xl", center && "mx-auto text-center", className)}>
       <p lang={langFor(e)} className={cx("eyebrow inline-flex items-center gap-2.5", dark ? "text-orange" : "text-orange-700")}>
         <span aria-hidden="true" className="h-[2px] w-6 rounded-full bg-current" />
         {e}
@@ -43,6 +46,6 @@ export function SectionHeading({ eyebrow, title, lead, align = "left", dark = fa
           {l}
         </p>
       )}
-    </Reveal>
+    </Wrap>
   );
 }

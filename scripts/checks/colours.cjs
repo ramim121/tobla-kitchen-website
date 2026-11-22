@@ -2,7 +2,7 @@
 const { serve, check, done, browser, luminance, contrast, saturation } = require("./lib.cjs");
 
 const dist = process.argv[2];
-const MIN_SURFACE_AREA = 20000; // px² — sections, strips and big cards; small buttons/chips are allowed
+const MIN_SURFACE_AREA = 20000; // px² — sections, strips and big cards; small chips and links are allowed, <button>s always
 
 /** Runs in the page: collect surfaces and text with every colour resolved to sRGB via a canvas. */
 function collect(minArea) {
@@ -64,7 +64,9 @@ function collect(minArea) {
     if (!r.width || !r.height) continue;
     const tag = el.tagName.toLowerCase();
     const big = r.width * r.height >= minArea;
-    if ((big || ["section", "footer", "header"].includes(tag) || el.getAttribute("role") === "region") && !isPhotoFrame(el, r)) {
+    // a <button> is a control, not a surface: the enquiry form's full-width orange submit button is asked for
+    const control = tag === "button";
+    if ((big || ["section", "footer", "header"].includes(tag) || el.getAttribute("role") === "region") && !control && !isPhotoFrame(el, r)) {
       const fills = [rgba(cs.backgroundColor), ...stopsOf(cs.backgroundImage)].filter((c) => c.a >= 0.5);
       if (fills.length) surfaces.push({ id: name(el), fills, size: `${Math.round(r.width)}×${Math.round(r.height)}` });
     }

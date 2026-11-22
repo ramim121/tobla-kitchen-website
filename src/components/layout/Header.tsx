@@ -19,7 +19,11 @@ const SECTION_TO_NAV: Record<string, string | null> = {
   menu: "menu",
   gallery: "menu",
   "kitchen-to-office": "kitchen-to-office",
-  // the earlier sections, kept below the new ones for now: no nav item lights up
+  support: "kitchen-to-office",
+  enquiry: "enquiry",
+  about: "about",
+  contact: "contact",
+  // the earlier sections, kept below the new ten for now: no nav item lights up
   why: null,
   sourcing: null,
   risks: null,
@@ -27,9 +31,9 @@ const SECTION_TO_NAV: Record<string, string | null> = {
   premium: null,
   quote: null,
   process: null,
-  about: "about",
-  brochure: "brochure",
-  contact: "contact",
+  "about-old": null,
+  brochure: null,
+  "contact-old": null,
 };
 
 function useActiveNav() {

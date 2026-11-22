@@ -60,9 +60,9 @@ The launch countdown still points at `LAUNCH_AT`; move it (or reword the copy) b
 maintenance page.
 
 ## Page order
-1. **Hero** — "Office Lunch-এ একদিন ভালো খাবার যথেষ্ট না। / Consistency matters.", *Request Free Sample* (→ contact)
-   and *Get Corporate Quote* (→ the quote panel) side by side, four highlights in two columns. The plate photo
-   is waiting to be replaced with the owner's new image.
+1. **Hero** — "Office Lunch-এ একদিন ভালো খাবার যথেষ্ট না। / Consistency matters.", *Request Free Sample* and
+   *Get Corporate Quote* side by side (both open the enquiry form; the first ticks "free sample first"), four
+   highlights in two columns. The plate photo is waiting to be replaced with the owner's new image.
 2. **Trust** (`#trust`) — "Don't just take our word for it": visit the kitchen, understand the standards, taste first.
 3. **Ingredients** (`#ingredients`) — eight cards sliding to the left in a loop (pause on hover/keyboard focus,
    drag or swipe, ‹ › and pause buttons; still for reduced motion). *View Supplier Documents* points at the
@@ -72,16 +72,46 @@ maintenance page.
 5. **Gallery** (`#gallery`) — the kitchen gallery, unchanged, now a section of its own.
 6. **From kitchen to office** (`#kitchen-to-office`) — quality check → packaging → delivery, the operations photo
    and the delivery areas, built to the owner's spec (#FAF9F6, ≤ 1200px, 55/45 columns, 52px gap, 80/48px padding).
+7. **Support** (`#support`) — the dedicated account manager (#FFF4EA strip) and report → review → resolve.
+8. **Enquiry** (`#enquiry`) — "Request a Corporate Quote" form, 45% information / 55% form (see *Enquiries* below).
+9. **About** (`#about`) — "We take office lunch seriously" and what matters to us.
+10. **Contact** (`#contact`) — phone (call / copy), contact person, kitchen address, website; then the footer.
 
-Below them, in their old order until their new places are decided: dish strip, 41.47% band, sourcing, risks,
-the old day-by-day menu (`#day-menu`), premium dishes, quote, process, about, brochure, contact.
+Below them — between section 10 and the footer — the earlier sections stay in their old order for the owner
+to remove: dish strip, 41.47% band (`#why`), sourcing, risks, the old day-by-day menu (`#day-menu`), premium
+dishes, quote, process, the old about (`#about-old`), brochure, the old contact (`#contact-old`). Each is one
+line in `src/App.tsx`. (The ingredients section's *View Supplier Documents* button points at the brochure —
+re-point it in `Ingredients.tsx` before removing the brochure.)
+
+## Enquiries (section 8)
+The form checks itself (required: company, contact person, phone, office location, daily meals; optional:
+start date, email, budget per meal, special requirements, "free sample first") and posts to
+`api/enquiry.ts`, a Vercel Function that checks again with the same rules (`src/lib/enquiry.ts`), drops
+bots (hidden field + timing), and then:
+
+- **Saves** every enquiry as a JSON file in the private Blob store **tobla-enquiries** (connected to the project;
+  `BLOB_READ_WRITE_TOKEN` is set). Read them in Vercel → Storage → tobla-enquiries → Browser, folder
+  `enquiries/YYYY-MM/`.
+- **Notifies** the team on any channel you switch on (Vercel → Project → Settings → Environment Variables, then
+  redeploy):
+  | Variables | Channel |
+  |---|---|
+  | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | a Telegram chat or group (make a bot with @BotFather) |
+  | `RESEND_API_KEY`, `LEAD_EMAIL_TO` (+ `LEAD_EMAIL_FROM`) | email through Resend |
+  | `LEAD_WEBHOOK_URL` | JSON POST to a CRM, a Google Sheets Apps Script, Zapier or Make |
+- **Spreadsheet export:** set `LEADS_KEY` to a long random value, redeploy, then open
+  `https://www.toblakitchen.com/api/enquiry?export=csv&key=<LEADS_KEY>` for every enquiry as a CSV (opens in Excel).
+- `GET /api/enquiry` answers `{ "ready": true }` when at least one destination is set up. If nothing can take an
+  enquiry, the form tells the visitor and offers the phone number instead — enquiries are never silently lost.
+- Service areas and the rules (phone formats, meal count 1–100,000, dates) live in `src/lib/enquiry.ts`.
+- Locally, `npm run dev` serves the site only; the form needs `vercel dev` (or a deploy) to reach `/api`.
 
 ## Edit the content
 All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 
 | File | What's inside |
 |---|---|
-| `site.ts` | every section's text, contact details, price card |
+| `site.ts` | every section's text (incl. the form's labels and messages), contact details, footer |
 | `lunch-menus.ts` | Menu 01–06 for section 4: each combination's dishes, photo and optional dietary note |
 | `menu.ts` | the old day-by-day office menu (Saturday–Thursday), day names, ingredient tags |
 | `risks.ts` | the food-safety risks vs. our rules |

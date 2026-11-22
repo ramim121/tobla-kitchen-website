@@ -4,9 +4,12 @@ import { Footer } from "./components/layout/Footer";
 import { Header } from "./components/layout/Header";
 import { ScrollProgress } from "./components/layout/ScrollProgress";
 import { About } from "./components/sections/About";
+import { AboutUs } from "./components/sections/AboutUs";
 import { Brochure } from "./components/sections/Brochure";
 import { Contact } from "./components/sections/Contact";
+import { ContactUs } from "./components/sections/ContactUs";
 import { DishMarquee } from "./components/sections/DishMarquee";
+import { Enquiry } from "./components/sections/Enquiry";
 import { Gallery } from "./components/sections/Gallery";
 import { Hero } from "./components/sections/Hero";
 import { Ingredients } from "./components/sections/Ingredients";
@@ -18,6 +21,7 @@ import { Process } from "./components/sections/Process";
 import { RiskCompare } from "./components/sections/RiskCompare";
 import { Sourcing } from "./components/sections/Sourcing";
 import { StatBand } from "./components/sections/StatBand";
+import { Support } from "./components/sections/Support";
 import { Trust } from "./components/sections/Trust";
 import { WeeklyMenu } from "./components/sections/WeeklyMenu";
 import { site } from "./content/site";
@@ -45,14 +49,18 @@ export default function App() {
         <ScrollProgress />
         <Header />
         <main id="main" tabIndex={-1} className="outline-none">
-          {/* 1–6: the new page order */}
+          {/* 1–10: the new page order */}
           <Hero />
           <Trust />
           <Ingredients />
           <WeeklyMenu />
           <Gallery />
           <KitchenToOffice />
-          {/* the earlier sections, kept below in their old order until their new places are decided */}
+          <Support />
+          <Enquiry />
+          <AboutUs />
+          <ContactUs />
+          {/* the earlier sections, kept below in their old order for the owner to remove */}
           <DishMarquee />
           <StatBand />
           <Sourcing />

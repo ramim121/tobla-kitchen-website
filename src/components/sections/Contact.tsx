@@ -50,7 +50,7 @@ export function Contact() {
 
   return (
     <section
-      id="contact"
+      id="contact-old"
       tabIndex={-1}
       className="surface-glow relative overflow-hidden border-t border-line pb-20 pt-20 text-ink outline-none sm:pt-28"
     >

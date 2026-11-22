@@ -10,7 +10,7 @@ import { cx } from "../../lib/cx";
 export function About() {
   const { t, num } = useLang();
   return (
-    <section id="about" tabIndex={-1} className="relative py-20 outline-none sm:py-28">
+    <section id="about-old" tabIndex={-1} className="relative py-20 outline-none sm:py-28">
       <Container className="grid grid-cols-1 gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
         <div>
           <Reveal>

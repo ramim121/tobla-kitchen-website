@@ -8,6 +8,7 @@ import { Reveal, item, stagger } from "../ui/Reveal";
 import { SectionHeading } from "../ui/SectionHeading";
 import { LUNCH_MENUS } from "../../content/lunch-menus";
 import { site } from "../../content/site";
+import { requestSample } from "../../lib/enquiry-intent";
 import { langFor, useLang } from "../../lib/i18n";
 import { cx, EASE_OUT } from "../../lib/cx";
 
@@ -203,7 +204,8 @@ export function WeeklyMenu() {
           <div className="mt-9 flex flex-col items-center gap-5 border-t border-line pt-7 text-center lg:mt-10">
             <p className="max-w-2xl text-[14px] leading-relaxed text-muted">{t(w.note)}</p>
             <AnchorLink
-              to="contact"
+              to="enquiry"
+              onClick={requestSample}
               lang={langFor(cta)}
               className="group inline-flex items-center gap-2 rounded-full bg-orange px-7 py-3.5 text-base font-semibold text-ink shadow-[0_16px_32px_-16px_rgba(243,111,33,0.9)] transition-colors duration-300 hover:bg-ink hover:text-paper"
             >
