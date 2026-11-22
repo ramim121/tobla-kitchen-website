@@ -102,3 +102,12 @@ Owner: "Except for the hero section, keep the other sections' Bangla version as 
 Sections 2–10, the form (labels, placeholders, errors, messages, area names, ৳) and the footer now read fully in
 Bangla on the Bangla page, with Bangla digits; the English page is unchanged. The hero keeps the mixed copy.
 A check guards it (no English words in sections 2–10 or the footer on the Bangla page).
+
+## Round 4 — wording and clean-up
+- Owner: some Bangla translations sounded unfitting; use the English word written in Bangla instead (e.g.
+  "ground" → গ্রাইন্ডেড). Sections 2–10 now follow the owner's original Banglish wording, transliterated into Bangla
+  script (কিচেন ভিজিট, হাইজিন মেইনটেইন, কোয়ালিটি চেক, ডেডিকেটেড অ্যাকাউন্ট ম্যানেজার, ইন-হাউস গ্রাইন্ডেড মসলা…), keeping
+  everyday Bangla words where they read naturally (পরিবেশ, সমাধান, উপকরণ).
+- Owner marked old sections for removal: dish strip, 41.47% band, sourcing, the day-by-day menu, premium dishes,
+  the quote panel, old about and old contact — removed with their components, copy, day-plate and premium-card
+  photos and six unused icons. Kept: risks, process, brochure.
