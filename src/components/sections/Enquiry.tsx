@@ -153,7 +153,7 @@ export function Enquiry() {
   const formTitle = t(e.formTitle);
 
   return (
-    // follows another white section: a hairline at the top, then the usual 48 / 80px padding
+    // follows the white about section: a hairline at the top, then the usual 48 / 80px padding
     <section id="enquiry" tabIndex={-1} aria-labelledby="enquiry-title" className="relative bg-paper pb-12 outline-none lg:pb-20">
       <div className="mx-auto w-full max-w-[1264px] px-4 sm:px-6 lg:px-8">
         <div className="border-t border-line pt-12 lg:pt-20">

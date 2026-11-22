@@ -77,8 +77,12 @@ maintenance page.
 9. **About** (`#about`) — "We take office lunch seriously" and what matters to us.
 10. **Contact** (`#contact`) — phone (call / copy), contact person, kitchen address, website; then the footer.
 
-Below them, before the footer, three earlier sections the owner kept: risks vs. our rules (`#risks`), the process
-(`#process`) and the brochure (`#brochure`) — each one line in `src/App.tsx`. (The ingredients section's *View
+On the page, 9 · 8 · 10 (about, the enquiry form, contact) come last, after the three earlier sections the owner
+kept; the full order is: hero, trust, ingredients, menu, gallery, kitchen to office, support, risks, process,
+brochure, about, enquiry, contact, footer.
+
+The three earlier sections the owner kept — risks vs. our rules (`#risks`), the process (`#process`) and the
+brochure (`#brochure`) — sit after support, before about; each is one line in `src/App.tsx`. (The ingredients section's *View
 Supplier Documents* button points at the brochure — re-point it in `Ingredients.tsx` before removing the brochure.)
 The rest of the earlier layout (dish strip, 41.47% band, sourcing, day-by-day menu, premium dishes, quote panel,
 old about and contact) was removed on 2026-11-22; it is in git history.
