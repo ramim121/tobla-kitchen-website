@@ -77,11 +77,11 @@ maintenance page.
 9. **About** (`#about`) — "We take office lunch seriously" and what matters to us.
 10. **Contact** (`#contact`) — phone (call / copy), contact person, kitchen address, website; then the footer.
 
-Below them — between section 10 and the footer — the earlier sections stay in their old order for the owner
-to remove: dish strip, 41.47% band (`#why`), sourcing, risks, the old day-by-day menu (`#day-menu`), premium
-dishes, quote, process, the old about (`#about-old`), brochure, the old contact (`#contact-old`). Each is one
-line in `src/App.tsx`. (The ingredients section's *View Supplier Documents* button points at the brochure —
-re-point it in `Ingredients.tsx` before removing the brochure.)
+Below them, before the footer, three earlier sections the owner kept: risks vs. our rules (`#risks`), the process
+(`#process`) and the brochure (`#brochure`) — each one line in `src/App.tsx`. (The ingredients section's *View
+Supplier Documents* button points at the brochure — re-point it in `Ingredients.tsx` before removing the brochure.)
+The rest of the earlier layout (dish strip, 41.47% band, sourcing, day-by-day menu, premium dishes, quote panel,
+old about and contact) was removed on 2026-11-22; it is in git history.
 
 ## Enquiries (section 8)
 The form checks itself (required: company, contact person, phone, office location, daily meals; optional:
@@ -113,9 +113,8 @@ All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 |---|---|
 | `site.ts` | every section's text (incl. the form's labels and messages), contact details, footer |
 | `lunch-menus.ts` | Menu 01–06 for section 4: each combination's dishes, photo and optional dietary note |
-| `menu.ts` | the old day-by-day office menu (Saturday–Thursday), day names, ingredient tags |
 | `risks.ts` | the food-safety risks vs. our rules |
-| `images.ts` | which photo/icon each item uses (day plates, premium dish photos, ingredient photos, icons) and the slot for section 6's operations photo (`OPS_PHOTO`) |
+| `images.ts` | which photo/icon each item uses (hero plate, ingredient photos, icons, brochure renders) and the slot for section 6's operations photo (`OPS_PHOTO`) |
 | `gallery.ts` | the kitchen gallery: each dish's photo, category, name, description and alt text |
 
 Languages: the hero keeps the owner's copy exactly as written on the Bangla page (a Bangla–English mix with English
@@ -125,16 +124,16 @@ the Bangla page. Strings written wholly in English get `lang="en"` when shown (`
 The enquiry form shows the service areas in Bangla but always sends the English names.
 
 Inline markup in copy: `**text**` = orange accent, `==text==` = marker highlight that draws in.
-Prices are not shown on the site: the warm "quote" panel (`site.quote`, `src/components/sections/Quote.tsx`)
-asks visitors to call for a proposal and lists what every meal includes.
+Prices are not shown on the site: visitors ask for a quote through the enquiry form (section 8).
 
 ## Look
 A pure white page. Orange is an accent (headings, rules, icons, small buttons), never a section fill, and
 there are no dark sections. Tokens live in `src/index.css`:
 
 - `paper` `#FFFFFF` page · `mist` `#F6F6F7` light grey band between white sections · `line` `#E8E8EB`
-- `surface-glow` — soft orange-to-white wash for highlight sections (41.47% band, contact)
-- `surface-warm` — the same, slightly warmer, for feature panels (quote band, meal-plans card)
+- `linen` `#FAF9F6` warm off-white (sections 6 and 10, the enquiry form panel)
+- `surface-glow` — soft orange-to-white wash (section 6's stand-in panel)
+- `surface-warm` — the same, slightly warmer (kept for feature panels)
 - small orange text uses `orange-700`; large orange text `orange-600` (both pass WCAG AA on white)
 
 ## Kitchen gallery
@@ -160,11 +159,8 @@ Bangla is the default. The toggle at the top switches to English; the choice is 
   ones listed in `scripts/export-photos.py` and run `python3 scripts/export-photos.py --src <folder>`
   (needs Pillow) to re-create the WebP files below.
 - `src/assets/gallery/<dish>-{720,1200,1600}.webp` — the gallery photos (full 3:2 frame; tiles crop to 4:3).
-- `src/assets/food/dish-*.webp` — the premium dish cards (4:3 crops of the colour-corrected finals, a
-  different frame than the gallery shows): prawn bhuna, rui kalia, chicken roast, mutton bhuna, beef bhuna.
-- `src/assets/food/plate-*.webp` — one top-down "day plate" per weekday plus the hero. Each is composed
-  from the real dish photo (bowl/plate cut out of the original shot) with rice, dal and vegetable bowls on
-  slate; the side bowls reuse a real white bowl filled with generated close-up textures.
+- `src/assets/food/plate-hero-*.webp` — the hero's top-down plate (real dish photos composed on slate) until the owner's
+  new hero image arrives; `dish-roast-520.webp` is used only by the construction gate.
 - `src/assets/ingredients/<key>-{560,840}.webp` — the raw-ingredient photos on the sliding cards (3:2): generated with
   the OpenAI image tool in the photographer's style (slate, leaves, wood) as stand-ins; replace them with real
   sourcing photos when there are some.

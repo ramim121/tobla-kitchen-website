@@ -8,7 +8,6 @@ Download the files named below into one folder, then run (needs Pillow):
 
 Writes
   src/assets/gallery/<key>-{720,1200,1600}.webp  full 3:2 frame (the gallery crops tiles in CSS)
-  src/assets/food/dish-<dish>-{520,800}.webp      4:3 premium-card crops
 
 To add or swap a gallery photo: change GALLERY below, re-run, then edit src/content/gallery.ts.
 """
@@ -47,16 +46,6 @@ GALLERY = {
 # needs ~1.13× the tile width); 1200/1600 serve the lightbox on phones / large and retina screens.
 GALLERY_WIDTHS = {720: 120_000, 1200: 280_000, 1600: 440_000}
 
-# premium cards: a different frame of the same dish than the gallery shows; (fx, fy) = crop centre
-CARDS = {
-    "prawn": ("DSC02806", (0.50, 0.50)),
-    "fish": ("DSC02803", (0.50, 0.50)),
-    "roast": ("DSC02775", (0.50, 0.50)),
-    "mutton": ("DSC02762", (0.50, 0.50)),
-    "beef": ("DSC02760", (0.50, 0.50)),
-}
-CARD_SIZES = {800: 600, 520: 390}
-
 
 def load(src, name):
     im = Image.open(os.path.join(src, f"{name}.JPG"))
@@ -93,7 +82,6 @@ def main():
     args = ap.parse_args()
 
     gdir = os.path.join(args.root, "src/assets/gallery")
-    fdir = os.path.join(args.root, "src/assets/food")
     os.makedirs(gdir, exist_ok=True)
 
     for key, name in GALLERY.items():
@@ -101,12 +89,6 @@ def main():
         for width, budget in GALLERY_WIDTHS.items():
             q = save_webp(resized(frame, (width, round(width * 2 / 3))), os.path.join(gdir, f"{key}-{width}.webp"), budget)
             print(f"gallery {key:17} {width:5}w  q{q}")
-
-    for dish, (name, focus) in CARDS.items():
-        frame = crop_to(load(args.src, name), 4 / 3, focus)
-        for width, height in CARD_SIZES.items():
-            save_webp(resized(frame, (width, height)), os.path.join(fdir, f"dish-{dish}-{width}.webp"))
-        print(f"card    {dish:17} from {name}")
 
 
 if __name__ == "__main__":

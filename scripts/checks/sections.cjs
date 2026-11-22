@@ -5,7 +5,7 @@ const { serve, check, done, browser } = require("./lib.cjs");
 
 const dist = process.argv[2];
 const ORDER = ["top", "trust", "ingredients", "menu", "gallery", "kitchen-to-office", "support", "enquiry", "about", "contact"];
-const KEPT = ["why", "sourcing", "risks", "day-menu", "premium", "quote", "process", "about-old", "brochure", "contact-old"];
+const KEPT = ["risks", "process", "brochure"];
 const BENGALI = /[ঀ-৿]/;
 const WEEKDAY = /saturday|sunday|monday|tuesday|wednesday|thursday|friday|\b(sat|sun|mon|tue|wed|thu|fri)\b|শনি|রবি|সোম|মঙ্গল|বুধ|বৃহস্পতি|শুক্র/i;
 
@@ -34,13 +34,13 @@ async function toSection(page, id) {
   let page = await open(b);
   const ids = await page.$$eval("#main > section", (els) => els.map((e) => e.id));
   check(JSON.stringify(ids.slice(0, 10)) === JSON.stringify(ORDER), "sections 1–10 open the page in order", ids.slice(0, 11).join(" › "));
-  check(KEPT.every((id) => ids.indexOf(id) > 9), "the earlier sections are all kept, below the new ten");
+  check(JSON.stringify(ids.slice(10)) === JSON.stringify(KEPT), "below the new ten: only risks, process and brochure", ids.slice(10).join(" › "));
   const nav = await page.$$eval("header nav a", (as) => as.map((a) => a.getAttribute("href")));
   check(await page.evaluate((hs) => hs.every((h) => h && document.querySelector(h)), nav), "every nav link points at a section");
   check(nav.join() === "#trust,#menu,#kitchen-to-office,#enquiry,#about,#contact", "nav follows the new sections (2, 4, 6, 8, 9, 10)", nav.join(" "));
   const foot = await page.$$eval("footer nav a", (as) => as.map((a) => `${a.textContent.trim()} ${a.getAttribute("href")}`));
   check(
-    foot.join("|") === "হোম #top|আমাদের মান #ingredients|মেনু #menu|আমাদের কথা #about|যোগাযোগ #contact",
+    foot.join("|") === "হোম #top|আমাদের স্ট্যান্ডার্ড #ingredients|মেনু #menu|আমাদের কথা #about|যোগাযোগ #contact",
     "footer links: Home, Our Standards, Menus, About Us, Contact (in Bangla)",
     foot.join("|"),
   );
@@ -98,7 +98,7 @@ async function toSection(page, id) {
   const cards = await page.$$eval("[data-ingredient-track] > li:not([aria-hidden]) h3", (hs) => hs.map((h) => h.textContent.trim()));
   check(
     cards.join("|") ===
-      "অ্যান্টিবায়োটিকমুক্ত মুরগি|ওমেগা-৩ ডিম|প্রতিদিনের টাটকা মাছ|বিশ্বস্ত বিক্রেতার গরু ও খাসির মাংস|প্রতিদিনের টাটকা সবজি|নিজেদের ভাঙানো মসলা|ব্র্যান্ডের রান্নার তেল|প্রিমিয়াম নাজিরশাইল চাল",
+      "অ্যান্টিবায়োটিক-ফ্রি চিকেন|ওমেগা-৩ ডিম|ডেইলি ফ্রেশ মাছ|বিশ্বস্ত ভেন্ডরের গরু ও খাসির মাংস|ডেইলি ফ্রেশ সবজি|ইন-হাউস গ্রাইন্ডেড মসলা|ব্র্যান্ডেড কুকিং অয়েল|প্রিমিয়াম নাজিরশাইল চাল",
     "eight ingredient cards, in order",
     cards.join("|"),
   );

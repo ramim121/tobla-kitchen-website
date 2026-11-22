@@ -2,7 +2,7 @@
 # Site checks — `npm run check`. Builds the site twice (normal + VITE_GATE=on) and checks:
 #   gate.cjs      the gate switch (no gate code in normal builds; gated builds unlock correctly)
 #   colours.cjs   no dark or orange sections / large surfaces; text contrast meets WCAG AA
-#   assets.py     gallery + premium-card WebP files: present, exact sizes, within weight budgets
+#   assets.py     gallery + ingredient WebP files: present, exact sizes, within weight budgets
 #   gallery.cjs   22 photos, category filters
 #   lightbox.cjs  the photo modal: keys, arrows, swipe, wrap, focus, scroll lock, phones, English
 #   history.cjs   phone Back closes the photo / brochure viewers instead of leaving the site

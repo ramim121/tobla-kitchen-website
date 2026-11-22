@@ -1,4 +1,4 @@
-"""Asset check for the gallery + premium card photos (run from the repo root; needs Pillow)."""
+"""Asset check for the gallery and ingredient photos (run from the repo root; needs Pillow)."""
 import os
 import sys
 
@@ -7,8 +7,8 @@ from PIL import Image
 KEYS = ("prawn rui roast chicken-curry mutton beef beef-potato egg polao khichuri tehari dal moong-dal "
         "bharta lal-shak okra mixed-veg korola polao-platter khichuri-platter bharta-platter fish-platter").split()
 SIZES = {720: (720, 480, 120_000), 1200: (1200, 800, 280_000), 1600: (1600, 1067, 440_000)}
-CARDS = {"prawn", "fish", "roast", "mutton", "beef"}
-CARD_SIZES = {800: (800, 600), 520: (520, 390)}
+INGREDIENTS = ("chicken eggs fish meat vegetables spices oil rice").split()
+INGREDIENT_SIZES = {840: (840, 560, 140_000), 560: (560, 373, 80_000)}
 
 failures = 0
 
@@ -40,13 +40,16 @@ check(not bad_dims, "every gallery file is a WebP of the exact size", "; ".join(
 check(not over, "gallery files within size budgets", "; ".join(over[:5]))
 
 wrong = []
-for c in CARDS:
-    for w, dims in CARD_SIZES.items():
-        p = f"src/assets/food/dish-{c}-{w}.webp"
+for k in INGREDIENTS:
+    for w, (ew, eh, budget) in INGREDIENT_SIZES.items():
+        p = f"src/assets/ingredients/{k}-{w}.webp"
+        if not os.path.exists(p):
+            wrong.append(f"{p} missing")
+            continue
         im = Image.open(p)
-        if im.size != dims:
-            wrong.append(f"{p} {im.size}")
-check(not wrong, "premium card photos keep their 4:3 sizes", "; ".join(wrong))
+        if im.size != (ew, eh) or im.format != "WEBP" or os.path.getsize(p) > budget:
+            wrong.append(f"{p} {im.size} {im.format} {os.path.getsize(p) // 1000} KB")
+check(not wrong, "eight ingredient photos: 3:2 WebP at 840/560 px, within budget", "; ".join(wrong))
 
 print(f"\n{'all passed' if not failures else f'{failures} failed'}")
 sys.exit(1 if failures else 0)
