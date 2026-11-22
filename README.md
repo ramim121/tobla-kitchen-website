@@ -118,10 +118,11 @@ All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 | `images.ts` | which photo/icon each item uses (day plates, premium dish photos, ingredient photos, icons) and the slot for section 6's operations photo (`OPS_PHOTO`) |
 | `gallery.ts` | the kitchen gallery: each dish's photo, category, name, description and alt text |
 
-Sections 1–6 use the owner's copy exactly as written on the Bangla page (English headings and buttons, Bangla
-sentences with English words) and a full translation on the English page. Strings written wholly in English get
-`lang="en"` when shown (`langFor` in `src/lib/i18n.tsx`), so screen readers read them as English and eyebrows get
-English capitals and tracking.
+Languages: the hero keeps the owner's copy exactly as written on the Bangla page (a Bangla–English mix with English
+buttons and highlights); every other section is all Bangla on the Bangla page (Bangla digits too: মেনু ০১, ০১ /
+মান যাচাই) and all English on the English page — `npm run check` fails if English words creep into sections 2–10 on
+the Bangla page. Strings written wholly in English get `lang="en"` when shown (`langFor` in `src/lib/i18n.tsx`).
+The enquiry form shows the service areas in Bangla but always sends the English names.
 
 Inline markup in copy: `**text**` = orange accent, `==text==` = marker highlight that draws in.
 Prices are not shown on the site: the warm "quote" panel (`site.quote`, `src/components/sections/Quote.tsx`)

@@ -96,3 +96,9 @@ Decisions:
   is among the sections to remove). Footer as in the screenshot: Home · Our Standards · Menus · About Us · Contact.
 - The earlier About and Contact keep their content under `#about-old` / `#contact-old`.
 - The colour check now treats `<button>`s as controls, not surfaces (the full-width orange submit button).
+
+## Round 3 — languages
+Owner: "Except for the hero section, keep the other sections' Bangla version as Bangla and English as English."
+Sections 2–10, the form (labels, placeholders, errors, messages, area names, ৳) and the footer now read fully in
+Bangla on the Bangla page, with Bangla digits; the English page is unchanged. The hero keeps the mixed copy.
+A check guards it (no English words in sections 2–10 or the footer on the Bangla page).

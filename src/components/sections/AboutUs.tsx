@@ -7,7 +7,7 @@ import { langFor, useLang } from "../../lib/i18n";
 
 /** Section 9 — "We take office lunch seriously": who we are, and the three things that matter to us. */
 export function AboutUs() {
-  const { t } = useLang();
+  const { t, num } = useLang();
   const a = site.aboutUs;
   const label = t(a.valuesTitle);
 
@@ -36,7 +36,7 @@ export function AboutUs() {
               const title = t(v.title);
               return (
                 <motion.li key={v.title.en} variants={item} className="flex items-start gap-4 rounded-[20px] bg-paper p-5 ring-1 ring-line sm:p-6">
-                  <span className="pt-0.5 font-display text-sm font-semibold text-orange-700">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="pt-0.5 font-display text-sm font-semibold text-orange-700">{num(String(i + 1).padStart(2, "0"))}</span>
                   <div>
                     <h4 lang={langFor(title)} className="text-[1.1rem] font-semibold text-ink">
                       {title}

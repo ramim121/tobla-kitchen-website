@@ -59,7 +59,7 @@ function usePrefetchPhotos(ref: RefObject<HTMLElement | null>) {
  * swaps the photo and the dish list together. Phones scroll the tab row sideways.
  */
 export function WeeklyMenu() {
-  const { t } = useLang();
+  const { t, num } = useLang();
   const w = site.weeklyMenu;
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
@@ -70,7 +70,7 @@ export function WeeklyMenu() {
   const baseId = useId();
   usePrefetchPhotos(sectionRef);
 
-  const label = (i: number) => `${t(w.tab)} ${String(i + 1).padStart(2, "0")}`;
+  const label = (i: number) => `${t(w.tab)} ${num(String(i + 1).padStart(2, "0"))}`;
   const menu = LUNCH_MENUS[index];
   const photo = LUNCH_MENUS[shown].photo;
   const cta = t(w.cta);

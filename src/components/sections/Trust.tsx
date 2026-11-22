@@ -14,7 +14,7 @@ const ICON: Record<string, LucideIcon> = { visit: MapPin, standards: ClipboardCh
  * (Real photos of the kitchen, the preparation and an actual meal can join these cards later.)
  */
 export function Trust() {
-  const { t } = useLang();
+  const { t, num } = useLang();
   const s = site.trust;
 
   return (
@@ -40,7 +40,7 @@ export function Trust() {
                       <Icon className="size-[22px]" strokeWidth={1.9} />
                     </span>
                     <h3 lang={langFor(heading)} className="mt-5 text-[1.2rem] font-semibold text-ink sm:text-[1.3rem]">
-                      {i + 1}. {heading}
+                      {num(i + 1)}. {heading}
                     </h3>
                     <p lang={langFor(t(it.text))} className="mt-2.5 text-[15.5px] leading-relaxed text-muted">
                       {t(it.text)}

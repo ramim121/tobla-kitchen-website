@@ -11,7 +11,7 @@ import { langFor, useLang } from "../../lib/i18n";
  * subtle dividers, no animation and no button.
  */
 export function Support() {
-  const { t } = useLang();
+  const { t, num } = useLang();
   const s = site.support;
   const m = s.manager;
   const [title, sub, text] = [t(m.title), t(m.sub), t(m.text)];
@@ -45,7 +45,7 @@ export function Support() {
 
         <ol className="mt-8 grid grid-cols-1 divide-y divide-line md:grid-cols-3 md:divide-x md:divide-y-0 lg:mt-12" data-support-steps>
           {s.steps.map((step, i) => {
-            const tag = `${String(i + 1).padStart(2, "0")} / ${t(step.label)}`;
+            const tag = `${num(String(i + 1).padStart(2, "0"))} / ${t(step.label)}`;
             const heading = t(step.title);
             return (
               <li key={step.key} className="py-6 first:pt-0 last:pb-0 md:px-8 md:py-0 md:first:pl-0 md:last:pr-0">

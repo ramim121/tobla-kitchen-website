@@ -46,8 +46,8 @@ export const site = {
   },
 
   /*
-   * Sections 1–6 (hero → kitchen to office) use the owner's copy exactly as written for the Bangla page —
-   * English headings and buttons, Bangla sentences with English words — and a full translation for the
+   * The hero keeps the owner's copy exactly as written on the Bangla page (a Bangla–English mix: English
+   * buttons and highlights). Every other section is all Bangla on the Bangla page and all English on the
    * English page. English-only strings get lang="en" when shown (langFor in src/lib/i18n.tsx).
    */
   hero: {
@@ -73,30 +73,30 @@ export const site = {
 
   /** Section 2 — "Don't just take our word for it" */
   trust: {
-    eyebrow: { bn: "Before You Choose Tobla Kitchen", en: "Before You Choose Tobla Kitchen" },
-    title: { bn: "Don't Just Take Our Word for It.", en: "Don't Just Take Our Word for It." },
+    eyebrow: { bn: "তবলা কিচেন বেছে নেওয়ার আগে", en: "Before You Choose Tobla Kitchen" },
+    title: { bn: "শুধু আমাদের কথায় নয়, নিজেই যাচাই করুন।", en: "Don't Just Take Our Word for It." },
     items: [
       {
         key: "visit",
-        title: { bn: "Visit the Kitchen", en: "Visit the Kitchen" },
+        title: { bn: "রান্নাঘর ঘুরে দেখুন", en: "Visit the Kitchen" },
         text: {
-          bn: "আমাদের kitchen visit করুন। কোথায়, কী environment-এ আপনার অফিসের lunch তৈরি হবে, নিজেই দেখুন।",
+          bn: "আমাদের রান্নাঘরে আসুন। কোথায়, কেমন পরিবেশে আপনার অফিসের দুপুরের খাবার তৈরি হবে — নিজের চোখে দেখুন।",
           en: "Visit our kitchen and see for yourself where — and in what environment — your office lunch is prepared.",
         },
       },
       {
         key: "standards",
-        title: { bn: "Understand the Standards", en: "Understand the Standards" },
+        title: { bn: "আমাদের মান জেনে নিন", en: "Understand the Standards" },
         text: {
-          bn: "Ingredients কোথা থেকে আসে, hygiene কীভাবে maintain করি আর daily quality check কীভাবে হয়, জেনে নিন।",
+          bn: "উপকরণ কোথা থেকে আসে, পরিচ্ছন্নতা কীভাবে বজায় রাখি আর প্রতিদিনের মান যাচাই কীভাবে হয় — সব জেনে নিন।",
           en: "Find out where our ingredients come from, how we maintain hygiene and how our daily quality check works.",
         },
       },
       {
         key: "taste",
-        title: { bn: "Taste Before You Decide", en: "Taste Before You Decide" },
+        title: { bn: "আগে চেখে দেখুন, তারপর সিদ্ধান্ত", en: "Taste Before You Decide" },
         text: {
-          bn: "Service শুরু করার আগে free tasting-এর সুযোগ আছে। খাবারের taste, portion আর quality নিজেই যাচাই করতে পারবেন।",
+          bn: "সার্ভিস শুরুর আগে বিনামূল্যে খাবার চেখে দেখার সুযোগ আছে। স্বাদ, পরিমাণ আর মান নিজেই যাচাই করুন।",
           en: "Before service begins, you can have a free tasting and judge the taste, portion size and quality yourself.",
         },
       },
@@ -105,27 +105,27 @@ export const site = {
 
   /** Section 3 — ingredient cards that slide to the left (photos: src/content/images.ts › INGREDIENT_PHOTOS) */
   ingredients: {
-    eyebrow: { bn: "Ingredients & Sourcing", en: "Ingredients & Sourcing" },
-    title: { bn: "What Goes Into Your Office Lunch?", en: "What Goes Into Your Office Lunch?" },
-    docs: { bn: "View Supplier Documents", en: "View Supplier Documents" },
+    eyebrow: { bn: "উপকরণ ও উৎস", en: "Ingredients & Sourcing" },
+    title: { bn: "আপনার অফিস লাঞ্চ তৈরি হয় কী দিয়ে?", en: "What Goes Into Your Office Lunch?" },
+    docs: { bn: "সাপ্লায়ারের কাগজপত্র দেখুন", en: "View Supplier Documents" },
     docsNote: {
-      bn: "Chicken & Egg supplier details and related documents.",
+      bn: "মুরগি ও ডিমের সাপ্লায়ারের তথ্য ও সংশ্লিষ্ট কাগজপত্র।",
       en: "Chicken & egg supplier details and related documents.",
     },
     items: [
       {
         key: "chicken",
-        title: { bn: "Antibiotic-Free Chicken", en: "Antibiotic-Free Chicken" },
+        title: { bn: "অ্যান্টিবায়োটিকমুক্ত মুরগি", en: "Antibiotic-Free Chicken" },
         text: {
-          bn: "Antibiotic-free chicken from selected suppliers, including Organik Chicken.",
+          bn: "অর্গানিক চিকেনসহ বাছাই করা সাপ্লায়ারদের অ্যান্টিবায়োটিকমুক্ত মুরগি।",
           en: "Antibiotic-free chicken from selected suppliers, including Organik Chicken.",
         },
         alt: { bn: "কাঠের বোর্ডে কাঁচা মুরগির বুকের মাংস ও রান", en: "Raw chicken breasts and drumsticks on a wooden board" },
       },
       {
         key: "eggs",
-        title: { bn: "Omega-3 Eggs", en: "Omega-3 Eggs" },
-        text: { bn: "Omega-3 eggs from our designated supplier.", en: "Omega-3 eggs from our designated supplier." },
+        title: { bn: "ওমেগা-৩ ডিম", en: "Omega-3 Eggs" },
+        text: { bn: "আমাদের নির্দিষ্ট সাপ্লায়ারের ওমেগা-৩ ডিম।", en: "Omega-3 eggs from our designated supplier." },
         alt: {
           bn: "ঝুড়িভর্তি বাদামি ডিম, সামনের বাটিতে ভাঙা ডিমের গাঢ় কমলা কুসুম",
           en: "A basket of brown eggs, with one cracked into a bowl showing a deep orange yolk",
@@ -133,18 +133,18 @@ export const site = {
       },
       {
         key: "fish",
-        title: { bn: "Daily Fresh Fish", en: "Daily Fresh Fish" },
+        title: { bn: "প্রতিদিনের টাটকা মাছ", en: "Daily Fresh Fish" },
         text: {
-          bn: "Fish daily market থেকে কেনা হয়। Frozen stock ব্যবহার করি না।",
+          bn: "মাছ প্রতিদিন বাজার থেকে কেনা হয়। ফ্রিজে জমানো মাছ ব্যবহার করি না।",
           en: "Fish is bought fresh from the market every day. We never use frozen stock.",
         },
         alt: { bn: "বরফের ওপর দুটি টাটকা রুই মাছ", en: "Two fresh rui fish on crushed ice" },
       },
       {
         key: "meat",
-        title: { bn: "Beef & Mutton from Authentic Vendors", en: "Beef & Mutton from Authentic Vendors" },
+        title: { bn: "বিশ্বস্ত বিক্রেতার গরু ও খাসির মাংস", en: "Beef & Mutton from Authentic Vendors" },
         text: {
-          bn: "Beef ও mutton selected vendors থেকে নেওয়া হয়।",
+          bn: "গরু ও খাসির মাংস নেওয়া হয় শুধু বাছাই করা বিক্রেতাদের কাছ থেকে।",
           en: "Our beef and mutton come only from selected, trusted vendors.",
         },
         alt: {
@@ -154,9 +154,9 @@ export const site = {
       },
       {
         key: "vegetables",
-        title: { bn: "Daily Fresh Vegetables", en: "Daily Fresh Vegetables" },
+        title: { bn: "প্রতিদিনের টাটকা সবজি", en: "Daily Fresh Vegetables" },
         text: {
-          bn: "Vegetables daily market থেকে কেনা হয়। Frozen stock ব্যবহার করি না।",
+          bn: "সবজি প্রতিদিন বাজার থেকে কেনা হয়। ফ্রিজে জমানো সবজি ব্যবহার করি না।",
           en: "Vegetables are bought fresh from the market every day — never from frozen stock.",
         },
         alt: {
@@ -166,9 +166,9 @@ export const site = {
       },
       {
         key: "spices",
-        title: { bn: "In-house Ground Spices", en: "In-house Ground Spices" },
+        title: { bn: "নিজেদের ভাঙানো মসলা", en: "In-house Ground Spices" },
         text: {
-          bn: "Ready-made spice mix নয়। Whole spices কিনে mill-এ grind করাই।",
+          bn: "রেডিমেড মসলার মিক্স নয়। আস্ত মসলা কিনে মিলে ভাঙিয়ে নিই।",
           en: "No ready-made spice mixes. We buy whole spices and have them ground at the mill.",
         },
         alt: {
@@ -178,18 +178,18 @@ export const site = {
       },
       {
         key: "oil",
-        title: { bn: "Branded Cooking Oil", en: "Branded Cooking Oil" },
+        title: { bn: "ব্র্যান্ডের রান্নার তেল", en: "Branded Cooking Oil" },
         text: {
-          bn: "Branded cooking oil ব্যবহার করি, reused oil নয়।",
+          bn: "রান্নায় ব্র্যান্ডের প্যাকেটজাত তেল ব্যবহার করি — একবার ব্যবহার করা তেল আবার নয়।",
           en: "We cook with branded cooking oil — never reused oil.",
         },
         alt: { bn: "সিল করা বোতলে সয়াবিন তেল, পাশে বাটিতে সোনালি তেল", en: "A sealed bottle of soybean oil beside a bowl of golden oil" },
       },
       {
         key: "rice",
-        title: { bn: "Premium Nazirshail Rice", en: "Premium Nazirshail Rice" },
+        title: { bn: "প্রিমিয়াম নাজিরশাইল চাল", en: "Premium Nazirshail Rice" },
         text: {
-          bn: "Quality rice ব্যবহার করি — premium Nazirshail চাল।",
+          bn: "রান্নায় ব্যবহার করি ভালো মানের প্রিমিয়াম নাজিরশাইল চাল।",
           en: "We cook with quality rice — premium Nazirshail.",
         },
         alt: { bn: "কাঠের বাটি আর পাটের থলেতে লম্বা, সরু নাজিরশাইল চাল", en: "Long, slender Nazirshail rice in a wooden bowl and a jute sack" },
@@ -207,111 +207,112 @@ export const site = {
 
   /** Section 4 — Menu 01–06 (the combinations themselves: src/content/lunch-menus.ts) */
   weeklyMenu: {
-    eyebrow: { bn: "Our Weekly Office Lunch Menu", en: "Our Weekly Office Lunch Menu" },
-    title: { bn: "6 Menus. Different Combinations Throughout the Week.", en: "6 Menus. Different Combinations Throughout the Week." },
+    eyebrow: { bn: "আমাদের সাপ্তাহিক অফিস লাঞ্চ মেনু", en: "Our Weekly Office Lunch Menu" },
+    title: { bn: "৬টি মেনু। সপ্তাহজুড়ে ভিন্ন ভিন্ন কম্বিনেশন।", en: "6 Menus. Different Combinations Throughout the Week." },
     lead: {
-      bn: "৬টি different lunch combination, Saturday to Thursday। কোন menu কোন দিন যাবে সেটা fixed না—তবে প্রতিটি menu-তে কী কী থাকছে, সেটা আগে থেকেই জানা যাবে।",
+      bn: "শনিবার থেকে বৃহস্পতিবার — ৬টি আলাদা লাঞ্চ কম্বিনেশন। কোন মেনু কোন দিন যাবে তা নির্দিষ্ট নয়, তবে প্রতিটি মেনুতে কী কী থাকছে তা আগে থেকেই জানা যাবে।",
       en: "Six different lunch combinations, Saturday to Thursday. Which menu goes out on which day isn't fixed — but you'll always know in advance exactly what each menu includes.",
     },
     tabs: { bn: "মেনু বাছুন", en: "Choose a menu" },
-    /** tab label prefix: "Menu 01" … "Menu 06" (combinations, not days — no weekday names) */
-    tab: { bn: "Menu", en: "Menu" },
-    subtitle: { bn: "Complete meal combination", en: "Complete meal combination" },
+    /** tab label prefix: "মেনু ০১" / "Menu 01" … (combinations, not days — no weekday names) */
+    tab: { bn: "মেনু", en: "Menu" },
+    subtitle: { bn: "পুরো এক বেলার খাবার", en: "Complete meal combination" },
     pictured: { bn: "ছবিতে", en: "Pictured" },
     note: {
-      bn: "কোনো ingredient বদলাতে হলে তা আপনার agreed corporate meal plan অনুযায়ীই বদলায়। প্রতিটি menu-র dietary information চাইলেই পাবেন।",
+      bn: "কোনো উপকরণ বদলাতে হলে তা আপনার অফিসের সঙ্গে ঠিক করা মিল প্ল্যান অনুযায়ীই বদলায়। প্রতিটি মেনুর অ্যালার্জি ও ডায়েট-সংক্রান্ত তথ্য চাইলেই পাবেন।",
       en: "Any ingredient substitution follows your agreed corporate meal plan. Dietary information for every menu is available on request.",
     },
-    cta: { bn: "Request Free Sample", en: "Request Free Sample" },
+    cta: { bn: "ফ্রি স্যাম্পল নিন", en: "Request Free Sample" },
   },
 
   /** Section 6 — from kitchen to office */
   kitchenToOffice: {
-    eyebrow: { bn: "From Kitchen to Office", en: "From Kitchen to Office" },
-    title: { bn: "A Good Menu Is Only Half the Job.", en: "A Good Menu Is Only Half the Job." },
+    eyebrow: { bn: "রান্নাঘর থেকে অফিসে", en: "From Kitchen to Office" },
+    title: { bn: "ভালো মেনু কাজের মাত্র অর্ধেক।", en: "A Good Menu Is Only Half the Job." },
     steps: [
       {
         key: "qc",
-        label: { bn: "Quality Check", en: "Quality Check" },
-        title: { bn: "Daily Taste & Quality Check", en: "Daily Taste & Quality Check" },
+        label: { bn: "মান যাচাই", en: "Quality Check" },
+        title: { bn: "প্রতিদিন স্বাদ ও মান যাচাই", en: "Daily Taste & Quality Check" },
         text: {
-          bn: "রান্না শেষে প্রতিদিন taste ও quality check হয়। এরপর packing ও dispatch।",
+          bn: "রান্না শেষে প্রতিদিন স্বাদ ও মান যাচাই করা হয়। এরপরই প্যাক করে পাঠানো হয়।",
           en: "Every day, once cooking is done, the food is tasted and quality-checked. Only then is it packed and dispatched.",
         },
       },
       {
         key: "packaging",
-        label: { bn: "Packaging", en: "Packaging" },
-        title: { bn: "Packaging Matters Too", en: "Packaging Matters Too" },
+        label: { bn: "প্যাকেজিং", en: "Packaging" },
+        title: { bn: "প্যাকেজিংও গুরুত্বপূর্ণ", en: "Packaging Matters Too" },
         text: {
-          bn: "Delivery boxes নিয়মিত maintain করা হয় এবং প্রতি ২ মাসে replace করা হয়।",
+          bn: "ডেলিভারির বাক্স নিয়মিত দেখভাল করা হয় এবং প্রতি ২ মাসে বদলে ফেলা হয়।",
           en: "Our delivery boxes are maintained regularly and replaced every two months.",
         },
       },
       {
         key: "delivery",
-        label: { bn: "Delivery", en: "Delivery" },
-        title: { bn: "Delivered Within 1 Hour of Cooking Completion", en: "Delivered Within 1 Hour of Cooking Completion" },
+        label: { bn: "ডেলিভারি", en: "Delivery" },
+        title: { bn: "রান্না শেষের ১ ঘণ্টার মধ্যে ডেলিভারি", en: "Delivered Within 1 Hour of Cooking Completion" },
         text: {
-          bn: "রান্না শেষ হওয়ার ১ ঘণ্টার মধ্যে office-এ lunch delivery। Service area অনুযায়ী delivery routes আগেই planned থাকে।",
+          bn: "রান্না শেষ হওয়ার ১ ঘণ্টার মধ্যে অফিসে লাঞ্চ পৌঁছে যায়। এলাকা অনুযায়ী ডেলিভারির রুট আগে থেকেই ঠিক করা থাকে।",
           en: "Lunch reaches your office within an hour of cooking being completed. Delivery routes are planned in advance for each service area.",
         },
       },
     ],
-    coverageTitle: { bn: "Delivery Coverage", en: "Delivery Coverage" },
+    coverageTitle: { bn: "ডেলিভারি এলাকা", en: "Delivery Coverage" },
+    /** `en` is also the value the enquiry form sends (src/lib/enquiry.ts › SERVICE_AREAS) */
     areas: [
-      { bn: "Gulshan", en: "Gulshan" },
-      { bn: "Banani", en: "Banani" },
-      { bn: "Niketon", en: "Niketon" },
-      { bn: "Baridhara", en: "Baridhara" },
-      { bn: "Baridhara DOHS", en: "Baridhara DOHS" },
-      { bn: "Mohakhali", en: "Mohakhali" },
-      { bn: "Mohakhali DOHS", en: "Mohakhali DOHS" },
-      { bn: "Tejgaon", en: "Tejgaon" },
+      { bn: "গুলশান", en: "Gulshan" },
+      { bn: "বনানী", en: "Banani" },
+      { bn: "নিকেতন", en: "Niketon" },
+      { bn: "বারিধারা", en: "Baridhara" },
+      { bn: "বারিধারা ডিওএইচএস", en: "Baridhara DOHS" },
+      { bn: "মহাখালী", en: "Mohakhali" },
+      { bn: "মহাখালী ডিওএইচএস", en: "Mohakhali DOHS" },
+      { bn: "তেজগাঁও", en: "Tejgaon" },
     ],
   },
 
   /** Section 7 — client support & feedback */
   support: {
-    eyebrow: { bn: "Client Support & Feedback", en: "Client Support & Feedback" },
-    title: { bn: "What Happens When Something Isn't Right?", en: "What Happens When Something Isn't Right?" },
+    eyebrow: { bn: "ক্লায়েন্ট সাপোর্ট ও ফিডব্যাক", en: "Client Support & Feedback" },
+    title: { bn: "কোনো কিছু ঠিক না হলে কী হয়?", en: "What Happens When Something Isn't Right?" },
     lead: {
-      bn: "Food quality, portion, packaging বা delivery নিয়ে কোনো issue হলে আপনার office-এর জন্য থাকছে একজন Dedicated Account Manager। Feedback থেকে resolution পর্যন্ত যোগাযোগের জন্য নির্দিষ্ট একজন contact person থাকবেন।",
+      bn: "খাবারের মান, পরিমাণ, প্যাকেজিং বা ডেলিভারি নিয়ে কোনো সমস্যা হলে আপনার অফিসের জন্য থাকছেন একজন নির্দিষ্ট অ্যাকাউন্ট ম্যানেজার। অভিযোগ জানানো থেকে সমাধান পর্যন্ত যোগাযোগের জন্য একজনই নির্দিষ্ট মানুষ।",
       en: "If anything isn't right with food quality, portions, packaging or delivery, your office has a Dedicated Account Manager — one named contact person from first feedback all the way to resolution.",
     },
     manager: {
-      title: { bn: "Your Dedicated Account Manager", en: "Your Dedicated Account Manager" },
-      sub: { bn: "One Point of Contact for Your Office", en: "One Point of Contact for Your Office" },
+      title: { bn: "আপনার নির্দিষ্ট অ্যাকাউন্ট ম্যানেজার", en: "Your Dedicated Account Manager" },
+      sub: { bn: "আপনার অফিসের জন্য এক জায়গায় সব যোগাযোগ", en: "One Point of Contact for Your Office" },
       text: {
-        bn: "Regular coordination, service-related queries এবং complaints—সবকিছুর জন্য নির্দিষ্ট contact person।",
+        bn: "নিয়মিত সমন্বয়, সার্ভিস-সংক্রান্ত প্রশ্ন আর অভিযোগ — সবকিছুর জন্য একজন নির্দিষ্ট মানুষ।",
         en: "Regular coordination, service questions and complaints — one dedicated contact person for all of it.",
       },
     },
     steps: [
       {
         key: "report",
-        label: { bn: "Report", en: "Report" },
-        title: { bn: "Report the Issue", en: "Report the Issue" },
+        label: { bn: "জানান", en: "Report" },
+        title: { bn: "সমস্যা জানান", en: "Report the Issue" },
         text: {
-          bn: "কোনো issue হলে সরাসরি আপনার Account Manager-কে জানাতে পারবেন।",
+          bn: "কোনো সমস্যা হলে সরাসরি আপনার অ্যাকাউন্ট ম্যানেজারকে জানাতে পারবেন।",
           en: "If something isn't right, tell your Account Manager directly.",
         },
       },
       {
         key: "review",
-        label: { bn: "Review", en: "Review" },
-        title: { bn: "Review the Feedback", en: "Review the Feedback" },
+        label: { bn: "পর্যালোচনা", en: "Review" },
+        title: { bn: "অভিযোগ খতিয়ে দেখা", en: "Review the Feedback" },
         text: {
-          bn: "Complaint-এর details review করে সমস্যার কারণ identify করা হবে।",
+          bn: "অভিযোগের বিস্তারিত খতিয়ে দেখে সমস্যার কারণ খুঁজে বের করা হবে।",
           en: "We review the details of the complaint and find out what caused the problem.",
         },
       },
       {
         key: "resolve",
-        label: { bn: "Resolve", en: "Resolve" },
-        title: { bn: "Take Corrective Action", en: "Take Corrective Action" },
+        label: { bn: "সমাধান", en: "Resolve" },
+        title: { bn: "প্রয়োজনীয় ব্যবস্থা নেওয়া", en: "Take Corrective Action" },
         text: {
-          bn: "যেখানে পরিবর্তন প্রয়োজন, সেখানে appropriate corrective action নেওয়া হবে।",
+          bn: "যেখানে পরিবর্তন দরকার, সেখানে উপযুক্ত ব্যবস্থা নেওয়া হবে।",
           en: "Wherever a change is needed, we take the appropriate corrective action.",
         },
       },
@@ -320,112 +321,113 @@ export const site = {
 
   /** Section 8 — corporate lunch enquiry form (rules: src/lib/enquiry.ts · server: api/enquiry.ts) */
   enquiry: {
-    eyebrow: { bn: "Corporate Lunch Enquiry", en: "Corporate Lunch Enquiry" },
-    title: { bn: "Let's Talk About Your Office Lunch.", en: "Let's Talk About Your Office Lunch." },
+    eyebrow: { bn: "কর্পোরেট লাঞ্চ কোটেশন", en: "Corporate Lunch Enquiry" },
+    title: { bn: "আপনার অফিস লাঞ্চ নিয়ে কথা বলি।", en: "Let's Talk About Your Office Lunch." },
     lead: {
-      bn: "আপনার office-এ daily কতগুলো meal লাগবে, location কোথায় আর কবে থেকে service শুরু করতে চান—এই details share করুন। Menu options, pricing আর delivery arrangement নিয়ে আলোচনা করা যাবে।",
+      bn: "আপনার অফিসে প্রতিদিন কতগুলো মিল লাগবে, অফিস কোথায় আর কবে থেকে সার্ভিস শুরু করতে চান — এই তথ্যগুলো জানান। এরপর মেনু, দাম আর ডেলিভারির ব্যবস্থা নিয়ে আলোচনা করা যাবে।",
       en: "Tell us how many meals your office needs a day, where you're located and when you'd like to start. Then we'll talk through menu options, pricing and delivery.",
     },
     points: [
       {
         key: "share",
-        title: { bn: "Share Your Requirements", en: "Share Your Requirements" },
-        text: { bn: "Daily meal count, location, schedule", en: "Daily meal count, location, schedule" },
+        title: { bn: "আপনার চাহিদা জানান", en: "Share Your Requirements" },
+        text: { bn: "প্রতিদিনের মিলের সংখ্যা, অফিসের এলাকা, সময়সূচি", en: "Daily meal count, location, schedule" },
       },
       {
         key: "discuss",
-        title: { bn: "Discuss Menu & Pricing", en: "Discuss Menu & Pricing" },
-        text: { bn: "Based on your office requirements", en: "Based on your office requirements" },
+        title: { bn: "মেনু ও দাম নিয়ে আলোচনা", en: "Discuss Menu & Pricing" },
+        text: { bn: "আপনার অফিসের চাহিদা অনুযায়ী", en: "Based on your office requirements" },
       },
       {
         key: "sample",
-        title: { bn: "Free Sampling Available", en: "Free Sampling Available" },
-        text: { bn: "Experience the actual meal options", en: "Experience the actual meal options" },
+        title: { bn: "ফ্রি স্যাম্পলের সুযোগ", en: "Free Sampling Available" },
+        text: { bn: "আসল খাবারগুলো চেখে দেখুন", en: "Experience the actual meal options" },
       },
     ],
-    formTitle: { bn: "Request a Corporate Quote", en: "Request a Corporate Quote" },
-    formSub: { bn: "Tell us a little about your office.", en: "Tell us a little about your office." },
-    optional: { bn: "optional", en: "optional" },
+    formTitle: { bn: "কর্পোরেট কোটেশনের অনুরোধ", en: "Request a Corporate Quote" },
+    formSub: { bn: "আপনার অফিস সম্পর্কে একটু জানান।", en: "Tell us a little about your office." },
+    optional: { bn: "ঐচ্ছিক", en: "optional" },
     required: { bn: "আবশ্যক", en: "required" },
     fields: {
-      company: { label: { bn: "Company / Office Name", en: "Company / Office Name" }, placeholder: { bn: "Enter company name", en: "Enter company name" } },
-      person: { label: { bn: "Contact Person", en: "Contact Person" }, placeholder: { bn: "Full name", en: "Full name" } },
-      phone: { label: { bn: "Phone / WhatsApp", en: "Phone / WhatsApp" }, placeholder: { bn: "01XXXXXXXXX", en: "01XXXXXXXXX" } },
-      email: { label: { bn: "Email", en: "Email" }, placeholder: { bn: "name@company.com", en: "name@company.com" } },
-      location: { label: { bn: "Office Location", en: "Office Location" }, placeholder: { bn: "Select service area", en: "Select service area" } },
-      meals: { label: { bn: "Approx. Daily Meals", en: "Approx. Daily Meals" }, placeholder: { bn: "Estimated meal count", en: "Estimated meal count" } },
-      start: { label: { bn: "Preferred Start Date", en: "Preferred Start Date" }, placeholder: { bn: "Select date", en: "Select date" } },
-      budget: { label: { bn: "Approx. Budget per Meal", en: "Approx. Budget per Meal" }, placeholder: { bn: "e.g. 250", en: "e.g. 250" } },
+      company: { label: { bn: "কোম্পানি / অফিসের নাম", en: "Company / Office Name" }, placeholder: { bn: "কোম্পানির নাম লিখুন", en: "Enter company name" } },
+      person: { label: { bn: "যোগাযোগকারীর নাম", en: "Contact Person" }, placeholder: { bn: "পুরো নাম", en: "Full name" } },
+      phone: { label: { bn: "ফোন / হোয়াটসঅ্যাপ", en: "Phone / WhatsApp" }, placeholder: { bn: "০১XXXXXXXXX", en: "01XXXXXXXXX" } },
+      email: { label: { bn: "ইমেইল", en: "Email" }, placeholder: { bn: "name@company.com", en: "name@company.com" } },
+      location: { label: { bn: "অফিসের এলাকা", en: "Office Location" }, placeholder: { bn: "সার্ভিস এলাকা বেছে নিন", en: "Select service area" } },
+      meals: { label: { bn: "প্রতিদিন আনুমানিক মিল", en: "Approx. Daily Meals" }, placeholder: { bn: "আনুমানিক মিলের সংখ্যা", en: "Estimated meal count" } },
+      start: { label: { bn: "কবে থেকে শুরু করতে চান", en: "Preferred Start Date" }, placeholder: { bn: "তারিখ বেছে নিন", en: "Select date" } },
+      budget: { label: { bn: "প্রতি মিলে আনুমানিক বাজেট", en: "Approx. Budget per Meal" }, placeholder: { bn: "যেমন ২৫০", en: "e.g. 250" } },
       notes: {
-        label: { bn: "Special Requirements", en: "Special Requirements" },
-        placeholder: { bn: "Dietary needs, delivery time বা অন্য কিছু", en: "Dietary needs, delivery time or anything else" },
+        label: { bn: "বিশেষ চাহিদা", en: "Special Requirements" },
+        placeholder: { bn: "খাবারের বিশেষ চাহিদা, ডেলিভারির সময় বা অন্য কিছু", en: "Dietary needs, delivery time or anything else" },
       },
     },
-    /** the eight service areas show as written; "Other" asks us to check coverage */
-    otherArea: { bn: "Other (coverage check করে জানাব)", en: "Other (we'll check coverage)" },
-    sample: { bn: "আগে একটা free sample চাই", en: "I'd like a free sample first" },
-    submit: { bn: "Request Corporate Quote", en: "Request Corporate Quote" },
+    /** the area names come from kitchenToOffice.areas; "Other" asks us to check coverage */
+    otherArea: { bn: "অন্য এলাকা (সার্ভিস দেওয়া যায় কি না, জানিয়ে দেব)", en: "Other (we'll check coverage)" },
+    currency: { bn: "৳", en: "Tk" },
+    sample: { bn: "আগে একটা ফ্রি স্যাম্পল চাই", en: "I'd like a free sample first" },
+    submit: { bn: "কোটেশনের অনুরোধ পাঠান", en: "Request Corporate Quote" },
     sending: { bn: "পাঠানো হচ্ছে…", en: "Sending…" },
     privacy: {
-      bn: "এই তথ্য শুধু আপনার enquiry-র উত্তর দিতে ব্যবহার করা হবে।",
+      bn: "এই তথ্য শুধু আপনার অনুরোধের উত্তর দিতে ব্যবহার করা হবে।",
       en: "We'll only use these details to reply to your enquiry.",
     },
     errors: {
-      company: { bn: "Company বা office-এর নাম লিখুন।", en: "Please enter your company or office name." },
-      person: { bn: "Contact person-এর নাম লিখুন।", en: "Please enter the contact person's name." },
-      phone: { bn: "সঠিক phone number লিখুন (যেমন 01712345678)।", en: "Please enter a valid phone number (e.g. 01712345678)." },
-      location: { bn: "Office location বেছে নিন।", en: "Please choose your office location." },
-      meals: { bn: "Daily meal সংখ্যা লিখুন (শুধু সংখ্যা)।", en: "Please enter the number of meals per day (numbers only)." },
-      email: { bn: "সঠিক email লিখুন, অথবা ঘরটি খালি রাখুন।", en: "Please enter a valid email, or leave it empty." },
+      company: { bn: "কোম্পানি বা অফিসের নাম লিখুন।", en: "Please enter your company or office name." },
+      person: { bn: "যোগাযোগকারীর নাম লিখুন।", en: "Please enter the contact person's name." },
+      phone: { bn: "সঠিক ফোন নম্বর লিখুন (যেমন ০১৭১২৩৪৫৬৭৮)।", en: "Please enter a valid phone number (e.g. 01712345678)." },
+      location: { bn: "অফিসের এলাকা বেছে নিন।", en: "Please choose your office location." },
+      meals: { bn: "প্রতিদিনের মিলের সংখ্যা লিখুন (শুধু সংখ্যা)।", en: "Please enter the number of meals per day (numbers only)." },
+      email: { bn: "সঠিক ইমেইল লিখুন, অথবা ঘরটি খালি রাখুন।", en: "Please enter a valid email, or leave it empty." },
       budget: { bn: "শুধু সংখ্যা লিখুন, অথবা ঘরটি খালি রাখুন।", en: "Numbers only, or leave it empty." },
       start: { bn: "আজ বা পরের কোনো তারিখ বেছে নিন।", en: "Please choose today or a later date." },
       notes: { bn: "লেখাটি একটু ছোট করুন (১,০০০ অক্ষরের মধ্যে)।", en: "Please keep this under 1,000 characters." },
     },
     fixFields: { bn: "লাল চিহ্নিত ঘরগুলো ঠিক করে দিন।", en: "Please fix the highlighted fields." },
     success: {
-      title: { bn: "ধন্যবাদ — আপনার enquiry আমরা পেয়েছি।", en: "Thank you — we've received your enquiry." },
+      title: { bn: "ধন্যবাদ — আপনার অনুরোধ আমরা পেয়েছি।", en: "Thank you — we've received your enquiry." },
       /** `{phone}` → the number they gave */
       text: {
-        bn: "আপনার office lunch নিয়ে কথা বলতে আমাদের team শিগগিরই {phone} নম্বরে যোগাযোগ করবে।",
+        bn: "আপনার অফিস লাঞ্চ নিয়ে কথা বলতে আমাদের টিম শিগগিরই {phone} নম্বরে যোগাযোগ করবে।",
         en: "Our team will contact you on {phone} shortly to talk about your office lunch.",
       },
-      again: { bn: "আরেকটি enquiry পাঠান", en: "Send another enquiry" },
+      again: { bn: "আরেকটি অনুরোধ পাঠান", en: "Send another enquiry" },
     },
     failure: {
-      title: { bn: "দুঃখিত, এই মুহূর্তে enquiry পাঠানো যায়নি।", en: "Sorry — we couldn't send your enquiry just now." },
+      title: { bn: "দুঃখিত, এই মুহূর্তে অনুরোধ পাঠানো যায়নি।", en: "Sorry — we couldn't send your enquiry just now." },
       text: { bn: "সরাসরি কল করুন, অথবা একটু পরে আবার চেষ্টা করুন।", en: "Please call us directly, or try again in a moment." },
-      call: { bn: "Call 01711 400 151", en: "Call 01711 400 151" },
+      call: { bn: "কল করুন: ০১৭১১ ৪০০ ১৫১", en: "Call 01711 400 151" },
     },
   },
 
   /** Section 9 — about us */
   aboutUs: {
-    eyebrow: { bn: "About Us", en: "About Us" },
-    title: { bn: "We Take Office Lunch **Seriously.**", en: "We Take Office Lunch **Seriously.**" },
+    eyebrow: { bn: "আমাদের কথা", en: "About Us" },
+    title: { bn: "অফিস লাঞ্চকে আমরা **হালকাভাবে নিই না।**", en: "We Take Office Lunch **Seriously.**" },
     body: {
-      bn: "Founded in 2025, Tobla Kitchen is a Dhaka-based corporate catering service focused on regular office lunches. From ingredient sourcing and kitchen hygiene to food preparation and delivery, we maintain clear standards across our operations.",
+      bn: "২০২৫ সালে যাত্রা শুরু করা তবলা কিচেন ঢাকার একটি কর্পোরেট ক্যাটারিং সার্ভিস, যার মূল কাজ অফিসের নিয়মিত দুপুরের খাবার। উপকরণ সংগ্রহ আর রান্নাঘরের পরিচ্ছন্নতা থেকে শুরু করে রান্না ও ডেলিভারি — প্রতিটি কাজে আমরা স্পষ্ট মান মেনে চলি।",
       en: "Founded in 2025, Tobla Kitchen is a Dhaka-based corporate catering service focused on regular office lunches. From ingredient sourcing and kitchen hygiene to food preparation and delivery, we maintain clear standards across our operations.",
     },
-    valuesTitle: { bn: "What Matters to Us", en: "What Matters to Us" },
+    valuesTitle: { bn: "আমাদের কাছে যা গুরুত্বপূর্ণ", en: "What Matters to Us" },
     values: [
       {
-        title: { bn: "Food Safety First", en: "Food Safety First" },
+        title: { bn: "খাদ্য নিরাপত্তা সবার আগে", en: "Food Safety First" },
         text: {
-          bn: "We pay attention to where our ingredients come from and how they're handled before cooking.",
+          bn: "উপকরণ কোথা থেকে আসে আর রান্নার আগে কীভাবে রাখা ও নাড়াচাড়া করা হয় — সেদিকে আমরা খেয়াল রাখি।",
           en: "We pay attention to where our ingredients come from and how they're handled before cooking.",
         },
       },
       {
-        title: { bn: "Hygiene Without Shortcuts", en: "Hygiene Without Shortcuts" },
+        title: { bn: "পরিচ্ছন্নতায় ছাড় নেই", en: "Hygiene Without Shortcuts" },
         text: {
-          bn: "Kitchen cleanliness, proper food handling and hygiene are part of our daily operations.",
+          bn: "রান্নাঘরের পরিচ্ছন্নতা, খাবার সঠিকভাবে নাড়াচাড়া আর স্বাস্থ্যবিধি আমাদের প্রতিদিনের কাজের অংশ।",
           en: "Kitchen cleanliness, proper food handling and hygiene are part of our daily operations.",
         },
       },
       {
-        title: { bn: "Quality Over Quantity", en: "Quality Over Quantity" },
+        title: { bn: "পরিমাণের চেয়ে মান", en: "Quality Over Quantity" },
         text: {
-          bn: "We don't compromise on ingredient quality or kitchen standards just to offer a lower price.",
+          bn: "কম দাম দেখানোর জন্য উপকরণের মান বা রান্নাঘরের নিয়মে আমরা আপস করি না।",
           en: "We don't compromise on ingredient quality or kitchen standards just to offer a lower price.",
         },
       },
@@ -434,30 +436,30 @@ export const site = {
 
   /** Section 10 — contact (its heading differs from section 8's so the page doesn't repeat itself) */
   contactUs: {
-    eyebrow: { bn: "Contact Us", en: "Contact Us" },
-    title: { bn: "Prefer to Talk? Reach Our Team Directly.", en: "Prefer to Talk? Reach Our Team Directly." },
+    eyebrow: { bn: "যোগাযোগ", en: "Contact Us" },
+    title: { bn: "সরাসরি কথা বলতে চান? আমাদের টিমকে কল করুন।", en: "Prefer to Talk? Reach Our Team Directly." },
     lead: {
-      bn: "Menu, pricing, delivery বা corporate lunch requirements নিয়ে সরাসরি আমাদের team-এর সঙ্গে কথা বলতে পারেন।",
+      bn: "মেনু, দাম, ডেলিভারি বা অফিস লাঞ্চের যেকোনো প্রয়োজন নিয়ে সরাসরি আমাদের টিমের সঙ্গে কথা বলতে পারেন।",
       en: "Talk to our team directly about menus, pricing, delivery or your office's lunch requirements.",
     },
-    knowTitle: { bn: "Already know what you need?", en: "Already know what you need?" },
+    knowTitle: { bn: "কী লাগবে, তা আগেই জানেন?", en: "Already know what you need?" },
     knowText: {
-      bn: "Corporate quotation-এর জন্য উপরের enquiry form ব্যবহার করতে পারেন।",
+      bn: "কর্পোরেট কোটেশনের জন্য ওপরের ফর্মটি ব্যবহার করুন।",
       en: "Use the enquiry form above to request a corporate quotation.",
     },
-    toForm: { bn: "Enquiry form-এ যান", en: "Go to the enquiry form" },
-    direct: { bn: "Direct Contact", en: "Direct Contact" },
-    phone: { bn: "01711 400 151", en: "01711 400 151" },
-    call: { bn: "Call Now", en: "Call Now" },
-    copy: { bn: "Copy Number", en: "Copy Number" },
-    copied: { bn: "Copied!", en: "Copied!" },
-    personLabel: { bn: "Contact Person", en: "Contact Person" },
-    person: { bn: "Raihan Mahmud", en: "Raihan Mahmud" },
-    role: { bn: "GM, Business Development", en: "GM, Business Development" },
-    addressLabel: { bn: "Kitchen Address", en: "Kitchen Address" },
-    address: { bn: "17/5 Kunipara, Tejgaon, Dhaka", en: "17/5 Kunipara, Tejgaon, Dhaka" },
-    map: { bn: "View on Google Maps", en: "View on Google Maps" },
-    webLabel: { bn: "Website", en: "Website" },
+    toForm: { bn: "ফর্মে যান", en: "Go to the enquiry form" },
+    direct: { bn: "সরাসরি যোগাযোগ", en: "Direct Contact" },
+    phone: { bn: "০১৭১১ ৪০০ ১৫১", en: "01711 400 151" },
+    call: { bn: "কল করুন", en: "Call Now" },
+    copy: { bn: "নম্বর কপি করুন", en: "Copy Number" },
+    copied: { bn: "কপি হয়েছে!", en: "Copied!" },
+    personLabel: { bn: "যার সঙ্গে কথা বলবেন", en: "Contact Person" },
+    person: { bn: "রায়হান মাহমুদ", en: "Raihan Mahmud" },
+    role: { bn: "জিএম, বিজনেস ডেভেলপমেন্ট", en: "GM, Business Development" },
+    addressLabel: { bn: "রান্নাঘরের ঠিকানা", en: "Kitchen Address" },
+    address: { bn: "১৭/৫ কুনিপাড়া, তেজগাঁও, ঢাকা", en: "17/5 Kunipara, Tejgaon, Dhaka" },
+    map: { bn: "গুগল ম্যাপে দেখুন", en: "View on Google Maps" },
+    webLabel: { bn: "ওয়েবসাইট", en: "Website" },
   },
 
   marquee: [
@@ -935,15 +937,15 @@ export const site = {
   },
 
   footer: {
-    tagline: { bn: "Corporate Office Lunch • Dhaka", en: "Corporate Office Lunch • Dhaka" },
+    tagline: { bn: "কর্পোরেট অফিস লাঞ্চ • ঢাকা", en: "Corporate Office Lunch • Dhaka" },
     links: [
-      { id: "top", label: { bn: "Home", en: "Home" } },
-      { id: "ingredients", label: { bn: "Our Standards", en: "Our Standards" } },
-      { id: "menu", label: { bn: "Menus", en: "Menus" } },
-      { id: "about", label: { bn: "About Us", en: "About Us" } },
-      { id: "contact", label: { bn: "Contact", en: "Contact" } },
+      { id: "top", label: { bn: "হোম", en: "Home" } },
+      { id: "ingredients", label: { bn: "আমাদের মান", en: "Our Standards" } },
+      { id: "menu", label: { bn: "মেনু", en: "Menus" } },
+      { id: "about", label: { bn: "আমাদের কথা", en: "About Us" } },
+      { id: "contact", label: { bn: "যোগাযোগ", en: "Contact" } },
     ],
-    rights: { bn: "© 2026 Tobla Kitchen. All rights reserved.", en: "© 2026 Tobla Kitchen. All rights reserved." },
+    rights: { bn: "© ২০২৬ তবলা কিচেন। সর্বস্বত্ব সংরক্ষিত।", en: "© 2026 Tobla Kitchen. All rights reserved." },
     top: { bn: "উপরে যান", en: "Back to top" },
   },
 };

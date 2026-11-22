@@ -40,8 +40,8 @@ async function toSection(page, id) {
   check(nav.join() === "#trust,#menu,#kitchen-to-office,#enquiry,#about,#contact", "nav follows the new sections (2, 4, 6, 8, 9, 10)", nav.join(" "));
   const foot = await page.$$eval("footer nav a", (as) => as.map((a) => `${a.textContent.trim()} ${a.getAttribute("href")}`));
   check(
-    foot.join("|") === "Home #top|Our Standards #ingredients|Menus #menu|About Us #about|Contact #contact",
-    "footer links: Home, Our Standards, Menus, About Us, Contact",
+    foot.join("|") === "হোম #top|আমাদের মান #ingredients|মেনু #menu|আমাদের কথা #about|যোগাযোগ #contact",
+    "footer links: Home, Our Standards, Menus, About Us, Contact (in Bangla)",
     foot.join("|"),
   );
 
@@ -98,7 +98,7 @@ async function toSection(page, id) {
   const cards = await page.$$eval("[data-ingredient-track] > li:not([aria-hidden]) h3", (hs) => hs.map((h) => h.textContent.trim()));
   check(
     cards.join("|") ===
-      "Antibiotic-Free Chicken|Omega-3 Eggs|Daily Fresh Fish|Beef & Mutton from Authentic Vendors|Daily Fresh Vegetables|In-house Ground Spices|Branded Cooking Oil|Premium Nazirshail Rice",
+      "অ্যান্টিবায়োটিকমুক্ত মুরগি|ওমেগা-৩ ডিম|প্রতিদিনের টাটকা মাছ|বিশ্বস্ত বিক্রেতার গরু ও খাসির মাংস|প্রতিদিনের টাটকা সবজি|নিজেদের ভাঙানো মসলা|ব্র্যান্ডের রান্নার তেল|প্রিমিয়াম নাজিরশাইল চাল",
     "eight ingredient cards, in order",
     cards.join("|"),
   );
@@ -152,7 +152,7 @@ async function toSection(page, id) {
   // ── section 4: Menu 01–06 ──
   await toSection(page, "menu");
   const tabs = await page.$$eval("#menu [role=tab]", (ts) => ts.map((t) => t.textContent.trim()));
-  check(tabs.join() === "Menu 01,Menu 02,Menu 03,Menu 04,Menu 05,Menu 06", "six tabs, Menu 01 … Menu 06", tabs.join());
+  check(tabs.join() === "মেনু ০১,মেনু ০২,মেনু ০৩,মেনু ০৪,মেনু ০৫,মেনু ০৬", "six tabs, Menu 01 … Menu 06 (মেনু ০১ …)", tabs.join());
   check(!tabs.some((t) => WEEKDAY.test(t)), "no weekday names on the tabs");
   const state = () =>
     page.evaluate(() => ({
@@ -166,7 +166,7 @@ async function toSection(page, id) {
   await page.click("#menu [role=tab]:nth-child(3)");
   await page.waitForTimeout(1200);
   const m3 = await state();
-  check(m3.selected === 2 && m3.title === "Menu 03", "clicking a tab selects it", JSON.stringify(m3));
+  check(m3.selected === 2 && m3.title === "মেনু ০৩", "clicking a tab selects it", JSON.stringify(m3));
   check(m3.photo !== m1.photo && m3.caption !== m1.caption, "…and changes the photo", `${m1.photo} → ${m3.photo}`);
   check(m3.items !== m1.items && m3.items.length > 10, "…and the dish list");
   await page.focus("#menu [role=tab][aria-selected=true]");
@@ -267,12 +267,35 @@ async function toSection(page, id) {
   check(leaks.length === 0, "English page: sections 1–4 and 6–10 have no Bangla left", leaks.join());
   const enTitle = await page.$eval("#top h1 span", (s) => s.textContent.trim());
   check(enTitle === "For office lunch, one good day isn't enough.", "English hero title", enTitle);
-  // Bangla page: English headings carry lang="en" (caps + pronunciation)
+  const enTabs = await page.$$eval("#menu [role=tab]", (ts) => ts.map((t) => t.textContent.trim()).join());
+  check(enTabs === "Menu 01,Menu 02,Menu 03,Menu 04,Menu 05,Menu 06", "English page: tabs read Menu 01 … Menu 06", enTabs);
   await page.close();
+
+  // ── Bangla page: everything but the hero is in Bangla ──
   page = await open(b);
-  const langs = await page.$$eval("#trust h2, #ingredients h2, #menu h2, #kitchen-to-office h2", (hs) => hs.map((h) => h.lang));
-  check(langs.every((l) => l === "en"), "Bangla page: English headings are marked lang=en", langs.join());
-  check(!BENGALI.test(await page.$eval("#menu [role=tab]", (t) => t.textContent)), "Bangla page: tab labels as written (Menu 01)");
+  const english = await page.evaluate((ids) => {
+    // text people can see or hear: skip aria-hidden parts (e.g. the bots-only form field); the brand
+    // name (the logo is written in English) and the web address are allowed
+    const words = (root) => {
+      const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      let text = "";
+      for (let n = w.nextNode(); n; n = w.nextNode()) if (!n.parentElement.closest("[aria-hidden='true'], script, style")) text += ` ${n.textContent}`;
+      return text.replace(/toblakitchen\.com|Tobla Kitchen/g, "").match(/[A-Za-z]{2,}/g);
+    };
+    const out = [];
+    for (const id of ids) {
+      const found = words(document.getElementById(id));
+      if (found) out.push(`${id}: ${[...new Set(found)].slice(0, 6).join(" ")}`);
+    }
+    const foot = words(document.querySelector("footer"));
+    if (foot) out.push(`footer: ${foot.join(" ")}`);
+    return out;
+  }, ["trust", "ingredients", "menu", "gallery", "kitchen-to-office", "support", "enquiry", "about", "contact"]);
+  check(english.length === 0, "Bangla page: sections 2–10 and the footer are all Bangla", english.join(" | "));
+  const heroMix = await page.$eval("#top", (el) => /Office Lunch-এ/.test(el.innerText) && /Request Free Sample/.test(el.innerText));
+  check(heroMix, "Bangla page: the hero keeps the owner's Bangla–English copy");
+  const areas = await page.$$eval("#enquiry select[name=location] option", (os) => os.filter((o) => o.value).map((o) => o.textContent.trim()));
+  check(areas[0] === "গুলশান" && areas.length === 9, "Bangla page: service areas listed in Bangla (sent in English)", areas.join(", "));
   await page.close();
 
   // ── section 7: support (spec) ──

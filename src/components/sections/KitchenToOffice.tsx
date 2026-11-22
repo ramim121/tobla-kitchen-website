@@ -14,7 +14,7 @@ import { langFor, useLang } from "../../lib/i18n";
  * hairline dividers, photo with 14px corners.
  */
 export function KitchenToOffice() {
-  const { t } = useLang();
+  const { t, num } = useLang();
   const k = site.kitchenToOffice;
   const coverage = t(k.coverageTitle);
 
@@ -34,7 +34,7 @@ export function KitchenToOffice() {
               data-k2o-steps
             >
               {k.steps.map((s, i) => {
-                const tag = `${String(i + 1).padStart(2, "0")} / ${t(s.label)}`;
+                const tag = `${num(String(i + 1).padStart(2, "0"))} / ${t(s.label)}`;
                 const title = t(s.title);
                 return (
                   <motion.li key={s.key} variants={item} className="py-6 first:pt-3 last:pb-0">

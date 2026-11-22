@@ -145,6 +145,11 @@ export function Enquiry() {
   };
 
   const ph = (f: EnquiryField) => t(e.fields[f].placeholder);
+  /** the form sends the English area name; people see it in their language */
+  const areaName = (a: string) => {
+    const known = site.kitchenToOffice.areas.find((x) => x.en === a);
+    return known ? t(known) : t(e.otherArea);
+  };
   const formTitle = t(e.formTitle);
 
   return (
@@ -203,7 +208,7 @@ export function Enquiry() {
                           </option>
                           {SERVICE_AREAS.map((a) => (
                             <option key={a} value={a} className="text-ink">
-                              {a === "Other" ? t(e.otherArea) : a}
+                              {areaName(a)}
                             </option>
                           ))}
                         </select>
@@ -216,7 +221,7 @@ export function Enquiry() {
                       "budget",
                       <div className="relative">
                         <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[15px] font-medium text-ink/60" aria-hidden="true">
-                          Tk
+                          {t(e.currency)}
                         </span>
                         <input {...bind("budget")} type="text" inputMode="numeric" autoComplete="off" placeholder={ph("budget")} maxLength={7} className={cx(INPUT, "pl-11")} />
                       </div>,
