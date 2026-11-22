@@ -15,7 +15,11 @@ const TILES = "#gallery ul[data-gallery-grid] > li button";
 
   const gallery = page.locator("#gallery");
   check((await gallery.count()) === 1, "gallery block exists (#gallery)");
-  check((await page.locator("#premium #gallery").count()) === 1, "gallery sits inside the premium section");
+  const placed = await page.evaluate(() => {
+    const g = document.getElementById("gallery");
+    return g?.tagName === "SECTION" && g.parentElement?.id === "main" && g.previousElementSibling?.id === "menu";
+  });
+  check(placed, "gallery is its own section (5th), right after the weekly menu");
 
   const tiles = page.locator(TILES);
   check((await tiles.count()) === 22, "22 photos in the gallery", `got ${await tiles.count()}`);

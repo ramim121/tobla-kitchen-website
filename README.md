@@ -18,7 +18,9 @@ npm run preview  # serve the production build
 ## Checks
 `npm run check` builds the site (normal and gated) and runs the checks in `scripts/checks/`: the gate
 switch, no dark or orange sections and AA text contrast (desktop + phone), the gallery photo files, the
-gallery filters, the photo modal (keys, arrows, swipe, focus, phones, English) and the phone Back button.
+gallery filters, the photo modal (keys, arrows, swipe, focus, phones, English), the phone Back button and
+sections 1–6 (page order, hero, the sliding ingredient cards, the Menu 01–06 tabs, the kitchen-to-office spec,
+both languages).
 It needs Playwright with Chromium and Python 3 with Pillow — both are preinstalled in Claude Code cloud
 sessions; elsewhere: `npm i -g playwright && npx playwright install chromium`, `pip install pillow`, and run
 with `NODE_PATH=$(npm root -g) npm run check`.
@@ -57,16 +59,39 @@ Settings, all at the top of `src/gate/ConstructionGate.tsx`:
 The launch countdown still points at `LAUNCH_AT`; move it (or reword the copy) before reusing the gate as a
 maintenance page.
 
+## Page order
+1. **Hero** — "Office Lunch-এ একদিন ভালো খাবার যথেষ্ট না। / Consistency matters.", *Request Free Sample* (→ contact)
+   and *Get Corporate Quote* (→ the quote panel) side by side, four highlights in two columns. The plate photo
+   is waiting to be replaced with the owner's new image.
+2. **Trust** (`#trust`) — "Don't just take our word for it": visit the kitchen, understand the standards, taste first.
+3. **Ingredients** (`#ingredients`) — eight cards sliding to the left in a loop (pause on hover/keyboard focus,
+   drag or swipe, ‹ › and pause buttons; still for reduced motion). *View Supplier Documents* points at the
+   brochure until the documents are online.
+4. **Weekly menu** (`#menu`) — tabs *Menu 01 … Menu 06*: combinations, not days (no weekday names); each tab swaps
+   the photo (55%) and the dish list (45%); phones scroll the tabs sideways.
+5. **Gallery** (`#gallery`) — the kitchen gallery, unchanged, now a section of its own.
+6. **From kitchen to office** (`#kitchen-to-office`) — quality check → packaging → delivery, the operations photo
+   and the delivery areas, built to the owner's spec (#FAF9F6, ≤ 1200px, 55/45 columns, 52px gap, 80/48px padding).
+
+Below them, in their old order until their new places are decided: dish strip, 41.47% band, sourcing, risks,
+the old day-by-day menu (`#day-menu`), premium dishes, quote, process, about, brochure, contact.
+
 ## Edit the content
 All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 
 | File | What's inside |
 |---|---|
 | `site.ts` | every section's text, contact details, price card |
-| `menu.ts` | the weekly office menu (Saturday–Thursday), day names, ingredient tags |
+| `lunch-menus.ts` | Menu 01–06 for section 4: each combination's dishes, photo and optional dietary note |
+| `menu.ts` | the old day-by-day office menu (Saturday–Thursday), day names, ingredient tags |
 | `risks.ts` | the food-safety risks vs. our rules |
-| `images.ts` | which photo/icon each item uses (day plates, premium dish photos, icons) |
+| `images.ts` | which photo/icon each item uses (day plates, premium dish photos, ingredient photos, icons) and the slot for section 6's operations photo (`OPS_PHOTO`) |
 | `gallery.ts` | the kitchen gallery: each dish's photo, category, name, description and alt text |
+
+Sections 1–6 use the owner's copy exactly as written on the Bangla page (English headings and buttons, Bangla
+sentences with English words) and a full translation on the English page. Strings written wholly in English get
+`lang="en"` when shown (`langFor` in `src/lib/i18n.tsx`), so screen readers read them as English and eyebrows get
+English capitals and tracking.
 
 Inline markup in copy: `**text**` = orange accent, `==text==` = marker highlight that draws in.
 Prices are not shown on the site: the warm "quote" panel (`site.quote`, `src/components/sections/Quote.tsx`)
@@ -82,7 +107,7 @@ there are no dark sections. Tokens live in `src/index.css`:
 - small orange text uses `orange-700`; large orange text `orange-600` (both pass WCAG AA on white)
 
 ## Kitchen gallery
-Under the premium dishes: 22 photos, one best shot of each unique dish or platter the photographer shot,
+Section 5: 22 photos, one best shot of each unique dish or platter the photographer shot,
 with category filters. Tapping a photo opens it in a modal (photo, description underneath, ‹ › arrows;
 arrow keys, Esc and swipe work). Add, remove or reword dishes in `src/content/gallery.ts`.
 
@@ -109,10 +134,16 @@ Bangla is the default. The toggle at the top switches to English; the choice is 
 - `src/assets/food/plate-*.webp` — one top-down "day plate" per weekday plus the hero. Each is composed
   from the real dish photo (bowl/plate cut out of the original shot) with rice, dal and vegetable bowls on
   slate; the side bowls reuse a real white bowl filled with generated close-up textures.
-- `src/assets/images/icon-*.webp` — illustrated icons (generated). The logo is the original vector file.
+- `src/assets/ingredients/<key>-{560,840}.webp` — the raw-ingredient photos on the sliding cards (3:2): generated with
+  the OpenAI image tool in the photographer's style (slate, leaves, wood) as stand-ins; replace them with real
+  sourcing photos when there are some.
+- `src/assets/images/icon-*.webp` — illustrated icons (generated). The logo is the original vector file. Section 6
+  uses three of them as a stand-in until `OPS_PHOTO` is set.
 
 ## Older design
 The first design (AI plate photos, 4-week menu) is kept on the `design-v1` branch and is served at
 https://old.toblakitchen.com once its DNS record is set.
 
-Design notes: `docs/superpowers/specs/2026-11-05-tobla-kitchen-website-design.md`.
+Design notes: `docs/superpowers/specs/2026-11-05-tobla-kitchen-website-design.md` (first build),
+`2026-11-18-white-redesign-gallery-design.md` (white look, gallery) and `2026-11-22-sections-1-6-design.md`
+(the new page order).
