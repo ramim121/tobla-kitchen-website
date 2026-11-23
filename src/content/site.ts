@@ -32,7 +32,7 @@ export const site = {
     items: [
       { id: "trust", label: { bn: "কেন আমরা", en: "Why us" } },
       { id: "menu", label: { bn: "মেনু", en: "Menu" } },
-      { id: "kitchen-to-office", label: { bn: "কাজের ধাপ", en: "How we work" } },
+      { id: "process", label: { bn: "কাজের ধাপ", en: "How we work" } },
       { id: "about", label: { bn: "আমাদের কথা", en: "About" } },
       { id: "enquiry", label: { bn: "কোটেশন", en: "Get a quote" } },
       { id: "contact", label: { bn: "যোগাযোগ", en: "Contact" } },
@@ -46,9 +46,11 @@ export const site = {
   },
 
   /*
-   * The hero keeps the owner's copy exactly as written on the Bangla page (a Bangla–English mix: English
-   * buttons and highlights). Every other section is all Bangla on the Bangla page and all English on the
-   * English page. English-only strings get lang="en" when shown (langFor in src/lib/i18n.tsx).
+   * The hero keeps the owner's title and buttons exactly as written on the Bangla page (a Bangla–English
+   * mix with English buttons); its four highlights are Bangla there, using the English word written in
+   * Bangla where a pure-Bangla one would read stiffly. Every other section is all Bangla on the Bangla page
+   * and all English on the English page. English-only strings get lang="en" when shown (langFor in
+   * src/lib/i18n.tsx).
    */
   hero: {
     eyebrow: { bn: "কর্পোরেট ক্যাটারিং · ঢাকা", en: "Corporate catering · Dhaka" },
@@ -60,10 +62,10 @@ export const site = {
     secondary: { bn: "Get Corporate Quote", en: "Get Corporate Quote" },
     /** two columns: the first two on the left, the last two on the right */
     points: [
-      { bn: "Daily Quality Check", en: "Daily Quality Check" },
-      { bn: "Fresh Ingredients, Daily Sourcing", en: "Fresh Ingredients, Daily Sourcing" },
-      { bn: "Kitchen Visit Available", en: "Kitchen Visit Available" },
-      { bn: "Up to 5,000 Meals/Day Capacity", en: "Up to 5,000 Meals/Day Capacity" },
+      { bn: "ডেইলি কোয়ালিটি চেক", en: "Daily Quality Check" },
+      { bn: "ফ্রেশ উপকরণ, ডেইলি সোর্সিং", en: "Fresh Ingredients, Daily Sourcing" },
+      { bn: "কিচেন ভিজিটের সুযোগ", en: "Kitchen Visit Available" },
+      { bn: "দিনে ৫,০০০ মিল পর্যন্ত ক্যাপাসিটি", en: "Up to 5,000 Meals/Day Capacity" },
     ],
     plateAlt: {
       bn: "দুপুরের খাবারের টেবিল: সাদা ভাত, মুরগির তরকারি, রুই মাছ, ডাল আর সবজি",
@@ -225,100 +227,6 @@ export const site = {
     cta: { bn: "ফ্রি স্যাম্পল নিন", en: "Request Free Sample" },
   },
 
-  /** Section 6 — from kitchen to office */
-  kitchenToOffice: {
-    eyebrow: { bn: "কিচেন থেকে অফিসে", en: "From Kitchen to Office" },
-    title: { bn: "ভালো মেনু কাজের মাত্র অর্ধেক।", en: "A Good Menu Is Only Half the Job." },
-    steps: [
-      {
-        key: "qc",
-        label: { bn: "কোয়ালিটি চেক", en: "Quality Check" },
-        title: { bn: "প্রতিদিন টেস্ট ও কোয়ালিটি চেক", en: "Daily Taste & Quality Check" },
-        text: {
-          bn: "রান্না শেষে প্রতিদিন টেস্ট ও কোয়ালিটি চেক হয়। এরপর প্যাকিং ও ডিসপ্যাচ।",
-          en: "Every day, once cooking is done, the food is tasted and quality-checked. Only then is it packed and dispatched.",
-        },
-      },
-      {
-        key: "packaging",
-        label: { bn: "প্যাকেজিং", en: "Packaging" },
-        title: { bn: "প্যাকেজিংও গুরুত্বপূর্ণ", en: "Packaging Matters Too" },
-        text: {
-          bn: "ডেলিভারি বক্স নিয়মিত মেইনটেইন করা হয় এবং প্রতি ২ মাসে রিপ্লেস করা হয়।",
-          en: "Our delivery boxes are maintained regularly and replaced every two months.",
-        },
-      },
-      {
-        key: "delivery",
-        label: { bn: "ডেলিভারি", en: "Delivery" },
-        title: { bn: "রান্না শেষের ১ ঘণ্টার মধ্যে ডেলিভারি", en: "Delivered Within 1 Hour of Cooking Completion" },
-        text: {
-          bn: "রান্না শেষ হওয়ার ১ ঘণ্টার মধ্যে অফিসে লাঞ্চ ডেলিভারি। সার্ভিস এরিয়া অনুযায়ী ডেলিভারি রুট আগে থেকেই প্ল্যান করা থাকে।",
-          en: "Lunch reaches your office within an hour of cooking being completed. Delivery routes are planned in advance for each service area.",
-        },
-      },
-    ],
-    coverageTitle: { bn: "ডেলিভারি কভারেজ", en: "Delivery Coverage" },
-    /** `en` is also the value the enquiry form sends (src/lib/enquiry.ts › SERVICE_AREAS) */
-    areas: [
-      { bn: "গুলশান", en: "Gulshan" },
-      { bn: "বনানী", en: "Banani" },
-      { bn: "নিকেতন", en: "Niketon" },
-      { bn: "বারিধারা", en: "Baridhara" },
-      { bn: "বারিধারা ডিওএইচএস", en: "Baridhara DOHS" },
-      { bn: "মহাখালী", en: "Mohakhali" },
-      { bn: "মহাখালী ডিওএইচএস", en: "Mohakhali DOHS" },
-      { bn: "তেজগাঁও", en: "Tejgaon" },
-    ],
-  },
-
-  /** Section 7 — client support & feedback */
-  support: {
-    eyebrow: { bn: "ক্লায়েন্ট সাপোর্ট ও ফিডব্যাক", en: "Client Support & Feedback" },
-    title: { bn: "কোনো কিছু ঠিক না হলে কী হয়?", en: "What Happens When Something Isn't Right?" },
-    lead: {
-      bn: "খাবারের কোয়ালিটি, পোরশন, প্যাকেজিং বা ডেলিভারি নিয়ে কোনো ইস্যু হলে আপনার অফিসের জন্য থাকছেন একজন ডেডিকেটেড অ্যাকাউন্ট ম্যানেজার। ফিডব্যাক থেকে সমাধান পর্যন্ত যোগাযোগের জন্য থাকবেন নির্দিষ্ট একজন কন্টাক্ট পারসন।",
-      en: "If anything isn't right with food quality, portions, packaging or delivery, your office has a Dedicated Account Manager — one named contact person from first feedback all the way to resolution.",
-    },
-    manager: {
-      title: { bn: "আপনার ডেডিকেটেড অ্যাকাউন্ট ম্যানেজার", en: "Your Dedicated Account Manager" },
-      sub: { bn: "আপনার অফিসের জন্য একজনই কন্টাক্ট পয়েন্ট", en: "One Point of Contact for Your Office" },
-      text: {
-        bn: "নিয়মিত কো-অর্ডিনেশন, সার্ভিস-সংক্রান্ত প্রশ্ন আর কমপ্লেইন — সবকিছুর জন্য নির্দিষ্ট একজন কন্টাক্ট পারসন।",
-        en: "Regular coordination, service questions and complaints — one dedicated contact person for all of it.",
-      },
-    },
-    steps: [
-      {
-        key: "report",
-        label: { bn: "রিপোর্ট", en: "Report" },
-        title: { bn: "ইস্যু রিপোর্ট করুন", en: "Report the Issue" },
-        text: {
-          bn: "কোনো ইস্যু হলে সরাসরি আপনার অ্যাকাউন্ট ম্যানেজারকে জানাতে পারবেন।",
-          en: "If something isn't right, tell your Account Manager directly.",
-        },
-      },
-      {
-        key: "review",
-        label: { bn: "রিভিউ", en: "Review" },
-        title: { bn: "ফিডব্যাক রিভিউ", en: "Review the Feedback" },
-        text: {
-          bn: "কমপ্লেইনের বিস্তারিত রিভিউ করে সমস্যার কারণ খুঁজে বের করা হবে।",
-          en: "We review the details of the complaint and find out what caused the problem.",
-        },
-      },
-      {
-        key: "resolve",
-        label: { bn: "সমাধান", en: "Resolve" },
-        title: { bn: "প্রয়োজনীয় ব্যবস্থা", en: "Take Corrective Action" },
-        text: {
-          bn: "যেখানে পরিবর্তন দরকার, সেখানে যথাযথ ব্যবস্থা নেওয়া হবে।",
-          en: "Wherever a change is needed, we take the appropriate corrective action.",
-        },
-      },
-    ],
-  },
-
   /** Section 8 — corporate lunch enquiry form (rules: src/lib/enquiry.ts · server: api/enquiry.ts) */
   enquiry: {
     eyebrow: { bn: "কর্পোরেট লাঞ্চ এনকোয়ারি", en: "Corporate Lunch Enquiry" },
@@ -362,7 +270,18 @@ export const site = {
         placeholder: { bn: "ডায়েটারি রিকোয়ারমেন্ট, ডেলিভারির সময় বা অন্য কিছু", en: "Dietary needs, delivery time or anything else" },
       },
     },
-    /** the area names come from kitchenToOffice.areas; "Other" asks us to check coverage */
+    /** the service areas in the location list — `en` is also the value the form sends (src/lib/enquiry.ts › SERVICE_AREAS) */
+    areas: [
+      { bn: "গুলশান", en: "Gulshan" },
+      { bn: "বনানী", en: "Banani" },
+      { bn: "নিকেতন", en: "Niketon" },
+      { bn: "বারিধারা", en: "Baridhara" },
+      { bn: "বারিধারা ডিওএইচএস", en: "Baridhara DOHS" },
+      { bn: "মহাখালী", en: "Mohakhali" },
+      { bn: "মহাখালী ডিওএইচএস", en: "Mohakhali DOHS" },
+      { bn: "তেজগাঁও", en: "Tejgaon" },
+    ],
+    /** "Other" asks us to check coverage */
     otherArea: { bn: "অন্য এলাকা (কভারেজ চেক করে জানাব)", en: "Other (we'll check coverage)" },
     currency: { bn: "৳", en: "Tk" },
     sample: { bn: "আগে একটা ফ্রি স্যাম্পল চাই", en: "I'd like a free sample first" },

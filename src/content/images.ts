@@ -1,4 +1,4 @@
-/* Images: the hero plate, the ingredient photos, section 6's photo slot, icons and the brochure renders. */
+/* Images: the hero plate, the ingredient photos, icons and the brochure renders. */
 
 import heroL from "../assets/food/plate-hero-960.webp";
 import heroS from "../assets/food/plate-hero-560.webp";
@@ -68,13 +68,7 @@ export const INGREDIENT_PHOTOS: Record<IngredientKey, { small: string; large: st
 export const ingredientSrcSet = (key: IngredientKey) =>
   `${INGREDIENT_PHOTOS[key].small} 560w, ${INGREDIENT_PHOTOS[key].large} 840w`;
 
-/**
- * Section 6's photo: one real photo of quality check / packing / dispatch. Until there is one, the
- * section shows an illustrated stand-in. To add it: put the file in src/assets/, import it here and set
- * e.g. `{ src: opsPhoto, width: 1200, height: 1500, alt: { bn: "…", en: "…" } }`.
- */
-export const OPS_PHOTO: { src: string; width: number; height: number; alt: L } | null = null;
-
+/** Illustrated icons for the process steps (market → cook → pack → deliver). */
 export const ICONS = {
   market: iconMarket,
   cook: iconCook,

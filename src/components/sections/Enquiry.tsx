@@ -147,7 +147,7 @@ export function Enquiry() {
   const ph = (f: EnquiryField) => t(e.fields[f].placeholder);
   /** the form sends the English area name; people see it in their language */
   const areaName = (a: string) => {
-    const known = site.kitchenToOffice.areas.find((x) => x.en === a);
+    const known = e.areas.find((x) => x.en === a);
     return known ? t(known) : t(e.otherArea);
   };
   const formTitle = t(e.formTitle);

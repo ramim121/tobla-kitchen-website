@@ -18,15 +18,13 @@ const SECTION_TO_NAV: Record<string, string | null> = {
   ingredients: "trust",
   menu: "menu",
   gallery: "menu",
-  "kitchen-to-office": "kitchen-to-office",
-  support: "kitchen-to-office",
-  enquiry: "enquiry",
-  about: "about",
-  contact: "contact",
-  // the three earlier sections kept below the new ten: no nav item lights up
+  // three earlier sections the owner kept: only the process ("How we work") has a nav item
   risks: null,
-  process: null,
+  process: "process",
   brochure: null,
+  about: "about",
+  enquiry: "enquiry",
+  contact: "contact",
 };
 
 function useActiveNav() {

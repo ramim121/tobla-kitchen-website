@@ -111,3 +111,15 @@ A check guards it (no English words in sections 2–10 or the footer on the Bang
 - Owner marked old sections for removal: dish strip, 41.47% band, sourcing, the day-by-day menu, premium dishes,
   the quote panel, old about and old contact — removed with their components, copy, day-plate and premium-card
   photos and six unused icons. Kept: risks, process, brochure.
+
+## Round 5 — two sections out, hero highlights in Bangla (2026-11-23)
+- Owner marked sections 6 (*From kitchen to office*) and 7 (*Support*) for removal — removed with their components,
+  copy, checks and the unused `OPS_PHOTO` slot. The eight service areas moved to `site.enquiry.areas` (the form's
+  location list still shows them). The nav's *কাজের ধাপ / How we work* now opens the process section (`#process`),
+  which shows the same market → kitchen → packing → delivery steps; the icons stay for it.
+- Owner: the hero highlights under the buttons should be Bangla on the Bangla page and English on the English page,
+  avoiding stiff or little-used Bangla in favour of the English word in Bangla script. Now ডেইলি কোয়ালিটি চেক ·
+  ফ্রেশ উপকরণ, ডেইলি সোর্সিং · কিচেন ভিজিটের সুযোগ · দিনে ৫,০০০ মিল পর্যন্ত ক্যাপাসিটি (matching the site's ডেইলি ফ্রেশ মাছ,
+  উপকরণ ও সোর্সিং, ফ্রি স্যাম্পলিংয়ের সুযোগ). The hero title and buttons keep the owner's mixed copy. Balanced wrapping keeps
+  phone line breaks at natural points (ফ্রেশ উপকরণ, / ডেইলি সোর্সিং).
+- old.toblakitchen.com (the `design-v1` branch) was removed from the Vercel project; the branch stays in git.

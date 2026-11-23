@@ -83,7 +83,7 @@ export function Hero() {
             {site.hero.points.map((p) => {
               const label = t(p);
               return (
-                <li key={p.en} lang={langFor(label)} className="flex items-start gap-2">
+                <li key={p.en} lang={langFor(label)} className="flex items-start gap-2 text-balance">
                   <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-safe/12 text-safe" aria-hidden="true">
                     <Check className="size-3.5" strokeWidth={3} />
                   </span>

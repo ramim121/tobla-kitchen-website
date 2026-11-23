@@ -1,10 +1,15 @@
-// Sections 1–10 check (the 2026-11-22 layout).  usage: node sections.cjs <distDir>
-// Page order, hero, sliding ingredient cards, Menu 01–06 tabs, the kitchen-to-office and support specs,
-// the enquiry form (validation, sending, success / failure — with /api/enquiry stubbed), footer, both languages.
+// Page sections check (the 2026-11-22 layout; sections 6 and 7 removed 2026-11-23).  usage: node sections.cjs <distDir>
+// Page order, hero, sliding ingredient cards, Menu 01–06 tabs, the enquiry form (validation, sending,
+// success / failure — with /api/enquiry stubbed), footer, both languages.
 const { serve, check, done, browser } = require("./lib.cjs");
 
 const dist = process.argv[2];
-const ORDER = ["top", "trust", "ingredients", "menu", "gallery", "kitchen-to-office", "support", "risks", "process", "brochure", "about", "enquiry", "contact"];
+const ORDER = ["top", "trust", "ingredients", "menu", "gallery", "risks", "process", "brochure", "about", "enquiry", "contact"];
+const HERO_POINTS = {
+  bn: "ডেইলি কোয়ালিটি চেক|ফ্রেশ উপকরণ, ডেইলি সোর্সিং|কিচেন ভিজিটের সুযোগ|দিনে ৫,০০০ মিল পর্যন্ত ক্যাপাসিটি",
+  en: "Daily Quality Check|Fresh Ingredients, Daily Sourcing|Kitchen Visit Available|Up to 5,000 Meals/Day Capacity",
+};
+const heroPoints = (page) => page.$$eval("#top ul li", (lis) => lis.map((li) => li.textContent.trim()).join("|"));
 const BENGALI = /[ঀ-৿]/;
 const WEEKDAY = /saturday|sunday|monday|tuesday|wednesday|thursday|friday|\b(sat|sun|mon|tue|wed|thu|fri)\b|শনি|রবি|সোম|মঙ্গল|বুধ|বৃহস্পতি|শুক্র/i;
 
@@ -32,10 +37,11 @@ async function toSection(page, id) {
   // ── order + nav ──
   let page = await open(b);
   const ids = await page.$$eval("#main > section", (els) => els.map((e) => e.id));
-  check(JSON.stringify(ids) === JSON.stringify(ORDER), "page order: 1–7, risks, process, brochure, then about, enquiry, contact", ids.join(" › "));
+  check(JSON.stringify(ids) === JSON.stringify(ORDER), "page order: 1–5, risks, process, brochure, then about, enquiry, contact", ids.join(" › "));
+  check(!(await page.$("#kitchen-to-office, #support")), "sections 6 (kitchen to office) and 7 (support) are gone");
   const nav = await page.$$eval("header nav a", (as) => as.map((a) => a.getAttribute("href")));
   check(await page.evaluate((hs) => hs.every((h) => h && document.querySelector(h)), nav), "every nav link points at a section");
-  check(nav.join() === "#trust,#menu,#kitchen-to-office,#about,#enquiry,#contact", "nav follows the page order", nav.join(" "));
+  check(nav.join() === "#trust,#menu,#process,#about,#enquiry,#contact", "nav follows the page order (How we work → the process)", nav.join(" "));
   const foot = await page.$$eval("footer nav a", (as) => as.map((a) => `${a.textContent.trim()} ${a.getAttribute("href")}`));
   check(
     foot.join("|") === "হোম #top|আমাদের স্ট্যান্ডার্ড #ingredients|মেনু #menu|আমাদের কথা #about|যোগাযোগ #contact",
@@ -71,11 +77,7 @@ async function toSection(page, id) {
     "hero buttons: Request Free Sample and Get Corporate Quote → the enquiry form",
     JSON.stringify(hero.ctas),
   );
-  check(
-    hero.points.join("|") === "Daily Quality Check|Fresh Ingredients, Daily Sourcing|Kitchen Visit Available|Up to 5,000 Meals/Day Capacity",
-    "hero: the four highlights",
-    hero.points.join("|"),
-  );
+  check(hero.points.join("|") === HERO_POINTS.bn, "hero: the four highlights, in Bangla on the Bangla page", hero.points.join("|"));
   for (const width of [360, 390, 768, 1440]) {
     const p = width === 1440 ? page : await open(b, { width, height: 860 });
     const geo = await p.evaluate(() => {
@@ -179,56 +181,11 @@ async function toSection(page, id) {
   const share = cols.photo / (cols.photo + cols.detail);
   check(cols.left && share > 0.53 && share < 0.57, "desktop: photo left ≈ 55%, details right ≈ 45%", share.toFixed(3));
 
-  // ── section 6: kitchen to office ──
-  const spec = (p) =>
-    p.evaluate(() => {
-      const s = document.getElementById("kitchen-to-office");
-      const cs = getComputedStyle(s);
-      const grid = s.querySelector(".grid");
-      const [left, right] = [...grid.children].map((c) => c.getBoundingClientRect());
-      const gs = getComputedStyle(grid);
-      const steps = [...s.querySelectorAll("[data-k2o-steps] > li")];
-      const h3 = steps.map((li) => getComputedStyle(li.querySelector("h3")));
-      const body = steps.map((li) => getComputedStyle(li.querySelector("p:last-child")));
-      const visual = s.querySelector("[data-ops-standin], img.object-cover")?.closest("div");
-      return {
-        bg: cs.backgroundColor,
-        pad: [parseFloat(cs.paddingTop), parseFloat(cs.paddingBottom)],
-        content: grid.getBoundingClientRect().width,
-        share: left.width / (left.width + right.width),
-        gap: parseFloat(gs.columnGap),
-        h2: parseFloat(getComputedStyle(s.querySelector("h2")).fontSize),
-        h3: h3.map((c) => [parseFloat(c.fontSize), Number(c.fontWeight)]),
-        body: body.map((c) => parseFloat(c.fontSize)),
-        // a line between each pair of steps (Tailwind 4's divide-y puts it under every step but the last)
-        dividers: steps.slice(0, -1).every((li, i) => {
-          const below = parseFloat(getComputedStyle(li).borderBottomWidth);
-          const above = parseFloat(getComputedStyle(steps[i + 1]).borderTopWidth);
-          return Math.max(below, above) >= 1 && Math.max(below, above) <= 1.5;
-        }),
-        radius: visual ? parseFloat(getComputedStyle(visual).borderTopLeftRadius) : 0,
-        areas: s.querySelectorAll("[data-coverage] li").length,
-      };
-    });
-  await toSection(page, "kitchen-to-office");
-  const k = await spec(page);
-  check(k.bg === "rgb(250, 249, 246)", "6: warm off-white #FAF9F6", k.bg);
-  check(k.content <= 1200.5, "6: content at most 1200px wide", String(k.content));
-  check(k.share > 0.54 && k.share < 0.56 && k.gap >= 48 && k.gap <= 56, "6: 55% / 45% columns, 48–56px gap", `${k.share.toFixed(3)} / ${k.gap}`);
-  check(k.pad.every((v) => v === 80), "6: 80px top/bottom (desktop)", k.pad.join());
-  check(k.h2 >= 36 && k.h2 <= 44, "6: headline 36–44px (desktop)", String(k.h2));
-  check(k.h3.every(([s, w]) => s >= 18 && s <= 20 && w >= 600), "6: step headings 18–20px, semi-bold", JSON.stringify(k.h3));
-  check(k.body.every((s) => s >= 15 && s <= 16), "6: body text 15–16px", k.body.join());
-  check(k.dividers, "6: thin lines between the steps");
-  check(k.radius >= 12 && k.radius <= 16, "6: image corners 12–16px", String(k.radius));
-  check(k.areas === 8, "6: eight delivery areas");
   check(page.errors.length === 0, "no page errors (desktop)", page.errors.join(" | "));
   await page.close();
 
   // ── phones ──
   page = await open(b, { width: 390, height: 844 });
-  const kp = await spec(page);
-  check(kp.pad.every((v) => v === 48) && kp.h2 >= 28 && kp.h2 <= 32, "phone 6: 48px padding, 28–32px headline", `${kp.pad} / ${kp.h2}`);
   await toSection(page, "menu");
   const row = await page.$eval("#menu [role=tablist]", (el) => ({ scroll: el.scrollWidth > el.clientWidth, ox: getComputedStyle(el).overflowX }));
   check(row.scroll && row.ox === "auto", "phone: menu tabs scroll sideways", JSON.stringify(row));
@@ -260,11 +217,13 @@ async function toSection(page, id) {
   page = await open(b, { lang: "en" });
   const leaks = await page.evaluate(
     (ids) => ids.filter((id) => /[ঀ-৿]/.test(document.getElementById(id).innerText)),
-    ["top", "trust", "ingredients", "menu", "kitchen-to-office", "support", "enquiry", "about", "contact"],
+    ["top", "trust", "ingredients", "menu", "enquiry", "about", "contact"],
   );
-  check(leaks.length === 0, "English page: sections 1–4 and 6–10 have no Bangla left", leaks.join());
+  check(leaks.length === 0, "English page: the hero, sections 2–4 and 8–10 have no Bangla left", leaks.join());
   const enTitle = await page.$eval("#top h1 span", (s) => s.textContent.trim());
   check(enTitle === "For office lunch, one good day isn't enough.", "English hero title", enTitle);
+  const enPoints = await heroPoints(page);
+  check(enPoints === HERO_POINTS.en, "English page: the hero highlights in English", enPoints);
   const enTabs = await page.$$eval("#menu [role=tab]", (ts) => ts.map((t) => t.textContent.trim()).join());
   check(enTabs === "Menu 01,Menu 02,Menu 03,Menu 04,Menu 05,Menu 06", "English page: tabs read Menu 01 … Menu 06", enTabs);
   await page.close();
@@ -288,46 +247,29 @@ async function toSection(page, id) {
     const foot = words(document.querySelector("footer"));
     if (foot) out.push(`footer: ${foot.join(" ")}`);
     return out;
-  }, ["trust", "ingredients", "menu", "gallery", "kitchen-to-office", "support", "enquiry", "about", "contact"]);
-  check(english.length === 0, "Bangla page: sections 2–10 and the footer are all Bangla", english.join(" | "));
+  }, ["trust", "ingredients", "menu", "gallery", "enquiry", "about", "contact"]);
+  check(english.length === 0, "Bangla page: every section after the hero, and the footer, is all Bangla", english.join(" | "));
   const heroMix = await page.$eval("#top", (el) => /Office Lunch-এ/.test(el.innerText) && /Request Free Sample/.test(el.innerText));
-  check(heroMix, "Bangla page: the hero keeps the owner's Bangla–English copy");
+  check(heroMix, "Bangla page: the hero keeps the owner's Bangla–English title and buttons");
+  const bnPoints = await heroPoints(page);
+  check(!/[A-Za-z]/.test(bnPoints), "Bangla page: no English letters in the hero highlights", bnPoints);
   const areas = await page.$$eval("#enquiry select[name=location] option", (os) => os.filter((o) => o.value).map((o) => o.textContent.trim()));
   check(areas[0] === "গুলশান" && areas.length === 9, "Bangla page: service areas listed in Bangla (sent in English)", areas.join(", "));
   await page.close();
 
-  // ── section 7: support (spec) ──
-  const support = (p) =>
-    p.evaluate(() => {
-      const s = document.getElementById("support");
-      const cs = getComputedStyle(s);
-      const wrap = s.firstElementChild.getBoundingClientRect();
-      const strip = s.querySelector("[data-account-manager]");
-      const steps = [...s.querySelectorAll("[data-support-steps] > li")].map((li) => li.getBoundingClientRect());
-      const lead = s.querySelector("h2 + p");
-      return {
-        bg: cs.backgroundColor,
-        pad: [parseFloat(cs.paddingTop), parseFloat(cs.paddingBottom)],
-        content: wrap.width - parseFloat(getComputedStyle(s.firstElementChild).paddingLeft) * 2,
-        lead: lead.getBoundingClientRect().width,
-        h2: parseFloat(getComputedStyle(s.querySelector("h2")).fontSize),
-        stripBg: getComputedStyle(strip).backgroundColor,
-        stripW: strip.getBoundingClientRect().width,
-        steps: steps.map((r) => [Math.round(r.left), Math.round(r.top)]),
-        buttons: s.querySelectorAll("a, button").length,
-      };
-    });
+  // ── the language toggle swaps the hero highlights ──
   page = await open(b);
-  await toSection(page, "support");
-  const s7 = await support(page);
-  check(s7.bg === "rgb(255, 255, 255)" && s7.pad.every((v) => v === 80), "7: white, 80px padding (desktop)", `${s7.bg} ${s7.pad}`);
-  check(s7.content <= 1200.5 && s7.lead <= 720.5 && s7.h2 >= 36 && s7.h2 <= 44, "7: ≤ 1200px, intro ≤ 720px, headline 36–44px", JSON.stringify(s7));
-  check(s7.stripBg === "rgb(255, 244, 234)" && Math.abs(s7.stripW - s7.content) < 2, "7: account manager on a full-width #FFF4EA strip");
-  const [c1, c2, c3] = s7.steps;
-  check(c1[1] === c2[1] && c2[1] === c3[1] && c1[0] < c2[0] && c2[0] < c3[0], "7: three steps side by side (desktop)");
-  check(s7.buttons === 0, "7: no extra button");
+  await page.click("header [role=group] button[lang=en]");
+  await page.waitForTimeout(700);
+  const toggled = await heroPoints(page);
+  check(toggled === HERO_POINTS.en, "language toggle: the hero highlights switch to English", toggled);
+  await page.click("header [role=group] button[lang=bn]");
+  await page.waitForTimeout(700);
+  check((await heroPoints(page)) === HERO_POINTS.bn, "…and back to Bangla");
+  await page.close();
 
   // ── section 8: enquiry layout ──
+  page = await open(b);
   const s8 = await page.evaluate(() => {
     const s = document.getElementById("enquiry");
     const panel = s.querySelector("[data-enquiry-panel]").getBoundingClientRect();
@@ -415,13 +357,11 @@ async function toSection(page, id) {
   check(fail, "8: if sending fails, the form says so and offers a call");
   const kept = await page.inputValue(`${F} input[name=company]`);
   check(kept === "Test Company Ltd", "8: …and keeps what they typed");
-  check(page.errors.length === 0, "no page errors (sections 7–10)", page.errors.join(" | "));
+  check(page.errors.length === 0, "no page errors (sections 8–10)", page.errors.join(" | "));
   await page.close();
 
-  // ── phones: section 7 stacks, section 8 order, big tap targets ──
+  // ── phones: section 8 order, big tap targets ──
   page = await open(b, { width: 390, height: 844 });
-  const m7 = await support(page);
-  check(m7.pad.every((v) => v === 48) && new Set(m7.steps.map((s) => s[0])).size === 1, "phone 7: 48px padding, steps stacked");
   const m8 = await page.evaluate(() => {
     const top = (sel) => document.querySelector(sel).getBoundingClientRect().top;
     const tall = [...document.querySelectorAll("#enquiry input:not([type=checkbox]):not([name=website]), #enquiry select, #enquiry button[type=submit]")].map(

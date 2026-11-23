@@ -19,8 +19,8 @@ npm run preview  # serve the production build
 `npm run check` builds the site (normal and gated) and runs the checks in `scripts/checks/`: the gate
 switch, no dark or orange sections and AA text contrast (desktop + phone), the gallery photo files, the
 gallery filters, the photo modal (keys, arrows, swipe, focus, phones, English), the phone Back button and
-sections 1–6 (page order, hero, the sliding ingredient cards, the Menu 01–06 tabs, the kitchen-to-office spec,
-both languages).
+the page sections (page order, hero, the sliding ingredient cards, the Menu 01–06 tabs, the enquiry form, both
+languages).
 It needs Playwright with Chromium and Python 3 with Pillow — both are preinstalled in Claude Code cloud
 sessions; elsewhere: `npm i -g playwright && npx playwright install chromium`, `pip install pillow`, and run
 with `NODE_PATH=$(npm root -g) npm run check`.
@@ -60,9 +60,12 @@ The launch countdown still points at `LAUNCH_AT`; move it (or reword the copy) b
 maintenance page.
 
 ## Page order
+The numbers are the owner's brief (code comments and checks use them too).
+
 1. **Hero** — "Office Lunch-এ একদিন ভালো খাবার যথেষ্ট না। / Consistency matters.", *Request Free Sample* and
    *Get Corporate Quote* side by side (both open the enquiry form; the first ticks "free sample first"), four
-   highlights in two columns. The plate photo is waiting to be replaced with the owner's new image.
+   highlights in two columns (Bangla on the Bangla page). The plate photo is waiting to be replaced with the
+   owner's new image.
 2. **Trust** (`#trust`) — "Don't just take our word for it": visit the kitchen, understand the standards, taste first.
 3. **Ingredients** (`#ingredients`) — eight cards sliding to the left in a loop (pause on hover/keyboard focus,
    drag or swipe, ‹ › and pause buttons; still for reduced motion). *View Supplier Documents* points at the
@@ -70,22 +73,24 @@ maintenance page.
 4. **Weekly menu** (`#menu`) — tabs *Menu 01 … Menu 06*: combinations, not days (no weekday names); each tab swaps
    the photo (55%) and the dish list (45%); phones scroll the tabs sideways.
 5. **Gallery** (`#gallery`) — the kitchen gallery, unchanged, now a section of its own.
-6. **From kitchen to office** (`#kitchen-to-office`) — quality check → packaging → delivery, the operations photo
-   and the delivery areas, built to the owner's spec (#FAF9F6, ≤ 1200px, 55/45 columns, 52px gap, 80/48px padding).
-7. **Support** (`#support`) — the dedicated account manager (#FFF4EA strip) and report → review → resolve.
+
+6 *From kitchen to office* and 7 *Support* were removed on 2026-11-23 (the eight service areas now live with the
+enquiry form's copy, `site.enquiry.areas`).
+
 8. **Enquiry** (`#enquiry`) — "Request a Corporate Quote" form, 45% information / 55% form (see *Enquiries* below).
 9. **About** (`#about`) — "We take office lunch seriously" and what matters to us.
 10. **Contact** (`#contact`) — phone (call / copy), contact person, kitchen address, website; then the footer.
 
 On the page, 9 · 8 · 10 (about, the enquiry form, contact) come last, after the three earlier sections the owner
-kept; the full order is: hero, trust, ingredients, menu, gallery, kitchen to office, support, risks, process,
-brochure, about, enquiry, contact, footer.
+kept; the full order is: hero, trust, ingredients, menu, gallery, risks, process, brochure, about, enquiry,
+contact, footer.
 
-The three earlier sections the owner kept — risks vs. our rules (`#risks`), the process (`#process`) and the
-brochure (`#brochure`) — sit after support, before about; each is one line in `src/App.tsx`. (The ingredients section's *View
-Supplier Documents* button points at the brochure — re-point it in `Ingredients.tsx` before removing the brochure.)
-The rest of the earlier layout (dish strip, 41.47% band, sourcing, day-by-day menu, premium dishes, quote panel,
-old about and contact) was removed on 2026-11-22; it is in git history.
+The three earlier sections the owner kept — risks vs. our rules (`#risks`), the process (`#process`, which the nav's
+*কাজের ধাপ / How we work* opens) and the brochure (`#brochure`) — sit after the gallery, before about; each is one line
+in `src/App.tsx`. (The ingredients section's *View Supplier Documents* button points at the brochure — re-point it in
+`Ingredients.tsx` before removing the brochure.) The rest of the earlier layout (dish strip, 41.47% band, sourcing,
+day-by-day menu, premium dishes, quote panel, old about and contact) was removed on 2026-11-22; it is in git history,
+as are sections 6 and 7.
 
 ## Enquiries (section 8)
 The form checks itself (required: company, contact person, phone, office location, daily meals; optional:
@@ -118,14 +123,18 @@ All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 | `site.ts` | every section's text (incl. the form's labels and messages), contact details, footer |
 | `lunch-menus.ts` | Menu 01–06 for section 4: each combination's dishes, photo and optional dietary note |
 | `risks.ts` | the food-safety risks vs. our rules |
-| `images.ts` | which photo/icon each item uses (hero plate, ingredient photos, icons, brochure renders) and the slot for section 6's operations photo (`OPS_PHOTO`) |
+| `images.ts` | which photo/icon each item uses (hero plate, ingredient photos, icons, brochure renders) |
 | `gallery.ts` | the kitchen gallery: each dish's photo, category, name, description and alt text |
 
-Languages: the hero keeps the owner's copy exactly as written on the Bangla page (a Bangla–English mix with English
-buttons and highlights); every other section is all Bangla on the Bangla page (Bangla digits too: মেনু ০১, ০১ /
-মান যাচাই) and all English on the English page — `npm run check` fails if English words creep into sections 2–10 on
-the Bangla page. Strings written wholly in English get `lang="en"` when shown (`langFor` in `src/lib/i18n.tsx`).
-The enquiry form shows the service areas in Bangla but always sends the English names.
+Languages: the hero keeps the owner's title and buttons exactly as written on the Bangla page (a Bangla–English mix
+with English buttons); its four highlights are Bangla there (ডেইলি কোয়ালিটি চেক · ফ্রেশ উপকরণ, ডেইলি সোর্সিং · কিচেন
+ভিজিটের সুযোগ · দিনে ৫,০০০ মিল পর্যন্ত ক্যাপাসিটি) and English on the English page. Every other section is all Bangla
+on the Bangla page (Bangla digits too: মেনু ০১) and all English on the English page — `npm run check` fails if
+English words creep into the hero highlights or the sections after the hero on the Bangla page. Bangla wording: where
+a pure-Bangla word would read stiffly or is rarely used, write the English word in Bangla script (কোয়ালিটি চেক,
+সোর্সিং, ক্যাপাসিটি), keeping everyday Bangla words (প্রতিদিন, উপকরণ, সুযোগ). Strings written wholly in English get
+`lang="en"` when shown (`langFor` in `src/lib/i18n.tsx`). The enquiry form shows the service areas in Bangla but
+always sends the English names.
 
 Inline markup in copy: `**text**` = orange accent, `==text==` = marker highlight that draws in.
 Prices are not shown on the site: visitors ask for a quote through the enquiry form (section 8).
@@ -135,8 +144,8 @@ A pure white page. Orange is an accent (headings, rules, icons, small buttons), 
 there are no dark sections. Tokens live in `src/index.css`:
 
 - `paper` `#FFFFFF` page · `mist` `#F6F6F7` light grey band between white sections · `line` `#E8E8EB`
-- `linen` `#FAF9F6` warm off-white (sections 6 and 10, the enquiry form panel)
-- `surface-glow` — soft orange-to-white wash (section 6's stand-in panel)
+- `linen` `#FAF9F6` warm off-white (section 10, the enquiry form panel)
+- `surface-glow` — soft orange-to-white wash (kept for highlight panels; unused since section 6 left)
 - `surface-warm` — the same, slightly warmer (kept for feature panels)
 - small orange text uses `orange-700`; large orange text `orange-600` (both pass WCAG AA on white)
 
@@ -168,12 +177,12 @@ Bangla is the default. The toggle at the top switches to English; the choice is 
 - `src/assets/ingredients/<key>-{560,840}.webp` — the raw-ingredient photos on the sliding cards (3:2): generated with
   the OpenAI image tool in the photographer's style (slate, leaves, wood) as stand-ins; replace them with real
   sourcing photos when there are some.
-- `src/assets/images/icon-*.webp` — illustrated icons (generated). The logo is the original vector file. Section 6
-  uses three of them as a stand-in until `OPS_PHOTO` is set.
+- `src/assets/images/icon-*.webp` — illustrated icons (generated) for the process steps. The logo is the original
+  vector file.
 
 ## Older design
-The first design (AI plate photos, 4-week menu) is kept on the `design-v1` branch and is served at
-https://old.toblakitchen.com once its DNS record is set.
+The first design (AI plate photos, 4-week menu) is kept on the `design-v1` branch, in git only:
+old.toblakitchen.com was removed from the Vercel project on 2026-11-23.
 
 Design notes: `docs/superpowers/specs/2026-11-05-tobla-kitchen-website-design.md` (first build),
 `2026-11-18-white-redesign-gallery-design.md` (white look, gallery) and `2026-11-22-sections-1-6-design.md`

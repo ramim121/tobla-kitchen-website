@@ -6,7 +6,7 @@
 #   gallery.cjs   22 photos, category filters
 #   lightbox.cjs  the photo modal: keys, arrows, swipe, wrap, focus, scroll lock, phones, English
 #   history.cjs   phone Back closes the photo / brochure viewers instead of leaving the site
-#   sections.cjs  sections 1–6: order, hero, sliding ingredient cards, Menu 01–06 tabs, the kitchen-to-office spec
+#   sections.cjs  page order, hero (both languages), sliding ingredient cards, Menu 01–06 tabs, the enquiry form
 # Needs Node with Playwright + Chromium, and Python 3 with Pillow (see README › Checks).
 set -euo pipefail
 cd "$(dirname "$0")/../.."

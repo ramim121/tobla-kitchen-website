@@ -21,7 +21,7 @@
   /* surfaces + text — a white page; orange is an accent, never a section fill */
   --color-paper: #ffffff;
   --color-mist: #f6f6f7; /* light grey band between white sections (no orange cast) */
-  --color-linen: #faf9f6; /* warm off-white — the "from kitchen to office" section */
+  --color-linen: #faf9f6; /* warm off-white — the contact section and the enquiry form panel */
   --color-line: #e8e8eb;
   --color-muted: #6b6360; /* 5.3:1 on mist */
 
