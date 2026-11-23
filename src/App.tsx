@@ -10,7 +10,6 @@ import { Enquiry } from "./components/sections/Enquiry";
 import { Gallery } from "./components/sections/Gallery";
 import { Hero } from "./components/sections/Hero";
 import { Ingredients } from "./components/sections/Ingredients";
-import { Process } from "./components/sections/Process";
 import { RiskCompare } from "./components/sections/RiskCompare";
 import { Trust } from "./components/sections/Trust";
 import { WeeklyMenu } from "./components/sections/WeeklyMenu";
@@ -45,9 +44,8 @@ export default function App() {
           <Ingredients />
           <WeeklyMenu />
           <Gallery />
-          {/* three earlier sections the owner kept (process is the nav's "How we work") */}
+          {/* two earlier sections the owner kept */}
           <RiskCompare />
-          <Process />
           <Brochure />
           {/* about, the enquiry form and contact close the page, just before the footer */}
           <AboutUs />

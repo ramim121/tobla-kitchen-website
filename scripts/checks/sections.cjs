@@ -1,10 +1,10 @@
-// Page sections check (the 2026-11-22 layout; sections 6 and 7 removed 2026-11-23).  usage: node sections.cjs <distDir>
+// Page sections check (the 2026-11-22 layout; sections 6, 7 and the old process removed 2026-11-23).  usage: node sections.cjs <distDir>
 // Page order, hero, sliding ingredient cards, Menu 01–06 tabs, the enquiry form (validation, sending,
 // success / failure — with /api/enquiry stubbed), footer, both languages.
 const { serve, check, done, browser } = require("./lib.cjs");
 
 const dist = process.argv[2];
-const ORDER = ["top", "trust", "ingredients", "menu", "gallery", "risks", "process", "brochure", "about", "enquiry", "contact"];
+const ORDER = ["top", "trust", "ingredients", "menu", "gallery", "risks", "brochure", "about", "enquiry", "contact"];
 const HERO_POINTS = {
   bn: "ডেইলি কোয়ালিটি চেক|ফ্রেশ উপকরণ, ডেইলি সোর্সিং|কিচেন ভিজিটের সুযোগ|দিনে ৫,০০০ মিল পর্যন্ত ক্যাপাসিটি",
   en: "Daily Quality Check|Fresh Ingredients, Daily Sourcing|Kitchen Visit Available|Up to 5,000 Meals/Day Capacity",
@@ -37,11 +37,11 @@ async function toSection(page, id) {
   // ── order + nav ──
   let page = await open(b);
   const ids = await page.$$eval("#main > section", (els) => els.map((e) => e.id));
-  check(JSON.stringify(ids) === JSON.stringify(ORDER), "page order: 1–5, risks, process, brochure, then about, enquiry, contact", ids.join(" › "));
-  check(!(await page.$("#kitchen-to-office, #support")), "sections 6 (kitchen to office) and 7 (support) are gone");
+  check(JSON.stringify(ids) === JSON.stringify(ORDER), "page order: 1–5, risks, brochure, then about, enquiry, contact", ids.join(" › "));
+  check(!(await page.$("#kitchen-to-office, #support, #process")), "sections 6 (kitchen to office), 7 (support) and the process (How we work) are gone");
   const nav = await page.$$eval("header nav a", (as) => as.map((a) => a.getAttribute("href")));
   check(await page.evaluate((hs) => hs.every((h) => h && document.querySelector(h)), nav), "every nav link points at a section");
-  check(nav.join() === "#trust,#menu,#process,#about,#enquiry,#contact", "nav follows the page order (How we work → the process)", nav.join(" "));
+  check(nav.join() === "#trust,#menu,#about,#enquiry,#contact", "nav follows the page order (no How we work)", nav.join(" "));
   const foot = await page.$$eval("footer nav a", (as) => as.map((a) => `${a.textContent.trim()} ${a.getAttribute("href")}`));
   check(
     foot.join("|") === "হোম #top|আমাদের স্ট্যান্ডার্ড #ingredients|মেনু #menu|আমাদের কথা #about|যোগাযোগ #contact",

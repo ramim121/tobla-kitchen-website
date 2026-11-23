@@ -123,3 +123,11 @@ A check guards it (no English words in sections 2–10 or the footer on the Bang
   উপকরণ ও সোর্সিং, ফ্রি স্যাম্পলিংয়ের সুযোগ). The hero title and buttons keep the owner's mixed copy. Balanced wrapping keeps
   phone line breaks at natural points (ফ্রেশ উপকরণ, / ডেইলি সোর্সিং).
 - old.toblakitchen.com (the `design-v1` branch) was removed from the Vercel project; the branch stays in git.
+
+## Round 6 — process section out (2026-11-23)
+- Owner: remove the *কীভাবে কাজ করি / How we work* section ("বাজার থেকে আপনার টেবিল পর্যন্ত") in both languages.
+  Removed with its copy, its four illustrated icons and its nav link (*কাজের ধাপ / How we work*); the nav is now
+  Why us · Menu · About · Get a quote · Contact.
+- Background rhythm: without the white process band, the grey risks and grey brochure sections would run together,
+  so the brochure is now white, and about (which now follows a white section) starts with a hairline, as the
+  enquiry form already did. Grey and white still alternate from the hero down to the brochure.

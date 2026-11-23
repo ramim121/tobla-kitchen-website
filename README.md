@@ -81,16 +81,16 @@ enquiry form's copy, `site.enquiry.areas`).
 9. **About** (`#about`) — "We take office lunch seriously" and what matters to us.
 10. **Contact** (`#contact`) — phone (call / copy), contact person, kitchen address, website; then the footer.
 
-On the page, 9 · 8 · 10 (about, the enquiry form, contact) come last, after the three earlier sections the owner
-kept; the full order is: hero, trust, ingredients, menu, gallery, risks, process, brochure, about, enquiry,
-contact, footer.
+On the page, 9 · 8 · 10 (about, the enquiry form, contact) come last, after the two earlier sections the owner
+kept; the full order is: hero, trust, ingredients, menu, gallery, risks, brochure, about, enquiry, contact, footer.
+The nav: Why us · Menu · About · Get a quote · Contact.
 
-The three earlier sections the owner kept — risks vs. our rules (`#risks`), the process (`#process`, which the nav's
-*কাজের ধাপ / How we work* opens) and the brochure (`#brochure`) — sit after the gallery, before about; each is one line
-in `src/App.tsx`. (The ingredients section's *View Supplier Documents* button points at the brochure — re-point it in
-`Ingredients.tsx` before removing the brochure.) The rest of the earlier layout (dish strip, 41.47% band, sourcing,
-day-by-day menu, premium dishes, quote panel, old about and contact) was removed on 2026-11-22; it is in git history,
-as are sections 6 and 7.
+The two earlier sections the owner kept — risks vs. our rules (`#risks`, grey) and the brochure (`#brochure`, white) —
+sit after the gallery, before about; each is one line in `src/App.tsx`. (The ingredients section's *View Supplier
+Documents* button points at the brochure — re-point it in `Ingredients.tsx` before removing the brochure.) The rest of
+the earlier layout (dish strip, 41.47% band, sourcing, day-by-day menu, premium dishes, quote panel, old about and
+contact) was removed on 2026-11-22; sections 6 and 7 and the old process section (*কীভাবে কাজ করি / How we work*, with
+its nav link and four illustrated icons) on 2026-11-23. All of it is in git history.
 
 ## Enquiries (section 8)
 The form checks itself (required: company, contact person, phone, office location, daily meals; optional:
@@ -123,7 +123,7 @@ All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 | `site.ts` | every section's text (incl. the form's labels and messages), contact details, footer |
 | `lunch-menus.ts` | Menu 01–06 for section 4: each combination's dishes, photo and optional dietary note |
 | `risks.ts` | the food-safety risks vs. our rules |
-| `images.ts` | which photo/icon each item uses (hero plate, ingredient photos, icons, brochure renders) |
+| `images.ts` | which photo each item uses (hero plate, ingredient photos, brochure renders) |
 | `gallery.ts` | the kitchen gallery: each dish's photo, category, name, description and alt text |
 
 Languages: the hero keeps the owner's title and buttons exactly as written on the Bangla page (a Bangla–English mix
@@ -144,6 +144,8 @@ A pure white page. Orange is an accent (headings, rules, icons, small buttons), 
 there are no dark sections. Tokens live in `src/index.css`:
 
 - `paper` `#FFFFFF` page · `mist` `#F6F6F7` light grey band between white sections · `line` `#E8E8EB`
+  (top to bottom: white hero, grey trust, white ingredients, grey menu, white gallery, grey risks, then white;
+  where two white sections meet, the lower one starts with a `line` hairline — about, the enquiry form)
 - `linen` `#FAF9F6` warm off-white (section 10, the enquiry form panel)
 - `surface-glow` — soft orange-to-white wash (kept for highlight panels; unused since section 6 left)
 - `surface-warm` — the same, slightly warmer (kept for feature panels)
@@ -177,8 +179,7 @@ Bangla is the default. The toggle at the top switches to English; the choice is 
 - `src/assets/ingredients/<key>-{560,840}.webp` — the raw-ingredient photos on the sliding cards (3:2): generated with
   the OpenAI image tool in the photographer's style (slate, leaves, wood) as stand-ins; replace them with real
   sourcing photos when there are some.
-- `src/assets/images/icon-*.webp` — illustrated icons (generated) for the process steps. The logo is the original
-  vector file.
+- The logo is the original vector file, drawn inline in `src/components/brand/Logo.tsx`.
 
 ## Older design
 The first design (AI plate photos, 4-week menu) is kept on the `design-v1` branch, in git only:

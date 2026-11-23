@@ -1,13 +1,7 @@
-/* Images: the hero plate, the ingredient photos, icons and the brochure renders. */
+/* Images: the hero plate, the ingredient photos and the brochure renders. */
 
 import heroL from "../assets/food/plate-hero-960.webp";
 import heroS from "../assets/food/plate-hero-560.webp";
-
-
-import iconMarket from "../assets/images/icon-market.webp";
-import iconCook from "../assets/images/icon-cook.webp";
-import iconPack from "../assets/images/icon-pack.webp";
-import iconDeliver from "../assets/images/icon-deliver.webp";
 
 import chickenL from "../assets/ingredients/chicken-840.webp";
 import chickenS from "../assets/ingredients/chicken-560.webp";
@@ -67,16 +61,6 @@ export const INGREDIENT_PHOTOS: Record<IngredientKey, { small: string; large: st
 
 export const ingredientSrcSet = (key: IngredientKey) =>
   `${INGREDIENT_PHOTOS[key].small} 560w, ${INGREDIENT_PHOTOS[key].large} 840w`;
-
-/** Illustrated icons for the process steps (market → cook → pack → deliver). */
-export const ICONS = {
-  market: iconMarket,
-  cook: iconCook,
-  pack: iconPack,
-  deliver: iconDeliver,
-} as const;
-
-export type IconKey = keyof typeof ICONS;
 
 /** Brochure renders: two A4-landscape spreads (2400×1697) and three panel thumbnails. */
 export const BROCHURE = {

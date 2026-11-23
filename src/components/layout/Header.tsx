@@ -18,9 +18,8 @@ const SECTION_TO_NAV: Record<string, string | null> = {
   ingredients: "trust",
   menu: "menu",
   gallery: "menu",
-  // three earlier sections the owner kept: only the process ("How we work") has a nav item
+  // two earlier sections the owner kept: no nav item lights up
   risks: null,
-  process: "process",
   brochure: null,
   about: "about",
   enquiry: "enquiry",

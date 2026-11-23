@@ -32,7 +32,6 @@ export const site = {
     items: [
       { id: "trust", label: { bn: "কেন আমরা", en: "Why us" } },
       { id: "menu", label: { bn: "মেনু", en: "Menu" } },
-      { id: "process", label: { bn: "কাজের ধাপ", en: "How we work" } },
       { id: "about", label: { bn: "আমাদের কথা", en: "About" } },
       { id: "enquiry", label: { bn: "কোটেশন", en: "Get a quote" } },
       { id: "contact", label: { bn: "যোগাযোগ", en: "Contact" } },
@@ -435,67 +434,6 @@ export const site = {
     prev: { bn: "আগের ছবি", en: "Previous photo" },
     next: { bn: "পরের ছবি", en: "Next photo" },
     close: { bn: "বন্ধ করুন", en: "Close" },
-  },
-
-  process: {
-    eyebrow: { bn: "কীভাবে কাজ করি", en: "How we work" },
-    title: { bn: "বাজার থেকে **আপনার টেবিল** পর্যন্ত", en: "From the market **to your table**" },
-    lead: {
-      bn: "প্রতিটি ধাপে একই নিয়ম — পরিষ্কার, টাটকা আর সময়মতো।",
-      en: "The same rule at every step — clean, fresh and on time.",
-    },
-    steps: [
-      {
-        key: "market",
-        title: { bn: "প্রতিদিনের বাজার", en: "Daily shopping" },
-        text: {
-          bn: "সেদিনের অর্ডার মিলিয়ে টাটকা মাছ আর সবজি কেনা হয়।",
-          en: "Fresh fish and vegetables, bought to match that day's orders.",
-        },
-      },
-      {
-        key: "cook",
-        title: { bn: "পরিষ্কার রান্নাঘরে রান্না", en: "Cooked in a clean kitchen" },
-        text: {
-          bn: "রান্নাঘর প্রতিদিন জীবাণুমুক্ত করা হয়; কর্মীরা পরেন গ্লাভস, মাস্ক আর হেয়ারনেট।",
-          en: "Sanitized every day. Staff wear gloves, masks and hairnets.",
-        },
-      },
-      {
-        key: "pack",
-        title: { bn: "নিরাপদ প্যাকিং", en: "Safe packing" },
-        text: {
-          bn: "বারবার ব্যবহারযোগ্য, বিপিএ-মুক্ত ফুড-গ্রেড বাক্সে — পলিথিন বা ফোমে নয়।",
-          en: "Reusable, BPA-free, food-safe boxes. No polythene or foam.",
-        },
-      },
-      {
-        key: "deliver",
-        title: { bn: "সময়মতো ডেলিভারি", en: "On-time delivery" },
-        text: {
-          bn: "পরিষ্কার গাড়িতে, প্রতিদিন ঠিক সময়ে আপনার অফিসে।",
-          en: "In clean transport, at your office on time, every day.",
-        },
-      },
-    ],
-    promisesTitle: { bn: "আরও যা নিশ্চিত করি", en: "Plus, every day" },
-    promises: [
-      {
-        key: "hands",
-        title: { bn: "অভিজ্ঞ টিম", en: "Experienced hands" },
-        text: { bn: "রান্না ও সার্ভিস টিমের কয়েক দশকের ক্যাটারিং অভিজ্ঞতা।", en: "Kitchen and service staff with decades of catering experience." },
-      },
-      {
-        key: "equipment",
-        title: { bn: "আধুনিক সরঞ্জাম", en: "Modern equipment" },
-        text: { bn: "খাদ্য নিরাপত্তা আর সহজে পরিষ্কারের কথা ভেবে বাছাই করা।", en: "Chosen for food safety and easy cleaning." },
-      },
-      {
-        key: "fresh",
-        title: { bn: "কখনো ফ্রিজের বা বাসি নয়", en: "Never frozen or reused" },
-        text: { bn: "যতজন খাবেন, সেদিন ততজনের জন্যই রান্না — কিছুই পরের দিনের জন্য রাখা হয় না।", en: "Cooked fresh for that day's headcount; nothing carries over." },
-      },
-    ],
   },
 
   brochure: {
