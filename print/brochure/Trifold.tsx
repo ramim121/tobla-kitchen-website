@@ -1,18 +1,15 @@
 import type { ReactNode } from "react";
 import {
-  ArrowUpRight,
   Beef,
   CalendarDays,
-  Check,
   ChefHat,
   ClipboardCheck,
   CookingPot,
   Droplet,
   Drumstick,
   Egg,
-  Fish,
-  GlassWater,
   Globe,
+  LeafyGreen,
   MapPin,
   MessageSquareText,
   Package,
@@ -23,7 +20,6 @@ import {
   Truck,
   UserRound,
   Users,
-  Wheat,
   type LucideIcon,
 } from "lucide-react";
 
@@ -32,12 +28,16 @@ import { BROCHURE_PANELS, SHEET_MM, type BrochurePanel, type BrochureSide } from
 import { Skyline } from "./Skyline";
 
 import coverPlate from "./assets/cover-plate.jpg";
-import platter from "./assets/platter.jpg";
 import kitchen from "./assets/kitchen.jpg";
-import chicken from "./assets/chicken.jpg";
-import fish from "./assets/fish.jpg";
-import vegetables from "./assets/vegetables.jpg";
+import ingredients from "./assets/ingredients.jpg";
 import qrSvg from "./assets/qr.svg?raw";
+
+/*
+ * The owner's first concept, panel for panel: outside — cream "Let's plan", solid orange "Before you
+ * decide", the dark cover; inside — three cream panels with an orange bar over each heading, the
+ * ingredients photo along the bottom of the first and a dark city band at the foot of the last.
+ * Colours are the logo's: orange #F36F21 and black #231F20, with a warm cream.
+ */
 
 export type Mode = "trim" | "print";
 
@@ -46,220 +46,179 @@ const SLUG = 12; // mm from the page edge to the trim, print mode
 
 /* ───────────────────────── Building blocks ───────────────────────── */
 
-function Eyebrow({ children }: { children: ReactNode }) {
-  return <p className="eyebrow">{children}</p>;
-}
-
-function Chip({ icon: Icon, round, small }: { icon: LucideIcon; round?: boolean; small?: boolean }) {
+function Icon({ icon: I, className }: { icon: LucideIcon; className: string }) {
   return (
-    <span className={`chip${round ? " chip--round" : ""}${small ? " chip--sm" : ""}`}>
-      <Icon strokeWidth={1.9} aria-hidden="true" />
+    <span className={className}>
+      <I strokeWidth={1.7} aria-hidden="true" />
     </span>
   );
 }
 
-function Row({ icon, title, children }: { icon: LucideIcon; title: string; children: ReactNode }) {
+/** Heading with the accent line in orange: <Title lead="Good Food Starts with" accent="Better Ingredients" /> */
+function Title({ lead, accent, className = "title" }: { lead: ReactNode; accent: ReactNode; className?: string }) {
   return (
-    <li>
-      <Chip icon={icon} />
-      <div>
-        <p className="item-title">{title}</p>
-        <p className="item-text">{children}</p>
-      </div>
-    </li>
-  );
-}
-
-/** The hand-drawn orange stroke under the accent words (as under "Consistency matters." on the site). */
-function Brush({ children }: { children: ReactNode }) {
-  return (
-    <span className="brush">
-      {children}
-      <svg viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M3 11 C 60 4, 140 3, 297 8" fill="none" stroke="#F36F21" strokeLinecap="round" strokeWidth="4.6" vectorEffect="non-scaling-stroke" />
-      </svg>
-    </span>
+    <h2 className={className}>
+      {lead}
+      <br />
+      <em>{accent}</em>
+    </h2>
   );
 }
 
 /* ───────────────────────── Outside ───────────────────────── */
 
-/** Outside left — the flap that folds in: how to get started, the QR code and contact details. */
+/** Outside left — the flap that folds in: plan your office lunch, the QR code and contact details. */
 function PlanPanel() {
   return (
     <>
-      <Eyebrow>Get started</Eyebrow>
-      <h2 className="title">
-        Let&rsquo;s Plan Your
-        <br />
-        <em>Office Lunch.</em>
-      </h2>
-      <p className="lead">
-        Tell us about your team, location and lunch requirements. We&rsquo;ll share a tailored proposal for your office: menu
-        options, pricing and a delivery plan.
+      <Title lead={<>Let&rsquo;s Plan Your</>} accent="Office Lunch" />
+      <p className="body">
+        Tell us about your team, location and lunch requirements. We&rsquo;ll share a tailored service proposal for your office:
+        menu options, pricing and a delivery plan.
       </p>
 
-      <ol className="steps">
-        <li>
-          <span className="num">01</span>
-          <div>
-            <p className="item-title">Share your requirements</p>
-            <p className="item-text">Daily meal count, office location and start date.</p>
-          </div>
-        </li>
-        <li>
-          <span className="num">02</span>
-          <div>
-            <p className="item-title">Get your proposal</p>
-            <p className="item-text">Menus, pricing and delivery, built around your team.</p>
-          </div>
-        </li>
-        <li>
-          <span className="num">03</span>
-          <div>
-            <p className="item-title">Taste, then decide</p>
-            <p className="item-text">A free sample at your office before service begins.</p>
-          </div>
-        </li>
-      </ol>
-
-      <div className="qr-card">
+      <div className="qr-row">
         <div className="qr" dangerouslySetInnerHTML={{ __html: qrSvg }} />
         <div>
-          <p className="item-title">Request a corporate quote</p>
-          <p className="item-text">Scan the code to open our enquiry form.</p>
-          <p className="url">
-            toblakitchen.com
-            <ArrowUpRight strokeWidth={2.2} aria-hidden="true" />
-          </p>
+          <p className="qr-title">Visit Our Website</p>
+          <p className="qr-text">Scan the QR code or visit</p>
+          <p className="qr-url">toblakitchen.com</p>
         </div>
       </div>
 
-      <p className="label contacts-label">Talk to us directly</p>
+      <hr className="rule" />
+
       <ul className="contacts">
         <li>
-          <Chip icon={Phone} round />
+          <Icon icon={Phone} className="dot" />
           <div>
-            <p className="phone">01711 400 151</p>
-            <p className="who">Raihan Mahmud · GM, Business Development</p>
+            <p className="contact-main">01711 400 151</p>
+            <p className="contact-sub">Raihan Mahmud, GM Business Development</p>
           </div>
         </li>
         <li>
-          <Chip icon={MapPin} round />
-          <p className="line">17/5 Kunipara, Tejgaon, Dhaka</p>
+          <Icon icon={MapPin} className="dot" />
+          <p className="contact-main">17/5 Kunipara, Tejgaon, Dhaka</p>
         </li>
         <li>
-          <Chip icon={Globe} round />
-          <p className="line">toblakitchen.com</p>
+          <Icon icon={Globe} className="dot" />
+          <p className="contact-main">toblakitchen.com</p>
         </li>
       </ul>
     </>
   );
 }
 
-/** Outside middle — the back cover: three ways to check us before signing up. */
+function PlanDecor() {
+  return (
+    <svg className="decor-full" viewBox="0 0 100 216" preserveAspectRatio="none" aria-hidden="true">
+      {/* orange swoosh in the top-left corner, tan disc rising from the bottom-right */}
+      <path d="M0 0 H32 C 18 3, 6 15, 0 44 Z" fill="#F36F21" />
+      <circle cx="112" cy="236" r="58" fill="#EBDCC9" />
+    </svg>
+  );
+}
+
+/** Outside middle — the back panel, solid orange: three ways to check us before signing up. */
 function DecidePanel() {
-  const checks: { icon: LucideIcon; title: string; text: string }[] = [
-    {
-      icon: ChefHat,
-      title: "1. See the Kitchen",
-      text: "Visit our Tejgaon kitchen and see for yourself where, and how, your office lunch is cooked.",
-    },
+  const checks: { icon: LucideIcon; title: ReactNode; text: string }[] = [
+    { icon: ChefHat, title: "See the Kitchen", text: "Visit our Tejgaon kitchen and see for yourself how we work." },
     {
       icon: ShieldCheck,
-      title: "2. Understand the Standards",
-      text: "Learn where every ingredient comes from, how we keep the kitchen hygienic and how our daily quality check works.",
+      title: (
+        <>
+          Understand
+          <br />
+          the Standards
+        </>
+      ),
+      text: "From ingredient sourcing and hygiene to our daily quality control.",
     },
     {
       icon: Soup,
-      title: "3. Taste Before You Decide",
-      text: "Try a complimentary sample at your office and judge the taste, portion and quality yourself.",
+      title: (
+        <>
+          Taste Before
+          <br />
+          You Decide
+        </>
+      ),
+      text: "Try a meal at your office with a complimentary sampling.",
     },
   ];
   return (
     <>
-      <Eyebrow>Before you decide</Eyebrow>
-      <h2 className="title">
-        Don&rsquo;t Just Take
+      <h2 className="title title--white">
+        Before
         <br />
-        <em>Our Word for It.</em>
+        You Decide
       </h2>
-      <p className="lead">Your team eats our food every working day, so we&rsquo;d rather earn your trust first.</p>
       <ul className="checks">
-        {checks.map((c) => (
-          <li key={c.title} className="card">
-            <Chip icon={c.icon} />
+        {checks.map((c, i) => (
+          <li key={i}>
+            <Icon icon={c.icon} className="badge" />
             <div>
-              <p className="item-title">{c.title}</p>
-              <p className="item-text">{c.text}</p>
+              <p className="check-title">{c.title}</p>
+              <p className="check-text">{c.text}</p>
             </div>
           </li>
         ))}
       </ul>
-      <div className="taste">
-        <figure className="taste__photo">
-          <img src={platter} alt="Polao with chicken roast, egg, beef and salad on a white plate" />
-        </figure>
-        <figure className="promise">
-          <q>
-            Our own team eats the same food we serve you, <em>every single day.</em>
-          </q>
-          <figcaption className="sign">The Tobla Kitchen promise</figcaption>
-        </figure>
-      </div>
+      <p className="promise">
+        Our own team eats the same food
+        <br />
+        we serve you, every single day.
+      </p>
     </>
   );
 }
 
-/** Outside right — the front cover. The plate sits in the panel's decor layer so it can run into the bleed. */
+function DecideDecor() {
+  return (
+    <svg className="decor-full" viewBox="0 0 100 216" preserveAspectRatio="none" aria-hidden="true">
+      {/* a lighter and a deeper orange curve along the foot of the panel */}
+      <path d="M0 176 C 30 160, 70 170, 100 150 V216 H0 Z" fill="#FFFFFF" fillOpacity="0.09" />
+      <path d="M0 196 C 35 182, 72 196, 100 178 V216 H0 Z" fill="#C9520F" fillOpacity="0.22" />
+    </svg>
+  );
+}
+
+/** Outside right — the front cover, dark. The plate sits in the decor layer so it can run into the bleed. */
 function CoverPanel() {
   return (
     <>
       <div className="lockup">
-        <LogoMark className="mark" title="Tobla Kitchen" />
-        <LogoWordmark className="word" />
+        <LogoMark tone="light" className="mark" title="Tobla Kitchen" />
+        <LogoWordmark tone="light" className="word" />
       </div>
-      <p className="pill">Corporate catering · Dhaka</p>
       <h1 className="cover-title">
         Corporate Lunch,
         <br />
         <em>
           Professionally
           <br />
-          <Brush>Managed.</Brush>
+          Managed.
         </em>
       </h1>
-      <p className="cover-lead">
-        Reliable, hygienic and nutritious lunch for Dhaka&rsquo;s offices, cooked fresh and delivered every working day.
-      </p>
-      <ul className="cover-points">
-        {["Daily quality check", "Up to 5,000 meals a day", "Free sample tasting"].map((p) => (
-          <li key={p}>
-            <span className="tick">
-              <Check strokeWidth={3} aria-hidden="true" />
-            </span>
-            {p}
-          </li>
-        ))}
-      </ul>
+      <p className="cover-lead">Reliable, hygienic and nutritious lunch service for your office, cooked fresh every working day.</p>
     </>
   );
 }
 
 /**
  * The cover plate, drawn as one SVG in mm: the site's tabla rings, the orange disc offset behind the photo
- * (like the screen-print offset in the logo), a soft shadow and the round photo. It runs off the
- * bottom-right corner into the bleed. One SVG, not stacked boxes: Chromium splits boxes that cross the
- * page edge when printing and drops their rounded corners; an SVG is printed whole.
+ * (like the screen-print offset in the logo) and the round photo. It runs off the bottom-right corner into
+ * the bleed. One SVG, not stacked boxes: Chromium splits boxes that cross the page edge when printing and
+ * drops their rounded corners; an SVG is printed whole.
  */
 function CoverPlate() {
-  const R = 57; // plate radius, mm
+  const R = 58; // plate radius, mm
   const S = 2 * R * 1.29; // the rings' box (as on the site: rings 29% wider than the plate)
   const c = S / 2;
   const ring = (f: number) => (f / 200) * S; // TablaRings radii are given on a 200 grid
-  const photo = 2 * R * 1.04; // the photo is scaled up a touch so the turned square always fills the circle
-  // plate centre on the cover: 62 mm in from the fold, 180 mm down
-  const style = { width: `${S}mm`, height: `${S}mm`, left: `${62 - c}mm`, top: `calc(var(--bleed) + ${180 - c}mm)` };
+  const photo = 2 * R * 1.04; // scaled up a touch so the turned square always fills the circle
+  // plate centre on the cover: 60 mm in from the fold, 172 mm down
+  const style = { width: `${S}mm`, height: `${S}mm`, left: `${60 - c}mm`, top: `calc(var(--bleed) + ${172 - c}mm)` };
   return (
     <svg className="plate" viewBox={`0 0 ${S} ${S}`} style={style} aria-hidden="true">
       <defs>
@@ -267,15 +226,15 @@ function CoverPlate() {
           <circle cx={c} cy={c} r={R} />
         </clipPath>
         <radialGradient id="plate-shadow">
-          <stop offset="0.8" stopColor="#231F20" stopOpacity="0.32" />
-          <stop offset="1" stopColor="#231F20" stopOpacity="0" />
+          <stop offset="0.8" stopColor="#000000" stopOpacity="0.45" />
+          <stop offset="1" stopColor="#000000" stopOpacity="0" />
         </radialGradient>
       </defs>
-      <circle cx={c} cy={c} r={ring(99)} fill="none" stroke="#231F20" strokeOpacity="0.22" strokeWidth="0.33" strokeDasharray="0.45 1.75" strokeLinecap="round" />
-      <circle cx={c} cy={c} r={ring(90)} fill="none" stroke="#F36F21" strokeOpacity="0.6" strokeWidth="0.42" />
-      <circle cx={c} cy={c} r={ring(81)} fill="none" stroke="#231F20" strokeOpacity="0.1" strokeWidth="0.3" />
-      <circle cx={c + 0.034 * 2 * R} cy={c - 0.036 * 2 * R} r={R} fill="#F36F21" />
-      <circle cx={c - 1} cy={c + 4.5} r={R + 3} fill="url(#plate-shadow)" />
+      <circle cx={c} cy={c} r={ring(99)} fill="none" stroke="#FFFFFF" strokeOpacity="0.28" strokeWidth="0.33" strokeDasharray="0.45 1.75" strokeLinecap="round" />
+      <circle cx={c} cy={c} r={ring(90)} fill="none" stroke="#F36F21" strokeOpacity="0.85" strokeWidth="0.45" />
+      <circle cx={c} cy={c} r={ring(81)} fill="none" stroke="#FFFFFF" strokeOpacity="0.12" strokeWidth="0.3" />
+      <circle cx={c + 0.05 * 2 * R} cy={c - 0.05 * 2 * R} r={R} fill="#F36F21" />
+      <circle cx={c - 1} cy={c + 4} r={R + 3.5} fill="url(#plate-shadow)" />
       <g clipPath="url(#plate-clip)">
         <rect x={c - R} y={c - R} width={2 * R} height={2 * R} fill="#5B5D63" />
         {/* turned so the fish, the rice and the vegetables sit in the part of the plate that stays on the page */}
@@ -287,181 +246,166 @@ function CoverPlate() {
 
 /* ───────────────────────── Inside ───────────────────────── */
 
-/** Inside left — what goes into the food. */
+/** Inside left — what goes into the food, over a photo of fresh ingredients. */
 function IngredientsPanel() {
+  const items: { icon: LucideIcon; lead: string; rest: ReactNode }[] = [
+    { icon: Drumstick, lead: "Antibiotic-free chicken", rest: "from trusted sources, including Organik Chicken" },
+    { icon: Egg, lead: "Omega-3 eggs", rest: "from our designated supplier" },
+    { icon: LeafyGreen, lead: "Daily sourced", rest: "fresh vegetables and fish, never frozen" },
+    { icon: Beef, lead: "Selected meat vendors", rest: "for beef and mutton, never open markets" },
+    { icon: Droplet, lead: "Branded, packaged", rest: "cooking oil, never reused" },
+    {
+      icon: Sprout,
+      lead: "Whole spices,",
+      rest: (
+        <>
+          externally milled: no <span className="nowrap">ready-made</span> mixes
+        </>
+      ),
+    },
+  ];
   return (
     <>
-      <Eyebrow>Ingredients &amp; sourcing</Eyebrow>
-      <h2 className="title">
-        Good Food Starts with
-        <br />
-        <em>Better Ingredients.</em>
-      </h2>
-      <ul className="rows ingredients">
-        <Row icon={Drumstick} title="Antibiotic-free chicken">
-          From selected suppliers, including Organik Chicken.
-        </Row>
-        <Row icon={Egg} title="Omega-3 eggs">
-          From our designated supplier.
-        </Row>
-        <Row icon={Fish} title="Fish & vegetables, bought daily">
-          Fresh from the market every day, never from frozen stock.
-        </Row>
-        <Row icon={Beef} title="Beef & mutton from trusted vendors">
-          Only from selected, vetted vendors, never open markets.
-        </Row>
-        <Row icon={Droplet} title="Branded cooking oil">
-          Packaged oil only, and never reused.
-        </Row>
-        <Row icon={Sprout} title="Whole spices, milled for us">
-          No ready-made spice mixes. Whole spices, ground at the mill.
-        </Row>
-        <Row icon={Wheat} title="Premium Nazirshail rice">
-          Long, slender grains of quality rice in every meal.
-        </Row>
-        <Row icon={GlassWater} title="Filtered water">
-          For all cooking, and for washing vegetables.
-        </Row>
-      </ul>
-      <div className="tiles">
-        {[
-          { src: chicken, label: "Chicken" },
-          { src: fish, label: "Fish" },
-          { src: vegetables, label: "Vegetables" },
-        ].map((t) => (
-          <figure key={t.label} className="tile">
-            <img src={t.src} alt="" />
-            <span>{t.label}</span>
-          </figure>
+      <span className="bar" />
+      <Title lead="Good Food Starts with" accent="Better Ingredients" />
+      <ul className="rows">
+        {items.map((it) => (
+          <li key={it.lead}>
+            <Icon icon={it.icon} className="circle" />
+            <p className="row-text">
+              <strong>{it.lead}</strong> {it.rest}
+            </p>
+          </li>
         ))}
-      </div>
-      <p className="footnote">No artificial colour, ever: the colour in our food comes from the spices.</p>
+      </ul>
     </>
+  );
+}
+
+function IngredientsDecor() {
+  return (
+    <div className="produce">
+      <svg width="0" height="0" aria-hidden="true">
+        <clipPath id="produce-clip" clipPathUnits="objectBoundingBox">
+          <path d="M0 0.04 C 0.3 -0.03, 0.62 0.12, 1 0.36 V1 H0 Z" />
+        </clipPath>
+      </svg>
+      <img src={ingredients} alt="Fresh tomatoes, chillies, greens, cauliflower, aubergine, chicken, eggs and whole spices" />
+    </div>
   );
 }
 
 /** Inside middle — how lunch gets from the kitchen to the office. */
 function KitchenPanel() {
-  const flow: { icon: LucideIcon; title: string; text: string }[] = [
-    { icon: CookingPot, title: "Hygienic kitchen", text: "Sanitised every day; gloves, masks and hairnets on every shift." },
-    { icon: ClipboardCheck, title: "Daily taste & quality check", text: "Every batch is tasted and checked before packing." },
-    { icon: Package, title: "Safe packaging", text: "Reusable, BPA-free food-grade boxes, replaced every two months." },
-    { icon: Truck, title: "Route-planned delivery", text: "At your office within an hour of cooking." },
+  const flow: { icon: LucideIcon; label: ReactNode }[] = [
+    { icon: CookingPot, label: <>Hygienic kitchen operations</> },
+    { icon: ClipboardCheck, label: <>Daily taste &amp; quality check</> },
+    { icon: Package, label: <>Safe &amp; organized packaging</> },
+    { icon: Truck, label: <>Route-planned, on-time delivery</> },
   ];
   return (
     <>
-      <Eyebrow>From our kitchen</Eyebrow>
-      <h2 className="title">
-        From Kitchen to Office,
-        <br />
-        <em>with Care.</em>
-      </h2>
-      <p className="lead">Cooked fresh every day for that day&rsquo;s headcount: never frozen, never carried over to the next day.</p>
+      <span className="bar" />
+      <Title lead="From Kitchen to Office," accent="with Care" />
+      <p className="body body--tight">
+        Cooked fresh every day for that day&rsquo;s headcount, tasted, packed and at your office within an hour.
+      </p>
       <figure className="photo">
         <img src={kitchen} alt="Cooks in hairnets, masks and gloves preparing lunch boxes in a clean steel kitchen" />
       </figure>
-      <ol className="flow">
+      <ul className="flow">
         {flow.map((f, i) => (
-          <li key={f.title}>
-            <div className="head">
-              <Chip icon={f.icon} small />
-              <span className="step">0{i + 1}</span>
-            </div>
-            <p className="item-title">{f.title}</p>
-            <p className="item-text">{f.text}</p>
+          <li key={i}>
+            <Icon icon={f.icon} className="line-icon" />
+            <p>{f.label}</p>
           </li>
         ))}
-      </ol>
+      </ul>
       <div className="capacity">
-        <Chip icon={Users} round />
+        <Icon icon={Users} className="circle circle--lg" />
         <div>
           <span className="upto">Up to</span>
           <span className="big">5,000</span>
         </div>
         <span className="divider" />
         <p className="what">
-          meals a day
-          <small>production capacity</small>
+          Meals per day
+          <br />
+          production capacity
         </p>
       </div>
     </>
   );
 }
 
-/** Inside right — support, menus and where we deliver. */
+/** Inside right — support and menus, then the dark band: where we deliver. */
 function PartnerPanel() {
-  const areas = ["Gulshan", "Banani", "Niketon", "Baridhara", "Baridhara DOHS", "Mohakhali", "Mohakhali DOHS", "Tejgaon"];
   return (
     <>
-      <Eyebrow>Client support</Eyebrow>
-      <h2 className="title">
-        A Reliable Partner
-        <br />
-        <em>for Your Office.</em>
-      </h2>
-      <ul className="rows partner">
-        <Row icon={UserRound} title="Dedicated account manager">
-          One named contact for coordination, questions and service changes.
-        </Row>
-        <li>
-          <Chip icon={MessageSquareText} />
-          <div>
-            <p className="item-title">Feedback &amp; complaint handling</p>
-            <p className="item-text">Tell us what went wrong. We find the cause and fix it, quickly.</p>
-            <ol className="loop" aria-label="How a complaint is handled">
-              {["Report", "Review", "Resolve"].map((s) => (
-                <li key={s}>
-                  <span>{s}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </li>
-        <Row icon={CalendarDays} title="Menu variety & rotation">
-          Six complete lunch menus rotate from Saturday to Thursday. Dietary information on request.
-        </Row>
+      <span className="bar" />
+      <Title lead="A Reliable Partner" accent="for Your Office" />
+      <ul className="rows rows--partner">
+        {[
+          {
+            icon: UserRound,
+            title: "Dedicated Account Manager",
+            text: (
+              <>
+                A single point of contact for smooth, <span className="nowrap">day-to-day</span> service.
+              </>
+            ),
+          },
+          { icon: MessageSquareText, title: "Feedback & Complaint Handling", text: "We listen, review the cause and take corrective action quickly." },
+          { icon: CalendarDays, title: "Menu Variety & Rotation", text: "Six balanced lunch menus rotate through the week to keep your team satisfied." },
+        ].map((r) => (
+          <li key={r.title}>
+            <Icon icon={r.icon} className="circle circle--md" />
+            <div>
+              <p className="row-title">{r.title}</p>
+              <p className="row-desc">{r.text}</p>
+            </div>
+          </li>
+        ))}
       </ul>
-
-      <div className="coverage">
-        <svg className="coverage__bg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="band" x1="0" y1="0" x2="0.35" y2="1">
-              <stop offset="0" stopColor="#FFEEE2" />
-              <stop offset="1" stopColor="#FFF8F3" />
-            </linearGradient>
-          </defs>
-          <path d="M0 9 C 28 1, 62 -1, 100 4 V100 H0 Z" fill="url(#band)" />
-          <path d="M54 1.2 C 72 0.4, 88 1.1, 100 3" fill="none" stroke="#F36F21" strokeWidth="5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-        </svg>
-        <Skyline className="coverage__skyline" />
-        <div className="coverage__head">
-          <Chip icon={MapPin} />
-          <p className="item-title">
-            Corporate lunch service
+      <div className="band">
+        <div className="band__head">
+          <Icon icon={CalendarDays} className="band__icon" />
+          <p>
+            Corporate Lunch Service
             <br />
-            for offices across Dhaka
+            for Offices in Dhaka
           </p>
         </div>
-        <ul className="areas">
-          {areas.map((a) => (
-            <li key={a}>{a}</li>
-          ))}
-        </ul>
-        <p className="note">Somewhere else in Dhaka? Ask us, and we&rsquo;ll check coverage.</p>
+        <p className="band__areas">
+          Gulshan · Banani · Niketon · Baridhara · Baridhara DOHS · Mohakhali · Mohakhali DOHS · Tejgaon
+        </p>
       </div>
     </>
+  );
+}
+
+function PartnerDecor() {
+  return (
+    <div className="band-bg">
+      <svg className="band-bg__shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        {/* an orange sweep over the right of the band's curved top edge */}
+        <path d="M30 13 C 55 1, 80 -2, 100 0 V 12 C 80 9, 58 12, 34 20 Z" fill="#F36F21" />
+        <path d="M0 30 C 26 12, 60 8, 100 10 V100 H0 Z" fill="#231F20" />
+      </svg>
+      <Skyline className="band-bg__skyline" tone="dark" />
+    </div>
   );
 }
 
 /* ───────────────────────── Sheets ───────────────────────── */
 
 const CONTENT: Record<BrochurePanel["id"], { bg: string; body: ReactNode; decor?: ReactNode }> = {
-  plan: { bg: "bg-white", body: <PlanPanel /> },
-  decide: { bg: "bg-warm", body: <DecidePanel /> },
-  cover: { bg: "bg-white", body: <CoverPanel />, decor: <CoverPlate /> },
-  ingredients: { bg: "bg-white", body: <IngredientsPanel /> },
-  kitchen: { bg: "bg-linen", body: <KitchenPanel /> },
-  partner: { bg: "bg-white", body: <PartnerPanel /> },
+  plan: { bg: "bg-cream", body: <PlanPanel />, decor: <PlanDecor /> },
+  decide: { bg: "bg-orange", body: <DecidePanel />, decor: <DecideDecor /> },
+  cover: { bg: "bg-ink", body: <CoverPanel />, decor: <CoverPlate /> },
+  ingredients: { bg: "bg-cream", body: <IngredientsPanel />, decor: <IngredientsDecor /> },
+  kitchen: { bg: "bg-cream-light", body: <KitchenPanel /> },
+  partner: { bg: "bg-cream", body: <PartnerPanel />, decor: <PartnerDecor /> },
 };
 
 function Marks({ side }: { side: BrochureSide }) {

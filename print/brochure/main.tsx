@@ -6,6 +6,7 @@ import { createRoot } from "react-dom/client";
 import "@fontsource/jost/400.css";
 import "@fontsource/jost/500.css";
 import "@fontsource/jost/600.css";
+import "@fontsource/jost/700.css";
 import "./trifold.css";
 import { Trifold, type Mode } from "./Trifold";
 import { SHEET_MM } from "../../src/content/brochure";

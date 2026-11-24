@@ -69,15 +69,18 @@ const MOSQUE =
   "M38.4 22.4V19.2C38.4 18 39.2 17.3 40.1 17.3C41 17.3 41.8 18 41.8 19.2V22.4" + // arched door
   "M45.6 22.4V8.6H47V22.4M45.3 8.6H47.3M45.6 8.6L46.3 5.6L47 8.6M45.3 13.6H47.3"; // minaret
 
-export function Skyline({ className }: { className?: string }) {
+/** tone: "light" = ink lines on a light ground, "dark" = pale lines on the black band */
+export function Skyline({ className, tone = "light" }: { className?: string; tone?: "light" | "dark" }) {
+  const line = tone === "dark" ? "#FFFFFF" : "#231F20";
+  const k = tone === "dark" ? 0.85 : 1; // pale lines read stronger on black
   return (
     <svg viewBox={`0 0 ${W} 23`} preserveAspectRatio="xMidYMax slice" className={className} aria-hidden="true">
-      <circle cx="40.1" cy="10.4" r="7.2" fill="#F36F21" fillOpacity="0.13" />
-      <circle cx="40.1" cy="10.4" r="7.2" fill="none" stroke="#F36F21" strokeOpacity="0.45" strokeWidth="0.22" />
-      <g fill="none" stroke="#231F20" strokeLinecap="round" strokeLinejoin="round">
-        <path d={BLOCKS.map(outline).join("") + MOSQUE} strokeOpacity="0.34" strokeWidth="0.24" />
-        <path d={BLOCKS.map(windows).join("")} strokeOpacity="0.2" strokeWidth="0.32" />
-        <path d={`M0 ${G}H${W}`} strokeOpacity="0.4" strokeWidth="0.26" />
+      <circle cx="40.1" cy="10.4" r="7.2" fill="#F36F21" fillOpacity={tone === "dark" ? 0.2 : 0.13} />
+      <circle cx="40.1" cy="10.4" r="7.2" fill="none" stroke="#F36F21" strokeOpacity="0.6" strokeWidth="0.22" />
+      <g fill="none" stroke={line} strokeLinecap="round" strokeLinejoin="round">
+        <path d={BLOCKS.map(outline).join("") + MOSQUE} strokeOpacity={0.34 * k} strokeWidth="0.24" />
+        <path d={BLOCKS.map(windows).join("")} strokeOpacity={0.2 * k} strokeWidth="0.32" />
+        <path d={`M0 ${G}H${W}`} strokeOpacity={0.4 * k} strokeWidth="0.26" />
       </g>
     </svg>
   );

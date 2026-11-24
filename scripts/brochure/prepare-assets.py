@@ -4,20 +4,21 @@ The brochure is laid out in print/brochure/ and exported by scripts/brochure/exp
 Run this first, only when a photo or the QR link changes (needs Pillow and segno):
 
     pip install pillow segno
-    python3 scripts/brochure/prepare-assets.py --src /path/to/originals --kitchen /path/to/kitchen.png
+    python3 scripts/brochure/prepare-assets.py --src /path/to/originals \\
+        --kitchen /path/to/kitchen.png --ingredients /path/to/ingredients.png
 
-  --src      folder with the photographer's colour-corrected originals (DSC02828.JPG, the fish
-             platter on the cover; DSC02816.JPG, the polao platter on the back) — Drive: "Food
-             Photography - Final Shots after color correction"
-  --kitchen  the kitchen photo for the "From kitchen to office" panel (generated with the OpenAI
-             image tool, 1536x1024 PNG; swap in a real kitchen photo when there is one)
+  --src          folder with the photographer's colour-corrected originals (DSC02828.JPG, the fish
+                 platter on the cover) — Drive: "Food Photography - Final Shots after color correction"
+  --kitchen      the kitchen photo for "From kitchen to office" (generated with the OpenAI image
+                 tool, 1536x1024; swap in a real kitchen photo when there is one)
+  --ingredients  the raw-ingredients photo under "Better ingredients" (generated with the OpenAI
+                 image tool in the style of the site's ingredient photos, 1536x1024)
 
 Writes (JPEG, so Chromium embeds them as-is and the PDF stays small)
-  print/brochure/assets/cover-plate.jpg     1800x1800, square around the plate (shown as a circle)
-  print/brochure/assets/platter.jpg         1600x910, the polao platter for the back panel
-  print/brochure/assets/kitchen.jpg         1536x1024
-  print/brochure/assets/<ingredient>.jpg    840x560, from src/assets/ingredients/<key>-840.webp
-  print/brochure/assets/qr.svg              QR code for the enquiry form (vector)
+  print/brochure/assets/cover-plate.jpg   1800x1800, square around the plate (shown as a circle)
+  print/brochure/assets/kitchen.jpg       1536x1024
+  print/brochure/assets/ingredients.jpg   1536x1024
+  print/brochure/assets/qr.svg            QR code for the website (vector)
 """
 
 import argparse
@@ -34,16 +35,8 @@ COVER = "DSC02828"
 COVER_CROP = (2120, 2028, 1790)
 COVER_SIZE = 1800
 
-# The back panel ("Taste before you decide"): the polao platter, a wide crop around the plate.
-PLATTER = "DSC02816"
-PLATTER_CROP = (1950, 1300, 3500, 1990)  # centre x, centre y, width, height (original pixels)
-PLATTER_SIZE = (1600, 910)
-
-# the three photo tiles under the ingredients list
-INGREDIENTS = ["chicken", "fish", "vegetables"]
-
-# Opens the English page on the enquiry form (the site scrolls to #enquiry on load).
-QR_URL = "https://www.toblakitchen.com/?lang=en#enquiry"
+# Scanning the QR code opens the website.
+QR_URL = "https://www.toblakitchen.com"
 
 
 def save_jpeg(im, name, quality=88):
@@ -61,26 +54,11 @@ def cover(src):
     save_jpeg(im.crop(box).resize((COVER_SIZE, COVER_SIZE), Image.LANCZOS), "cover-plate.jpg")
 
 
-def platter(src):
-    im = ImageOps.exif_transpose(Image.open(os.path.join(src, f"{PLATTER}.JPG"))).convert("RGB")
-    cx, cy, w, h = PLATTER_CROP
-    box = (cx - w // 2, cy - h // 2, cx + w // 2, cy + h // 2)
-    if box[0] < 0 or box[1] < 0 or box[2] > im.width or box[3] > im.height:
-        raise SystemExit(f"platter crop {box} falls outside the {im.size} photo")
-    save_jpeg(im.crop(box).resize(PLATTER_SIZE, Image.LANCZOS), "platter.jpg")
-
-
-def kitchen(path):
+def photo(path, name):
     im = Image.open(path).convert("RGB")
     if im.size != (1536, 1024):
         im = ImageOps.fit(im, (1536, 1024), Image.LANCZOS)
-    save_jpeg(im, "kitchen.jpg", quality=90)
-
-
-def ingredients():
-    for key in INGREDIENTS:
-        im = Image.open(os.path.join(ROOT, "src", "assets", "ingredients", f"{key}-840.webp")).convert("RGB")
-        save_jpeg(im, f"{key}.jpg", quality=90)
+    save_jpeg(im, name, quality=90)
 
 
 def qr():
@@ -115,13 +93,13 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--src", required=True, help="folder with the DSC0xxxx.JPG originals")
     ap.add_argument("--kitchen", required=True, help="kitchen photo (PNG or JPEG)")
+    ap.add_argument("--ingredients", required=True, help="raw-ingredients photo (PNG or JPEG)")
     args = ap.parse_args()
     os.makedirs(OUT, exist_ok=True)
     print(f"→ {os.path.relpath(OUT, ROOT)}")
     cover(args.src)
-    platter(args.src)
-    kitchen(args.kitchen)
-    ingredients()
+    photo(args.kitchen, "kitchen.jpg")
+    photo(args.ingredients, "ingredients.jpg")
     qr()
 
 

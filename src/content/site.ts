@@ -454,7 +454,7 @@ export const site = {
     },
     preview: { bn: "ব্রোশিওর দেখুন", en: "Preview brochure" },
     download: { bn: "ডাউনলোড (PDF)", en: "Download PDF" },
-    meta: { bn: "A4 ট্রাই-ফোল্ড · ২ পাতা · PDF, ২.৬ এমবি · ইংরেজিতে লেখা", en: "A4 tri-fold · 2 pages · PDF, 2.6 MB · in English" },
+    meta: { bn: "A4 ট্রাই-ফোল্ড · ২ পাতা · PDF, ২ এমবি · ইংরেজিতে লেখা", en: "A4 tri-fold · 2 pages · PDF, 2 MB · in English" },
     /** the files a print shop or designer needs */
     files: { bn: "প্রিন্টের ফাইল", en: "For printing" },
     printPdf: { bn: "প্রিন্ট-রেডি PDF", en: "Print-ready PDF" },

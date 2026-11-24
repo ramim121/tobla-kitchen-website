@@ -158,23 +158,23 @@ with category filters. Tapping a photo opens it in a modal (photo, description u
 arrow keys, Esc and swipe work). Add, remove or reword dishes in `src/content/gallery.ts`.
 
 ## Brochure
-An A4-landscape tri-fold (roll fold) in English, in the site's look: white panels, orange accents, Jost, the logo
-and the hero's plate on tabla rings. Outside: *Let's plan your office lunch* (steps, QR code, contact) · *Don't just
-take our word for it* (the back) · the cover. Inside: *better ingredients* · *from kitchen to office* · *a reliable
-partner* (support, menus, delivery areas).
+An A4-landscape tri-fold (roll fold) in English, laid out after the owner's first concept in the logo's colours
+(orange #F36F21, black #231F20) with a warm cream, Jost and the logo. Outside: *Let's plan your office lunch* (cream:
+QR code to the website, contact) · *Before you decide* (solid orange, the back) · the cover (black, the plate on tabla
+rings). Inside, on cream: *better ingredients* (over a photo of fresh ingredients) · *from kitchen to office* · *a
+reliable partner* (support and menus, then a black band with the delivery areas over a city line drawing).
 
 - **Source:** `print/brochure/` — a page laid out in mm (`Trifold.tsx`, `trifold.css`, `Skyline.tsx`). Panel
   positions live in `src/content/brochure.ts`, shared with the site's viewer: the flap that folds in is 97 mm wide,
   the other panels 100 mm. Preview it with `npm run dev`, then open `/print/brochure/` (add `?mode=print` for the
   bleed and marks). It is not part of the site build.
-- **Photos:** `print/brochure/assets/` — the cover's fish platter (DSC02828) and the back's polao platter (DSC02816),
-  cut from the photographer's originals; the kitchen photo (generated with the OpenAI image tool — swap in a real
-  kitchen photo when there is one); three of the ingredient photos; and the QR code, which opens the English enquiry
-  form (`/?lang=en#enquiry`). Re-make them with
-  `python3 scripts/brochure/prepare-assets.py --src <originals folder> --kitchen <kitchen photo>`.
+- **Photos:** `print/brochure/assets/` — the cover's fish platter (DSC02828), cut from the photographer's original;
+  the kitchen photo and the fresh-ingredients photo (both generated with the OpenAI image tool — swap in real photos
+  when there are some); and the QR code, which opens the website (`https://www.toblakitchen.com`). Re-make them with
+  `python3 scripts/brochure/prepare-assets.py --src <originals folder> --kitchen <kitchen photo> --ingredients <photo>`.
 - **Export:** `npm run brochure` (Chromium, poppler's `pdftocairo`, Python with Pillow and pikepdf) writes
-  - `public/brochure/tobla-kitchen-brochure.pdf` — A4, 2 pages, real text in embedded Jost, photos at 380+ dpi
-    (about 2.6 MB): the main download
+  - `public/brochure/tobla-kitchen-brochure.pdf` — A4, 2 pages, real text in embedded Jost, photos at 370+ dpi
+    (about 2 MB): the main download
   - `public/brochure/tobla-kitchen-brochure-print.pdf` — for a print shop: 3 mm bleed, crop and fold marks,
     TrimBox and BleedBox set
   - `public/brochure/tobla-kitchen-brochure-{outside,inside}.svg` — vector artwork, one file per side (297 × 210 mm,
@@ -187,8 +187,7 @@ partner* (support, menus, delivery areas).
   97 mm flap) in first, then the left panel over it: the cover ends up on top.
 - **On the site** (`#brochure`): fanned panels, a viewer (a whole side with zoom on desktop; on phones one panel at a
   time, in reading order), *Download PDF*, and the print files (print-ready PDF and the two SVGs). Links that name a
-  section (`/#enquiry`, like the QR code) scroll to it once the page has rendered (`useScrollToHashOnLoad` in
-  `src/lib/smooth-scroll.ts`).
+  section (`/#enquiry`) scroll to it once the page has rendered (`useScrollToHashOnLoad` in `src/lib/smooth-scroll.ts`).
 
 ## Language
 Bangla is the default. The toggle at the top switches to English; the choice is remembered, and
