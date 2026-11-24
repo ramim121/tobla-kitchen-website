@@ -77,19 +77,40 @@ const PANELS = [
   check(panels.length === 6 && off.length === 0, "phones: each panel keeps its own width (97 or 100 mm)", JSON.stringify(off));
   await p.close();
 
-  // the QR code's link opens the English page at the enquiry form (phone) — and any #section works (desktop)
+  // a link to a section (/#enquiry, /#contact) opens the page at that section — on phones and desktops, in both
+  // languages. Each is loaded several times: the jump races the page's first layout, so one lucky load proves little.
+  const LOADS = 5;
   for (const [vp, hash, lang] of [
     [{ width: 390, height: 844 }, "enquiry", "en"],
     [{ width: 1280, height: 860 }, "contact", "bn"],
   ]) {
-    p = await b.newPage({ viewport: vp });
-    await p.goto(`${base}/${lang === "en" ? "?lang=en" : ""}#${hash}`, { waitUntil: "networkidle" });
-    await p.waitForTimeout(1500);
-    const top = await p.$eval(`#${hash}`, (el) => Math.round(el.getBoundingClientRect().top));
-    const pageLang = await p.evaluate(() => document.documentElement.lang);
-    check(top >= 0 && top <= 140 && pageLang === lang, `/${lang === "en" ? "?lang=en" : ""}#${hash} opens at that section (${vp.width}px)`, `top ${top}px, lang ${pageLang}`);
+    const tops = [];
+    let pageLang = "";
+    for (let i = 0; i < LOADS; i++) {
+      p = await b.newPage({ viewport: vp });
+      await p.goto(`${base}/${lang === "en" ? "?lang=en" : ""}#${hash}`, { waitUntil: "networkidle" });
+      await p.waitForTimeout(1200);
+      tops.push(await p.$eval(`#${hash}`, (el) => Math.round(el.getBoundingClientRect().top)));
+      pageLang = await p.evaluate(() => document.documentElement.lang);
+      await p.close();
+    }
+    const ok = tops.every((top) => top >= 0 && top <= 140) && pageLang === lang;
+    check(ok, `/${lang === "en" ? "?lang=en" : ""}#${hash} opens at that section, ${LOADS} of ${LOADS} loads (${vp.width}px)`, `tops ${tops.join(", ")}px, lang ${pageLang}`);
+  }
+
+  // …and still lands there when the web fonts arrive late (a slow phone connection): the page reflows after the
+  // first jump, so the site has to jump again against the page's new height
+  const slow = await serve(dist, { delayMs: 900, delayMatch: /\.woff2?$/ });
+  const slowTops = [];
+  for (let i = 0; i < 3; i++) {
+    p = await b.newPage({ viewport: { width: 1280, height: 860 } });
+    await p.goto(`${slow.url}#contact`, { waitUntil: "networkidle" });
+    await p.waitForTimeout(1200);
+    slowTops.push(await p.$eval("#contact", (el) => Math.round(el.getBoundingClientRect().top)));
     await p.close();
   }
+  check(slowTops.every((top) => top >= 0 && top <= 140), "/#contact opens at that section when the fonts load late, 3 of 3 loads (1280px)", `tops ${slowTops.join(", ")}px`);
+  await slow.close();
 
   await b.close();
   await srv.close();

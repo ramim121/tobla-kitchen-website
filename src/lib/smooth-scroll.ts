@@ -77,8 +77,12 @@ export function useScrollToHashOnLoad() {
     const jump = () => {
       const el = document.getElementById(id);
       if (stopped || !el) return null;
-      if (lenis) lenis.scrollTo(el, { immediate: true, force: true });
-      else el.scrollIntoView({ block: "start" });
+      if (lenis) {
+        // Lenis keeps the page height it last measured and re-measures 250 ms after a change, clamping every jump
+        // to it. The page grows as the web fonts swap in, so measure now, or the jump stops short of the section.
+        lenis.resize();
+        lenis.scrollTo(el, { immediate: true, force: true });
+      } else el.scrollIntoView({ block: "start" });
       return el;
     };
     const frame = requestAnimationFrame(() => {
