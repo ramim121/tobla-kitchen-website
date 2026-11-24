@@ -4,10 +4,8 @@ import {
   CalendarDays,
   ChefHat,
   ClipboardList,
-  Drumstick,
-  Egg,
-  Fish,
   Globe,
+  Leaf,
   MapPin,
   MessageSquareText,
   Package,
@@ -21,7 +19,7 @@ import {
 
 import { LogoMark, LogoWordmark } from "../../src/components/brand/Logo";
 import { BROCHURE_PANELS, SHEET_MM, type BrochurePanel, type BrochureSide } from "../../src/content/brochure";
-import { Skyline } from "./Skyline";
+import { SkylineArt, SKYLINE } from "./Skyline";
 
 import mealBox from "./assets/meal-box.jpg";
 import kitchen from "./assets/kitchen.jpg";
@@ -29,11 +27,11 @@ import ingredients from "./assets/ingredients.jpg";
 import qrSvg from "./assets/qr.svg?raw";
 
 /*
- * After the owner's first concept and their review: outside — cream "Let's plan", solid orange "Before you
- * decide", the black cover with a steaming lunch box; inside — "Built on better ingredients" over fresh
- * produce that fades into the cream, "From kitchen to office" under a full-width kitchen photo, and "A
- * reliable partner" with the black Dhaka band. Large type throughout. Logo colours: orange #F36F21, black
- * #231F20, with a warm cream.
+ * After the owner's first concept and their reviews: outside — cream "Let's plan", solid orange "Before you
+ * decide", the black cover with a close-up of a steaming lunch box; inside — "Built on better ingredients"
+ * with round icons over a wave of fresh produce, "From kitchen to office" under a full-width kitchen photo,
+ * and "A reliable partner" with an orange band for the Dhaka service areas. Large type throughout. Logo
+ * colours: orange #F36F21, black #231F20, with a warm cream.
  */
 
 export type Mode = "trim" | "print";
@@ -55,22 +53,43 @@ function Glyph({ strokeWidth = STROKE, children }: { strokeWidth?: number; child
     </svg>
   );
 }
-function OilBottle({ strokeWidth }: { strokeWidth?: number }) {
+/** a hen, facing left: comb, beak, raised tail, wing and feet (the owner's concept) */
+function Hen({ strokeWidth }: { strokeWidth?: number }) {
   return (
     <Glyph strokeWidth={strokeWidth}>
-      <path d="M10 2.5h4" />
-      <path d="M10.5 2.5v3c0 .9-.5 1.6-1.3 2.1C7.6 8.6 6.5 10.3 6.5 12.3V20a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5v-7.7c0-2-1.1-3.7-2.7-4.7-.8-.5-1.3-1.2-1.3-2.1v-3" />
-      <path d="M6.5 13.5h11M6.5 18h11" />
+      <path d="M3.6 8.2 5.6 7.2C5.8 5.3 7.2 4.4 8.6 4.6c1.6.3 2.3 1.8 1.9 3.4-.3 1.4.8 2.6 2.5 2.6 1.8 0 3.2-1 4.2-2.6l2.2-3.4.2 3.6 1.6-1.6c.4 4.4-.8 8.8-4.6 11-3 1.6-7.4 1.4-9.6-1-1.8-2-2-5-.8-7Z" />
+      <path d="M7.3 4.7c-.2-1.3 1-1.8 1.6-.8.7-.8 1.9-.1 1.3 1.1" />
+      <path d="M11 13.6c1.6 2 4.6 2 6.2-.2" />
+      <path d="M11 18.9v2.3M14.4 18.6v2.6M9.8 21.2h2.4M13.2 21.2h2.4" />
+      <circle cx="8.1" cy="6.6" r=".45" fill="currentColor" />
     </Glyph>
   );
 }
-function Mortar({ strokeWidth }: { strokeWidth?: number }) {
+/** an egg with a little highlight */
+function EggIcon({ strokeWidth }: { strokeWidth?: number }) {
   return (
     <Glyph strokeWidth={strokeWidth}>
-      <path d="M14.2 9.8 19.6 4.4" strokeWidth={3} />
-      <path d="M3 11.5h18" />
-      <path d="M4.6 11.5a7.4 7 0 0 0 14.8 0" />
-      <path d="M9 20.5h6" />
+      <path d="M12 2.6c-3.6 0-6.7 6-6.7 11.2a6.7 6.7 0 0 0 13.4 0C18.7 8.6 15.6 2.6 12 2.6Z" />
+      <path d="M15.4 14.4a3.4 3.4 0 0 1-2.8 3.3" />
+    </Glyph>
+  );
+}
+/** a drop of oil with a little highlight */
+function OilDrop({ strokeWidth }: { strokeWidth?: number }) {
+  return (
+    <Glyph strokeWidth={strokeWidth}>
+      <path d="M12 2.8s-6.2 6.8-6.2 11.5a6.2 6.2 0 0 0 12.4 0C18.2 9.6 12 2.8 12 2.8Z" />
+      <path d="M8.9 14.6a3.2 3.2 0 0 0 2.7 3" />
+    </Glyph>
+  );
+}
+/** whole spices: two crossed cinnamon sticks and a cardamom pod */
+function Spices({ strokeWidth }: { strokeWidth?: number }) {
+  return (
+    <Glyph strokeWidth={strokeWidth}>
+      <rect x="3" y="9.2" width="15" height="3.6" rx="1.8" transform="rotate(-52 10.5 11)" />
+      <rect x="4.6" y="10.6" width="15.4" height="3.6" rx="1.8" transform="rotate(-6 12.3 12.4)" />
+      <ellipse cx="17.8" cy="19.2" rx="2.5" ry="1.45" transform="rotate(-28 17.8 19.2)" />
     </Glyph>
   );
 }
@@ -236,26 +255,25 @@ function CoverPanel() {
 }
 
 /**
- * The steaming lunch box: one SVG in mm, the photo (its top already fades into the cover's black, so the
- * steam rises out of it — see prepare-assets.py) and the orange disc at the right edge, as in the concept. Its bottom-right runs into the
- * bleed. An SVG, not stacked boxes: Chromium splits boxes that cross the page edge when printing.
+ * The steaming lunch box, close up: one SVG in mm. The photo already holds everything (prepare-assets.py): its
+ * black matches the cover, its top fades into it so the steam rises out of the page, and the orange disc sits
+ * behind the box with the steam in front of it. 108 mm wide: its right edge on the bleed, 5 mm cut off at the
+ * fold, and its foot runs off the bottom, so the box is never shown whole. An SVG, not stacked boxes:
+ * Chromium splits boxes that cross the page edge when printing.
  */
 function CoverMealBox() {
-  const W = 103; // the panel + the bleed on the right
+  const W = 108; // keep in step with MEAL_BOX_WIDTH_MM in prepare-assets.py
   const H = W * 1.5; // the photo is 2:3
-  const top = 210 + BLEED - H; // its foot sits on the bleed edge
   return (
-    <svg className="art" viewBox={`0 0 ${W} ${H}`} style={{ width: `${W}mm`, height: `${H}mm`, left: 0, top: `calc(var(--bleed) + ${top}mm)` }} aria-hidden="true">
-      <image href={mealBox} width={W} height={H} preserveAspectRatio="xMidYMax slice" />
-      {/* the orange disc: just above the box's right corner, cut by the panel edge */}
-      <circle cx="128" cy={95 - top} r="36" fill="#F36F21" />
+    <svg className="art" viewBox={`0 0 ${W} ${H}`} style={{ width: `${W}mm`, height: `${H}mm`, left: "-5mm", top: "calc(var(--bleed) + 66mm)" }} aria-hidden="true">
+      <image href={mealBox} width={W} height={H} preserveAspectRatio="xMidYMid slice" />
     </svg>
   );
 }
 
 /* ───────────────────────── Inside ───────────────────────── */
 
-/** Inside left — what goes into the food, over fresh produce that fades into the cream. */
+/** Inside left — what goes into the food, over a wave of fresh produce. */
 function IngredientsPanel() {
   return (
     <>
@@ -265,23 +283,23 @@ function IngredientsPanel() {
         <br />
         <em>Better Ingredients</em>
       </h2>
-      <ul className="items">
-        <Item icon={Drumstick} title="Antibiotic-free chicken">
+      <ul className="items items--lined">
+        <Item icon={Hen} title="Antibiotic-free chicken">
           Sourced from trusted, vetted suppliers.
         </Item>
-        <Item icon={Egg} title="Omega-3 eggs">
+        <Item icon={EggIcon} title="Omega-3 eggs">
           Nutritious, high-quality eggs for balanced meals.
         </Item>
-        <Item icon={Fish} title="Daily fresh vegetables and fish">
+        <Item icon={Leaf} title="Daily fresh vegetables and fish">
           Seasonal, fresh and carefully selected.
         </Item>
         <Item icon={Beef} title="Selected meat vendors">
           From quality and compliant sources.
         </Item>
-        <Item icon={OilBottle} title="Branded cooking oil">
+        <Item icon={OilDrop} title="Branded cooking oil">
           Only trusted, recognized brands.
         </Item>
-        <Item icon={Mortar} title="Whole spices, externally milled">
+        <Item icon={Spices} title="Whole spices, externally milled">
           For richer, more authentic flavor and better food safety.
         </Item>
       </ul>
@@ -289,13 +307,25 @@ function IngredientsPanel() {
   );
 }
 
-/** Fresh produce along the foot of the panel; its top fades into the panel's cream (baked into the photo). */
+/**
+ * Fresh produce along the foot of the panel, cut by a wave (the owner's concept): high at the fold, dipping,
+ * a little hump, then lower at the right. The wave is a vector clip, so the photo stays one plain JPEG.
+ */
 function IngredientsPhoto() {
   const W = 103; // the panel + the bleed on the left
-  const H = 80;
+  const TOP = 143; // mm from the trim top
+  const H = 210 + BLEED - TOP;
+  // the photo, 140 mm wide (3:2), its foot on the bleed edge: tomatoes, chicken, eggs and spices fill the wave
+  const PW = 140;
+  const PH = PW / 1.5;
   return (
-    <svg className="art" viewBox={`0 0 ${W} ${H}`} style={{ width: `${W}mm`, height: `${H}mm`, left: `calc(var(--bleed) - ${BLEED}mm)`, top: `calc(var(--bleed) + ${210 + BLEED - H}mm)` }} aria-hidden="true">
-      <image href={ingredients} width={W} height={H} preserveAspectRatio="xMidYMax slice" />
+    <svg className="art" viewBox={`0 0 ${W} ${H}`} style={{ width: `${W}mm`, height: `${H}mm`, left: `calc(var(--bleed) - ${BLEED}mm)`, top: `calc(var(--bleed) + ${TOP}mm)` }} aria-hidden="true">
+      <defs>
+        <clipPath id="produce-wave">
+          <path d={`M0 3C14 3.5 20 21 37 21 51 21 58 16.5 72 17 86 17.5 96 21.5 ${W} 24V${H}H0Z`} />
+        </clipPath>
+      </defs>
+      <image href={ingredients} x={-17} y={H - PH} width={PW} height={PH} preserveAspectRatio="xMidYMid slice" clipPath="url(#produce-wave)" />
     </svg>
   );
 }
@@ -317,8 +347,8 @@ function KitchenPanel() {
         <Item icon={ClipboardList} title="Daily taste & quality check">
           Every batch is checked before dispatch.
         </Item>
-        <Item icon={Package} title="Safe packaging">
-          Food-grade, secure and office-friendly.
+        <Item icon={Package} title="Safe & organized packaging">
+          Food-grade, secure boxes, replaced every 3 months.
         </Item>
         <Item icon={Truck} title="Route-planned delivery">
           On-time, fresh and reliable to your office.
@@ -339,7 +369,7 @@ function KitchenPhoto() {
   );
 }
 
-/** Inside right — support and menus, then the black band: where we deliver. */
+/** Inside right — support and menus, then the orange band: where we deliver. */
 function PartnerPanel() {
   return (
     <>
@@ -349,7 +379,7 @@ function PartnerPanel() {
         <br />
         <em>for Your Office</em>
       </h2>
-      <ul className="items items--partner">
+      <ul className="items items--lined items--partner">
         <Item icon={UserRound} title="Dedicated Account Manager">
           A single point of contact for smooth service.
         </Item>
@@ -379,16 +409,35 @@ function PartnerPanel() {
   );
 }
 
+/**
+ * The band at the foot, shaped as in the owner's concept — a wide rounded corner at the fold, its top rising
+ * gently to the right, a lighter shape peeking out behind it — in an orange gradient instead of black, with a
+ * skyline on the right. Drawn in mm: 100 wide (the panel + the bleed on the right), down to the bleed edge.
+ */
 function PartnerDecor() {
+  const W = 100;
+  const TOP = 112; // mm from the trim top
+  const H = 210 + BLEED - TOP;
+  const s = 0.7; // skyline scale: 68 mm wide, its ground 5 mm above the trim
   return (
-    <div className="band-bg">
-      <svg className="band-bg__shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        {/* an orange sweep over the right of the band's curved top edge */}
-        <path d="M30 12 C 55 1, 80 -2, 100 0 V 11 C 80 8, 58 11, 34 19 Z" fill="#F36F21" />
-        <path d="M0 28 C 26 11, 60 7, 100 9 V100 H0 Z" fill="#231F20" />
-      </svg>
-      <Skyline className="band-bg__skyline" tone="dark" />
-    </div>
+    <svg className="art" viewBox={`0 0 ${W} ${H}`} style={{ width: `${W}mm`, height: `${H}mm`, left: 0, top: `calc(var(--bleed) + ${TOP}mm)` }} aria-hidden="true">
+      <defs>
+        <linearGradient id="band-fill" x1="0.95" y1="0" x2="0.1" y2="1">
+          <stop offset="0" stopColor="#F8964A" />
+          <stop offset="0.45" stopColor="#F36F21" />
+          <stop offset="1" stopColor="#D8540F" />
+        </linearGradient>
+        <linearGradient id="band-glow" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#FDDDC2" />
+          <stop offset="1" stopColor="#F9B07A" />
+        </linearGradient>
+      </defs>
+      <ellipse cx="88" cy="26" rx="34" ry="16" fill="url(#band-glow)" />
+      <path d={`M0 ${H}V52C0 38 10 28.5 26 26 50 22.5 78 19 ${W} 18V${H}Z`} fill="url(#band-fill)" />
+      <g transform={`translate(${W - SKYLINE.w * s} ${H - BLEED - 5 - SKYLINE.ground * s}) scale(${s})`}>
+        <SkylineArt tone="onOrange" />
+      </g>
+    </svg>
   );
 }
 

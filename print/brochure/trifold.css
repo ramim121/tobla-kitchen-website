@@ -232,17 +232,36 @@ img {
   width: 7mm;
   height: 7mm;
 }
+/* balanced lines: no single word left on a line of its own */
 .item-title {
   font-size: 13pt;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.005em;
+  text-wrap: balance;
 }
 .item-text {
   margin-top: 0.7mm;
   font-size: 10.4pt;
   line-height: 1.36;
   color: var(--muted);
+  text-wrap: balance;
+}
+
+/* inside left and right (the owner's concept): round icons, a hairline between items that starts at the text */
+.items--lined .tile {
+  border-radius: 50%;
+}
+.items--lined .item {
+  position: relative;
+}
+.items--lined .item + .item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 16.7mm; /* the icon + the gap */
+  right: 0;
+  border-top: 0.3mm solid var(--rule);
 }
 
 /* ───────────────────────── Outside · Let's plan (cream flap) ───────────────────────── */
@@ -433,7 +452,10 @@ img {
 /* ───────────────────────── Inside · Built on better ingredients ───────────────────────── */
 
 .panel--ingredients .items {
-  margin-top: 5mm;
+  margin-top: 4.5mm;
+}
+.panel--ingredients .item {
+  padding: 2.3mm 0;
 }
 
 /* ───────────────────────── Inside · From kitchen to office ───────────────────────── */
@@ -455,30 +477,11 @@ img {
   padding: 3.6mm 0;
 }
 
-/* the black band at the foot: its shape and the skyline are decor, the words sit in the panel */
-.band-bg {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: calc(80mm + var(--bleed));
-}
-.band-bg__shape {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.band-bg__skyline {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: var(--bleed);
-  height: 26mm;
-}
+/* the orange band at the foot: its shape and the skyline are decor (PartnerDecor), the words sit in the panel,
+   indented a little from the band's rounded corner and ending above the skyline */
 .band {
   margin-top: auto;
-  padding-bottom: 27mm;
+  padding: 0 0 19mm 4mm;
 }
 .band__head {
   display: flex;
@@ -492,8 +495,8 @@ img {
   width: 12mm;
   height: 12mm;
   border-radius: 2.8mm;
-  border: 0.4mm solid var(--orange);
-  color: var(--orange);
+  border: 0.4mm solid #ffffff;
+  color: #ffffff;
 }
 .band__icon svg {
   width: 6.6mm;
@@ -508,8 +511,9 @@ img {
 .band__areas {
   margin-top: 4mm;
   font-size: 10pt;
+  font-weight: 500;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.8);
+  color: #ffffff;
 }
 
 /* ───────────────────────── Print furniture (print mode) ───────────────────────── */

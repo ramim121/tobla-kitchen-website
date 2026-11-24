@@ -1,7 +1,7 @@
 /**
  * A line drawing of a city skyline — office towers and low-rise blocks, no landmarks or religious
  * buildings — for the "offices in Dhaka" band. Drawn in hairlines so it stays quiet behind the text.
- * viewBox is in mm: 97 wide, 23 tall, ground on the bottom edge.
+ * Units: 97 wide, 23 tall, the ground line 22.4 down.
  */
 type Top = "flat" | "step" | "antenna" | "slant" | "slantL" | "crown" | "spire";
 type Block = { x: number; w: number; h: number; top: Top };
@@ -65,17 +65,34 @@ function windows({ x, w, h }: Block) {
   return out.join("");
 }
 
-/** tone: "light" = ink lines on a light ground, "dark" = pale lines on the black band */
-export function Skyline({ className, tone = "light" }: { className?: string; tone?: "light" | "dark" }) {
-  const line = tone === "dark" ? "#FFFFFF" : "#231F20";
-  const k = tone === "dark" ? 0.9 : 1; // pale lines read stronger on black
+/** the drawing's size in its own units: 97 wide, the ground line 22.4 down */
+export const SKYLINE = { w: W, ground: G } as const;
+
+type Tone = "light" | "dark" | "onOrange";
+// line colour and opacities (outlines, windows, ground) for each background
+const TONES: Record<Tone, { line: string; o: [number, number, number] }> = {
+  light: { line: "#231F20", o: [0.36, 0.22, 0.42] }, // ink lines on cream
+  dark: { line: "#FFFFFF", o: [0.32, 0.2, 0.38] }, // pale lines on black
+  onOrange: { line: "#FFFFFF", o: [0.62, 0.42, 0.7] }, // white lines on the orange band
+};
+
+/** The skyline's lines, to place inside another SVG (scale and translate it there). */
+export function SkylineArt({ tone = "light" }: { tone?: Tone }) {
+  const { line, o } = TONES[tone];
+  return (
+    <g fill="none" stroke={line} strokeLinecap="round" strokeLinejoin="round">
+      <path d={BLOCKS.map(outline).join("")} strokeOpacity={o[0]} strokeWidth="0.3" />
+      <path d={BLOCKS.map(windows).join("")} strokeOpacity={o[1]} strokeWidth="0.36" />
+      <path d={`M0 ${G}H${W}`} strokeOpacity={o[2]} strokeWidth="0.3" />
+    </g>
+  );
+}
+
+/** The skyline on its own: fills its box, ground on the bottom edge. */
+export function Skyline({ className, tone = "light" }: { className?: string; tone?: Tone }) {
   return (
     <svg viewBox={`0 0 ${W} 23`} preserveAspectRatio="xMidYMax slice" className={className} aria-hidden="true">
-      <g fill="none" stroke={line} strokeLinecap="round" strokeLinejoin="round">
-        <path d={BLOCKS.map(outline).join("")} strokeOpacity={0.36 * k} strokeWidth="0.24" />
-        <path d={BLOCKS.map(windows).join("")} strokeOpacity={0.22 * k} strokeWidth="0.32" />
-        <path d={`M0 ${G}H${W}`} strokeOpacity={0.42 * k} strokeWidth="0.26" />
-      </g>
+      <SkylineArt tone={tone} />
     </svg>
   );
 }
