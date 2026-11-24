@@ -20,11 +20,11 @@ import oilS from "../assets/ingredients/oil-560.webp";
 import riceL from "../assets/ingredients/rice-840.webp";
 import riceS from "../assets/ingredients/rice-560.webp";
 
-import brochureOutside from "../assets/brochure/page-1.webp";
-import brochureInside from "../assets/brochure/page-2.webp";
-import brochureCover from "../assets/brochure/thumb-p1-3.webp";
-import brochureAbout from "../assets/brochure/thumb-p2-1.webp";
-import brochureSource from "../assets/brochure/thumb-p2-2.webp";
+import brochureOutside from "../assets/brochure/outside.webp";
+import brochureInside from "../assets/brochure/inside.webp";
+import brochureCover from "../assets/brochure/panel-cover.webp";
+import brochureDecide from "../assets/brochure/panel-decide.webp";
+import brochureKitchen from "../assets/brochure/panel-kitchen.webp";
 
 import type { L } from "../lib/i18n";
 
@@ -62,9 +62,13 @@ export const INGREDIENT_PHOTOS: Record<IngredientKey, { small: string; large: st
 export const ingredientSrcSet = (key: IngredientKey) =>
   `${INGREDIENT_PHOTOS[key].small} 560w, ${INGREDIENT_PHOTOS[key].large} 840w`;
 
-/** Brochure renders: two A4-landscape spreads (2400×1697) and three panel thumbnails. */
+/**
+ * Brochure renders, made from the PDF by `npm run brochure`: the two A4-landscape sides (2400×1697) and
+ * three single panels (520×1092) for the fanned cards. Panel positions: src/content/brochure.ts.
+ */
 export const BROCHURE = {
   pages: { outside: brochureOutside, inside: brochureInside },
   pageSize: { w: 2400, h: 1697 },
-  thumbs: { cover: brochureCover, about: brochureAbout, source: brochureSource },
+  thumbs: { cover: brochureCover, decide: brochureDecide, kitchen: brochureKitchen },
+  thumbSize: { w: 520, h: 1092 },
 } as const;

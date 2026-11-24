@@ -1,28 +1,22 @@
 import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { AnimatePresence, motion, useInView } from "motion/react";
-import { ArrowUpRight, Download, Eye, FileText, X, ZoomIn, ZoomOut } from "lucide-react";
+import { ArrowDownToLine, ArrowUpRight, Download, Eye, FileText, X, ZoomIn, ZoomOut } from "lucide-react";
 
 import { Container } from "../ui/Container";
 import { Reveal } from "../ui/Reveal";
 import { SectionHeading } from "../ui/SectionHeading";
 import { CONTACT, site } from "../../content/site";
 import { BROCHURE } from "../../content/images";
-import { useLang, type L } from "../../lib/i18n";
+import { BROCHURE_READING_ORDER, SHEET_MM, brochurePanel, type BrochureSide } from "../../content/brochure";
+import { langFor, useLang } from "../../lib/i18n";
 import { cx, EASE_OUT } from "../../lib/cx";
 import { lockScroll } from "../../lib/smooth-scroll";
 import { useBackToClose } from "../../lib/use-back-to-close";
 
-type Side = "outside" | "inside";
+type Side = BrochureSide;
 
-/** Trifold panels in reading order (page side + column within the spread). */
-const PANELS: { id: string; side: Side; col: 0 | 1 | 2; label: L }[] = [
-  { id: "cover", side: "outside", col: 2, label: { bn: "প্রচ্ছদ", en: "Cover" } },
-  { id: "about", side: "inside", col: 0, label: { bn: "আমাদের কথা ও ডেলিভারি", en: "About us & how we deliver" } },
-  { id: "source-a", side: "inside", col: 1, label: { bn: "উপকরণের উৎস (১–২)", en: "Where ingredients come from (1–2)" } },
-  { id: "source-b", side: "inside", col: 2, label: { bn: "উপকরণের উৎস (৩–৫)", en: "Where ingredients come from (3–5)" } },
-  { id: "values", side: "outside", col: 0, label: { bn: "আমাদের নিয়ম ও লক্ষ্য", en: "Our values & mission" } },
-  { id: "contact", side: "outside", col: 1, label: { bn: "সেবা ও যোগাযোগ", en: "Services & contact" } },
-];
+/** Tri-fold panels in reading order, each with its place on its A4 side (src/content/brochure.ts). */
+const PANELS = BROCHURE_READING_ORDER.map(brochurePanel);
 
 const b = site.brochure;
 
@@ -73,6 +67,9 @@ export function Brochure() {
               {t(b.meta)}
             </p>
           </Reveal>
+          <Reveal delay={0.2}>
+            <PrintFiles />
+          </Reveal>
         </div>
 
         <BrochureFan onOpen={show} />
@@ -80,6 +77,41 @@ export function Brochure() {
 
       <BrochureViewer open={open} onClose={close} />
     </section>
+  );
+}
+
+/** The files a print shop or designer needs: the print-ready PDF and the vector artwork of each side. */
+function PrintFiles() {
+  const { t } = useLang();
+  const files = [
+    { href: CONTACT.brochurePrintPdf, file: CONTACT.brochurePrintFileName, label: t(b.printPdf), note: t(b.printPdfNote) },
+    { href: CONTACT.brochureSvg.outside.href, file: CONTACT.brochureSvg.outside.file, label: t(b.svgOutside) },
+    { href: CONTACT.brochureSvg.inside.href, file: CONTACT.brochureSvg.inside.file, label: t(b.svgInside) },
+  ];
+  const heading = t(b.files);
+  return (
+    <div className="mt-6 max-w-xl border-t border-line pt-5">
+      <p lang={langFor(heading)} className="eyebrow text-muted">
+        {heading}
+      </p>
+      <ul className="mt-3 flex flex-wrap gap-2">
+        {files.map((f) => (
+          <li key={f.href}>
+            <a
+              href={f.href}
+              download={f.file}
+              title={f.note}
+              lang={langFor(f.label)}
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3.5 py-2 text-sm font-medium text-ink transition-colors duration-300 hover:border-orange/40 hover:bg-orange-50"
+            >
+              <ArrowDownToLine className="size-4 text-orange-700" aria-hidden="true" />
+              {f.label}
+              {f.note && <span className="sr-only"> ({f.note})</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -92,8 +124,8 @@ function BrochureFan({ onOpen }: { onOpen: (el: HTMLButtonElement) => void }) {
   const spread = inView ? (hover ? 1.18 : 1) : 0;
 
   const cards = [
-    { src: BROCHURE.thumbs.about, dir: -1 },
-    { src: BROCHURE.thumbs.source, dir: 1 },
+    { src: BROCHURE.thumbs.decide, dir: -1 },
+    { src: BROCHURE.thumbs.kitchen, dir: 1 },
     { src: BROCHURE.thumbs.cover, dir: 0 },
   ];
 
@@ -115,8 +147,8 @@ function BrochureFan({ onOpen }: { onOpen: (el: HTMLButtonElement) => void }) {
           key={c.src}
           src={c.src}
           alt=""
-          width={520}
-          height={1103}
+          width={BROCHURE.thumbSize.w}
+          height={BROCHURE.thumbSize.h}
           loading="lazy"
           decoding="async"
           draggable={false}
@@ -306,15 +338,18 @@ function BrochureViewer({ open, onClose }: { open: boolean; onClose: () => void 
                   <p className="mb-2 text-xs font-semibold text-paper/80">
                     {num(i + 1)}/{num(PANELS.length)} · {t(p.label)}
                   </p>
-                  <div className="relative overflow-hidden rounded-xl bg-paper shadow-lg" style={{ aspectRatio: `${w / 3} / ${h}` }}>
+                  {/* one panel of the side: the panels differ in width (the fold-in flap is 3 mm narrower) */}
+                  <div className="relative overflow-hidden rounded-xl bg-paper shadow-lg" style={{ aspectRatio: `${p.w} / ${SHEET_MM.h}` }}>
                     <img
                       src={BROCHURE.pages[p.side]}
                       alt={`${t(b.modalTitle)} — ${t(p.label)}`}
+                      width={w}
+                      height={h}
                       loading={i < 2 ? "eager" : "lazy"}
                       decoding="async"
                       draggable={false}
-                      className="absolute inset-y-0 left-0 h-full max-w-none"
-                      style={{ width: "300%", transform: `translateX(-${(p.col * 100) / 3}%)` }}
+                      className="absolute inset-y-0 h-full max-w-none"
+                      style={{ width: `${(SHEET_MM.w / p.w) * 100}%`, left: `${(-p.x / p.w) * 100}%` }}
                     />
                   </div>
                 </li>

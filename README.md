@@ -20,7 +20,7 @@ npm run preview  # serve the production build
 switch, no dark or orange sections and AA text contrast (desktop + phone), the gallery photo files, the
 gallery filters, the photo modal (keys, arrows, swipe, focus, phones, English), the phone Back button and
 the page sections (page order, hero, the sliding ingredient cards, the Menu 01–06 tabs, the enquiry form, both
-languages).
+languages) and the brochure (its files and downloads, the viewer on desktop and phones, `#section` links).
 It needs Playwright with Chromium and Python 3 with Pillow — both are preinstalled in Claude Code cloud
 sessions; elsewhere: `npm i -g playwright && npx playwright install chromium`, `pip install pillow`, and run
 with `NODE_PATH=$(npm root -g) npm run check`.
@@ -124,6 +124,7 @@ All copy lives in `src/content/` as Bangla/English pairs (`{ bn, en }`):
 | `lunch-menus.ts` | Menu 01–06 for section 4: each combination's dishes, photo and optional dietary note |
 | `risks.ts` | the food-safety risks vs. our rules |
 | `images.ts` | which photo each item uses (hero plate, ingredient photos, brochure renders) |
+| `brochure.ts` | the tri-fold's panels: where each sits on its A4 side, and the phone viewer's reading order |
 | `gallery.ts` | the kitchen gallery: each dish's photo, category, name, description and alt text |
 
 Languages: the hero keeps the owner's title and buttons exactly as written on the Bangla page (a Bangla–English mix
@@ -157,12 +158,37 @@ with category filters. Tapping a photo opens it in a modal (photo, description u
 arrow keys, Esc and swipe work). Add, remove or reword dishes in `src/content/gallery.ts`.
 
 ## Brochure
-- Download: `public/brochure/tobla-kitchen-brochure.pdf` — the full-quality original (23.7 MB), used by
-  every download button.
-- Preview: lightweight `src/assets/brochure/page-*.webp` renders (2400px) of the two spreads, so the
-  23.7 MB file only loads when someone downloads it. Desktop shows a spread with click-to-zoom; phones show
-  each panel full-width.
-- To update it: replace the PDF, re-render both pages to WebP (2400px wide) and the three `thumb-*` panels.
+An A4-landscape tri-fold (roll fold) in English, in the site's look: white panels, orange accents, Jost, the logo
+and the hero's plate on tabla rings. Outside: *Let's plan your office lunch* (steps, QR code, contact) · *Don't just
+take our word for it* (the back) · the cover. Inside: *better ingredients* · *from kitchen to office* · *a reliable
+partner* (support, menus, delivery areas).
+
+- **Source:** `print/brochure/` — a page laid out in mm (`Trifold.tsx`, `trifold.css`, `Skyline.tsx`). Panel
+  positions live in `src/content/brochure.ts`, shared with the site's viewer: the flap that folds in is 97 mm wide,
+  the other panels 100 mm. Preview it with `npm run dev`, then open `/print/brochure/` (add `?mode=print` for the
+  bleed and marks). It is not part of the site build.
+- **Photos:** `print/brochure/assets/` — the cover's fish platter (DSC02828) and the back's polao platter (DSC02816),
+  cut from the photographer's originals; the kitchen photo (generated with the OpenAI image tool — swap in a real
+  kitchen photo when there is one); three of the ingredient photos; and the QR code, which opens the English enquiry
+  form (`/?lang=en#enquiry`). Re-make them with
+  `python3 scripts/brochure/prepare-assets.py --src <originals folder> --kitchen <kitchen photo>`.
+- **Export:** `npm run brochure` (Chromium, poppler's `pdftocairo`, Python with Pillow and pikepdf) writes
+  - `public/brochure/tobla-kitchen-brochure.pdf` — A4, 2 pages, real text in embedded Jost, photos at 380+ dpi
+    (about 2.6 MB): the main download
+  - `public/brochure/tobla-kitchen-brochure-print.pdf` — for a print shop: 3 mm bleed, crop and fold marks,
+    TrimBox and BleedBox set
+  - `public/brochure/tobla-kitchen-brochure-{outside,inside}.svg` — vector artwork, one file per side (297 × 210 mm,
+    text as outlines)
+  - `src/assets/brochure/{outside,inside}.webp` (2400 px) and `panel-{cover,decide,kitchen}.webp` (520 px) — the
+    site's previews
+
+  If the PDF's size changes, update `site.brochure.meta`.
+- **Printing:** A4 landscape, both sides, *flip on short edge*. With the inside facing up, fold the right panel (the
+  97 mm flap) in first, then the left panel over it: the cover ends up on top.
+- **On the site** (`#brochure`): fanned panels, a viewer (a whole side with zoom on desktop; on phones one panel at a
+  time, in reading order), *Download PDF*, and the print files (print-ready PDF and the two SVGs). Links that name a
+  section (`/#enquiry`, like the QR code) scroll to it once the page has rendered (`useScrollToHashOnLoad` in
+  `src/lib/smooth-scroll.ts`).
 
 ## Language
 Bangla is the default. The toggle at the top switches to English; the choice is remembered, and
@@ -186,5 +212,5 @@ The first design (AI plate photos, 4-week menu) is kept on the `design-v1` branc
 old.toblakitchen.com was removed from the Vercel project on 2026-11-23.
 
 Design notes: `docs/superpowers/specs/2026-11-05-tobla-kitchen-website-design.md` (first build),
-`2026-11-18-white-redesign-gallery-design.md` (white look, gallery) and `2026-11-22-sections-1-6-design.md`
-(the new page order).
+`2026-11-18-white-redesign-gallery-design.md` (white look, gallery), `2026-11-22-sections-1-6-design.md`
+(the new page order) and `2026-11-24-trifold-brochure-design.md` (the tri-fold brochure).

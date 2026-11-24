@@ -56,6 +56,45 @@ export function scrollToId(id: string) {
   else window.scrollTo({ top: 0, behavior });
 }
 
+/**
+ * Open the page at the section named in the address, e.g. the brochure's QR code (/?lang=en#enquiry).
+ * The browser's own jump comes before the sections have rendered, so jump once they exist, and again
+ * when the fonts have loaded and the layout has settled — unless the reader has started scrolling.
+ */
+export function useScrollToHashOnLoad() {
+  useEffect(() => {
+    let id = "";
+    try {
+      id = decodeURIComponent(window.location.hash.slice(1));
+    } catch {
+      return; // a malformed #… — nothing to jump to
+    }
+    if (!id || id === "top") return;
+    let stopped = false;
+    const stop = () => {
+      stopped = true;
+    };
+    const jump = () => {
+      const el = document.getElementById(id);
+      if (stopped || !el) return null;
+      if (lenis) lenis.scrollTo(el, { immediate: true, force: true });
+      else el.scrollIntoView({ block: "start" });
+      return el;
+    };
+    const frame = requestAnimationFrame(() => {
+      jump()?.focus({ preventScroll: true });
+      document.fonts?.ready.then(() => requestAnimationFrame(jump)).catch(() => {});
+    });
+    const events = ["wheel", "touchstart", "keydown"] as const;
+    events.forEach((e) => window.addEventListener(e, stop, { once: true, passive: true }));
+    return () => {
+      stop();
+      cancelAnimationFrame(frame);
+      events.forEach((e) => window.removeEventListener(e, stop));
+    };
+  }, []);
+}
+
 /** Freeze page scrolling (used while the mobile menu is open). */
 export function lockScroll(locked: boolean) {
   if (locked) lenis?.stop();

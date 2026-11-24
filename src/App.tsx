@@ -15,7 +15,7 @@ import { Trust } from "./components/sections/Trust";
 import { WeeklyMenu } from "./components/sections/WeeklyMenu";
 import { site } from "./content/site";
 import { LanguageProvider, useLang } from "./lib/i18n";
-import { useSmoothScroll } from "./lib/smooth-scroll";
+import { useScrollToHashOnLoad, useSmoothScroll } from "./lib/smooth-scroll";
 
 function SkipLink() {
   const { t } = useLang();
@@ -31,6 +31,8 @@ function SkipLink() {
 
 export default function App() {
   useSmoothScroll();
+  // after Lenis starts: links such as the brochure's QR code (/?lang=en#enquiry) open at their section
+  useScrollToHashOnLoad();
   return (
     <MotionConfig reducedMotion="user">
       <LanguageProvider meta={site.meta}>

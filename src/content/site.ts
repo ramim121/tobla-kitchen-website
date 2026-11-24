@@ -10,8 +10,17 @@ export const CONTACT = {
   phoneRaw: "01711400151",
   mapsHref: "https://www.google.com/maps/search/?api=1&query=17%2F5%20Kunipara%2C%20Tejgaon%2C%20Dhaka",
   website: "toblakitchen.com",
+  /** the tri-fold brochure (made by `npm run brochure`, see README › Brochure) */
   brochurePdf: "/brochure/tobla-kitchen-brochure.pdf",
   brochureFileName: "Tobla-Kitchen-Brochure.pdf",
+  /** for a print shop: A4 + 3 mm bleed, crop and fold marks */
+  brochurePrintPdf: "/brochure/tobla-kitchen-brochure-print.pdf",
+  brochurePrintFileName: "Tobla-Kitchen-Brochure-Print-Ready.pdf",
+  /** vector artwork, one SVG per side */
+  brochureSvg: {
+    outside: { href: "/brochure/tobla-kitchen-brochure-outside.svg", file: "Tobla-Kitchen-Brochure-Outside.svg" },
+    inside: { href: "/brochure/tobla-kitchen-brochure-inside.svg", file: "Tobla-Kitchen-Brochure-Inside.svg" },
+  },
 };
 
 export const site = {
@@ -440,12 +449,18 @@ export const site = {
     eyebrow: { bn: "ব্রোশিওর", en: "Brochure" },
     title: { bn: "এক নজরে **তবলা কিচেন**", en: "Tobla Kitchen **at a glance**" },
     lead: {
-      bn: "আমাদের নিয়ম, সেবা আর প্রতিটি উপকরণের উৎস — সব এক ব্রোশিওরে। এখানেই দেখে নিন, অথবা ডাউনলোড করে টিমের সাথে শেয়ার করুন।",
-      en: "Our rules, services and where every ingredient comes from — all in one brochure. View it here, or download it to share with your team.",
+      bn: "উপকরণের উৎস, কিচেন থেকে অফিসে খাবার পৌঁছানো, ক্লায়েন্ট সাপোর্ট আর কীভাবে শুরু করবেন — সব এক ব্রোশিওরে। এখানেই দেখে নিন, অথবা ডাউনলোড করে টিমের সাথে শেয়ার করুন।",
+      en: "Where our ingredients come from, how lunch gets from our kitchen to your office, client support and how to get started — all in one brochure. View it here, or download it to share with your team.",
     },
     preview: { bn: "ব্রোশিওর দেখুন", en: "Preview brochure" },
     download: { bn: "ডাউনলোড (PDF)", en: "Download PDF" },
-    meta: { bn: "২ পাতা · পূর্ণ মানের PDF, ২৩.৭ এমবি · ইংরেজিতে লেখা", en: "2 pages · full-quality PDF, 23.7 MB · in English" },
+    meta: { bn: "A4 ট্রাই-ফোল্ড · ২ পাতা · PDF, ২.৬ এমবি · ইংরেজিতে লেখা", en: "A4 tri-fold · 2 pages · PDF, 2.6 MB · in English" },
+    /** the files a print shop or designer needs */
+    files: { bn: "প্রিন্টের ফাইল", en: "For printing" },
+    printPdf: { bn: "প্রিন্ট-রেডি PDF", en: "Print-ready PDF" },
+    printPdfNote: { bn: "৩ মিমি ব্লিড, ক্রপ ও ফোল্ড মার্কসহ", en: "with 3 mm bleed, crop and fold marks" },
+    svgOutside: { bn: "ভেক্টর SVG · বাইরের দিক", en: "Vector SVG · outside" },
+    svgInside: { bn: "ভেক্টর SVG · ভেতরের দিক", en: "Vector SVG · inside" },
     modalTitle: { bn: "তবলা কিচেন ব্রোশিওর", en: "Tobla Kitchen brochure" },
     outside: { bn: "বাইরের দিক", en: "Outside" },
     inside: { bn: "ভেতরের দিক", en: "Inside" },
@@ -455,12 +470,12 @@ export const site = {
     swipeHint: { bn: "নিচে স্ক্রল করে পুরো ব্রোশিওর দেখুন", en: "Scroll down to read every panel" },
     pageAlt: {
       outside: {
-        bn: "ব্রোশিওরের বাইরের দিক: আমাদের নিয়ম ও লক্ষ্য, সেবা ও যোগাযোগ, আর প্রচ্ছদ",
-        en: "Brochure outside: our values and mission, services and contact, and the cover",
+        bn: "ব্রোশিওরের বাইরের দিক: অফিস লাঞ্চের পরিকল্পনা ও যোগাযোগ, সিদ্ধান্তের আগে যাচাই করার তিনটি উপায়, আর প্রচ্ছদ",
+        en: "Brochure outside: plan your office lunch and contact details, three ways to check us before you decide, and the cover",
       },
       inside: {
-        bn: "ব্রোশিওরের ভেতরের দিক: আমাদের কথা, প্রস্তুতি ও ডেলিভারি, আর উপকরণের উৎস",
-        en: "Brochure inside: about us, how we prepare and deliver, and where ingredients come from",
+        bn: "ব্রোশিওরের ভেতরের দিক: ভালো উপকরণ, কিচেন থেকে অফিসে খাবার পৌঁছানো, আর ক্লায়েন্ট সাপোর্ট ও ডেলিভারি এলাকা",
+        en: "Brochure inside: better ingredients, from kitchen to office, and client support with the delivery areas",
       },
     },
   },

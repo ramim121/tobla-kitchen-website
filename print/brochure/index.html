@@ -1,0 +1,16 @@
+<!doctype html>
+<!-- The tri-fold brochure, laid out for print (A4 landscape, two sides). Not part of the website build:
+     `npm run dev`, then open /print/brochure/ (add ?mode=print for 3 mm bleed + crop and fold marks).
+     scripts/brochure/export.mjs turns it into the PDFs, SVGs and the site's preview images. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Tobla Kitchen — tri-fold brochure</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>

@@ -7,6 +7,7 @@
 #   lightbox.cjs  the photo modal: keys, arrows, swipe, wrap, focus, scroll lock, phones, English
 #   history.cjs   phone Back closes the photo / brochure viewers instead of leaving the site
 #   sections.cjs  page order, hero (both languages), sliding ingredient cards, Menu 01–06 tabs, the enquiry form
+#   brochure.cjs  the tri-fold's files and downloads, its viewer (desktop + phone panels), #section deep links
 # Needs Node with Playwright + Chromium, and Python 3 with Pillow (see README › Checks).
 set -euo pipefail
 cd "$(dirname "$0")/../.."
@@ -26,4 +27,5 @@ node $here/gallery.cjs dist
 node $here/lightbox.cjs dist
 node $here/history.cjs dist
 node $here/sections.cjs dist
+node $here/brochure.cjs dist
 echo "All checks passed."
