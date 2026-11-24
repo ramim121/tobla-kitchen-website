@@ -1,24 +1,22 @@
-/* Tobla Kitchen tri-fold — print styles, after the owner's first concept. Sizes in mm and pt.
-   Colours: the logo's orange and black, with a warm cream. */
+/* Tobla Kitchen tri-fold — print styles, after the owner's first concept and review. Sizes in mm and pt;
+   type is set large, for reading in hand. Colours: the logo's orange and black, with a warm cream. */
 
 :root {
   --ink: #231f20;
   --orange: #f36f21;
-  --orange-deep: #c9520f;
   --cream: #f7efe5; /* outside left, inside left and right */
   --cream-light: #fbf7f1; /* inside middle */
-  --peach: #fbe1c9; /* icon circles on cream */
-  --tan: #ebdcc9;
+  --peach: #fde3cc; /* icon tiles on cream */
   --rule: #e4d4c1; /* dividers on cream */
   --text: #231f20;
-  --muted: #5a514d; /* secondary text on cream */
+  --muted: #554c48; /* subtext on cream */
 
   /* trimmed page (A4) + bleed + slug (room for crop marks); print mode sets the last two */
   --bleed: 0mm;
   --slug: 0mm;
-  --pad-x: 9.5mm;
-  --pad-top: 13mm;
-  --pad-bottom: 10mm;
+  --pad-x: 9mm;
+  --pad-top: 12mm;
+  --pad-bottom: 9mm;
 }
 .doc--print {
   --bleed: 3mm;
@@ -45,8 +43,8 @@ body {
 body {
   font-family: "Jost", ui-sans-serif, system-ui, sans-serif;
   color: var(--text);
-  font-size: 9pt;
-  line-height: 1.45;
+  font-size: 10.5pt;
+  line-height: 1.4;
   font-kerning: normal;
   -webkit-font-smoothing: antialiased;
   -webkit-print-color-adjust: exact;
@@ -55,10 +53,6 @@ body {
 
 img {
   display: block;
-}
-
-.nowrap {
-  white-space: nowrap;
 }
 
 /* ───────────────────────── Sheets ───────────────────────── */
@@ -168,13 +162,18 @@ img {
   width: 100%;
   height: 100%;
 }
+/* photos drawn as SVG in mm, placed by inline left/top (measured from the decor box's top-left) */
+.art {
+  position: absolute;
+  overflow: visible;
+}
 
 /* ───────────────────────── Type ───────────────────────── */
 
 .title {
-  font-size: 20pt;
+  font-size: 25pt;
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.05;
   letter-spacing: -0.015em;
   color: var(--ink);
 }
@@ -186,82 +185,84 @@ img {
 .title--white {
   color: #ffffff;
 }
+.title--xl {
+  font-size: 28pt;
+  line-height: 1.02;
+}
 
 /* the short orange bar over each inside heading */
 .bar {
   display: block;
-  width: 11mm;
-  height: 1.3mm;
-  margin-bottom: 5.5mm;
+  flex: none;
+  width: 12mm;
+  height: 1.4mm;
+  margin-bottom: 4.6mm;
   border-radius: 1mm;
   background: var(--orange);
 }
 
 .body {
-  margin-top: 5.5mm;
-  font-size: 9.8pt;
+  margin-top: 6mm;
+  font-size: 11.5pt;
   line-height: 1.5;
-  color: var(--text);
-}
-.body--tight {
-  margin-top: 4mm;
-  font-size: 9pt;
-  color: var(--muted);
 }
 
-/* icon in a peach circle (inside panels) */
-.circle {
+/* items: icon tile, bold headline, a line of subtext */
+.items {
+  list-style: none;
+  margin-top: 6mm;
+}
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 4.2mm;
+  padding: 2.1mm 0;
+}
+.tile {
   display: grid;
   place-items: center;
   flex: none;
-  width: 11mm;
-  height: 11mm;
-  border-radius: 50%;
+  width: 12.5mm;
+  height: 12.5mm;
+  border-radius: 3mm;
   background: var(--peach);
   color: var(--orange);
 }
-.circle svg {
-  width: 5.6mm;
-  height: 5.6mm;
+.tile svg {
+  width: 7mm;
+  height: 7mm;
 }
-.circle--md {
-  width: 13mm;
-  height: 13mm;
+.item-title {
+  font-size: 13pt;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
 }
-.circle--md svg {
-  width: 6.4mm;
-  height: 6.4mm;
-}
-.circle--lg {
-  width: 13.5mm;
-  height: 13.5mm;
-}
-.circle--lg svg {
-  width: 6.8mm;
-  height: 6.8mm;
+.item-text {
+  margin-top: 0.7mm;
+  font-size: 10.4pt;
+  line-height: 1.36;
+  color: var(--muted);
 }
 
 /* ───────────────────────── Outside · Let's plan (cream flap) ───────────────────────── */
 
 .panel--plan .panel__in {
-  padding-top: 40mm;
-}
-.panel--plan .title {
-  font-size: 21pt;
+  padding-top: 34mm;
 }
 
 .qr-row {
   display: flex;
   align-items: center;
   gap: 4.5mm;
-  margin-top: 10mm;
+  margin-top: 9mm;
 }
 .qr {
   flex: none;
-  width: 29mm;
-  height: 29mm;
-  padding: 2.2mm;
-  border-radius: 2.4mm;
+  width: 31mm;
+  height: 31mm;
+  padding: 2.4mm;
+  border-radius: 2.6mm;
   background: #ffffff;
   box-shadow: 0 0 0 0.3mm var(--rule);
 }
@@ -271,18 +272,18 @@ img {
   height: 100%;
 }
 .qr-title {
-  font-size: 10.6pt;
-  font-weight: 600;
+  font-size: 13pt;
+  font-weight: 700;
   line-height: 1.2;
 }
 .qr-text {
   margin-top: 1.4mm;
-  font-size: 8.4pt;
+  font-size: 10.4pt;
   color: var(--muted);
 }
 .qr-url {
-  margin-top: 2.2mm;
-  font-size: 10.6pt;
+  margin-top: 2.4mm;
+  font-size: 13pt;
   font-weight: 700;
   color: var(--orange);
 }
@@ -299,52 +300,48 @@ img {
 .contacts li {
   display: flex;
   align-items: center;
-  gap: 3.8mm;
+  gap: 4mm;
 }
 .contacts li + li {
-  margin-top: 4.6mm;
+  margin-top: 5mm;
 }
 /* orange dot with a white icon */
 .dot {
   display: grid;
   place-items: center;
   flex: none;
-  width: 9mm;
-  height: 9mm;
+  width: 10.5mm;
+  height: 10.5mm;
   border-radius: 50%;
   background: var(--orange);
   color: #ffffff;
 }
 .dot svg {
-  width: 4.6mm;
-  height: 4.6mm;
+  width: 5.4mm;
+  height: 5.4mm;
 }
 .contact-main {
-  font-size: 10.2pt;
-  font-weight: 500;
+  font-size: 12.5pt;
+  font-weight: 600;
   line-height: 1.2;
 }
 .contact-sub {
-  margin-top: 0.6mm;
-  font-size: 7.6pt;
+  margin-top: 0.8mm;
+  font-size: 9pt;
   color: var(--muted);
 }
 
 /* ───────────────────────── Outside · Before you decide (orange back) ───────────────────────── */
 
-.panel--decide .title {
-  font-size: 25pt;
-  line-height: 1.04;
-}
 .checks {
   list-style: none;
-  margin-top: 9mm;
+  margin-top: 8mm;
 }
 .checks li {
   display: flex;
   align-items: center;
   gap: 5mm;
-  padding: 7.2mm 0;
+  padding: 6.4mm 0;
   border-top: 0.3mm solid rgba(255, 255, 255, 0.4);
 }
 .checks li:first-child {
@@ -359,245 +356,112 @@ img {
   display: grid;
   place-items: center;
   flex: none;
-  width: 17mm;
-  height: 17mm;
+  width: 18mm;
+  height: 18mm;
   border-radius: 50%;
   background: #ffffff;
   color: var(--orange);
 }
 .badge svg {
-  width: 8.4mm;
-  height: 8.4mm;
+  width: 9mm;
+  height: 9mm;
 }
 .check-title {
-  font-size: 12.6pt;
-  font-weight: 600;
-  line-height: 1.15;
+  font-size: 14.5pt;
+  font-weight: 700;
+  line-height: 1.12;
   color: #ffffff;
 }
 .check-text {
   margin-top: 1.8mm;
-  font-size: 8.8pt;
-  line-height: 1.42;
-  color: rgba(255, 255, 255, 0.92);
+  font-size: 10.6pt;
+  line-height: 1.38;
+  color: rgba(255, 255, 255, 0.95);
 }
 .promise {
   position: relative;
-  margin-top: 9mm;
-  padding-left: 4.6mm;
-  font-size: 10pt;
+  margin-top: 8mm;
+  padding-left: 5mm;
+  font-size: 11.5pt;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.38;
   color: #ffffff;
 }
 .promise::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.6mm;
-  bottom: 0.6mm;
-  width: 1mm;
+  top: 0.7mm;
+  bottom: 0.7mm;
+  width: 1.1mm;
   border-radius: 1mm;
   background: #ffffff;
 }
 
-/* ───────────────────────── Outside · Cover (dark) ───────────────────────── */
+/* ───────────────────────── Outside · Cover (black) ───────────────────────── */
 
 .lockup {
   display: flex;
   align-items: center;
-  gap: 3.2mm;
+  gap: 3.4mm;
 }
 .lockup .mark {
-  height: 17mm;
+  height: 19mm;
   width: auto;
 }
 .lockup .word {
-  height: 11mm;
+  height: 12.4mm;
   width: auto;
 }
 
 .cover-title {
-  margin-top: 17mm;
-  font-size: 27.5pt;
+  margin-top: 15mm;
+  font-size: 29pt;
   font-weight: 700;
-  line-height: 1.06;
+  line-height: 1.05;
   letter-spacing: -0.02em;
   color: #ffffff;
 }
 .cover-lead {
   margin-top: 6mm;
-  max-width: 70mm;
-  font-size: 10.4pt;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.84);
+  max-width: 76mm;
+  font-size: 12.5pt;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.88);
 }
 
-/* the plate on tabla rings (drawn in Trifold.tsx › CoverPlate) */
-.plate {
-  position: absolute;
-  overflow: visible;
+/* ───────────────────────── Inside · Built on better ingredients ───────────────────────── */
+
+.panel--ingredients .items {
+  margin-top: 5mm;
 }
 
-/* ───────────────────────── Inside · Better ingredients ───────────────────────── */
+/* ───────────────────────── Inside · From kitchen to office ───────────────────────── */
 
-.rows {
-  list-style: none;
-  margin-top: 6.5mm;
+/* the photo fills the top of the panel (KitchenPhoto); the words start below it */
+.panel--kitchen .panel__in {
+  padding-top: 89mm;
 }
-.rows > li {
-  display: flex;
-  align-items: center;
-  gap: 4mm;
-  padding: 2.5mm 0;
-  position: relative;
+.items--kitchen {
+  margin-top: 5mm;
 }
-/* hairlines start at the text, as in the concept */
-.rows > li + li::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 15mm;
-  right: 0;
-  border-top: 0.3mm solid var(--rule);
-}
-.row-text {
-  font-size: 9.4pt;
-  line-height: 1.35;
-}
-.row-text strong {
-  font-weight: 600;
+.items--kitchen .item {
+  padding: 3.2mm 0;
 }
 
-/* the ingredients photo along the foot of the panel, with a curved top edge */
-.produce {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: calc(70mm + var(--bleed));
-}
-.produce img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 40% 62%;
-  clip-path: url(#produce-clip);
+/* ───────────────────────── Inside · A reliable partner ───────────────────────── */
+
+.items--partner .item {
+  padding: 3.6mm 0;
 }
 
-/* ───────────────────────── Inside · Kitchen to office ───────────────────────── */
-
-.photo {
-  margin-top: 6mm;
-  border-radius: 3.5mm;
-  overflow: hidden;
-  aspect-ratio: 4 / 3.8;
-  background: #e9e2d9;
-}
-.photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 38% 50%;
-}
-.flow {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2mm;
-  margin-top: 9mm;
-  text-align: center;
-}
-.flow li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.line-icon {
-  display: grid;
-  place-items: center;
-  color: var(--orange);
-}
-.line-icon svg {
-  width: 9.5mm;
-  height: 9.5mm;
-}
-.flow p {
-  margin-top: 2.6mm;
-  font-size: 7.9pt;
-  font-weight: 500;
-  line-height: 1.3;
-}
-
-.capacity {
-  display: flex;
-  align-items: center;
-  gap: 3.6mm;
-  margin-top: auto;
-  padding: 3mm 5.5mm 3mm 3mm;
-  border-radius: 20mm;
-  border: 0.35mm solid var(--rule);
-  background: #ffffff;
-}
-.capacity .upto {
-  display: block;
-  font-size: 8.6pt;
-  font-weight: 500;
-  line-height: 1;
-}
-.capacity .big {
-  display: block;
-  margin-top: 0.5mm;
-  font-size: 23pt;
-  font-weight: 700;
-  line-height: 0.95;
-  letter-spacing: -0.01em;
-  color: var(--orange);
-}
-.capacity .divider {
-  align-self: stretch;
-  width: 0.3mm;
-  margin: 1.5mm 0.6mm;
-  background: var(--rule);
-}
-.capacity .what {
-  font-size: 9.2pt;
-  font-weight: 500;
-  line-height: 1.3;
-}
-
-/* ───────────────────────── Inside · Reliable partner ───────────────────────── */
-
-.rows--partner {
-  margin-top: 7mm;
-}
-.rows--partner > li {
-  align-items: flex-start;
-  gap: 4.6mm;
-  padding: 5.2mm 0;
-}
-.rows--partner > li + li::before {
-  left: 17.6mm;
-}
-.row-title {
-  font-size: 10.6pt;
-  font-weight: 600;
-  line-height: 1.25;
-}
-.row-desc {
-  margin-top: 1.2mm;
-  font-size: 8.9pt;
-  line-height: 1.42;
-  color: var(--muted);
-}
-
-/* the dark band at the foot: its shape and the skyline are decor, the words sit in the panel */
+/* the black band at the foot: its shape and the skyline are decor, the words sit in the panel */
 .band-bg {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: calc(76mm + var(--bleed));
+  height: calc(80mm + var(--bleed));
 }
 .band-bg__shape {
   position: absolute;
@@ -610,42 +474,42 @@ img {
   left: 0;
   right: 0;
   bottom: var(--bleed);
-  height: 27mm;
+  height: 26mm;
 }
 .band {
   margin-top: auto;
-  padding-bottom: 29mm;
+  padding-bottom: 27mm;
 }
 .band__head {
   display: flex;
   align-items: center;
-  gap: 3.6mm;
+  gap: 3.8mm;
 }
 .band__icon {
   display: grid;
   place-items: center;
   flex: none;
-  width: 11mm;
-  height: 11mm;
-  border-radius: 2.6mm;
-  border: 0.35mm solid rgba(243, 111, 33, 0.9);
+  width: 12mm;
+  height: 12mm;
+  border-radius: 2.8mm;
+  border: 0.4mm solid var(--orange);
   color: var(--orange);
 }
 .band__icon svg {
-  width: 6mm;
-  height: 6mm;
+  width: 6.6mm;
+  height: 6.6mm;
 }
 .band__head p {
-  font-size: 11pt;
-  font-weight: 600;
-  line-height: 1.25;
+  font-size: 13pt;
+  font-weight: 700;
+  line-height: 1.22;
   color: #ffffff;
 }
 .band__areas {
-  margin-top: 3.4mm;
-  font-size: 7.8pt;
+  margin-top: 4mm;
+  font-size: 10pt;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* ───────────────────────── Print furniture (print mode) ───────────────────────── */

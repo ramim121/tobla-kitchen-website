@@ -158,23 +158,25 @@ with category filters. Tapping a photo opens it in a modal (photo, description u
 arrow keys, Esc and swipe work). Add, remove or reword dishes in `src/content/gallery.ts`.
 
 ## Brochure
-An A4-landscape tri-fold (roll fold) in English, laid out after the owner's first concept in the logo's colours
-(orange #F36F21, black #231F20) with a warm cream, Jost and the logo. Outside: *Let's plan your office lunch* (cream:
-QR code to the website, contact) · *Before you decide* (solid orange, the back) · the cover (black, the plate on tabla
-rings). Inside, on cream: *better ingredients* (over a photo of fresh ingredients) · *from kitchen to office* · *a
-reliable partner* (support and menus, then a black band with the delivery areas over a city line drawing).
+An A4-landscape tri-fold (roll fold) in English, laid out after the owner's first concept and their review, in the
+logo's colours (orange #F36F21, black #231F20) with a warm cream, Jost set large, and the logo. Outside: *Let's plan
+your office lunch* (cream: QR code to the website, contact) · *Before you decide* (solid orange, the back) · the cover
+(black, a steaming lunch box). Inside, on cream: *Built on better ingredients* (bold headlines with a line of subtext,
+over fresh produce that fades into the cream) · *From kitchen to office* (the kitchen photo across the whole panel,
+then four points) · *A reliable partner* (support and menus, then a black band with the delivery areas over a skyline).
 
 - **Source:** `print/brochure/` — a page laid out in mm (`Trifold.tsx`, `trifold.css`, `Skyline.tsx`). Panel
   positions live in `src/content/brochure.ts`, shared with the site's viewer: the flap that folds in is 97 mm wide,
   the other panels 100 mm. Preview it with `npm run dev`, then open `/print/brochure/` (add `?mode=print` for the
   bleed and marks). It is not part of the site build.
-- **Photos:** `print/brochure/assets/` — the cover's fish platter (DSC02828), cut from the photographer's original;
-  the kitchen photo and the fresh-ingredients photo (both generated with the OpenAI image tool — swap in real photos
-  when there are some); and the QR code, which opens the website (`https://www.toblakitchen.com`). Re-make them with
-  `python3 scripts/brochure/prepare-assets.py --src <originals folder> --kitchen <kitchen photo> --ingredients <photo>`.
+- **Photos:** `print/brochure/assets/` — the cover's lunch box, the kitchen and the fresh ingredients (all generated with
+  the OpenAI image tool — swap in real photos with the same framing when there are some), and the QR code, which opens
+  the website (`https://www.toblakitchen.com`). The fades into the panels are baked into the photos (no PDF
+  transparency, so every viewer and print shop sees the same seamless edge). Re-make them with
+  `python3 scripts/brochure/prepare-assets.py --meal-box <photo> --kitchen <photo> --ingredients <photo>`.
 - **Export:** `npm run brochure` (Chromium, poppler's `pdftocairo`, Python with Pillow and pikepdf) writes
-  - `public/brochure/tobla-kitchen-brochure.pdf` — A4, 2 pages, real text in embedded Jost, photos at 370+ dpi
-    (about 2 MB): the main download
+  - `public/brochure/tobla-kitchen-brochure.pdf` — A4, 2 pages, real text in embedded Jost, photos at 250–325 dpi
+    (about 1.1 MB): the main download
   - `public/brochure/tobla-kitchen-brochure-print.pdf` — for a print shop: 3 mm bleed, crop and fold marks,
     TrimBox and BleedBox set
   - `public/brochure/tobla-kitchen-brochure-{outside,inside}.svg` — vector artwork, one file per side (297 × 210 mm,
