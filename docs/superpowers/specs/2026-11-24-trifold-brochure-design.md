@@ -1,6 +1,6 @@
 # Tri-fold brochure (A4 landscape) — design
 
-Date: 2026-11-24 · Status: built, revised three times after the owner's reviews the same day, shown on the site and deployed.
+Date: 2026-11-24 · Status: built, revised four times after the owner's reviews the same day, shown on the site and deployed.
 
 ## Intent
 Replace the old brochure (generic photos, a 23.7 MB PDF) with a tri-fold the owner can print and share, laid out after
@@ -23,6 +23,11 @@ their first concept, so corporate buyers get a confident, colourful piece in han
    concept: close up, not shown whole, with a smoke effect**; "Safe packaging" → **"Safe & organized packaging"**, the
    boxes **changed every 3 months**; the inside left: **the earlier dark-slate produce photo, in the concept's wave**;
    and **the concept's round icons** for the ingredients (hen, egg, leaf, steak, drop, spices).
+7. Fourth review: in the inside right band, **replace the delivery areas with a "Visit Our Kitchen & Try a Sample
+   Meal" card** (their crop: a light card, a serving dome with steam, a divider, orange heading, dark line of text);
+   and **swap the outside left and middle panels, colours included** — *Before You Decide* (orange) becomes the flap,
+   *Let's Plan* (cream) the back — **keeping the shapes at the top and the foot continuous from one panel to the
+   other**.
 
 ## Approaches
 - **Making the artwork:** (a) a design tool by hand — not repeatable here; (b) hand-written SVG — painful text layout;
@@ -36,17 +41,21 @@ their first concept, so corporate buyers get a confident, colourful piece in han
 ## Decisions
 - **Format:** A4 landscape, roll fold; the flap that folds in is 97 mm, the other panels 100 mm (folds at 97/197 mm
   outside, 100/200 mm inside). Geometry in `src/content/brochure.ts`, shared with the site's viewer.
-- **Panels:** outside — cream *Let's Plan Your Office Lunch* (orange corner swoosh, QR "Visit Our Website", phone /
-  address / web on orange dots, tan disc), solid orange *Before You Decide* (three white discs: see the kitchen,
-  understand the standards, taste before you decide; the promise "our own team eats the same food we serve you"),
-  black cover (logo, "Corporate Lunch, Professionally Managed.", a close-up lunch box running off the bottom and right
-  edges, steam rising in front of an orange disc behind the box). Inside, cream with an orange bar over each heading —
-  *Built on Better Ingredients* (six items, bold headline + subtext, round peach icons drawn after the concept,
-  hairlines between items, the dark-slate produce photo cut by a wave), *From Kitchen to Office* (the kitchen photo fold
-  to fold, then four points as a list), *A Reliable Partner for Your Office* (account manager, feedback, menu rotation;
-  round icons and hairlines as on the left; then the band: a wide rounded corner at the fold, an orange gradient, a
-  light peach shape peeking out behind it, the heading and the eight delivery areas in white, a white-line skyline of
-  plain towers at the right).
+- **Panels:** outside — solid orange *Before You Decide* on the flap (three white discs: see the kitchen, understand
+  the standards, taste before you decide; the promise "our own team eats the same food we serve you"), cream *Let's
+  Plan Your Office Lunch* on the back (QR "Visit Our Website", phone / address / web on orange dots), black cover
+  (logo, "Corporate Lunch, Professionally Managed.", a close-up lunch box running off the bottom and right edges, steam
+  rising in front of an orange disc behind the box). Flap and back share their shapes across the fold: the flap's
+  orange spills into the back's top corner, and one wave (a single path in sheet coordinates, drawn in both panels)
+  runs along the foot — lighter orange on the flap, tan on the back; the back's shapes start 0.6 mm over the fold so
+  PDF viewers show no hairline there. Inside, cream with an orange bar over each heading — *Built on Better
+  Ingredients* (six items, bold headline + subtext, round peach icons drawn after the concept, hairlines between
+  items, the dark-slate produce photo cut by a wave), *From Kitchen to Office* (the kitchen photo fold to fold, then
+  four points as a list), *A Reliable Partner for Your Office* (account manager, feedback, menu rotation; round icons
+  and hairlines as on the left; then the band: a wide rounded corner at the fold, an orange gradient, a light peach
+  shape peeking out behind it, the heading in white, the "Visit Our Kitchen & Try a Sample Meal" card, a white-line
+  skyline of plain towers at the right). The delivery areas left the brochure with the fourth review; they are still
+  in the site's enquiry form.
 - **Type:** headings 25–29 pt, item headlines 13 pt bold, subtext 10.4 pt, body 11.5 pt.
 - **Content:** every claim comes from the site or owner-approved copy; concept wording kept, tightened where vague.
 - **Photos:** the lunch box, the kitchen and the fresh ingredients, generated with the OpenAI image tool (no real photos

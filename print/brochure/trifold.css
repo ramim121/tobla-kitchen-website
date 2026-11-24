@@ -134,6 +134,10 @@ img {
   overflow: hidden;
   pointer-events: none;
 }
+/* the back's shapes carry on from the flap, so they start 0.6 mm over the fold (no hairline where they meet) */
+.panel--plan .panel__decor {
+  left: -0.6mm;
+}
 .panel__in {
   position: relative;
   display: flex;
@@ -155,14 +159,7 @@ img {
   background: var(--ink);
 }
 
-/* decor drawn in a 100 × 216 box that stretches over the panel and its bleed */
-.decor-full {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-/* photos drawn as SVG in mm, placed by inline left/top (measured from the decor box's top-left) */
+/* shapes and photos drawn as SVG in mm, placed by inline left/top (measured from the decor box's top-left) */
 .art {
   position: absolute;
   overflow: visible;
@@ -474,14 +471,14 @@ img {
 /* ───────────────────────── Inside · A reliable partner ───────────────────────── */
 
 .items--partner .item {
-  padding: 3.6mm 0;
+  padding: 3.1mm 0;
 }
 
 /* the orange band at the foot: its shape and the skyline are decor (PartnerDecor), the words sit in the panel,
    indented a little from the band's rounded corner and ending above the skyline */
 .band {
   margin-top: auto;
-  padding: 0 0 19mm 4mm;
+  padding: 0 0 15mm 4mm;
 }
 .band__head {
   display: flex;
@@ -508,12 +505,42 @@ img {
   line-height: 1.22;
   color: #ffffff;
 }
-.band__areas {
-  margin-top: 4mm;
-  font-size: 10pt;
-  font-weight: 500;
-  line-height: 1.5;
-  color: #ffffff;
+/* "Visit our kitchen & try a sample meal" — a light card in the band (the owner's concept) */
+.visit {
+  display: flex;
+  align-items: center;
+  gap: 3.2mm;
+  margin-top: 4.6mm;
+  padding: 3.6mm 4mm 3.6mm 3.4mm;
+  border-radius: 3.6mm;
+  background: linear-gradient(135deg, #fff3ea 0%, #fddcc2 100%);
+}
+.visit__icon {
+  flex: none;
+  width: 13mm;
+  height: 13mm;
+  color: var(--orange);
+}
+.visit__rule {
+  flex: none;
+  align-self: stretch;
+  width: 0.35mm;
+  margin: 1.2mm 0;
+  border-radius: 0.2mm;
+  background: var(--ink);
+}
+.visit__title {
+  font-size: 12.5pt;
+  font-weight: 700;
+  line-height: 1.12;
+  color: #e25e12;
+}
+.visit__text {
+  margin-top: 1.4mm;
+  font-size: 9.4pt;
+  line-height: 1.35;
+  color: var(--ink);
+  text-wrap: balance;
 }
 
 /* ───────────────────────── Print furniture (print mode) ───────────────────────── */

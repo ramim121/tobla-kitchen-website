@@ -64,11 +64,15 @@ export const ingredientSrcSet = (key: IngredientKey) =>
 
 /**
  * Brochure renders, made from the PDF by `npm run brochure`: the two A4-landscape sides (2400×1697) and
- * three single panels (520×1092) for the fanned cards. Panel positions: src/content/brochure.ts.
+ * three single panels, 520 px wide, for the fanned cards — the flap ("decide") is 97 mm wide, so its card is a
+ * little taller. Panel positions: src/content/brochure.ts.
  */
 export const BROCHURE = {
   pages: { outside: brochureOutside, inside: brochureInside },
   pageSize: { w: 2400, h: 1697 },
-  thumbs: { cover: brochureCover, decide: brochureDecide, kitchen: brochureKitchen },
-  thumbSize: { w: 520, h: 1092 },
+  thumbs: {
+    cover: { src: brochureCover, w: 520, h: 1092 },
+    decide: { src: brochureDecide, w: 520, h: 1126 },
+    kitchen: { src: brochureKitchen, w: 520, h: 1092 },
+  },
 } as const;

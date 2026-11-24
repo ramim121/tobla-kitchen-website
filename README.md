@@ -159,12 +159,14 @@ arrow keys, Esc and swipe work). Add, remove or reword dishes in `src/content/ga
 
 ## Brochure
 An A4-landscape tri-fold (roll fold) in English, laid out after the owner's first concept and their reviews, in the
-logo's colours (orange #F36F21, black #231F20) with a warm cream, Jost set large, and the logo. Outside: *Let's plan
-your office lunch* (cream: QR code to the website, contact) · *Before you decide* (solid orange, the back) · the cover
-(black, a close-up of a steaming lunch box in front of an orange disc). Inside, on cream: *Built on better ingredients*
-(bold headlines with a line of subtext, round icons, hairlines, over a wave of fresh produce) · *From kitchen to office*
-(the kitchen photo across the whole panel, then four points) · *A reliable partner* (support and menus, then an orange
-band — shaped as in the concept — with the delivery areas and a skyline).
+logo's colours (orange #F36F21, black #231F20) with a warm cream, Jost set large, and the logo. Outside: *Before you
+decide* (solid orange, the flap behind the cover) · *Let's plan your office lunch* (cream, the back: QR code to the
+website, contact) · the cover (black, a close-up of a steaming lunch box in front of an orange disc); the flap's orange
+spills over the fold into the back's top corner, and one wave runs across both at the foot. Inside, on cream: *Built on
+better ingredients* (bold headlines with a line of subtext, round icons, hairlines, over a wave of fresh produce) ·
+*From kitchen to office* (the kitchen photo across the whole panel, then four points) · *A reliable partner* (support
+and menus, then an orange band — shaped as in the concept — with a "Visit our kitchen & try a sample meal" card and a
+skyline).
 
 - **Source:** `print/brochure/` — a page laid out in mm (`Trifold.tsx`, `trifold.css`, `Skyline.tsx`). Panel
   positions live in `src/content/brochure.ts`, shared with the site's viewer: the flap that folds in is 97 mm wide,

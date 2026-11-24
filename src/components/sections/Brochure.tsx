@@ -124,9 +124,9 @@ function BrochureFan({ onOpen }: { onOpen: (el: HTMLButtonElement) => void }) {
   const spread = inView ? (hover ? 1.18 : 1) : 0;
 
   const cards = [
-    { src: BROCHURE.thumbs.decide, dir: -1 },
-    { src: BROCHURE.thumbs.kitchen, dir: 1 },
-    { src: BROCHURE.thumbs.cover, dir: 0 },
+    { ...BROCHURE.thumbs.decide, dir: -1 },
+    { ...BROCHURE.thumbs.kitchen, dir: 1 },
+    { ...BROCHURE.thumbs.cover, dir: 0 },
   ];
 
   return (
@@ -147,8 +147,8 @@ function BrochureFan({ onOpen }: { onOpen: (el: HTMLButtonElement) => void }) {
           key={c.src}
           src={c.src}
           alt=""
-          width={BROCHURE.thumbSize.w}
-          height={BROCHURE.thumbSize.h}
+          width={c.w}
+          height={c.h}
           loading="lazy"
           decoding="async"
           draggable={false}

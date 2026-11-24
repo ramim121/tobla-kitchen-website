@@ -470,12 +470,12 @@ export const site = {
     swipeHint: { bn: "নিচে স্ক্রল করে পুরো ব্রোশিওর দেখুন", en: "Scroll down to read every panel" },
     pageAlt: {
       outside: {
-        bn: "ব্রোশিওরের বাইরের দিক: অফিস লাঞ্চের পরিকল্পনা ও যোগাযোগ, সিদ্ধান্তের আগে যাচাই করার তিনটি উপায়, আর প্রচ্ছদ",
-        en: "Brochure outside: plan your office lunch and contact details, three ways to check us before you decide, and the cover",
+        bn: "ব্রোশিওরের বাইরের দিক: সিদ্ধান্তের আগে যাচাই করার তিনটি উপায়, অফিস লাঞ্চের পরিকল্পনা ও যোগাযোগ, আর প্রচ্ছদ",
+        en: "Brochure outside: three ways to check us before you decide, plan your office lunch with our contact details, and the cover",
       },
       inside: {
-        bn: "ব্রোশিওরের ভেতরের দিক: ভালো উপকরণ, কিচেন থেকে অফিসে খাবার পৌঁছানো, আর ক্লায়েন্ট সাপোর্ট ও ডেলিভারি এলাকা",
-        en: "Brochure inside: better ingredients, from kitchen to office, and client support with the delivery areas",
+        bn: "ব্রোশিওরের ভেতরের দিক: ভালো উপকরণ, কিচেন থেকে অফিসে খাবার পৌঁছানো, আর ক্লায়েন্ট সাপোর্ট ও কিচেন ভিজিট করে স্যাম্পল মিল টেস্ট করার আমন্ত্রণ",
+        en: "Brochure inside: better ingredients, from kitchen to office, and client support with an invitation to visit our kitchen and try a sample meal",
       },
     },
   },

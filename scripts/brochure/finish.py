@@ -6,7 +6,8 @@
 - the print PDF: TrimBox (the A4 page) and BleedBox (3 mm around it) inside the 12 mm slug, so a
   printer's software knows where to cut
 - src/assets/brochure/{outside,inside}.webp: the two sides at 2400 px (the brochure viewer)
-- src/assets/brochure/panel-{cover,decide,kitchen}.webp: single panels at 520 px (the fanned cards)
+- src/assets/brochure/panel-{cover,decide,kitchen}.webp: single panels, 520 px wide (the fanned cards; their
+  sizes are written in src/content/images.ts › BROCHURE.thumbs)
 Needs pikepdf, Pillow and poppler's pdftocairo.
 """
 
@@ -28,7 +29,7 @@ SLUG = 12  # trim offset from the page edge in the print PDF
 PREVIEW_W = 2400
 PANEL_W = 520
 # (file, page index, left mm, width mm) — must match src/content/brochure.ts
-PANELS = [("panel-cover", 0, 197, 100), ("panel-decide", 0, 97, 100), ("panel-kitchen", 1, 100, 100)]
+PANELS = [("panel-cover", 0, 197, 100), ("panel-decide", 0, 0, 97), ("panel-kitchen", 1, 100, 100)]
 
 INFO = {
     "/Title": "Tobla Kitchen — Corporate Lunch, Professionally Managed",

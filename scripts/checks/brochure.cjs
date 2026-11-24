@@ -16,11 +16,11 @@ const FILES = {
 // reading order on phones, with each panel's width in mm (src/content/brochure.ts)
 const PANELS = [
   ["Cover", 100],
-  ["Before you decide", 100],
+  ["Before you decide", 97], // the flap behind the cover
   ["Better ingredients", 100],
   ["From kitchen to office", 100],
   ["A reliable partner", 97],
-  ["Plan your office lunch & contact", 97],
+  ["Plan your office lunch & contact", 100], // the back
 ];
 
 (async () => {
@@ -50,6 +50,11 @@ const PANELS = [
   }
   const preview = p.locator("#brochure button").first();
   await preview.scrollIntoViewIfNeeded();
+  // the fanned cards declare each panel image's size (src/content/images.ts) — it must match the file
+  await p.waitForFunction(() => [...document.querySelectorAll("#brochure button img")].every((i) => i.complete && i.naturalWidth > 0));
+  const cards = await p.$$eval("#brochure button img", (imgs) => imgs.map((i) => [i.naturalWidth, i.naturalHeight, +i.getAttribute("width"), +i.getAttribute("height")]));
+  const wrong = cards.filter(([nw, nh, w, h]) => nw !== w || nh !== h);
+  check(cards.length === 3 && wrong.length === 0, "the fanned brochure cards declare their images' real sizes", JSON.stringify(wrong));
   await preview.click();
   await p.waitForSelector(DIALOG, { state: "visible" });
   await p.waitForTimeout(700);

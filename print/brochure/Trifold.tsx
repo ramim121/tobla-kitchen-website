@@ -83,6 +83,22 @@ function OilDrop({ strokeWidth }: { strokeWidth?: number }) {
     </Glyph>
   );
 }
+/** a serving dome with steam rising — the owner's "visit our kitchen" card (solid, as in their concept) */
+function Cloche() {
+  return (
+    <svg className="visit__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth={1.4} strokeLinecap="round">
+        <path d="M9.4 7.4c-.9-.9-.9-1.8 0-2.7s.9-1.8 0-2.7" />
+        <path d="M12 7.4c-.9-.9-.9-1.8 0-2.7s.9-1.8 0-2.7" />
+        <path d="M14.6 7.4c-.9-.9-.9-1.8 0-2.7s.9-1.8 0-2.7" />
+      </g>
+      <circle cx="12" cy="9.6" r="1.3" fill="currentColor" />
+      <path d="M3.4 17.6a8.6 7.6 0 0 1 17.2 0Z" fill="currentColor" />
+      <path d="M6.6 15.8c.4-2 1.7-3.5 3.6-4.2" fill="none" stroke="#FFE3CC" strokeWidth={1.1} strokeLinecap="round" />
+      <rect x="1.8" y="18.6" width="20.4" height="1.9" rx=".95" fill="currentColor" />
+    </svg>
+  );
+}
 /** whole spices: two crossed cinnamon sticks and a cardamom pod */
 function Spices({ strokeWidth }: { strokeWidth?: number }) {
   return (
@@ -162,12 +178,27 @@ function PlanPanel() {
   );
 }
 
+/*
+ * The flap (orange) and the back (cream) meet at the fold, so their shapes run on across it: at the top the flap's
+ * orange spills over the fold into the back's corner; at the foot one wave runs through both — lighter orange on the
+ * flap, tan on the back. The wave is one path in sheet mm (x from the sheet's left edge, y from the trim top), drawn
+ * in each panel's own SVG and cut off at the fold, so its edge lines up exactly.
+ */
+const FOOT_WAVE = "M-3 167C25 161 70 172 97 182 112 188 128 199 141 213H-3Z";
+const FOOT_WAVE_DEEP = "M-3 190C25 185 52 197 84 213H-3Z";
+
+/**
+ * The back's shapes: 100 × 216 mm (the panel + the bleed at the top and the foot). They reach 0.6 mm back over the
+ * fold (the panel's decor box starts there, see trifold.css): two shapes that only touch at the fold leave a pale
+ * hairline in PDF viewers, so the orange corner overlaps the flap's orange instead.
+ */
 function PlanDecor() {
   return (
-    <svg className="decor-full" viewBox="0 0 100 216" preserveAspectRatio="none" aria-hidden="true">
-      {/* orange swoosh in the top-left corner, tan disc rising from the bottom-right */}
-      <path d="M0 0 H32 C 18 3, 6 15, 0 44 Z" fill="#F36F21" />
-      <circle cx="114" cy="240" r="58" fill="#EBDCC9" />
+    <svg className="art" viewBox="0 0 100 216" style={{ width: "100mm", height: "216mm", left: "0.6mm", top: `calc(var(--bleed) - ${BLEED}mm)` }} aria-hidden="true">
+      {/* the flap's orange, spilling over the fold into the top corner */}
+      <path d="M-0.6 0H32C18 3 6 15 0 44H-0.6Z" fill="#F36F21" />
+      {/* the foot wave, carried on from the flap in tan */}
+      <path d={FOOT_WAVE} transform={`translate(-97 ${BLEED})`} fill="#EBDCC9" />
     </svg>
   );
 }
@@ -222,12 +253,15 @@ function DecidePanel() {
   );
 }
 
+/** The flap's shapes: 100 × 216 mm (the panel + the bleed on the left, at the top and the foot). */
 function DecideDecor() {
   return (
-    <svg className="decor-full" viewBox="0 0 100 216" preserveAspectRatio="none" aria-hidden="true">
-      {/* a lighter and a deeper orange curve along the foot of the panel */}
-      <path d="M0 182 C 30 166, 70 176, 100 158 V216 H0 Z" fill="#FFFFFF" fillOpacity="0.09" />
-      <path d="M0 200 C 35 187, 72 200, 100 184 V216 H0 Z" fill="#C9520F" fillOpacity="0.22" />
+    <svg className="art" viewBox="0 0 100 216" style={{ width: "100mm", height: "216mm", left: `calc(var(--bleed) - ${BLEED}mm)`, top: `calc(var(--bleed) - ${BLEED}mm)` }} aria-hidden="true">
+      <g transform={`translate(${BLEED} ${BLEED})`}>
+        {/* the foot wave (it runs on into the back in tan), and a deeper one under it */}
+        <path d={FOOT_WAVE} fill="#F5803A" />
+        <path d={FOOT_WAVE_DEEP} fill="#E4651B" />
+      </g>
     </svg>
   );
 }
@@ -399,11 +433,18 @@ function PartnerPanel() {
             for Offices in Dhaka
           </p>
         </div>
-        <p className="band__areas">
-          {["Gulshan", "Banani", "Niketon", "Baridhara", "Baridhara DOHS", "Mohakhali", "Mohakhali DOHS", "Tejgaon"]
-            .map((a) => a.replace(/ /g, "\u00a0"))
-            .join(" · ")}
-        </p>
+        <div className="visit">
+          <Cloche />
+          <span className="visit__rule" />
+          <div>
+            <p className="visit__title">
+              Visit Our Kitchen
+              <br />
+              &amp; Try a Sample Meal
+            </p>
+            <p className="visit__text">See our operations, meet the team and taste the quality for yourself.</p>
+          </div>
+        </div>
       </div>
     </>
   );
@@ -416,9 +457,9 @@ function PartnerPanel() {
  */
 function PartnerDecor() {
   const W = 100;
-  const TOP = 112; // mm from the trim top
+  const TOP = 103; // mm from the trim top
   const H = 210 + BLEED - TOP;
-  const s = 0.7; // skyline scale: 68 mm wide, its ground 5 mm above the trim
+  const s = 0.6; // skyline scale: 58 mm wide, its ground 5 mm above the trim
   return (
     <svg className="art" viewBox={`0 0 ${W} ${H}`} style={{ width: `${W}mm`, height: `${H}mm`, left: 0, top: `calc(var(--bleed) + ${TOP}mm)` }} aria-hidden="true">
       <defs>
@@ -432,7 +473,7 @@ function PartnerDecor() {
           <stop offset="1" stopColor="#F9B07A" />
         </linearGradient>
       </defs>
-      <ellipse cx="88" cy="26" rx="34" ry="16" fill="url(#band-glow)" />
+      <ellipse cx="88" cy="28" rx="34" ry="16" fill="url(#band-glow)" />
       <path d={`M0 ${H}V52C0 38 10 28.5 26 26 50 22.5 78 19 ${W} 18V${H}Z`} fill="url(#band-fill)" />
       <g transform={`translate(${W - SKYLINE.w * s} ${H - BLEED - 5 - SKYLINE.ground * s}) scale(${s})`}>
         <SkylineArt tone="onOrange" />
